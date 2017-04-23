@@ -10,4 +10,10 @@ case PICKUP.__WEAPON:
     with (obj)
         instance_destroy();
     break;
+    
+case PICKUP.__AMMO:
+    playerPickupAmmo(obj.value, obj.ammo);
+    with (obj)
+        instance_destroy();    
+    break;
 }

@@ -32,9 +32,6 @@ image_speed = 0;
 hp = 6;
 _hp = 12;
 
-canAttack = 1;
-canAttackTmr = -1;
-
 mousedir = 0;
 
 
@@ -49,13 +46,7 @@ weaponAmmo = 0;
 weaponBack = WEAPONS.__NONE;
 weaponBackAmmo = 0;
 // weapon animation
-weaponSpr = -1;
-weaponAnimSpd = 0;
-weaponAngle = 0;
-weaponMaxAngle = 6;
-weaponSinStep = 4;
 weaponSprite[2] = -1;
-weaponImage = 0;
 weaponAnimSpeed[2] = 0;
 weaponXoff = 0;
 weaponYoff = 0;
@@ -67,6 +58,10 @@ key[KEY.CNT] = 0;
 
 
 pickupId = noone;
+
+// movement trics
+hmove = 0;
+vmove = 0;
 
 
 instance_create(x, y, oCamera);
@@ -101,6 +96,67 @@ playerSetWeapon(weapon);
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///weapon update
+if (!updatable)
+    exit;
+weaponObj.x = x + weaponXoff * sign(image_xscale);
+weaponObj.y = y + weaponYoff;
+if (weapon != WEAPONS.__NONE)
+{
+    switch (weaponType)
+    {
+    case WEAPON_TYPE.__MELEE:
+        var perc = anAngle / anMaxAngle;
+        with(weaponObj)
+            image_angle = perc * anMaxAngle;
+        weaponObj.image_xscale = image_xscale;
+        if (mouse_y &lt; y)
+        {
+            weaponObj.depth = depth + 1;
+        }
+        else
+        {
+            weaponObj.depth = depth - 1;
+        }
+        break;
+    case WEAPON_TYPE.__RANGE:
+        weaponObj.image_yscale = sign(image_xscale);
+        weaponObj.image_angle = mousedir;
+        
+        if (mousedir &gt; 0 &amp;&amp; mousedir &lt; 180)
+        {
+            weaponObj.depth = depth + 1;
+        }   
+        else
+        {
+            weaponObj.depth = depth - 1;
+        }
+        break;
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -124,30 +180,25 @@ playerSetWeapon(weapon);
 depth = -y;
 
 pickupId = noone;
-
-if (canAttackTmr &amp;&amp; !-canAttackTmr)
-{
-    // can attack again
-    canAttack = 1;
-}
+hmove = 0;
+vmove = 0;
 
 switch (state)
 {
 case PLAYER_STATES.__IDLE:
     procedureAnimableApproachReset();
-    procedureAnimateWeapon();
     playerRotateToMouse();
     playerGetInteractable();
     
     physicalBeginStep();
     playerGetKeys();
-    if (key[KEY.LEFT] || key[KEY.RIGHT] || key[KEY.TOP] || key[KEY.BOT])
+    if ((key[KEY.LEFT] ^^ key[KEY.RIGHT]) || (key[KEY.TOP] ^^ key[KEY.BOT]))
         playerSetState(PLAYER_STATES.__WALK);
     if (key[KEY.KICK])
     {
         var can = playerCanShoot();
         if (can)
-            playerSetState(PLAYER_STATES.__ATTACK);
+            playerAttack();
         else
             debugWrite("Cannot shoot, reason: " + string(can));
     }   
@@ -155,55 +206,57 @@ case PLAYER_STATES.__IDLE:
     {
         playerPickup(pickupId);
     }
+    if (key[KEY.RELOAD])
+        playerReload();
     break;
 
 case PLAYER_STATES.__WALK:
     procedureAnimableProceed();    
     playerRotateToMouse();
-    procedureAnimateWeapon();
     playerGetInteractable();
     
     physicalBeginStep();
     playerGetKeys();
     if (key[KEY.LEFT])
     {
-        hspd -= spd * speedmod;
+        hmove--;
     }
     if (key[KEY.RIGHT])
     {
-        hspd += spd * speedmod;
+        hmove++;
     }
     if (key[KEY.TOP])
-    {        vspd -= spd * speedmod;
+    {       
+        vmove--; 
     }
     if (key[KEY.BOT])
     {
-        vspd += spd * speedmod;
+        vmove++;
     }
-    if (vspd == 0 &amp;&amp; hspd == 0)
+    if ((vmove == 0 &amp;&amp; hmove == 0)
+        || ((key[KEY.TOP] &amp;&amp; key[KEY.BOT]) || (key[KEY.LEFT] &amp;&amp; key[KEY.RIGHT])))
+    {
         playerSetState(PLAYER_STATES.__IDLE);
+        exit;
+    }
+    if (key[KEY.KICK])
+    {
+        var can = playerCanShoot();
+        if (can)
+            playerAttack();
+        else
+            debugWrite("Cannot shoot, reason: " + string(can));
+    }   
         
     if (key[KEY.PICKUP])
     {
         playerPickup(pickupId);
     }
     
+    hspd += spd * speedmod * hmove;
+    vspd += spd * speedmod * vmove;
     physicalMove();
     break;
-    
-case PLAYER_STATES.__ATTACK_SHOOT_ANIM:
-    if (weaponImage == sprite_get_number(weaponSpr))
-    {
-        if (weaponSprite[2] != -1)
-            playerSetState(PLAYER_STATES.__ATTACK_SHOOT_RETURN);
-        else
-            playerSetState(PLAYER_STATES.__WALK * (hspd != 0 || vspd != 0) + PLAYER_STATES.__IDLE * (hspd == 0 &amp;&amp; vspd == 0));
-        exit;
-    }
-    weaponImage += weaponAnimSpd;
-    physicalMove();
-    break;
-    
 case PLAYER_STATES.__DIE:
 
     break;
@@ -277,49 +330,9 @@ case PLAYER_STATES.__DIE:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-switch (state)
-{
-case PLAYER_STATES.__DIE:
-
-    break;
-    
-default:
-    if (weapon != WEAPONS.__NONE)
-    {
-        switch (weaponType)
-        {
-        case WEAPON_TYPE.__MELEE:
-            if (mouse_y &lt; y)
-            {
-            draw_sprite_ext(weaponSpr, weaponImage, x + weaponXoff * sign(image_xscale), y + weaponYoff, image_xscale, image_yscale, weaponAngle, weaponBlend, image_alpha);             
-            procedureAnimableDrawPerson();
-            }
-            else
-            {
-            procedureAnimableDrawPerson();
-            draw_sprite_ext(weaponSpr, weaponImage, x + weaponXoff * sign(image_xscale), y + weaponYoff, image_xscale, image_yscale, weaponAngle, weaponBlend, image_alpha);             
-            }
-            break;
-        case WEAPON_TYPE.__RANGE:
-            if (weaponAngle &gt; 0 &amp;&amp; weaponAngle &lt; 180)
-            {
-                draw_sprite_ext(weaponSpr, weaponImage, x + weaponXoff * sign(image_xscale), y + weaponYoff, 1, sign(image_xscale), weaponAngle, weaponBlend, image_alpha);                 
-                procedureAnimableDrawPerson();
-            }   
-            else
-            {
-                procedureAnimableDrawPerson();
-                draw_sprite_ext(weaponSpr, weaponImage, x + weaponXoff * sign(image_xscale), y + weaponYoff, 1, sign(image_xscale), weaponAngle, weaponBlend, image_alpha);                             
-            }
-            break;
-        }
-    }
-    else 
-        procedureAnimableDrawPerson();
-    break;
-}
-
+            <string>if (!drawable)
+    exit;
+procedureAnimableDrawPerson();
 playerDebug();
 </string>
           </argument>

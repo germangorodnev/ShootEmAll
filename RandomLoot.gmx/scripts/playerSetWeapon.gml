@@ -17,23 +17,27 @@ for (var i = 0; i < 2; i++)
 //SWITCH ADD WEAPONS
 switch (weapon)
 {
+case WEAPONS.__NONE:
+    
+    break;
+    
+    
+    
 case WEAPONS.__BLOOD_FLAG:
     weaponSprite[0] = sBloodFlag;
-    weaponImage = 0;
-    weaponXoff = 10;
-    weaponYoff = -sprite_height / 2 + 10;
+    weaponXoff = 15;
+    weaponYoff = -sprite_height / 2 + 15;
     break;
     
 case WEAPONS.__POMPINGTON:
     weaponSprite[0] = sPompington;
     weaponSprite[1] = sPompingtonShoot;
-    weaponImage = 0;
-    weaponAnimSpeed[1] = 0.05;
+    weaponAnimSpeed[1] = 0.15;
     weaponXoff = 4;
     weaponYoff = -12;
     break;
 }
 
-weaponSpr = weaponSprite[0];
-weaponImage = 0;
-weaponAnimSpd = weaponAnimSpeed[0];
+playerWeaponSetState(WEAPON_STATES.__MOVE);
+    
+

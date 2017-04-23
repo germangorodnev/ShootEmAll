@@ -11,6 +11,7 @@
         <sprite>sprites\sPlayerHP</sprite>
         <sprite>sprites\sPatronage</sprite>
         <sprite>sprites\sPickup</sprite>
+        <sprite>sprites\sAmmoGUIShotgun</sprite>
       </sprites>
       <sprites name="Weapons">
         <sprites name="Melee">
@@ -59,7 +60,7 @@
     <sprite>sprites\so</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\background0</background>
+    <background>background\tls1</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -76,13 +77,20 @@
       <script>scripts\playerSetWeapon.gml</script>
       <script>scripts\playerRotateToMouse.gml</script>
       <script>scripts\playerCanShoot.gml</script>
+      <script>scripts\playerAttack.gml</script>
       <script>scripts\playerGetInteractable.gml</script>
+      <script>scripts\playerReload.gml</script>
       <scripts name="Pickup">
         <script>scripts\playerPickup.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
+        <script>scripts\playerPickupAmmo.gml</script>
       </scripts>
       <scripts name="GUI">
         <script>scripts\playerRecountGUI.gml</script>
+      </scripts>
+      <scripts name="Weapon">
+        <script>scripts\playerWeaponSetState.gml</script>
+        <script>scripts\weaponImageIndexAccumulate.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -111,6 +119,9 @@
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
     </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fCollar</font>
+  </fonts>
   <objects name="objects">
     <objects name="Parents">
       <object>objects\oBaseDerive</object>

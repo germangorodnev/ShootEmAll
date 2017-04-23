@@ -13,7 +13,13 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__POMPINGTON:
         sprite_index = sPompington; 
+        ammo = argument[2];
         break;
     }
+    break;
+    
+case PICKUP.__AMMO:
+    value = argument[1];
+    ammo = argument[2];
     break;
 }

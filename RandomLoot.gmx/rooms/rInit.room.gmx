@@ -26,11 +26,6 @@ enum PLAYER_STATES
 {
     __IDLE = 0,
     __WALK,
-    __ATTACK,
-    __ATTACK_SHOOT_ANIM,
-    __ATTACK_SHOOT_RETURN,
-    __ATTACK_MELEE_BEGIN,
-    __ATTACK_MELEE_END,
     __DIE
 }   
 
@@ -62,6 +57,17 @@ enum WEAPON_TYPE
     __RANGE
 }
 
+enum WEAPON_STATES
+{
+    __MOVE = 0,
+    __RANGE_SHOT,
+    __RANGE_RECOIL,
+    __RANGE_RELOAD,
+    __MELEE_DOWN,
+    __MELEE_UP
+}
+
+
 enum W_PR 
 {
     __SPRAY_ANGLE = 0,
@@ -70,6 +76,7 @@ enum W_PR
     __BULLETS_PER_SHOT,
     __PROJECTILE,
     __PROJECTILE_AMOUNT,
+    __PROJECTILE_SPEED,
     __RELOAD_TIME,
     __DAMAGE_MIN,
     __DAMAGE_MAX,
@@ -77,6 +84,7 @@ enum W_PR
     __CRIT_CHANCE,
     __LDIR_X,
     __LDIR_Y,
+    __LDIR_DIR,
     __RANGE_CNT,
     
     __ME_DAMAGE_MIN = 0,
@@ -94,6 +102,7 @@ enum KEY
     BOT,
     KICK,
     PICKUP,
+    RELOAD,
     CNT
 }
 

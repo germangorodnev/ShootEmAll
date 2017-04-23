@@ -37,19 +37,21 @@ case WEAPONS.__BLOOD_FLAG:
     break;
     
 case WEAPONS.__POMPINGTON:
-    _arr[W_PR.__SPRAY_ANGLE] = 7;
+    _arr[W_PR.__SPRAY_ANGLE] = 13;
     _arr[W_PR.__SHOOT_CD] = 1 * room_speed;
     _arr[W_PR.__SCORE_SIZE] = 12;
     _arr[W_PR.__BULLETS_PER_SHOT] = 4;
     _arr[W_PR.__PROJECTILE] = PROJECTILE.__PELLET;
     _arr[W_PR.__PROJECTILE_AMOUNT] = 4;
+    _arr[W_PR.__PROJECTILE_SPEED] = 9;
     _arr[W_PR.__RELOAD_TIME] = -3 * room_speed;
     _arr[W_PR.__DAMAGE_MIN] = 3;
     _arr[W_PR.__DAMAGE_MAX] = 6;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__SHOTGUN;
     _arr[W_PR.__CRIT_CHANCE] = 5;
-    _arr[W_PR.__LDIR_X] = 60; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = -9;
+    _arr[W_PR.__LDIR_X] = 71; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 71;
+    _arr[W_PR.__LDIR_DIR] = 7;
     break;
 }
 

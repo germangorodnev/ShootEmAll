@@ -1,9 +1,12 @@
 switch (weaponType)
 {
 case WEAPON_TYPE.__MELEE:
-    weaponAngle = (anAngle / anMaxAngle) * weaponMaxAngle;
+    with(weaponObj)
+        image_angle = (anAngle / anMaxAngle) * weaponMaxAngle;
     break;
 case WEAPON_TYPE.__RANGE:
-    weaponAngle = mousedir;
+    var dd = mousedir;
+    with(weaponObj)
+        weaponAngle = dd;
     break;
 }

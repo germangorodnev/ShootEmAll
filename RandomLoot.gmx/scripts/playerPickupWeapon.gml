@@ -1,4 +1,4 @@
-///playerPickupWeapon(WEAPONS new)
+///playerPickupWeapon(WEAPONS new, int ammoIn)
 var weap = argument[1],
     oo = argument[0];
 if (weapon != WEAPONS.__NONE)

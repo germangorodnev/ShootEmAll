@@ -30,14 +30,21 @@
 ammoGUI = AMMO.__NONE;
 
 // shotgun
+ascollarx = sprite_get_width(sAmmoGUIShotgun) / 2 + 5;
+ascollary = 12;
+ascollartx = ascollarx - 30;
+ascollarty = ascollary + 18;
+ascc = make_colour_rgb(188, 188, 0);
+
 asx = 12;
-asy = 7;
+asy = ascollary + sprite_get_height(sAmmoGUIShotgun) + 5;;
 asbx = 17;
 asby = sprite_get_height(sAmmoShotgun) - 3;
 asrow = 12;
 
+
 //params
-phbx = 75;
+phbx = 120;
 phby = 30;
 phbw = sprite_get_width(sPlayerHP);
 phbh = sprite_get_height(sPlayerHP);
@@ -141,6 +148,13 @@ draw_sprite_part_ext(sPlayerHP, 1, 0, 0, phbw * hpperc, phbw, phbx, phby, 1, 1, 
 switch (ammoGUI)
 {
 case AMMO.__SHOTGUN:
+    draw_sprite_ext(sAmmoGUIShotgun, 0, ascollarx, ascollary, 1, 1, 0, image_blend, image_alpha);
+    draw_set_font(fCollar);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    draw_text_colour(ascollartx, ascollarty, string(oPlayer.ammo[AMMO.__SHOTGUN]), 
+        ascc, ascc, ascc, ascc, image_alpha);
+
     for (var i = 0, cc = oPlayer.weaponAmmo; i &lt; cc; i++)
     {
         var fl = floor(i / asrow);

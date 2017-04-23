@@ -15,6 +15,8 @@ case os_win32:
         key[KEY.KICK] = 1;
     if (keyboard_check_released(ord('E')))
         key[KEY.PICKUP] = 1;
+    if (keyboard_check_released(ord('R')))
+        key[KEY.RELOAD] = 1;
     break;
     
 /*case os_android:

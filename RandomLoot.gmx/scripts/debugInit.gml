@@ -1,8 +1,8 @@
 global.debug = argument0;
 with (oMaskHit)
-{
     visible = global.debug;
-}
+with (oWall)
+    visible = global.debug;
 with (oCamera)
     if (global.debug)
     {
