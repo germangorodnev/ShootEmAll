@@ -11,8 +11,16 @@ case os_win32:
         key[KEY.TOP] = 1;
     if (keyboard_check(ord('S')) || gamepad_axis_value(0, gp_axislv) >= 0.3)
         key[KEY.BOT] = 1;
-    if (mouse_check_button_released(mb_left) || gamepad_button_check_released(0, gp_face2))
+        
+    if (mouse_check_button_pressed(mb_left) || gamepad_button_check_pressed(0, gp_face2))
+        key[KEY.KICK] = 0;
+    else if (mouse_check_button(mb_left) || gamepad_button_check(0, gp_face2))  
         key[KEY.KICK] = 1;
+    else if (mouse_check_button_released(mb_left) || gamepad_button_check_released(0, gp_face2))  
+        key[KEY.KICK] = 2;
+    else
+        key[KEY.KICK] = -1;
+        
     if (keyboard_check_released(ord('E')))
         key[KEY.PICKUP] = 1;
     if (keyboard_check_released(ord('R')))

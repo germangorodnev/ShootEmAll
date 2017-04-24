@@ -8,14 +8,20 @@ case WEAPON_TYPE.__MELEE:
         break;
         
     case WEAPONS.__BLOOD_FLAG:
-    
+        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);    
+        break;
+        
+    case WEAPONS.__ARIA_ARTH:
+        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));  
+        if (choose(0, 1))
+            playerWeaponSetDoubleKick();  
         break;
         
     default: // just common melee weapon
+        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
         //weaponObj.angleNeed = weaponInf[W_PR.__ME_DOWN_ANGLE] + 180 * (image_xscale < 0);
         //weaponObj.angleRot = weaponInf[W_PR.__ME_DOWN_SPEED];
         //weaponObj.angleBegin = weaponObj.image_angle;
-        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
         break;
     }
     break;
@@ -48,7 +54,9 @@ case WEAPON_TYPE.__RANGE:
                 bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
             }
             bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]);       
-            bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED];         
+            bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED];   
+            with (bb)
+                projectileInited();      
         }
         break;
     }

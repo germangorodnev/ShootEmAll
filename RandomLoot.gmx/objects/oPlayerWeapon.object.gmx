@@ -42,15 +42,24 @@ reloadTmr = 0;
 animEnded = 0;
 
 angleNeed = 0;
+angleNeedDown = 0;
+angleNeedUp = 0;
+
 angleBegin = 0;
+
 angleRot = 9;
+angleRotDown = 0;
+angleRotUp = 0;
+
 anMaxAngle = 10;
 
 canAttackTmr = -1;
 canAttack = 1;
 
+doubleAttack = 0;
 
-
+// for custom weapons
+kickCnt = 0;
 </string>
           </argument>
         </arguments>
@@ -119,19 +128,44 @@ case WEAPON_STATES.__MOVE:
     
 case WEAPON_STATES.__MELEE_DOWN:
     image_angle = approach(image_angle, angleNeed, angleRot);
-    if (image_angle == angleNeed)
+    //SWITCH ADD
+    switch (attackType)
     {
-        with (oPlayer)
-            playerWeaponSetState(WEAPON_STATES.__MELEE_UP);       
+    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
+        if (image_angle == angleNeed)
+        {
+            with (oPlayer)
+                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
+        }            
+        break;
+    default:
+        if (image_angle == angleNeed)
+        {
+            with (oPlayer)
+                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
+        }            
+        break;   
     }
     break;
         
 case WEAPON_STATES.__MELEE_UP:
-    image_angle = approach(image_angle, angleBegin, angleRot);
-    if (image_angle == angleNeed)
+    image_angle = approach(image_angle, angleNeed, angleRot);
+    switch (attackType)
     {
-        with (oPlayer)
-            playerWeaponSetState(WEAPON_STATES.__MOVE);       
+    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
+        if (image_angle == angleNeed)
+        {
+            with (oPlayer)
+                playerWeaponSetState(WEAPON_STATES.__MOVE);    
+        }            
+        break;
+    default:
+        if (image_angle == angleNeed)
+        {
+            with (oPlayer)
+                playerWeaponSetState(WEAPON_STATES.__MOVE);       
+        }
+        break;   
     }
     break;    
     

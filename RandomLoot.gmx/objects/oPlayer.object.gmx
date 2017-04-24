@@ -197,14 +197,11 @@ case PLAYER_STATES.__IDLE:
     playerGetKeys();
     if ((key[KEY.LEFT] ^^ key[KEY.RIGHT]) || (key[KEY.TOP] ^^ key[KEY.BOT]))
         playerSetState(PLAYER_STATES.__WALK);
-    if (key[KEY.KICK])
-    {
-        var can = playerCanShoot();
-        if (can)
-            playerAttack();
-        else
-            debugWrite("Cannot shoot, reason: " + string(can));
-    }   
+    var can = playerCanShoot();
+    if (can == 1)
+        playerAttack();
+    else
+        debugWrite("Cannot shoot, reason: " + string(can));  
     if (key[KEY.PICKUP])
     {
         playerPickup(pickupId);
@@ -223,35 +220,24 @@ case PLAYER_STATES.__WALK:
     physicalBeginStep();
     playerGetKeys();
     if (key[KEY.LEFT])
-    {
         hmove--;
-    }
     if (key[KEY.RIGHT])
-    {
         hmove++;
-    }
-    if (key[KEY.TOP])
-    {       
+    if (key[KEY.TOP])       
         vmove--; 
-    }
     if (key[KEY.BOT])
-    {
         vmove++;
-    }
     if ((vmove == 0 &amp;&amp; hmove == 0)
         || ((key[KEY.TOP] &amp;&amp; key[KEY.BOT]) || (key[KEY.LEFT] &amp;&amp; key[KEY.RIGHT])))
     {
         playerSetState(PLAYER_STATES.__IDLE);
         exit;
     }
-    if (key[KEY.KICK])
-    {
-        var can = playerCanShoot();
-        if (can)
-            playerAttack();
-        else
-            debugWrite("Cannot shoot, reason: " + string(can));
-    }   
+    var can = playerCanShoot();
+    if (can == 1)
+        playerAttack();
+    else
+        debugWrite("Cannot shoot, reason: " + string(can));   
         
     if (key[KEY.PICKUP])
     {

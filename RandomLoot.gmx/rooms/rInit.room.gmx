@@ -42,6 +42,9 @@ enum WEAPONS
     
     __BLOOD_FLAG,
     __HALFSWORD,
+    __COPPER_DEVIL,
+    __STICK,
+    __ARIA_ARTH,
     
     
     
@@ -49,6 +52,7 @@ enum WEAPONS
     
     __POMPINGTON,
     __RXP,
+    __RECT1,
     __CUSTOM
 }
 
@@ -94,14 +98,13 @@ enum W_PR
     __LDIR_X,
     __LDIR_Y,
     __LDIR_DIR,
+    __BUTTON_STATE,
     __RANGE_CNT,
     
     __ME_DAMAGE_MIN = 0,
     __ME_DAMAGE_MAX,
     __ME_SHOOT_CD,
-    __ME_MOVE_ANGLE,
-    __ME_DOWN_ANGLE,
-    __ME_UP_ANGLE,
+    __ME_BUTTON_STATE,
     __MELEE_CNT
 }
 
@@ -127,7 +130,8 @@ enum CAM_STATES
 enum PROJECTILE
 {
     __PELLET = 0,
-    __BULLET
+    __BULLET,
+    __ENERGY_LINE,
 }
 
 enum AMMO

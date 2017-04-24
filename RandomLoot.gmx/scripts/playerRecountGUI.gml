@@ -30,3 +30,5 @@ if (weaponType == WEAPON_TYPE.__RANGE)
         }
     }
 }
+else
+    ammoGUI = AMMO.__NONE;

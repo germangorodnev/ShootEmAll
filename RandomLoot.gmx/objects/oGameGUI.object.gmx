@@ -30,7 +30,7 @@
 ammoGUI = AMMO.__NONE;
 
 // shotgun
-ascollarx = sprite_get_width(sAmmoGUIShotgun) / 2 + 5;
+ascollarx = sprite_get_width(sAmmoGUIShotgun) / 2 + 10;
 ascollary = 12;
 ascollartx = ascollarx - 30;
 ascollarty = ascollary + 18;
@@ -38,19 +38,28 @@ ascc = make_colour_rgb(188, 188, 0);
 
 // shotgun
 asx = 12;
-asy = ascollary + sprite_get_height(sAmmoGUIShotgun) + 5;;
+asy = ascollary + sprite_get_height(sAmmoGUIShotgun) + 8;
 asbx = 17;
 asby = sprite_get_height(sAmmoShotgun) - 3;
 asrow = 12;
 
 // bullet
 abx = 12;
-aby = ascollary + sprite_get_height(sAmmoGUIShotgun) + 5;;
+aby = ascollary + sprite_get_height(sAmmoGUIShotgun) + 8;
 abbx = 17;
 abby = sprite_get_height(sAmmoBullet) - 3;
 abrow = 17;
 
-
+// energy
+aecollarx = sprite_get_width(sAmmoGUIEnergy) / 2 + 15;
+aecollary = 12;
+aecollartx = aecollarx - 30;
+aecollarty = aecollary + 18;
+wmx = 15;
+wmy = aecollarty + sprite_get_height(sAmmoGUIEnergy) + 12;
+wmax = wmx + 3;
+wmay = wmy + 14;
+wmah = 80;
 //params
 phbx = 120;
 phby = 30;
@@ -189,6 +198,19 @@ case AMMO.__BULLET:
     }
     break;
 
+case AMMO.__ENERGY:
+    draw_sprite_ext(sAmmoGUIEnergy, 0, aecollarx, aecollary, 1, 1, 0, image_blend, image_alpha);
+    draw_set_font(fCollar);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    draw_text_colour(aecollartx, aecollarty, string(oPlayer.ammo[AMMO.__ENERGY]), 
+        ascc, ascc, ascc, ascc, image_alpha);
+
+    // woltmeter
+    draw_sprite_ext(sWoltmeter, 0, wmx, wmy, 1, 1, 0, image_blend, image_alpha);
+    // arrow
+    draw_sprite_ext(sWoltmeterArrow, 0, wmax, wmay + (oPlayer.weaponAmmo / oPlayer.weaponInf[W_PR.__SCORE_SIZE]) * wmah, 1, 1, 0, image_blend, image_alpha);
+    break;
 }
 </string>
           </argument>

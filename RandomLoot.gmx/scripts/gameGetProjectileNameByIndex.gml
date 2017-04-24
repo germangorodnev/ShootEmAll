@@ -8,4 +8,7 @@ case PROJECTILE.__PELLET:
 case PROJECTILE.__BULLET:   
     return oBulletProjectile;
     break;
+case PROJECTILE.__ENERGY_LINE:   
+    return oEnergyProjectile;
+    break;
 }

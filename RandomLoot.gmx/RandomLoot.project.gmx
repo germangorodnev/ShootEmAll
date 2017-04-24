@@ -8,10 +8,20 @@
   <sprites name="sprites">
     <sprites name="Player">
       <sprites name="GUI">
+        <sprites name="Ammo Types GUI">
+          <sprite>sprites\sAmmoGrenade</sprite>
+          <sprite>sprites\sAmmoBulletBig</sprite>
+          <sprite>sprites\sAmmoShotgun</sprite>
+          <sprite>sprites\sAmmoBulletLong</sprite>
+          <sprite>sprites\sAmmoBullet</sprite>
+          <sprite>sprites\sWoltmeter</sprite>
+          <sprite>sprites\sWoltmeterArrow</sprite>
+        </sprites>
         <sprite>sprites\sPlayerHP</sprite>
         <sprite>sprites\sPatronage</sprite>
         <sprite>sprites\sPickup</sprite>
         <sprite>sprites\sAmmoGUIShotgun</sprite>
+        <sprite>sprites\sAmmoGUIEnergy</sprite>
         <sprite>sprites\sCursorTarget</sprite>
       </sprites>
       <sprites name="Weapons">
@@ -24,6 +34,15 @@
           <sprites name="HalfSword">
             <sprite>sprites\sHalfsword</sprite>
           </sprites>
+          <sprites name="Copper Devil">
+            <sprite>sprites\sCopperDevil</sprite>
+          </sprites>
+          <sprites name="Stick">
+            <sprite>sprites\sStick</sprite>
+          </sprites>
+          <sprites name="Aria's Arthefact">
+            <sprite>sprites\sAriaArthef</sprite>
+          </sprites>
         </sprites>
         <sprites name="Range">
           <sprites name="Pompington">
@@ -32,6 +51,7 @@
           </sprites>
           <sprites name="R-ECT 1">
             <sprite>sprites\sRECT1</sprite>
+            <sprite>sprites\sRECT1Shoot</sprite>
           </sprites>
           <sprites name="RXP-P">
             <sprite>sprites\sRXP</sprite>
@@ -43,15 +63,6 @@
     </sprites>
     <sprites name="Abilities">
       <sprite>sprites\sAbilities</sprite>
-    </sprites>
-    <sprites name="Ammo Types GUI">
-      <sprite>sprites\sAmmoGrenade</sprite>
-      <sprite>sprites\sAmmoBulletBig</sprite>
-      <sprite>sprites\sAmmoShotgun</sprite>
-      <sprite>sprites\sAmmoBulletLong</sprite>
-      <sprite>sprites\sAmmoBullet</sprite>
-      <sprite>sprites\sWoltmeter</sprite>
-      <sprite>sprites\sWoltmeterArrow</sprite>
     </sprites>
     <sprites name="Masks">
       <sprite>sprites\sMask32x32</sprite>
@@ -66,6 +77,7 @@
     <sprites name="Ammo Shot">
       <sprite>sprites\sShotgunProjectile</sprite>
       <sprite>sprites\sBulletProjectile</sprite>
+      <sprite>sprites\sEnergyProjectile</sprite>
     </sprites>
     <sprite>sprites\so</sprite>
   </sprites>
@@ -103,6 +115,7 @@
         <script>scripts\playerWeaponSetState.gml</script>
         <script>scripts\weaponImageIndexAccumulate.gml</script>
         <script>scripts\weaponAttackTypeInit.gml</script>
+        <script>scripts\playerWeaponSetDoubleKick.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -129,6 +142,11 @@
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
+    </scripts>
+    <scripts name="Bullets">
+      <script>scripts\projectileInited.gml</script>
+      <script>scripts\projectileTimer.gml</script>
+      <script>scripts\projectileStep.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -160,6 +178,7 @@
     <objects name="Ammo">
       <object>objects\oShotgunPellet</object>
       <object>objects\oBulletProjectile</object>
+      <object>objects\oEnergyProjectile</object>
     </objects>
     <object>objects\oWall</object>
     <object>objects\oMaskHit</object>
