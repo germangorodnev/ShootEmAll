@@ -11,8 +11,16 @@ case PICKUP.__WEAPON:
         sprite_index = sBloodFlag; 
         image_angle = 270;
         break;
+    case WEAPONS.__HALFSWORD:
+        sprite_index = sHalfsword; 
+        image_angle = 45;
+        break;
     case WEAPONS.__POMPINGTON:
         sprite_index = sPompington; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__RXP:
+        sprite_index = sRXP; 
         ammo = argument[2];
         break;
     }
@@ -23,3 +31,4 @@ case PICKUP.__AMMO:
     ammo = argument[2];
     break;
 }
+

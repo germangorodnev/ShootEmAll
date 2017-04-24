@@ -43,11 +43,11 @@ weaponType = WEAPON_TYPE.__RANGE;
 weaponInf = -1;
 weaponAmmo = 0;
 
-weaponBack = WEAPONS.__NONE;
-weaponBackAmmo = 0;
-// weapon animation
 weaponSprite[2] = -1;
 weaponAnimSpeed[2] = 0;
+
+weaponBack = WEAPONS.__NONE;
+weaponBackAmmo = 0;
 weaponXoff = 0;
 weaponYoff = 0;
 weaponBlend = c_white;
@@ -123,9 +123,12 @@ if (weapon != WEAPONS.__NONE)
     switch (weaponType)
     {
     case WEAPON_TYPE.__MELEE:
-        var perc = anAngle / anMaxAngle;
-        with(weaponObj)
-            image_angle = perc * anMaxAngle;
+        if (weaponObj.state == WEAPON_STATES.__MOVE)
+        {
+            var perc = anAngle / anMaxAngle;
+            with(weaponObj)
+                image_angle = perc * anMaxAngle;
+        }
         weaponObj.image_xscale = image_xscale;
         if (mouse_y &lt; y)
         {
@@ -138,7 +141,7 @@ if (weapon != WEAPONS.__NONE)
         break;
     case WEAPON_TYPE.__RANGE:
         weaponObj.image_yscale = sign(image_xscale);
-        weaponObj.image_angle = mousedir;
+        weaponObj.image_angle = mousedir + sin(anSinRad) * weaponObj.anMaxAngle;
         
         if (mousedir &gt; 0 &amp;&amp; mousedir &lt; 180)
         {
@@ -208,6 +211,8 @@ case PLAYER_STATES.__IDLE:
     }
     if (key[KEY.RELOAD])
         playerReload();
+    if (key[KEY.WEAP_CHANGE])
+        playerChangeWeapon();
     break;
 
 case PLAYER_STATES.__WALK:
@@ -252,6 +257,8 @@ case PLAYER_STATES.__WALK:
     {
         playerPickup(pickupId);
     }
+    if (key[KEY.WEAP_CHANGE])
+        playerChangeWeapon();
     
     hspd += spd * speedmod * hmove;
     vspd += spd * speedmod * vmove;

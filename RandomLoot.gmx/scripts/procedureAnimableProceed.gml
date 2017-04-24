@@ -2,6 +2,6 @@ anSin += anSinStep;
 if (anSin == 360)
     anSin = 0;
 anSinRad = degtorad(anSin);
-anAngle = sin(degtorad(anSin)) * anMaxAngle;
+anAngle = sin(anSinRad) * anMaxAngle;
 anH = -(anAngle / anMaxAngle) * anMaxH;
 

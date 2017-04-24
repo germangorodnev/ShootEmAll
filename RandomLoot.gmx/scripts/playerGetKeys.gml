@@ -17,6 +17,8 @@ case os_win32:
         key[KEY.PICKUP] = 1;
     if (keyboard_check_released(ord('R')))
         key[KEY.RELOAD] = 1;
+    if (keyboard_check_released(vk_space))
+        key[KEY.WEAP_CHANGE] = 1;
     break;
     
 /*case os_android:

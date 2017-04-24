@@ -41,13 +41,14 @@ enum WEAPONS
     __MELEE_BEGIN,
     
     __BLOOD_FLAG,
-    
+    __HALFSWORD,
     
     
     
     __RANGED_BEGIN,
     
     __POMPINGTON,
+    __RXP,
     __CUSTOM
 }
 
@@ -55,6 +56,12 @@ enum WEAPON_TYPE
 {
     __MELEE = 0,
     __RANGE
+}
+
+enum WEAPON_ATTACK_TYPE
+{
+    __DOWN_TIMER_UP = 0,
+    __DOWN_UP
 }
 
 enum WEAPON_STATES
@@ -82,6 +89,8 @@ enum W_PR
     __DAMAGE_MAX,
     __BULLET_TYPE,
     __CRIT_CHANCE,
+    __CRIT_DAMAGE_MIN,
+    __CRIT_DAMAGE_MAX,
     __LDIR_X,
     __LDIR_Y,
     __LDIR_DIR,
@@ -90,6 +99,9 @@ enum W_PR
     __ME_DAMAGE_MIN = 0,
     __ME_DAMAGE_MAX,
     __ME_SHOOT_CD,
+    __ME_MOVE_ANGLE,
+    __ME_DOWN_ANGLE,
+    __ME_UP_ANGLE,
     __MELEE_CNT
 }
 
@@ -103,6 +115,7 @@ enum KEY
     KICK,
     PICKUP,
     RELOAD,
+    WEAP_CHANGE,
     CNT
 }
 
@@ -113,7 +126,8 @@ enum CAM_STATES
 
 enum PROJECTILE
 {
-    __PELLET = 0
+    __PELLET = 0,
+    __BULLET
 }
 
 enum AMMO

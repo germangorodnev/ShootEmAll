@@ -12,8 +12,10 @@ if (weapon != WEAPONS.__NONE)
     else 
     {
         // need to drop weapon in hands
+        var wpp = weapon,
+            amm = weaponAmmo;
         with (instance_create(x, y, oPickupWeapon))
-            pickupableInit(PICKUP.__WEAPON, weapon);
+            pickupableInit(PICKUP.__WEAPON, wpp, amm);
         weapon = weap;
         weaponAmmo = oo.ammo;
         playerSetWeapon(weapon);

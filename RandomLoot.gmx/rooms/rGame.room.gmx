@@ -62,6 +62,8 @@
     <instance objName="oWall" x="548" y="304" name="inst_88262200" locked="0" code="" scaleX="7.75" scaleY="0.379999995231628" colour="4294967295" rotation="0"/>
     <instance objName="oWall" x="92" y="176" name="inst_5249CB7C" locked="0" code="" scaleX="0.375" scaleY="8.5" colour="4294967295" rotation="0"/>
     <instance objName="oWall" x="100" y="176" name="inst_3A9D3003" locked="0" code="" scaleX="21.875" scaleY="0.379999995231628" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="592" y="476" name="inst_04823330" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__RXP, 17);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="316" y="320" name="inst_7A7871B0" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__HALFSWORD);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tls1" x="64" y="128" w="64" h="64" xo="2" yo="134" id="10000011" name="inst_C8434BC5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

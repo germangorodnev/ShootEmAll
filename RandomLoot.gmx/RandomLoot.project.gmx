@@ -12,12 +12,17 @@
         <sprite>sprites\sPatronage</sprite>
         <sprite>sprites\sPickup</sprite>
         <sprite>sprites\sAmmoGUIShotgun</sprite>
+        <sprite>sprites\sCursorTarget</sprite>
       </sprites>
       <sprites name="Weapons">
         <sprites name="Melee">
           <sprites name="Blod Flag">
             <sprite>sprites\sBloodFlag</sprite>
-            <sprite>sprites\sBloodFlagAttack</sprite>
+            <sprite>sprites\sBloodFlagAttackDown</sprite>
+            <sprite>sprites\sBloodFlagAttackUp</sprite>
+          </sprites>
+          <sprites name="HalfSword">
+            <sprite>sprites\sHalfsword</sprite>
           </sprites>
         </sprites>
         <sprites name="Range">
@@ -27,6 +32,10 @@
           </sprites>
           <sprites name="R-ECT 1">
             <sprite>sprites\sRECT1</sprite>
+          </sprites>
+          <sprites name="RXP-P">
+            <sprite>sprites\sRXP</sprite>
+            <sprite>sprites\sRXPShoot</sprite>
           </sprites>
         </sprites>
       </sprites>
@@ -56,6 +65,7 @@
     </sprites>
     <sprites name="Ammo Shot">
       <sprite>sprites\sShotgunProjectile</sprite>
+      <sprite>sprites\sBulletProjectile</sprite>
     </sprites>
     <sprite>sprites\so</sprite>
   </sprites>
@@ -80,6 +90,7 @@
       <script>scripts\playerAttack.gml</script>
       <script>scripts\playerGetInteractable.gml</script>
       <script>scripts\playerReload.gml</script>
+      <script>scripts\playerChangeWeapon.gml</script>
       <scripts name="Pickup">
         <script>scripts\playerPickup.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
@@ -91,6 +102,7 @@
       <scripts name="Weapon">
         <script>scripts\playerWeaponSetState.gml</script>
         <script>scripts\weaponImageIndexAccumulate.gml</script>
+        <script>scripts\weaponAttackTypeInit.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -147,6 +159,7 @@
     </objects>
     <objects name="Ammo">
       <object>objects\oShotgunPellet</object>
+      <object>objects\oBulletProjectile</object>
     </objects>
     <object>objects\oWall</object>
     <object>objects\oMaskHit</object>

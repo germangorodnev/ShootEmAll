@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///nit
 image_speed = 0;
+randomize();
 global.guiW = 1280;
 global.guiH = 720;
 global.debug = 0;
@@ -36,7 +37,7 @@ global.dispW = display_get_width();
 global.dispH = display_get_height();
 
 global.gameState = GAME_STATES.__GAME;
-
+cursor_sprite = sCursorTarget;
 room_goto_next();
 </string>
           </argument>

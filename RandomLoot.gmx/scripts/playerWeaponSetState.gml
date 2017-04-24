@@ -20,6 +20,7 @@ with (weaponObj)
     case WEAPON_STATES.__RANGE_SHOT:
         canAttack = 0;
         canAttackTmr = oPlayer.weaponInf[W_PR.__SHOOT_CD];
+        
         sprite_index = oPlayer.weaponSprite[1];
         anImageSpeed = oPlayer.weaponAnimSpeed[1];
         break;
@@ -29,7 +30,19 @@ with (weaponObj)
         break;
         
     case WEAPON_STATES.__RANGE_RELOAD:
-    
+        break;
+        
+    case WEAPON_STATES.__MELEE_DOWN:
+        canAttack = 0;
+        canAttackTmr = oPlayer.weaponInf[W_PR.__ME_SHOOT_CD];
+        
+        sprite_index = oPlayer.weaponSprite[1];
+        anImageSpeed = oPlayer.weaponAnimSpeed[0];
+        break;
+        
+    case WEAPON_STATES.__MELEE_UP:
+        sprite_index = oPlayer.weaponSprite[2];
+        anImageSpeed = oPlayer.weaponAnimSpeed[2];
         break;
     }
     anImageNumber = sprite_get_number(sprite_index);

@@ -30,6 +30,8 @@ image_speed = 0;
 
 state = WEAPON_STATES.__MOVE;
 
+attackType = -1; 
+
 anImageIndex = 0;
 anImageSpeed = 0;
 anImageNumber = 0;
@@ -39,15 +41,10 @@ reloadTmr = 0;
 
 animEnded = 0;
 
+angleNeed = 0;
+angleBegin = 0;
+angleRot = 9;
 anMaxAngle = 10;
-anAngleStep = .5;
-
-anH = 0;
-anMaxH = 4;
-anHStep = 1;
-
-anSin = 0;
-anSinStep = 12;
 
 canAttackTmr = -1;
 canAttack = 1;
@@ -118,8 +115,26 @@ if (canAttackTmr &amp;&amp; !--canAttackTmr)
 switch (state)
 {
 case WEAPON_STATES.__MOVE:
-
     break;
+    
+case WEAPON_STATES.__MELEE_DOWN:
+    image_angle = approach(image_angle, angleNeed, angleRot);
+    if (image_angle == angleNeed)
+    {
+        with (oPlayer)
+            playerWeaponSetState(WEAPON_STATES.__MELEE_UP);       
+    }
+    break;
+        
+case WEAPON_STATES.__MELEE_UP:
+    image_angle = approach(image_angle, angleBegin, angleRot);
+    if (image_angle == angleNeed)
+    {
+        with (oPlayer)
+            playerWeaponSetState(WEAPON_STATES.__MOVE);       
+    }
+    break;    
+    
 case WEAPON_STATES.__RANGE_SHOT:
     if (animEnded)
     {
