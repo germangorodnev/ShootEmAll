@@ -66,7 +66,7 @@ case WEAPONS.__COPPER_DEVIL:
     weaponSprite[0] = sCopperDevil;
     weaponSprite[1] = sCopperDevil;
     weaponSprite[2] = sCopperDevil;
-    weaponXoff = 17;
+    weaponXoff = 20;
     weaponYoff = -8;
     weaponObj.anMaxAngle = 5;
     

@@ -69,7 +69,21 @@
       <sprite>sprites\sMask32x32Blue</sprite>
     </sprites>
     <sprites name="Enemies">
-      <sprite>sprites\sEnemyPillow</sprite>
+      <sprites name="Bodys">
+        <sprites name="Condom">
+          <sprite>sprites\sCondom</sprite>
+        </sprites>
+        <sprites name="Pillow">
+          <sprite>sprites\sEnemyPillow</sprite>
+        </sprites>
+      </sprites>
+      <sprites name="Weapons">
+        <sprites name="Machinegun">
+          <sprite>sprites\sEnemyMachinegun</sprite>
+          <sprite>sprites\sEnemyMachinegunShoot</sprite>
+        </sprites>
+      </sprites>
+      <sprite>sprites\sEnemyBullet</sprite>
     </sprites>
     <sprites name="Pickupable">
       <sprite>sprites\sAmmoPickup</sprite>
@@ -79,7 +93,6 @@
       <sprite>sprites\sBulletProjectile</sprite>
       <sprite>sprites\sEnergyProjectile</sprite>
     </sprites>
-    <sprite>sprites\so</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tls1</background>
@@ -92,6 +105,7 @@
       </scripts>
       <script>scripts\physicalBeginStep.gml</script>
       <script>scripts\physicalMove.gml</script>
+      <script>scripts\physicalMoveToPoint.gml</script>
     </scripts>
     <scripts name="Player">
       <script>scripts\playerSetState.gml</script>
@@ -122,6 +136,7 @@
       <script>scripts\debugInit.gml</script>
       <script>scripts\playerDebug.gml</script>
       <script>scripts\debugWrite.gml</script>
+      <script>scripts\enemyDebug.gml</script>
     </scripts>
     <scripts name="Animation">
       <script>scripts\procedureAnimableProceed.gml</script>
@@ -147,6 +162,17 @@
       <script>scripts\projectileInited.gml</script>
       <script>scripts\projectileTimer.gml</script>
       <script>scripts\projectileStep.gml</script>
+    </scripts>
+    <scripts name="Enemies">
+      <scripts name="Enemy Weapons">
+        <script>scripts\enemyWeaponInit.gml</script>
+        <script>scripts\enemyWeaponSetState.gml</script>
+      </scripts>
+      <script>scripts\enemySetState.gml</script>
+      <script>scripts\enemyStartPattern.gml</script>
+      <script>scripts\enemyDetectPlayer.gml</script>
+      <script>scripts\enemyCanAttack.gml</script>
+      <script>scripts\enemyAttack.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -179,6 +205,12 @@
       <object>objects\oShotgunPellet</object>
       <object>objects\oBulletProjectile</object>
       <object>objects\oEnergyProjectile</object>
+    </objects>
+    <objects name="Enemies">
+      <object>objects\oBaseEnemy</object>
+      <object>objects\oPillow</object>
+      <object>objects\oEnemyWeapon</object>
+      <object>objects\oEnemyBullet</object>
     </objects>
     <object>objects\oWall</object>
     <object>objects\oMaskHit</object>

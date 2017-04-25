@@ -132,6 +132,7 @@ enum PROJECTILE
     __PELLET = 0,
     __BULLET,
     __ENERGY_LINE,
+    __ENEMY_BULLET
 }
 
 enum AMMO
@@ -143,6 +144,32 @@ enum AMMO
     __GRENADES,
     __ENERGY,
     __CNT
+}
+
+
+// ENEMIES
+enum ENEMY_STATE
+{
+    __IDLE = 0,
+    __WALK,
+    __ATTACK,
+}
+
+enum ENEMY
+{
+    __PILLOW = 0
+}
+
+enum ENEMY_WEAPON
+{
+    __SELF = 0,
+    __MACHINEGUN
+}
+
+enum ENEMY_PATTERN 
+{
+    __NONE = 0,
+    __PATROL,
 }</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>

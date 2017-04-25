@@ -11,4 +11,7 @@ case PROJECTILE.__BULLET:
 case PROJECTILE.__ENERGY_LINE:   
     return oEnergyProjectile;
     break;
+case PROJECTILE.__ENEMY_BULLET:   
+    return oEnemyBullet;
+    break;
 }

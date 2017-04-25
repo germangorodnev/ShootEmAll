@@ -1,5 +1,6 @@
 if (!global.debug)
     exit;
+draw_text(view_xview + 20, view_yview + 20, string(fps));
 draw_text(bbox_right, bbox_top - 20, string("cannot shoot: " + string(weaponObj.canAttackTmr)));
 switch (weaponObj.state)
 {
