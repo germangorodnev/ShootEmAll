@@ -34,6 +34,8 @@ _hp = 12;
 
 mousedir = 0;
 
+recoilSpd = 0;
+recoilApply = 0;
 
 ammo[AMMO.__CNT - 1] = 0; // ammo we have right now
 
@@ -195,6 +197,9 @@ case PLAYER_STATES.__IDLE:
     
     physicalBeginStep();
     playerGetKeys();
+    
+    physicalApplyRecoil(recoilSpd, mousedir - 180);
+    
     if ((key[KEY.LEFT] ^^ key[KEY.RIGHT]) || (key[KEY.TOP] ^^ key[KEY.BOT]))
         playerSetState(PLAYER_STATES.__WALK);
     var can = playerCanShoot();
@@ -210,6 +215,8 @@ case PLAYER_STATES.__IDLE:
         playerReload();
     if (key[KEY.WEAP_CHANGE])
         playerChangeWeapon();
+        
+    physicalMove();
     break;
 
 case PLAYER_STATES.__WALK:
@@ -219,6 +226,9 @@ case PLAYER_STATES.__WALK:
     
     physicalBeginStep();
     playerGetKeys();
+    
+    physicalApplyRecoil(recoilSpd, mousedir - 180);
+    
     if (key[KEY.LEFT])
         hmove--;
     if (key[KEY.RIGHT])

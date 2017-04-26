@@ -97,7 +97,7 @@ case WEAPONS.__RXP:
     _arr[W_PR.__DAMAGE_MIN] = 1;
     _arr[W_PR.__DAMAGE_MAX] = 10;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;
-    _arr[W_PR.__CRIT_CHANCE] = 33;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
     _arr[W_PR.__CRIT_DAMAGE_MIN] = 11;
     _arr[W_PR.__CRIT_DAMAGE_MAX] = 15;
     _arr[W_PR.__LDIR_X] = 71; // 4 29 64 20
@@ -117,12 +117,54 @@ case WEAPONS.__RECT1:
     _arr[W_PR.__DAMAGE_MIN] = 20;
     _arr[W_PR.__DAMAGE_MAX] = 20;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__ENERGY;
-    _arr[W_PR.__CRIT_CHANCE] = 33;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
     _arr[W_PR.__CRIT_DAMAGE_MIN] = 25;
     _arr[W_PR.__CRIT_DAMAGE_MAX] = 28;
     _arr[W_PR.__LDIR_X] = 71; // 4 29 64 20
     _arr[W_PR.__LDIR_Y] = 71;
     _arr[W_PR.__LDIR_DIR] = 7;
+    break;
+
+case WEAPONS.__ROMAN_MG:
+    _arr[W_PR.__BUTTON_STATE] = 1; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 12;
+    _arr[W_PR.__SHOOT_CD] = 0.2 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 120;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 1;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__FAST_BULLET;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = 8 * room_speed;
+    _arr[W_PR.__DAMAGE_MIN] = 10;
+    _arr[W_PR.__DAMAGE_MAX] = 17;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__CRIT_DAMAGE_MIN] = 25;
+    _arr[W_PR.__CRIT_DAMAGE_MAX] = 28;
+    _arr[W_PR.__LDIR_X] = 58; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 58;
+    _arr[W_PR.__LDIR_DIR] = 13;
+    break;
+    
+case WEAPONS.__NOVA_M:
+    _arr[W_PR.__BUTTON_STATE] = 1; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 3;
+    _arr[W_PR.__SHOOT_CD] = 0.5 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 32;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 1;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__FAST_BULLET;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = 2 * room_speed;
+    _arr[W_PR.__DAMAGE_MIN] = 17;
+    _arr[W_PR.__DAMAGE_MAX] = 23;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__CRIT_DAMAGE_MIN] = 25;
+    _arr[W_PR.__CRIT_DAMAGE_MAX] = 28;
+    _arr[W_PR.__LDIR_X] = 55; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 55;
+    _arr[W_PR.__LDIR_DIR] = 16;
     break;
 }
 

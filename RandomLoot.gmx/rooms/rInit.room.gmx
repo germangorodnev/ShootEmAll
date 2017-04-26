@@ -53,6 +53,8 @@ enum WEAPONS
     __POMPINGTON,
     __RXP,
     __RECT1,
+    __ROMAN_MG,
+    __NOVA_M,
     __CUSTOM
 }
 
@@ -132,7 +134,8 @@ enum PROJECTILE
     __PELLET = 0,
     __BULLET,
     __ENERGY_LINE,
-    __ENEMY_BULLET
+    __ENEMY_BULLET,
+    __FAST_BULLET
 }
 
 enum AMMO

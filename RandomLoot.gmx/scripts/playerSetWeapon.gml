@@ -8,6 +8,7 @@ if (weapon != WEAPONS.__NONE)
 }
 
 // resets
+recoilSpd = 0;
 weaponBlend = c_white;
 for (var i = 0; i < 3; i++)
 {    
@@ -134,6 +135,25 @@ case WEAPONS.__RXP:
 case WEAPONS.__RECT1:
     weaponSprite[0] = sRECT1;
     weaponSprite[1] = sRECT1Shoot;
+    weaponAnimSpeed[1] = 0.3;
+    weaponXoff = 3;
+    weaponYoff = -12;
+    weaponObj.anMaxAngle = 3;
+    break;
+
+case WEAPONS.__ROMAN_MG:
+    weaponSprite[0] = sRomanMG;
+    weaponSprite[1] = sRomanMGShoot;
+    weaponAnimSpeed[1] = 0.3;
+    weaponXoff = 3;
+    weaponYoff = -12;
+    weaponObj.anMaxAngle = 3;
+    recoilSpd = 4;
+    break;
+
+case WEAPONS.__NOVA_M:
+    weaponSprite[0] = sNovaM;
+    weaponSprite[1] = sNovaMShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
     weaponYoff = -12;

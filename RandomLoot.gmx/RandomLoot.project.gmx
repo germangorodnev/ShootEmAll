@@ -57,6 +57,14 @@
             <sprite>sprites\sRXP</sprite>
             <sprite>sprites\sRXPShoot</sprite>
           </sprites>
+          <sprites name="Roman Machinegun">
+            <sprite>sprites\sRomanMG</sprite>
+            <sprite>sprites\sRomanMGShoot</sprite>
+          </sprites>
+          <sprites name="Nova M">
+            <sprite>sprites\sNovaM</sprite>
+            <sprite>sprites\sNovaMShoot</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprite>sprites\sPlayer</sprite>
@@ -92,6 +100,7 @@
       <sprite>sprites\sShotgunProjectile</sprite>
       <sprite>sprites\sBulletProjectile</sprite>
       <sprite>sprites\sEnergyProjectile</sprite>
+      <sprite>sprites\sFastBullet</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -106,6 +115,7 @@
       <script>scripts\physicalBeginStep.gml</script>
       <script>scripts\physicalMove.gml</script>
       <script>scripts\physicalMoveToPoint.gml</script>
+      <script>scripts\physicalApplyRecoil.gml</script>
     </scripts>
     <scripts name="Player">
       <script>scripts\playerSetState.gml</script>
@@ -205,6 +215,7 @@
       <object>objects\oShotgunPellet</object>
       <object>objects\oBulletProjectile</object>
       <object>objects\oEnergyProjectile</object>
+      <object>objects\oFastBullet</object>
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>

@@ -41,6 +41,14 @@ case PICKUP.__WEAPON:
         sprite_index = sRECT1; 
         ammo = argument[2];
         break;
+    case WEAPONS.__ROMAN_MG:
+        sprite_index = sRomanMG; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__NOVA_M:
+        sprite_index = sNovaM; 
+        ammo = argument[2];
+        break;
     }
     break;
     

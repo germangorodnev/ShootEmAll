@@ -30,6 +30,14 @@ if (rldTime < 0) // relative
 }
 else
 {
-
+    rldTime = abs(rldTime);
+    with (weaponObj)
+    {
+        canAttack = 0;
+        canAttackTmr = rldTime;
+        reloadAm = ammoAdd;
+        reloadTmr = canAttackTmr / reloadAm;    
+    }
+    playerWeaponSetState(WEAPON_STATES.__RANGE_RELOAD);
 }
 
