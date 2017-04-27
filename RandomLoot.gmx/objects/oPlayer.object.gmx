@@ -34,6 +34,8 @@ _hp = 12;
 
 mousedir = 0;
 
+restore = -1;
+
 recoilSpd = 0;
 recoilApply = 0;
 
@@ -143,7 +145,7 @@ if (weapon != WEAPONS.__NONE)
         break;
     case WEAPON_TYPE.__RANGE:
         weaponObj.image_yscale = sign(image_xscale);
-        weaponObj.image_angle = mousedir + sin(anSinRad) * weaponObj.anMaxAngle;
+        weaponObj.image_angle = mousedir  + sin(anSinRad) * weaponObj.anMaxAngle; //+ weaponInf[W_PR.__LDIR_DIR] / 4 * (sign(image_xscale) &gt; 0)
         
         if (mousedir &gt; 0 &amp;&amp; mousedir &lt; 180)
         {
@@ -188,6 +190,8 @@ pickupId = noone;
 hmove = 0;
 vmove = 0;
 
+weaponRestore();
+
 switch (state)
 {
 case PLAYER_STATES.__IDLE:
@@ -206,7 +210,11 @@ case PLAYER_STATES.__IDLE:
     if (can == 1)
         playerAttack();
     else
+    {
+        if (can == -2)
+            key[KEY.RELOAD] =1;
         debugWrite("Cannot shoot, reason: " + string(can));  
+    }
     if (key[KEY.PICKUP])
     {
         playerPickup(pickupId);

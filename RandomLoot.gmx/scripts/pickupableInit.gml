@@ -13,11 +13,11 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__HALFSWORD:
         sprite_index = sHalfsword; 
-        image_angle = 45;
+        image_angle = -45;
         break;
     case WEAPONS.__COPPER_DEVIL:
         sprite_index = sCopperDevil; 
-        image_angle = 45;
+        image_angle = -45;
         break;
     case WEAPONS.__STICK:
         sprite_index = sStick; 
@@ -47,6 +47,10 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__NOVA_M:
         sprite_index = sNovaM; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__BORIAN_BULG:
+        sprite_index = sBorianBulg; 
         ammo = argument[2];
         break;
     }

@@ -17,4 +17,7 @@ case PROJECTILE.__ENEMY_BULLET:
 case PROJECTILE.__FAST_BULLET:   
     return oFastBullet;
     break;
+case PROJECTILE.__BORIAN:   
+    return oBorianBulg;
+    break;
 }

@@ -30,10 +30,12 @@ with (weaponObj)
         break;
         
     case WEAPON_STATES.__RANGE_RELOAD:
+        sprite_index = oPlayer.weaponSprite[0];
+        anImageSpeed = oPlayer.weaponAnimSpeed[0];
         break;
         
     case WEAPON_STATES.__MELEE_DOWN:
-        angleNeed = angleNeedDown + 180 * (image_xscale < 0) + angleNeedDown * -1 * (image_xscale < 0);
+        angleNeed = angleNeedDown + (90 - angleNeedDown) * (image_xscale < 0); //+ 180 * (image_xscale < 0) + angleNeedDown * -1 * (image_xscale < 0);
         angleRot = angleRotDown;
         angleBegin = image_angle;
 

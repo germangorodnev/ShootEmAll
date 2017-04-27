@@ -65,6 +65,14 @@
             <sprite>sprites\sNovaM</sprite>
             <sprite>sprites\sNovaMShoot</sprite>
           </sprites>
+          <sprites name="Borian Bulg">
+            <sprite>sprites\sBorianBulg</sprite>
+            <sprite>sprites\sBorianBulgShoot</sprite>
+          </sprites>
+          <sprites name="Phase Crusher">
+            <sprite>sprites\sPhaser</sprite>
+            <sprite>sprites\sPhaserRecharge</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprite>sprites\sPlayer</sprite>
@@ -101,6 +109,7 @@
       <sprite>sprites\sBulletProjectile</sprite>
       <sprite>sprites\sEnergyProjectile</sprite>
       <sprite>sprites\sFastBullet</sprite>
+      <sprite>sprites\sBorianBulgProjectile</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -127,6 +136,7 @@
       <script>scripts\playerGetInteractable.gml</script>
       <script>scripts\playerReload.gml</script>
       <script>scripts\playerChangeWeapon.gml</script>
+      <script>scripts\weaponRestore.gml</script>
       <scripts name="Pickup">
         <script>scripts\playerPickup.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
@@ -216,6 +226,7 @@
       <object>objects\oBulletProjectile</object>
       <object>objects\oEnergyProjectile</object>
       <object>objects\oFastBullet</object>
+      <object>objects\oBorianBulg</object>
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>

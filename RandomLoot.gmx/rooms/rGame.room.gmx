@@ -71,6 +71,7 @@
     <instance objName="oPillow" x="924" y="324" name="inst_EB7086E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="580" y="552" name="inst_D35F779E" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__ROMAN_MG, 80);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="508" y="560" name="inst_858FB6CC" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__NOVA_M, 20);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="436" y="580" name="inst_CFBC7D06" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__BORIAN_BULG, 5);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tls1" x="64" y="128" w="64" h="64" xo="2" yo="134" id="10000011" name="inst_C8434BC5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

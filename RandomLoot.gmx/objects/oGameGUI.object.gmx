@@ -60,6 +60,10 @@ wmy = aecollarty + sprite_get_height(sAmmoGUIEnergy) + 12;
 wmax = wmx + 3;
 wmay = wmy + 14;
 wmah = 80;
+
+// borgian
+borx = 45;
+bory = 45;
 //params
 phbx = 120;
 phby = 30;
@@ -210,6 +214,18 @@ case AMMO.__ENERGY:
     draw_sprite_ext(sWoltmeter, 0, wmx, wmy, 1, 1, 0, image_blend, image_alpha);
     // arrow
     draw_sprite_ext(sWoltmeterArrow, 0, wmax, wmay + (oPlayer.weaponAmmo / oPlayer.weaponInf[W_PR.__SCORE_SIZE]) * wmah, 1, 1, 0, image_blend, image_alpha);
+    break;
+    
+case AMMO.__BORIAN:
+    for (var i = 0, cc = oPlayer.weaponAmmo; i &lt; cc; i++)
+    {
+        var angle = 24 * i,
+            xx = borx + lengthdir_x(35, angle),
+            yy = bory + lengthdir_y(35, angle);
+        draw_sprite_ext(sBorianBulgProjectile, 0, 
+            xx, yy,
+            1, 1, 0, image_blend, image_alpha);
+    }
     break;
 }
 </string>

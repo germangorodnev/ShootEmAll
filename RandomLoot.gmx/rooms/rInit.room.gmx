@@ -55,6 +55,7 @@ enum WEAPONS
     __RECT1,
     __ROMAN_MG,
     __NOVA_M,
+    __BORIAN_BULG,
     __CUSTOM
 }
 
@@ -135,7 +136,8 @@ enum PROJECTILE
     __BULLET,
     __ENERGY_LINE,
     __ENEMY_BULLET,
-    __FAST_BULLET
+    __FAST_BULLET,
+    __BORIAN,
 }
 
 enum AMMO
@@ -146,6 +148,7 @@ enum AMMO
     __SHOTGUN,
     __GRENADES,
     __ENERGY,
+    __BORIAN,
     __CNT
 }
 

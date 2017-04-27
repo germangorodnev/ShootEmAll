@@ -53,7 +53,7 @@ case WEAPON_TYPE.__RANGE:
                 // no crit
                 bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
             }
-            bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]);       
+            bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
             bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED];   
             with (bb)
                 projectileInited();      
@@ -63,6 +63,9 @@ case WEAPON_TYPE.__RANGE:
     // decrease the bullets
     weaponAmmo -= weaponInf[W_PR.__BULLETS_PER_SHOT];
     playerWeaponSetState(WEAPON_STATES.__RANGE_SHOT);
+    // recoil if any
+    if (recoilSpd != 0)
+    recoilApply = 1;
     break;
 }   
 

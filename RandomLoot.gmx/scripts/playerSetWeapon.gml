@@ -3,11 +3,13 @@ weapon = argument[0];
 weaponType = gameGetWeaponType(weapon);
 if (weapon != WEAPONS.__NONE)
 {
+    weaponInf = 0;
     weaponInf = gameGetWeaponParams(weapon, weaponType);
     playerRecountGUI();
 }
 
 // resets
+restore = -1;
 recoilSpd = 0;
 weaponBlend = c_white;
 for (var i = 0; i < 3; i++)
@@ -56,7 +58,7 @@ case WEAPONS.__HALFSWORD:
     weaponObj.anMaxAngle = 10;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
-    weaponObj.angleNeedDown = -155;
+    weaponObj.angleNeedDown = -90;
     weaponObj.angleRotDown = 22;
     
     weaponObj.angleNeedUp = 0;
@@ -72,7 +74,7 @@ case WEAPONS.__COPPER_DEVIL:
     weaponObj.anMaxAngle = 5;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
-    weaponObj.angleNeedDown = -155;
+    weaponObj.angleNeedDown = -90;
     weaponObj.angleRotDown = 22;
     
     weaponObj.angleNeedUp = 0;
@@ -146,7 +148,7 @@ case WEAPONS.__ROMAN_MG:
     weaponSprite[1] = sRomanMGShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -12;
+    weaponYoff = -7;
     weaponObj.anMaxAngle = 3;
     recoilSpd = 4;
     break;
@@ -157,6 +159,16 @@ case WEAPONS.__NOVA_M:
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
     weaponYoff = -12;
+    weaponObj.anMaxAngle = 3;
+    break;
+    
+case WEAPONS.__BORIAN_BULG:
+    restore = weaponInf[W_PR.__RELOAD_TIME];
+    weaponSprite[0] = sBorianBulg;
+    weaponSprite[1] = sBorianBulgShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -17;
     weaponObj.anMaxAngle = 3;
     break;
 }

@@ -23,6 +23,9 @@ if (weaponType == WEAPON_TYPE.__RANGE)
         case AMMO.__ENERGY:
         
             break;
+        case AMMO.__BORIAN:
+        
+            break;
             
         default: // no gui for ammo
             ammoGUI = AMMO.__NONE;
