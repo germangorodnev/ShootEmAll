@@ -1,4 +1,4 @@
-mousedir = point_direction(x, y, mouse_x, mouse_y);
+mousedir = point_direction(weaponObj.x, weaponObj.y, mouse_x, mouse_y);
 /*var dd = point_direction(x, y, mouse_x, mouse_y);
 if (weaponType == WEAPON_TYPE.__RANGE)
     mousedir = point_direction(

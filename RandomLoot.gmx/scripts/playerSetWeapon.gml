@@ -116,12 +116,14 @@ case WEAPONS.__ARIA_ARTH:
     
     
             
+    
+    
 case WEAPONS.__POMPINGTON:
     weaponSprite[0] = sPompington;
     weaponSprite[1] = sPompingtonShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 4;
-    weaponYoff = -12;
+    weaponYoff = -19;
     weaponObj.anMaxAngle = 4;
     break;
     
@@ -130,7 +132,7 @@ case WEAPONS.__RXP:
     weaponSprite[1] = sRXPShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -12;
+    weaponYoff = -18;
     weaponObj.anMaxAngle = 3;
     break;
     
@@ -139,7 +141,7 @@ case WEAPONS.__RECT1:
     weaponSprite[1] = sRECT1Shoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -12;
+    weaponYoff = -23;
     weaponObj.anMaxAngle = 3;
     break;
 
@@ -148,7 +150,7 @@ case WEAPONS.__ROMAN_MG:
     weaponSprite[1] = sRomanMGShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -7;
+    weaponYoff = -24;
     weaponObj.anMaxAngle = 3;
     recoilSpd = 4;
     break;
@@ -158,7 +160,7 @@ case WEAPONS.__NOVA_M:
     weaponSprite[1] = sNovaMShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -12;
+    weaponYoff = -27;
     weaponObj.anMaxAngle = 3;
     break;
     

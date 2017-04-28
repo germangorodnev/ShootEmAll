@@ -65,7 +65,7 @@ case WEAPONS.__ARIA_ARTH:
     
 /* ******************************************************** RANGE ***********************************************************/        
 case WEAPONS.__POMPINGTON:
-    _arr[W_PR.__SPRAY_ANGLE] = 13;
+    _arr[W_PR.__SPRAY_ANGLE] = 7;
     _arr[W_PR.__SHOOT_CD] = 1 * room_speed;
     _arr[W_PR.__SCORE_SIZE] = 12;
     _arr[W_PR.__BULLETS_PER_SHOT] = 1;
@@ -80,9 +80,9 @@ case WEAPONS.__POMPINGTON:
     _arr[W_PR.__CRIT_DAMAGE_MIN] = 4;
     _arr[W_PR.__CRIT_DAMAGE_MAX] = 8;
     _arr[W_PR.__CRIT_CHANCE] = 5;
-    _arr[W_PR.__LDIR_X] = 71; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = 71;
-    _arr[W_PR.__LDIR_DIR] = 5;
+    _arr[W_PR.__LDIR_X] = 53; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 53;
+    _arr[W_PR.__LDIR_DIR] = 4;
     break;
     
 case WEAPONS.__RXP:
@@ -120,9 +120,9 @@ case WEAPONS.__RECT1:
     _arr[W_PR.__CRIT_CHANCE] = 0;
     _arr[W_PR.__CRIT_DAMAGE_MIN] = 25;
     _arr[W_PR.__CRIT_DAMAGE_MAX] = 28;
-    _arr[W_PR.__LDIR_X] = 71; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = 71;
-    _arr[W_PR.__LDIR_DIR] = 7;
+    _arr[W_PR.__LDIR_X] = 43; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 43;
+    _arr[W_PR.__LDIR_DIR] = 0;
     break;
 
 case WEAPONS.__ROMAN_MG:
@@ -139,9 +139,9 @@ case WEAPONS.__ROMAN_MG:
     _arr[W_PR.__DAMAGE_MAX] = 17;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;
     _arr[W_PR.__CRIT_CHANCE] = 0;
-    _arr[W_PR.__LDIR_X] = 58; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = 58;
-    _arr[W_PR.__LDIR_DIR] = 13;
+    _arr[W_PR.__LDIR_X] = 47; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 47;
+    _arr[W_PR.__LDIR_DIR] = 1.5;
     break;
     
 case WEAPONS.__NOVA_M:
@@ -158,9 +158,9 @@ case WEAPONS.__NOVA_M:
     _arr[W_PR.__DAMAGE_MAX] = 23;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;
     _arr[W_PR.__CRIT_CHANCE] = 0;
-    _arr[W_PR.__LDIR_X] = 55; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = 55;
-    _arr[W_PR.__LDIR_DIR] = 16;
+    _arr[W_PR.__LDIR_X] = 60; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 60;
+    _arr[W_PR.__LDIR_DIR] = 1;
     break;
 
 case WEAPONS.__BORIAN_BULG:

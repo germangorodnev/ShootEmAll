@@ -145,9 +145,9 @@ if (weapon != WEAPONS.__NONE)
         break;
     case WEAPON_TYPE.__RANGE:
         weaponObj.image_yscale = sign(image_xscale);
-        weaponObj.image_angle = mousedir  + sin(anSinRad) * weaponObj.anMaxAngle; //+ weaponInf[W_PR.__LDIR_DIR] / 4 * (sign(image_xscale) &gt; 0)
+        weaponObj.image_angle = mousedir + sin(anSinRad) * weaponObj.anMaxAngle; //+ weaponInf[W_PR.__LDIR_DIR] / 4 * (sign(image_xscale) &gt; 0)
         
-        if (mousedir &gt; 0 &amp;&amp; mousedir &lt; 180)
+        if (mouse_y &lt; y - 1)
         {
             weaponObj.depth = depth + 1;
         }   

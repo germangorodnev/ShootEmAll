@@ -38,7 +38,7 @@ case WEAPON_TYPE.__RANGE:
         // just by params
         var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
             xx = weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR]),
-            yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale)),
+            yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle - weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale)),
             critch = weaponInf[W_PR.__CRIT_CHANCE];
         repeat (weaponInf[W_PR.__PROJECTILE_AMOUNT])
         {
