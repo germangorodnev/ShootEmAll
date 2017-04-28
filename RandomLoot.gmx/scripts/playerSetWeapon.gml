@@ -171,6 +171,15 @@ case WEAPONS.__BORIAN_BULG:
     weaponYoff = -17;
     weaponObj.anMaxAngle = 3;
     break;
+
+case WEAPONS.__GRENADE_LAUNCHER:
+    weaponSprite[0] = sOneGL;
+    weaponSprite[1] = sOneGLShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -16;
+    weaponObj.anMaxAngle = 3;
+    break;
 }
 
 playerWeaponSetState(WEAPON_STATES.__MOVE);

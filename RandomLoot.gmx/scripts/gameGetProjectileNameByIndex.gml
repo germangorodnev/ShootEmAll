@@ -20,4 +20,7 @@ case PROJECTILE.__FAST_BULLET:
 case PROJECTILE.__BORIAN:   
     return oBorianBulg;
     break;
+case PROJECTILE.__GRENADE_ONE_GL:   
+    return oGreande;
+    break;
 }

@@ -27,7 +27,8 @@ if (rldTime < 0) // relative
         canAttackTmr = (ammoAdd/maxAmmo) * tt;
         reloadAm = ammoAdd;
         reloadTmrCnt = round(canAttackTmr / reloadAm);
-        reloadTmrNewbull = reloadTmrCnt;    
+        reloadTmrNewbull = reloadTmrCnt;   
+        reloadTmrBegin = canAttackTmr;
     }
     playerWeaponSetState(WEAPON_STATES.__RANGE_RELOAD);
 }
@@ -44,6 +45,7 @@ else
         reloadAm = ammoAdd;
         reloadTmrCnt = round(canAttackTmr / reloadAm);
         reloadTmrNewbull = reloadTmrCnt;    
+        reloadTmrBegin = canAttackTmr;
     }
     playerWeaponSetState(WEAPON_STATES.__RANGE_RELOAD);
 }

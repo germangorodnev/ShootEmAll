@@ -64,10 +64,32 @@ wmah = 80;
 // borgian
 borx = 45;
 bory = 45;
+
+// grenades
+grcollarx = ascollarx;
+grcollary = ascollary;
+grx = 45;
+gry = ascollary + sprite_get_height(sAmmoGUIGrenades) + 40;
+grbx = 28;
+grby = sprite_get_height(sAmmoGrenade) - 3;
+grrow = 17;
+
+
 //params
 phbx = 120;
 phby = 30;
 phbw = sprite_get_width(sPlayerHP);
+
+
+
+
+
+
+
+
+
+
+
 phbh = sprite_get_height(sPlayerHP);
 </string>
           </argument>
@@ -165,6 +187,7 @@ phbh = sprite_get_height(sPlayerHP);
 var hpperc = oPlayer.hp / oPlayer._hp;
 draw_sprite_ext(sPlayerHP, 0, phbx, phby, 1, 1, 0, image_blend, image_alpha);
 draw_sprite_part_ext(sPlayerHP, 1, 0, 0, phbw * hpperc, phbw, phbx, phby, 1, 1, image_blend, image_alpha);
+
 //SWITCH ADD AMMO
 switch (ammoGUI)
 {
@@ -227,7 +250,26 @@ case AMMO.__BORIAN:
             1, 1, 0, image_blend, image_alpha);
     }
     break;
+
+case AMMO.__GRENADES:
+    draw_sprite_ext(sAmmoGUIGrenades, 0, ascollarx, ascollary, 1, 1, 0, image_blend, image_alpha);
+    draw_set_font(fCollar);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    draw_text_colour(ascollartx, ascollarty, string(oPlayer.ammo[AMMO.__GRENADES]), 
+        ascc, ascc, ascc, ascc, image_alpha);
+
+    for (var i = 0, cc = oPlayer.weaponAmmo; i &lt; cc; i++)
+    {
+        var fl = floor(i / grrow);
+        draw_sprite_ext(sAmmoGrenade, 0, 
+            grx + fl * grbx, gry + (i % grrow) * grby + fl * 9,
+            1, 1, 0, image_blend, image_alpha);
+    }
+    break;
 }
+
+
 </string>
           </argument>
         </arguments>
@@ -253,6 +295,19 @@ case AMMO.__BORIAN:
             <string>if (oPlayer.pickupId != noone)
 {
     draw_sprite_ext(sPickup, 0, oPlayer.x, oPlayer.bbox_top - 50, 1, 1, 0, image_blend, image_alpha); 
+}
+with (oPlayer)
+// reload indicator
+if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
+{
+    
+    var cc = 6 - round((weaponObj.canAttackTmr / weaponObj.reloadTmrBegin) * 6);
+    for (var i = 0; i &lt; cc; i++)
+    {
+        var xx = x,
+            yy = bbox_top - 80;
+        draw_sprite_ext(sReloadPart, 0, xx, yy, 1, 1, i * 60, image_blend, image_alpha);
+    }
 }
 </string>
           </argument>

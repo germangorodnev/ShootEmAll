@@ -22,7 +22,9 @@
         <sprite>sprites\sPickup</sprite>
         <sprite>sprites\sAmmoGUIShotgun</sprite>
         <sprite>sprites\sAmmoGUIEnergy</sprite>
+        <sprite>sprites\sAmmoGUIGrenades</sprite>
         <sprite>sprites\sCursorTarget</sprite>
+        <sprite>sprites\sReloadPart</sprite>
       </sprites>
       <sprites name="Weapons">
         <sprites name="Melee">
@@ -73,6 +75,13 @@
             <sprite>sprites\sPhaser</sprite>
             <sprite>sprites\sPhaserRecharge</sprite>
           </sprites>
+          <sprites name="One Grenade Launcher">
+            <sprite>sprites\sOneGL</sprite>
+            <sprite>sprites\sOneGLShoot</sprite>
+          </sprites>
+          <sprites name="Forest Mantis">
+            <sprite>sprites\sForestMantis</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprite>sprites\sPlayer</sprite>
@@ -110,6 +119,7 @@
       <sprite>sprites\sEnergyProjectile</sprite>
       <sprite>sprites\sFastBullet</sprite>
       <sprite>sprites\sBorianBulgProjectile</sprite>
+      <sprite>sprites\sGrenade</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -227,6 +237,7 @@
       <object>objects\oEnergyProjectile</object>
       <object>objects\oFastBullet</object>
       <object>objects\oBorianBulg</object>
+      <object>objects\oGreande</object>
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>

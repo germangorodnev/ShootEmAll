@@ -53,6 +53,10 @@ case PICKUP.__WEAPON:
         sprite_index = sBorianBulg; 
         ammo = argument[2];
         break;
+    case WEAPONS.__GRENADE_LAUNCHER:
+        sprite_index = sOneGL; 
+        ammo = argument[2];
+        break;
     }
     break;
     

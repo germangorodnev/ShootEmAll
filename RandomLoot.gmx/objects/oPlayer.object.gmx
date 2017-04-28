@@ -211,7 +211,7 @@ case PLAYER_STATES.__IDLE:
         playerAttack();
     else
     {
-        if (can == -2)
+        if (can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
             key[KEY.RELOAD] =1;
         debugWrite("Cannot shoot, reason: " + string(can));  
     }
@@ -255,12 +255,17 @@ case PLAYER_STATES.__WALK:
     if (can == 1)
         playerAttack();
     else
+        if (can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
+            key[KEY.RELOAD] =1;
+    else
         debugWrite("Cannot shoot, reason: " + string(can));   
         
     if (key[KEY.PICKUP])
     {
         playerPickup(pickupId);
     }
+    if (key[KEY.RELOAD])
+        playerReload();
     if (key[KEY.WEAP_CHANGE])
         playerChangeWeapon();
     
@@ -344,6 +349,8 @@ case PLAYER_STATES.__DIE:
             <string>if (!drawable)
     exit;
 procedureAnimableDrawPerson();
+
+
 playerDebug();
 </string>
           </argument>

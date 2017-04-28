@@ -147,7 +147,7 @@ case WEAPONS.__ROMAN_MG:
 case WEAPONS.__NOVA_M:
     _arr[W_PR.__BUTTON_STATE] = 1; // 0 - pressed, 1 - pressed const, 2 - released
     _arr[W_PR.__SPRAY_ANGLE] = 3;
-    _arr[W_PR.__SHOOT_CD] = 0.5 * room_speed;
+    _arr[W_PR.__SHOOT_CD] = 0.25 * room_speed;
     _arr[W_PR.__SCORE_SIZE] = 32;
     _arr[W_PR.__BULLETS_PER_SHOT] = 1;
     _arr[W_PR.__PROJECTILE] = PROJECTILE.__FAST_BULLET;
@@ -176,6 +176,25 @@ case WEAPONS.__BORIAN_BULG:
     _arr[W_PR.__DAMAGE_MIN] = 17;
     _arr[W_PR.__DAMAGE_MAX] = 35;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__BORIAN;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = 55; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 55;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;
+    
+case WEAPONS.__GRENADE_LAUNCHER:
+    _arr[W_PR.__BUTTON_STATE] = 0; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 3;
+    _arr[W_PR.__SHOOT_CD] = 1.5 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 1;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 1;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__GRENADE_ONE_GL;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = 3 * room_speed;
+    _arr[W_PR.__DAMAGE_MIN] = 30;
+    _arr[W_PR.__DAMAGE_MAX] = 30;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__GRENADES;
     _arr[W_PR.__CRIT_CHANCE] = 0;
     _arr[W_PR.__LDIR_X] = 55; // 4 29 64 20
     _arr[W_PR.__LDIR_Y] = 55;

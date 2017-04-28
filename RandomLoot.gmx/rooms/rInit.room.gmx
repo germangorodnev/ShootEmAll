@@ -56,6 +56,7 @@ enum WEAPONS
     __ROMAN_MG,
     __NOVA_M,
     __BORIAN_BULG,
+    __GRENADE_LAUNCHER,
     __CUSTOM
 }
 
@@ -138,6 +139,7 @@ enum PROJECTILE
     __ENEMY_BULLET,
     __FAST_BULLET,
     __BORIAN,
+    __GRENADE_ONE_GL
 }
 
 enum AMMO
