@@ -24,15 +24,25 @@ enum GAME_STATES
 
 enum PLAYER_STATES
 {
+    __DIE = -1,
     __IDLE = 0,
     __WALK,
-    __DIE
+    __CUCKED,
 }   
+
+enum CUCKED
+{
+    __NONE = 0,
+    __NORMAL,
+    __HARD
+}
 
 enum PICKUP 
 {
     __WEAPON = 0,
-    __AMMO
+    __AMMO,
+    __MONEY,
+    __HP
 }
 
 enum WEAPONS
@@ -158,9 +168,11 @@ enum AMMO
 // ENEMIES
 enum ENEMY_STATE
 {
+    __DIE = -1,
     __IDLE = 0,
     __WALK,
     __ATTACK,
+    __CUCKED
 }
 
 enum ENEMY
@@ -178,6 +190,14 @@ enum ENEMY_PATTERN
 {
     __NONE = 0,
     __PATROL,
+}
+
+enum ENEMY_ANIM
+{
+    __IDLE = 0,
+    __WALK,
+    __CUCKED,
+    __CNT
 }</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>

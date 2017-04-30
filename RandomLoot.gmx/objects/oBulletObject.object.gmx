@@ -26,15 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+parent = noone;
 damage = 0;
 group = 0; // 0 - player, 1 - enemy
+cuck = CUCKED.__NORMAL;
 
 speed = 6;
 
 prt = 2;
 visible = 0;
 active = 0;
+
+cntgothrough = 1;
 </string>
           </argument>
         </arguments>

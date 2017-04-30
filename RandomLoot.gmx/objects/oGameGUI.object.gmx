@@ -48,7 +48,7 @@ abx = 12;
 aby = ascollary + sprite_get_height(sAmmoGUIShotgun) + 8;
 abbx = 17;
 abby = sprite_get_height(sAmmoBullet) - 3;
-abrow = 17;
+abrow = 17;//round((room_height - 150) / (abby * 1.5));
 
 // energy
 aecollarx = sprite_get_width(sAmmoGUIEnergy) / 2 + 15;
@@ -76,18 +76,15 @@ grrow = 17;
 
 
 //params
-phbx = 120;
-phby = 30;
 phbw = sprite_get_width(sPlayerHP);
 
+phbx = 120;
+phbetwxt = sprite_get_width(sPlayerHP) -3;
+phby = 30;
 
-
-
-
-
-
-
-
+phbxb = phbx  + 1;
+phbyb = phby + sprite_get_height(sPlayerHP) + 7;
+phbetwxb = sprite_get_width(sPlayerHP) - 3;
 
 
 phbh = sprite_get_height(sPlayerHP);
@@ -185,8 +182,51 @@ phbh = sprite_get_height(sPlayerHP);
             <kind>1</kind>
             <string>//HP
 var hpperc = oPlayer.hp / oPlayer._hp;
-draw_sprite_ext(sPlayerHP, 0, phbx, phby, 1, 1, 0, image_blend, image_alpha);
-draw_sprite_part_ext(sPlayerHP, 1, 0, 0, phbw * hpperc, phbw, phbx, phby, 1, 1, image_blend, image_alpha);
+for (var i = 0; i &lt; 6; i++)
+{
+    // background hpbar
+    if (i % 2 == 0)
+    {
+        // top
+        draw_sprite_ext(sPlayerHP, 0, phbx + phbetwxt * i, phby, 1, 1, 0, image_blend, image_alpha);
+    }
+    else
+    {
+        // bottom
+        draw_sprite_ext(sPlayerHP, 0, phbxb + phbetwxb * i, phbyb, 1, -1, 0, image_blend, image_alpha);
+    }
+}
+// red now
+var ccnt = floor(oPlayer.hp / 2);
+for (var i = 0; i &lt; ccnt; i++)
+{
+    if (i % 2 == 0)
+    {
+        // top
+        draw_sprite_ext(sPlayerHP, 1, phbx + phbetwxt * i, phby, 1, 1, 0, image_blend, image_alpha);
+    }
+    else
+    {
+        // bottom
+        draw_sprite_ext(sPlayerHP, 1, phbxb + phbetwxb * i, phbyb, 1, -1, 0, image_blend, image_alpha);
+    }
+}
+// now the percent part
+// /1/ 2       /5/ 6       /9/ 10
+//       /3/ 4       /7/ 8        /11/ 12
+if (oPlayer.hp - ccnt * 2 == 1) // one part
+{
+    var trunc = ccnt * 2;
+    if (trunc % 4 == 0) // top 
+    {
+        draw_sprite_part_ext(sPlayerHP, 1, 0, 0, phbw / 2, phbh, phbx + phbetwxt * (trunc / 2 ), phby, 1, 1, image_blend, image_alpha);            
+    }
+    else // bottom 
+    {
+        draw_sprite_part_ext(sPlayerHP, 1, 0, 0, phbw / 2, phbh, phbxb + phbetwxb * (trunc / 2 ), phbyb, 1, -1, image_blend, image_alpha);                
+    }
+}
+
 
 //SWITCH ADD AMMO
 switch (ammoGUI)
@@ -292,9 +332,10 @@ case AMMO.__GRENADES:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (oPlayer.pickupId != noone)
+            <string>if (instance_exists(oPlayer.pickupId))
 {
-    draw_sprite_ext(sPickup, 0, oPlayer.x, oPlayer.bbox_top - 50, 1, 1, 0, image_blend, image_alpha); 
+    if (!oPlayer.pickupId.autopickup)
+        draw_sprite_ext(sPickup, 0, oPlayer.x, oPlayer.bbox_top - 50, 1, 1, 0, image_blend, image_alpha); 
 }
 with (oPlayer)
 // reload indicator

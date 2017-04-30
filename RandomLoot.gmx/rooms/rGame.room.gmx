@@ -54,7 +54,6 @@
     <instance objName="oPlayer" x="496" y="480" name="inst_6AF8154E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="388" y="252" name="inst_7C393C62" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__BLOOD_FLAG);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="636" y="360" name="inst_D55D6FF8" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__POMPINGTON, 12);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPickupAmmo" x="400" y="512" name="inst_3FC6CA9F" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__BULLET, 100);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oWall" x="92" y="432" name="inst_9F92132E" locked="0" code="" scaleX="10.3225803375244" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="oWall" x="540" y="436" name="inst_A469570F" locked="0" code="" scaleX="8.25806427001953" scaleY="0.375" colour="4294967295" rotation="0"/>
     <instance objName="oWall" x="796" y="176" name="inst_06C6F83D" locked="0" code="" scaleX="0.25" scaleY="8.3870964050293" colour="4294967295" rotation="0"/>
@@ -73,7 +72,22 @@
     <instance objName="oPickupWeapon" x="508" y="560" name="inst_858FB6CC" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__NOVA_M, 20);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="436" y="580" name="inst_CFBC7D06" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__BORIAN_BULG, 5);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="284" y="564" name="inst_9944A958" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__GRENADE_LAUNCHER, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPickupAmmo" x="352" y="624" name="inst_89B5347B" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__GRENADES, 20);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="392" y="508" name="inst_7893A3C8" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__SHOTGUN, 6);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="344" y="500" name="inst_6493CB33" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__SHOTGUN, 3);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="200" y="508" name="inst_FB9CB6F0" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__BULLET, 20);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="160" y="508" name="inst_EABCF01A" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__BULLET, 40);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="188" y="636" name="inst_B74360E0" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__ENERGY, 50);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="212" y="656" name="inst_29C0F2D1" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__ENERGY, 100);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="388" y="652" name="inst_0BF33A33" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__GRENADES, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="416" y="636" name="inst_FD469CB6" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__GRENADES, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="424" y="664" name="inst_0A9AB42F" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__GRENADES, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupAmmo" x="452" y="636" name="inst_91F30B40" locked="0" code="pickupableInit(PICKUP.__AMMO, AMMO.__GRENADES, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupMoney" x="596" y="680" name="inst_A6F16795" locked="0" code="pickupableInit(PICKUP.__MONEY, 100);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupMoney" x="608" y="664" name="inst_EB3B7EAD" locked="0" code="pickupableInit(PICKUP.__MONEY, 2);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupMoney" x="568" y="656" name="inst_BA1DFDC8" locked="0" code="pickupableInit(PICKUP.__MONEY, 50);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupMoney" x="552" y="688" name="inst_3849DD73" locked="0" code="pickupableInit(PICKUP.__MONEY, 10);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupHP" x="492" y="324" name="inst_BB55B4C3" locked="0" code="pickupableInit(PICKUP.__HP, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupHP" x="408" y="340" name="inst_417D8499" locked="0" code="pickupableInit(PICKUP.__HP, 2);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tls1" x="64" y="128" w="64" h="64" xo="2" yo="134" id="10000011" name="inst_C8434BC5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

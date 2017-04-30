@@ -29,7 +29,7 @@
 image_speed = 0;
 
 // Stats
-hp = 6;
+hp = 12;
 _hp = 12;
 
 mousedir = 0;
@@ -66,6 +66,14 @@ pickupId = noone;
 // movement trics
 hmove = 0;
 vmove = 0;
+
+// mask
+kx1 = 0;
+ky1 = 0;
+kx2 = 0;
+ky2 = 0;
+
+playerMaskCreate(0);
 
 
 instance_create(x, y, oCamera);
@@ -190,7 +198,13 @@ pickupId = noone;
 hmove = 0;
 vmove = 0;
 
+if (cuckTmr &amp;&amp; !--cuckTmr)
+{
+    cuckTmr = -1;
+}
+
 weaponRestore();
+masksMove();
 
 switch (state)
 {
@@ -198,11 +212,13 @@ case PLAYER_STATES.__IDLE:
     procedureAnimableApproachReset();
     playerRotateToMouse();
     playerGetInteractable();
+    playerPickup(pickupId);
     
     physicalBeginStep();
     playerGetKeys();
     
     physicalApplyRecoil(recoilSpd, mousedir - 180);
+    
     
     if ((key[KEY.LEFT] ^^ key[KEY.RIGHT]) || (key[KEY.TOP] ^^ key[KEY.BOT]))
         playerSetState(PLAYER_STATES.__WALK);
@@ -215,10 +231,8 @@ case PLAYER_STATES.__IDLE:
             key[KEY.RELOAD] =1;
         debugWrite("Cannot shoot, reason: " + string(can));  
     }
-    if (key[KEY.PICKUP])
-    {
-        playerPickup(pickupId);
-    }
+    
+    
     if (key[KEY.RELOAD])
         playerReload();
     if (key[KEY.WEAP_CHANGE])
@@ -236,6 +250,7 @@ case PLAYER_STATES.__WALK:
     playerGetKeys();
     
     physicalApplyRecoil(recoilSpd, mousedir - 180);
+    playerPickup(pickupId);
     
     if (key[KEY.LEFT])
         hmove--;
@@ -273,6 +288,10 @@ case PLAYER_STATES.__WALK:
     vspd += spd * speedmod * vmove;
     physicalMove();
     break;
+
+case PLAYER_STATES.__CUCKED:
+    break;    
+    
 case PLAYER_STATES.__DIE:
 
     break;

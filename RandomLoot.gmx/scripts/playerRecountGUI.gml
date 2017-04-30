@@ -3,6 +3,7 @@
 if (weaponType == WEAPON_TYPE.__RANGE)
 {
     oGameGUI.ammoGUI = weaponInf[W_PR.__BULLET_TYPE];
+    oGameGUI.abrow = round(weaponInf[W_PR.__SCORE_SIZE] / 3);
     with (oGameGUI)
     {
         //SWITCH ADD AMMO

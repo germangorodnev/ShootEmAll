@@ -9,16 +9,20 @@ case WEAPON_TYPE.__MELEE:
         
     case WEAPONS.__BLOOD_FLAG:
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);    
+        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         break;
         
     case WEAPONS.__ARIA_ARTH:
         playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));  
+        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         if (choose(0, 1))
             playerWeaponSetDoubleKick();  
         break;
         
     default: // just common melee weapon
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
+        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
+        maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         //weaponObj.angleNeed = weaponInf[W_PR.__ME_DOWN_ANGLE] + 180 * (image_xscale < 0);
         //weaponObj.angleRot = weaponInf[W_PR.__ME_DOWN_SPEED];
         //weaponObj.angleBegin = weaponObj.image_angle;
@@ -54,7 +58,8 @@ case WEAPON_TYPE.__RANGE:
                 bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
             }
             bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
-            bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED];   
+            bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
+            bb.parent = id;  
             with (bb)
                 projectileInited();      
         }
@@ -65,7 +70,7 @@ case WEAPON_TYPE.__RANGE:
     playerWeaponSetState(WEAPON_STATES.__RANGE_SHOT);
     // recoil if any
     if (recoilSpd != 0)
-    recoilApply = 1;
+        recoilApply = 1;
     break;
 }   
 

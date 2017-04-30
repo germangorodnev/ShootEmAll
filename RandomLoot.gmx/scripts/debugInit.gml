@@ -3,6 +3,10 @@ with (oMaskHit)
     visible = global.debug;
 with (oWall)
     visible = global.debug;
+with (oMaskHit)
+    visible = global.debug;
+with (oMaskAttack)
+    visible = global.debug;
 with (oCamera)
     if (global.debug)
     {

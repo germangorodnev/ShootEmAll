@@ -45,8 +45,18 @@ case WEAPONS.__BLOOD_FLAG:
     weaponObj.anMaxAngle = 10;
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
     weaponObj.angleNeedDown = -90;
+    
+    weaponObj.angleNeedUp = 0;
+    weaponObj.angleRotUp = 15;
+
     with (weaponObj)
         weaponAttackTypeInit();
+        
+    // mask
+    kx1 = 57;
+    ky1 = 1;
+    kx2 = 90;
+    ky2 = 80;
     break;
     
 case WEAPONS.__HALFSWORD:
@@ -63,13 +73,19 @@ case WEAPONS.__HALFSWORD:
     
     weaponObj.angleNeedUp = 0;
     weaponObj.angleRotUp = 15;
+    
+    // mask
+    kx1 = 57;
+    ky1 = 15;
+    kx2 = 80;
+    ky2 = 77;
     break;
     
 case WEAPONS.__COPPER_DEVIL:
     weaponSprite[0] = sCopperDevil;
     weaponSprite[1] = sCopperDevil;
     weaponSprite[2] = sCopperDevil;
-    weaponXoff = 20;
+    weaponXoff = 15;
     weaponYoff = -8;
     weaponObj.anMaxAngle = 5;
     
@@ -79,6 +95,11 @@ case WEAPONS.__COPPER_DEVIL:
     
     weaponObj.angleNeedUp = 0;
     weaponObj.angleRotUp = 15;
+    // mask
+    kx1 = 57;
+    ky1 = 15;
+    kx2 = 95;
+    ky2 = 77;
     break;
         
 case WEAPONS.__STICK:
@@ -95,6 +116,11 @@ case WEAPONS.__STICK:
     
     weaponObj.angleNeedUp = 0;
     weaponObj.angleRotUp = 18;
+    // mask
+    kx1 = 57;
+    ky1 = 20;
+    kx2 = 65;
+    ky2 = 70;
     break;
     
 case WEAPONS.__ARIA_ARTH:
@@ -111,6 +137,11 @@ case WEAPONS.__ARIA_ARTH:
     
     weaponObj.angleNeedUp = 0;
     weaponObj.angleRotUp = 15;
+    // mask
+    kx1 = 57;
+    ky1 = 15;
+    kx2 = 70;
+    ky2 = 77;
     break;
 
     
@@ -132,8 +163,8 @@ case WEAPONS.__RXP:
     weaponSprite[1] = sRXPShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -18;
-    weaponObj.anMaxAngle = 3;
+    weaponYoff = -22;
+    weaponObj.anMaxAngle = 6;
     break;
     
 case WEAPONS.__RECT1:
@@ -160,7 +191,7 @@ case WEAPONS.__NOVA_M:
     weaponSprite[1] = sNovaMShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -27;
+    weaponYoff = -33;
     weaponObj.anMaxAngle = 3;
     break;
     

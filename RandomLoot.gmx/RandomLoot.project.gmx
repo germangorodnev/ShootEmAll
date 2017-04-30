@@ -81,6 +81,7 @@
           </sprites>
           <sprites name="Forest Mantis">
             <sprite>sprites\sForestMantis</sprite>
+            <sprite>sprites\sForestMantisShoot</sprite>
           </sprites>
         </sprites>
       </sprites>
@@ -100,6 +101,7 @@
         </sprites>
         <sprites name="Pillow">
           <sprite>sprites\sEnemyPillow</sprite>
+          <sprite>sprites\sEnemyPillowCucked</sprite>
         </sprites>
       </sprites>
       <sprites name="Weapons">
@@ -111,7 +113,14 @@
       <sprite>sprites\sEnemyBullet</sprite>
     </sprites>
     <sprites name="Pickupable">
-      <sprite>sprites\sAmmoPickup</sprite>
+      <sprite>sprites\sAmmoPickup20</sprite>
+      <sprite>sprites\sAmmoPickup40</sprite>
+      <sprite>sprites\sShotgunAmmoPickup</sprite>
+      <sprite>sprites\sGrenadeAmmoPickup</sprite>
+      <sprite>sprites\sprite57</sprite>
+      <sprite>sprites\sEnergyAmmoPickup</sprite>
+      <sprite>sprites\sHPPickup</sprite>
+      <sprite>sprites\sMoneyPickup</sprite>
     </sprites>
     <sprites name="Ammo Shot">
       <sprite>sprites\sShotgunProjectile</sprite>
@@ -127,14 +136,25 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="Physics">
+    <scripts name="Physicals">
       <scripts name="Collision">
         <script>scripts\colPlaceFree.gml</script>
+      </scripts>
+      <scripts name="Masks">
+        <script>scripts\maskHitAdd.gml</script>
+        <script>scripts\maskKickAdd.gml</script>
+        <script>scripts\masksMove.gml</script>
+        <script>scripts\masksClear.gml</script>
+        <script>scripts\maskTryGetDmg.gml</script>
+        <script>scripts\maskRemoveById.gml</script>
       </scripts>
       <script>scripts\physicalBeginStep.gml</script>
       <script>scripts\physicalMove.gml</script>
       <script>scripts\physicalMoveToPoint.gml</script>
       <script>scripts\physicalApplyRecoil.gml</script>
+      <script>scripts\physicalTakeDmg.gml</script>
+      <script>scripts\physicalCucked.gml</script>
+      <script>scripts\physicalClearMaskKick.gml</script>
     </scripts>
     <scripts name="Player">
       <script>scripts\playerSetState.gml</script>
@@ -147,6 +167,9 @@
       <script>scripts\playerReload.gml</script>
       <script>scripts\playerChangeWeapon.gml</script>
       <script>scripts\weaponRestore.gml</script>
+      <script>scripts\playerChangeHP.gml</script>
+      <script>scripts\playerMaskCreate.gml</script>
+      <script>scripts\playerAddMoney.gml</script>
       <scripts name="Pickup">
         <script>scripts\playerPickup.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
@@ -187,6 +210,8 @@
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
+      <script>scripts\gamePlaySound.gml</script>
+      <script>scripts\punchEffectCreate.gml</script>
     </scripts>
     <scripts name="Bullets">
       <script>scripts\projectileInited.gml</script>
@@ -198,11 +223,18 @@
         <script>scripts\enemyWeaponInit.gml</script>
         <script>scripts\enemyWeaponSetState.gml</script>
       </scripts>
+      <scripts name="Projectiles">
+        <script>scripts\projectileStepEnemy.gml</script>
+      </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
       <script>scripts\enemyDetectPlayer.gml</script>
       <script>scripts\enemyCanAttack.gml</script>
       <script>scripts\enemyAttack.gml</script>
+    </scripts>
+    <scripts name="Damage Things">
+      <script>scripts\damagingCollisionDetect.gml</script>
+      <script>scripts\instancePlaceList.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -215,8 +247,6 @@
       <object>objects\oAnimatableObject</object>
       <object>objects\oDynamicObject</object>
       <object>objects\oSolidObject</object>
-      <object>objects\oPickupableObject</object>
-      <object>objects\oBulletObject</object>
     </objects>
     <objects name="Game">
       <object>objects\oCamera</object>
@@ -228,10 +258,14 @@
       <object>objects\oPlayerWeapon</object>
     </objects>
     <objects name="Pickup">
+      <object>objects\oPickupableObject</object>
       <object>objects\oPickupWeapon</object>
       <object>objects\oPickupAmmo</object>
+      <object>objects\oPickupMoney</object>
+      <object>objects\oPickupHP</object>
     </objects>
     <objects name="Ammo">
+      <object>objects\oBulletObject</object>
       <object>objects\oShotgunPellet</object>
       <object>objects\oBulletProjectile</object>
       <object>objects\oEnergyProjectile</object>
@@ -245,8 +279,12 @@
       <object>objects\oEnemyWeapon</object>
       <object>objects\oEnemyBullet</object>
     </objects>
+    <objects name="Masks">
+      <object>objects\oBaseMask</object>
+      <object>objects\oMaskHit</object>
+      <object>objects\oMaskAttack</object>
+    </objects>
     <object>objects\oWall</object>
-    <object>objects\oMaskHit</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>

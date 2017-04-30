@@ -100,9 +100,9 @@ case WEAPONS.__RXP:
     _arr[W_PR.__CRIT_CHANCE] = 0;
     _arr[W_PR.__CRIT_DAMAGE_MIN] = 11;
     _arr[W_PR.__CRIT_DAMAGE_MAX] = 15;
-    _arr[W_PR.__LDIR_X] = 71; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = 71;
-    _arr[W_PR.__LDIR_DIR] = 7;
+    _arr[W_PR.__LDIR_X] = 20; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 20;
+    _arr[W_PR.__LDIR_DIR] = 14;
     break;
 
 case WEAPONS.__RECT1:

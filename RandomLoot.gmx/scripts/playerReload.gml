@@ -12,6 +12,8 @@ var ammoType = weaponInf[W_PR.__BULLET_TYPE];
 if (ammo[ammoType] == 0)
     exit; // no ammo
     
+physicalClearMaskKick();
+    
 var rldTime = weaponInf[W_PR.__RELOAD_TIME];    
 
 if (rldTime < 0) // relative

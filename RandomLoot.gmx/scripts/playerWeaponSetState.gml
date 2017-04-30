@@ -16,6 +16,8 @@ with (weaponObj)
     case WEAPON_STATES.__MOVE:
         sprite_index = oPlayer.weaponSprite[0];
         anImageSpeed = oPlayer.weaponAnimSpeed[0];
+        with (oPlayer)
+            physicalClearMaskKick();
         break;
     case WEAPON_STATES.__RANGE_SHOT:
         canAttack = 0;

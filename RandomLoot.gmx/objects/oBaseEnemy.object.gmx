@@ -27,6 +27,9 @@
             <kind>1</kind>
             <string>event_inherited();
 
+hp = 5;
+_hp = hp;
+
 hspd = 0;
 vspd = 0;
 spd = 3;
@@ -68,6 +71,9 @@ projectileSpeed = 0;
 sprayAngle = 0;
 
 enemyType = ENEMY.__PILLOW;
+
+// animations
+anims[ENEMY_ANIM.__CNT - 1] = sprite_index;
 
 </string>
           </argument>
