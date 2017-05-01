@@ -32,6 +32,9 @@ state = WEAPON_STATES.__MOVE;
 
 attackType = -1; 
 
+ret = -1;
+returnTmrCnt = 0; 
+
 anImageIndex = 0;
 anImageSpeed = 0;
 anImageNumber = 0;
@@ -50,6 +53,14 @@ angleNeedUp = 0;
 
 angleBegin = 0;
 
+anOffX = 0;
+anOffXNeed = 0;
+anOffXSpd = 0;
+
+anOffY = 0;
+anOffYNeed = 0;
+anOffYSpd = 0;
+
 angleRot = 9;
 angleRotDown = 0;
 angleRotUp = 0;
@@ -59,7 +70,7 @@ anMaxAngle = 10;
 canAttackTmr = -1;
 canAttack = 1;
 
-doubleAttack = 0;
+attackCount = 0;
 
 // for custom weapons
 kickCnt = 0;
@@ -127,21 +138,58 @@ if (canAttackTmr &amp;&amp; !--canAttackTmr)
 switch (state)
 {
 case WEAPON_STATES.__MOVE:
+    anOffX = approach(anOffX, anOffXNeed, anOffXSpd);
+    anOffY = approach(anOffY, anOffYNeed, anOffYSpd);    
     break;
     
-case WEAPON_STATES.__MELEE_DOWN:
+case WEAPON_STATES.__RETURN_TO_TOP:
     image_angle = approach(image_angle, angleNeed, angleRot);
+    if (image_angle == angleNeed)
+    {
+        attackCount--;
+        if (attackCount &lt;= 0)
+            with (oPlayer)
+                playerWeaponSetState(WEAPON_STATES.__MOVE);       
+        else
+            with (oPlayer)
+                playerAttack();       
+    }            
+    break;
+    
+case WEAPON_STATES.__MOVE_NOANIM:
+    if (ret &amp;&amp; !--ret)
+        with (oPlayer)
+            playerWeaponSetState(WEAPON_STATES.__RETURN_TO_TOP);    
+        
+    anOffX = approach(anOffX, anOffXNeed, anOffXSpd);
+    anOffY = approach(anOffY, anOffYNeed, anOffYSpd);    
+    break;    
+    
+case WEAPON_STATES.__MELEE_DOWN:
     //SWITCH ADD
     switch (attackType)
     {
     case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
+        image_angle = approach(image_angle, angleNeed, angleRot);
+        anOffX = approach(anOffX, anOffXNeed, anOffXSpd);
+        anOffY = approach(anOffY, anOffYNeed, anOffYSpd);
+        if (image_angle == angleNeed 
+            &amp;&amp; anOffX == anOffXNeed
+            &amp;&amp; anOffY == anOffYNeed)
         {
+            // do not reset angle
             with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
+            {
+                physicalClearMaskKick();
+                playerWeaponSetState(WEAPON_STATES.__MOVE_NOANIM);   
+            }
+            image_angle = angleNeed;
+            ret = returnTmrCnt;
+
         }            
         break;
     default:
+        image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
             with (oPlayer)
@@ -152,21 +200,32 @@ case WEAPON_STATES.__MELEE_DOWN:
     break;
         
 case WEAPON_STATES.__MELEE_UP:
-    image_angle = approach(image_angle, angleNeed, angleRot);
     switch (attackType)
     {
     case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
+        image_angle = approach(image_angle, angleNeed, angleRot);
+        anOffX = approach(anOffX, 0, anOffXSpd);
+        anOffY = approach(anOffY, 0, anOffYSpd);
+        if (image_angle == angleNeed 
+            &amp;&amp; anOffX == anOffXNeed
+            &amp;&amp; anOffY == anOffYNeed)
         {
+            // do not reset angle
             with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);    
+                playerWeaponSetState(WEAPON_STATES.__MOVE);   
         }            
         break;
     default:
+        image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);       
+            attackCount--;
+            if (attackCount &lt;= 0)
+                with (oPlayer)
+                    playerWeaponSetState(WEAPON_STATES.__MOVE);       
+            else
+                with (oPlayer)
+                    playerAttack();       
         }
         break;   
     }
@@ -211,12 +270,34 @@ case WEAPON_STATES.__RANGE_RELOAD:
     if (reloadAm == 0)
     {
         with (oPlayer)
-        {
             playerWeaponSetState(WEAPON_STATES.__MOVE);
-        }
     }
     break;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (sprite_index != -1)
+    draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * image_xscale, y + anOffY * image_yscale, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 </string>
           </argument>
         </arguments>
@@ -286,8 +367,7 @@ case WEAPON_STATES.__RANGE_RELOAD:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index != -1)
-    draw_sprite_ext(sprite_index, anImageIndex, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+            <string>///not to draw himself
 </string>
           </argument>
         </arguments>

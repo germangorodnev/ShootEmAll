@@ -1,7 +1,7 @@
-///maskTryGetDmg(id, int dmg, CUCKED)
+///maskTryGetDmg(id, int dmg, CUCKED, cooldown damage)
 if (expire != 0)
     exit;
-expire = cd;
+expire = argument[3];
 image_index = 2;
 var idd = argument[0],
     dd = argument[1],

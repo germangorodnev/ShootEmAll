@@ -15,14 +15,15 @@ if (ic != noone)
         exit;
     var a = damage,
         b = cuck,
-        c = parent.id;
+        c = parent.id,
+        cdd = dmgcd;
     var tk = 0;
     with (ic)
-        tk = maskTryGetDmg(c, a, b);
+        tk = maskTryGetDmg(c, a, b, cdd);
     if (tk)
     {
         cntgothrough--;
-        if (!cntgothrough)
+        if (cntgothrough <= 0)
             instance_destroy();
         if (group == 0)
         {

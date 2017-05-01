@@ -55,12 +55,12 @@ case WEAPONS.__COPPER_DEVIL:
 case WEAPONS.__STICK:
     _arr[W_PR.__ME_DAMAGE_MIN] = 0;
     _arr[W_PR.__ME_DAMAGE_MAX] = 5;
-    _arr[W_PR.__ME_SHOOT_CD] = 0.5 * room_speed;
+    _arr[W_PR.__ME_SHOOT_CD] = 2;// * room_speed;
     break;
 case WEAPONS.__ARIA_ARTH:
     _arr[W_PR.__ME_DAMAGE_MIN] = 25;
     _arr[W_PR.__ME_DAMAGE_MAX] = 29;
-    _arr[W_PR.__ME_SHOOT_CD] = 1 * room_speed;
+    _arr[W_PR.__ME_SHOOT_CD] = 0.5 * room_speed;
     break;
     
 /* ******************************************************** RANGE ***********************************************************/        
@@ -108,8 +108,8 @@ case WEAPONS.__RXP:
 case WEAPONS.__RECT1:
     _arr[W_PR.__SPRAY_ANGLE] = 3;
     _arr[W_PR.__SHOOT_CD] = 0.5 * room_speed;
-    _arr[W_PR.__SCORE_SIZE] = 8;
-    _arr[W_PR.__BULLETS_PER_SHOT] = 1;
+    _arr[W_PR.__SCORE_SIZE] = 120;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 15;
     _arr[W_PR.__PROJECTILE] = PROJECTILE.__ENERGY_LINE;
     _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
     _arr[W_PR.__PROJECTILE_SPEED] = 11;

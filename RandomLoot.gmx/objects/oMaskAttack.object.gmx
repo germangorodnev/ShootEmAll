@@ -34,6 +34,7 @@ visible = global.debug;
 
 cuck = CUCKED.__NORMAL;
 dmg = 0;
+dmgcd = 0;
 
 ls = ds_list_create();
 </string>
@@ -97,10 +98,11 @@ for (var i = 0, cnt = ds_list_size(ls); i &lt; cnt; i++)
         continue;
     var a = dmg,
         b = cuck,
-        c = par.id;
+        c = par.id,
+        cdd = dmgcd;
     var tk = 0;
     with (obj)
-        tk = maskTryGetDmg(c, a, b);
+        tk = maskTryGetDmg(c, a, b, cdd);
     if (tk)
     {
         if (group == 0)

@@ -37,6 +37,8 @@ prt = 2;
 visible = 0;
 active = 0;
 
+dmgcd = 0;
+
 cntgothrough = 1;
 </string>
           </argument>

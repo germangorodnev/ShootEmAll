@@ -9,20 +9,34 @@ case WEAPON_TYPE.__MELEE:
         
     case WEAPONS.__BLOOD_FLAG:
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);    
+
+        with (weaponObj)
+            weaponSetAnimation(WEAPONS.__BLOOD_FLAG, WEAPON_STATES.__MELEE_DOWN);
+
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
+        maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
+        maskKick.dmgcd = weaponCd;
         break;
         
     case WEAPONS.__ARIA_ARTH:
-        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));  
+        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));
+          
+        with (weaponObj)
+            weaponSetAnimation(WEAPONS.__ARIA_ARTH, WEAPON_STATES.__MELEE_DOWN);
+    
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
+        maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
+        maskKick.dmgcd = weaponCd;
+        // random double shot
         if (choose(0, 1))
-            playerWeaponSetDoubleKick();  
+            playerWeaponSetKickCount(2);  
         break;
         
     default: // just common melee weapon
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
+        maskKick.dmgcd = weaponCd;
         //weaponObj.angleNeed = weaponInf[W_PR.__ME_DOWN_ANGLE] + 180 * (image_xscale < 0);
         //weaponObj.angleRot = weaponInf[W_PR.__ME_DOWN_SPEED];
         //weaponObj.angleBegin = weaponObj.image_angle;
@@ -60,6 +74,7 @@ case WEAPON_TYPE.__RANGE:
             bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
             bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
             bb.parent = id;  
+            bb.dmgcd = weaponCd;
             with (bb)
                 projectileInited();      
         }

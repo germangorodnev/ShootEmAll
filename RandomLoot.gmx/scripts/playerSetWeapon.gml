@@ -9,6 +9,7 @@ if (weapon != WEAPONS.__NONE)
 }
 
 // resets
+weaponCd = 0;
 restore = -1;
 recoilSpd = 0;
 weaponBlend = c_white;
@@ -26,7 +27,8 @@ with (weaponObj)
     canShoot = 1;
     attackType = -1;
 }
-
+if (weaponType == WEAPON_TYPE.__MELEE)
+    weaponCd = 0.5;
 //SWITCH ADD WEAPONS
 switch (weapon)
 {
@@ -49,13 +51,13 @@ case WEAPONS.__BLOOD_FLAG:
     weaponObj.angleNeedUp = 0;
     weaponObj.angleRotUp = 15;
 
-    with (weaponObj)
-        weaponAttackTypeInit();
+    //with (weaponObj)
+    //    weaponAttackTypeInit();
         
     // mask
     kx1 = 57;
     ky1 = 1;
-    kx2 = 90;
+    kx2 = 120;
     ky2 = 80;
     break;
     
@@ -82,6 +84,7 @@ case WEAPONS.__HALFSWORD:
     break;
     
 case WEAPONS.__COPPER_DEVIL:
+    weaponCd = 1 * room_speed;
     weaponSprite[0] = sCopperDevil;
     weaponSprite[1] = sCopperDevil;
     weaponSprite[2] = sCopperDevil;
@@ -119,11 +122,12 @@ case WEAPONS.__STICK:
     // mask
     kx1 = 57;
     ky1 = 20;
-    kx2 = 65;
+    kx2 = 80;
     ky2 = 70;
     break;
     
 case WEAPONS.__ARIA_ARTH:
+    weaponCd = 1 * room_speed;
     weaponSprite[0] = sAriaArthef;
     weaponSprite[1] = sAriaArthef;
     weaponSprite[2] = sAriaArthef;
@@ -131,16 +135,16 @@ case WEAPONS.__ARIA_ARTH:
     weaponYoff = -8;
     weaponObj.anMaxAngle = 5;
     
-    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
     weaponObj.angleNeedDown = -155;
     weaponObj.angleRotDown = 22;
     
     weaponObj.angleNeedUp = 0;
-    weaponObj.angleRotUp = 15;
+    weaponObj.angleRotUp = 8;
     // mask
     kx1 = 57;
     ky1 = 15;
-    kx2 = 70;
+    kx2 = 95;
     ky2 = 77;
     break;
 
@@ -191,7 +195,7 @@ case WEAPONS.__NOVA_M:
     weaponSprite[1] = sNovaMShoot;
     weaponAnimSpeed[1] = 0.3;
     weaponXoff = 3;
-    weaponYoff = -33;
+    weaponYoff = -28;
     weaponObj.anMaxAngle = 3;
     break;
     

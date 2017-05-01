@@ -332,22 +332,24 @@ case AMMO.__GRENADES:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oPlayer.pickupId))
+            <string>with (oPlayer)
 {
-    if (!oPlayer.pickupId.autopickup)
-        draw_sprite_ext(sPickup, 0, oPlayer.x, oPlayer.bbox_top - 50, 1, 1, 0, image_blend, image_alpha); 
-}
-with (oPlayer)
-// reload indicator
-if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
-{
-    
-    var cc = 6 - round((weaponObj.canAttackTmr / weaponObj.reloadTmrBegin) * 6);
-    for (var i = 0; i &lt; cc; i++)
+    if (instance_exists(pickupId))
     {
-        var xx = x,
-            yy = bbox_top - 80;
-        draw_sprite_ext(sReloadPart, 0, xx, yy, 1, 1, i * 60, image_blend, image_alpha);
+        if (!pickupId.autopickup)
+            draw_sprite_ext(sPickup, 0, oPlayer.x, oPlayer.bbox_top - 50, 1, 1, 0, image_blend, image_alpha); 
+    }
+    // reload indicator
+    if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
+    {
+        
+        var cc = 6 - round((weaponObj.canAttackTmr / weaponObj.reloadTmrBegin) * 6);
+        for (var i = 0; i &lt; cc; i++)
+        {
+            var xx = x,
+                yy = bbox_top - 80;
+            draw_sprite_ext(sReloadPart, 0, xx, yy, 1, 1, i * 60, image_blend, image_alpha);
+        }
     }
 }
 </string>

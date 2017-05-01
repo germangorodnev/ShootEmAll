@@ -41,8 +41,21 @@ cursor_sprite = sCursorTarget;
 
 global.money = 0;
 
-
-
+// particles
+global.pse = part_system_create();
+part_system_depth(global.pse, 10);
+// jibs
+// pillow
+global.pillowjibs = part_type_create();
+part_type_sprite(global.pillowjibs, sPillowJibs, false, false, true);            
+part_type_size(global.pillowjibs, 1, 1.2, 0, 0);                    
+part_type_scale(global.pillowjibs, 1, 1);                       
+part_type_alpha2(global.pillowjibs, 1, 0.01);                       
+part_type_speed(global.pillowjibs, 3, 0.05, -0.05, 0);           
+part_type_direction(global.pillowjibs, 0, 359, 0, 1);            
+part_type_orientation(global.pillowjibs, 0, 360, 0, 0, 0);           
+part_type_blend(global.pillowjibs, false);                         
+part_type_life(global.pillowjibs, 2 * room_speed, 8 * room_speed);    
 
 
 
@@ -50,6 +63,30 @@ global.money = 0;
 
 
 room_goto_next();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>part_type_destroy(global.pillowjibs);
+part_system_destroy(global.pse);
 </string>
           </argument>
         </arguments>

@@ -2,6 +2,8 @@ if (weapon == WEAPONS.__NONE)
     exit;
 if (weaponType == WEAPON_TYPE.__MELEE)
     exit;
+if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
+    exit;
 
 var maxAmmo = weaponInf[W_PR.__SCORE_SIZE];
 

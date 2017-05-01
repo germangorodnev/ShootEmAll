@@ -1,40 +1,52 @@
-///playerPickup(obj id)
-if (argument[0] == noone)
+///playerPickup()
+var pickup = instance_place(x, y, oPickupableObject);
+if (pickup != noone)
+{
+    if (physicalOnOneLine(y, pickup.compareY))
+        pickupId = pickup;
+    else
+        pickupId = noone;
+}
+else
+    pickupId = noone;
+if (pickupId == noone)
     exit;
-var obj = argument[0];
-if (!obj.autopickup)
+if (!pickupId.autopickup)
 {
     if (!key[KEY.PICKUP])
         exit;
     //SWITCH ADD PICKUP
-    switch (obj.type)
+    switch (pickupId.type)
     {
     case PICKUP.__WEAPON:
-        playerPickupWeapon(obj, obj.value);
-        with (obj)
+        playerPickupWeapon(pickupId, pickupId.value);
+        with (pickupId)
             instance_destroy();
         break;
     }
 }
 else
 {
-    switch (obj.type)
+    switch (pickupId.type)
     {
     case PICKUP.__AMMO:
-        playerPickupAmmo(obj.value, obj.ammo);
-        with (obj)
+        playerPickupAmmo(pickupId.value, pickupId.ammo);
+        with (pickupId)
             instance_destroy();    
         break;
         
     case PICKUP.__HP:
-        playerChangeHP(obj.value);
-        with (obj)
-            instance_destroy();
+        if (hp != _hp)
+        {
+            playerChangeHP(pickupId.value);
+            with (pickupId)
+                instance_destroy();
+        }
         break;
         
     case PICKUP.__MONEY:
-        playerAddMoney(obj.value);
-        with (obj)
+        playerAddMoney(pickupId.value);
+        with (pickupId)
             instance_destroy();    
         break;
     }

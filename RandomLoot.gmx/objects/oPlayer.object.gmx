@@ -29,6 +29,7 @@
 image_speed = 0;
 
 // Stats
+spd = 4;
 hp = 12;
 _hp = 12;
 
@@ -40,6 +41,8 @@ recoilSpd = 0;
 recoilApply = 0;
 
 ammo[AMMO.__CNT - 1] = 0; // ammo we have right now
+
+weaponCd = 0;
 
 weaponObj = instance_create(x, y, oPlayerWeapon);
 weapon = WEAPONS.__NONE;
@@ -130,6 +133,7 @@ if (!updatable)
     exit;
 weaponObj.x = x + weaponXoff * sign(image_xscale);
 weaponObj.y = y + weaponYoff;
+weaponObj.depth = depth;
 if (weapon != WEAPONS.__NONE)
 {
     switch (weaponType)
@@ -141,6 +145,7 @@ if (weapon != WEAPONS.__NONE)
             with(weaponObj)
                 image_angle = perc * anMaxAngle;
         }
+            
         weaponObj.image_xscale = image_xscale;
         if (mouse_y &lt; y)
         {
@@ -154,15 +159,6 @@ if (weapon != WEAPONS.__NONE)
     case WEAPON_TYPE.__RANGE:
         weaponObj.image_yscale = sign(image_xscale);
         weaponObj.image_angle = mousedir + sin(anSinRad) * weaponObj.anMaxAngle; //+ weaponInf[W_PR.__LDIR_DIR] / 4 * (sign(image_xscale) &gt; 0)
-        
-        if (mouse_y &lt; y - 1)
-        {
-            weaponObj.depth = depth + 1;
-        }   
-        else
-        {
-            weaponObj.depth = depth - 1;
-        }
         break;
     }
 }
@@ -194,7 +190,6 @@ if (weapon != WEAPONS.__NONE)
     
 depth = -y;
 
-pickupId = noone;
 hmove = 0;
 vmove = 0;
 
@@ -211,8 +206,6 @@ switch (state)
 case PLAYER_STATES.__IDLE:
     procedureAnimableApproachReset();
     playerRotateToMouse();
-    playerGetInteractable();
-    playerPickup(pickupId);
     
     physicalBeginStep();
     playerGetKeys();
@@ -227,11 +220,13 @@ case PLAYER_STATES.__IDLE:
         playerAttack();
     else
     {
-        if (can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
-            key[KEY.RELOAD] =1;
+        if ((can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
+            || (can == -2 &amp;&amp; key[KEY.KICK] == 1))
+            key[KEY.RELOAD] = 1;
         debugWrite("Cannot shoot, reason: " + string(can));  
     }
     
+    playerPickup();
     
     if (key[KEY.RELOAD])
         playerReload();
@@ -244,13 +239,11 @@ case PLAYER_STATES.__IDLE:
 case PLAYER_STATES.__WALK:
     procedureAnimableProceed();    
     playerRotateToMouse();
-    playerGetInteractable();
     
     physicalBeginStep();
     playerGetKeys();
     
     physicalApplyRecoil(recoilSpd, mousedir - 180);
-    playerPickup(pickupId);
     
     if (key[KEY.LEFT])
         hmove--;
@@ -270,8 +263,9 @@ case PLAYER_STATES.__WALK:
     if (can == 1)
         playerAttack();
     else
-        if (can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
-            key[KEY.RELOAD] =1;
+        if ((can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
+            || (can == -2 &amp;&amp; key[KEY.KICK] == 1))
+            key[KEY.RELOAD] = 1;
     else
         debugWrite("Cannot shoot, reason: " + string(can));   
         
@@ -283,6 +277,8 @@ case PLAYER_STATES.__WALK:
         playerReload();
     if (key[KEY.WEAP_CHANGE])
         playerChangeWeapon();
+        
+    playerPickup();
     
     hspd += spd * speedmod * hmove;
     vspd += spd * speedmod * vmove;
@@ -367,8 +363,18 @@ case PLAYER_STATES.__DIE:
             <kind>1</kind>
             <string>if (!drawable)
     exit;
-procedureAnimableDrawPerson();
-
+if (mouse_y &lt; y)
+{
+    with (weaponObj)
+        event_perform(ev_other, ev_user3);
+    procedureAnimableDrawPerson();
+}   
+else
+{
+    procedureAnimableDrawPerson();
+    with (weaponObj)
+        event_perform(ev_other, ev_user3);
+}
 
 playerDebug();
 </string>

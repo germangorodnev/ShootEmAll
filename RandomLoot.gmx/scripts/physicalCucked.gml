@@ -8,6 +8,10 @@ case CUCKED.__NORMAL:
     case oPlayer:
         cuckTmr = cuckTmrCnt;
         break;
+        
+    case oBuddyTest:
+        anMaxAngle = min(45, anMaxAngle + 6);
+        break;
     
     case oPillow:
         enemySetState(ENEMY_STATE.__CUCKED);

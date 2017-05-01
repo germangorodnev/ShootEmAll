@@ -2,6 +2,7 @@
 with (weaponObj)
 {
     state = argument[0];
+    attackCount = 0; // warning
     animEnded = 0;
     anImageIndex = 0;
     if (oPlayer.weapon == WEAPONS.__NONE)
@@ -14,14 +15,27 @@ with (weaponObj)
     switch (state)
     {
     case WEAPON_STATES.__MOVE:
+        anOffXNeed = 0;
+        anOffYNeed = 0;
         sprite_index = oPlayer.weaponSprite[0];
         anImageSpeed = oPlayer.weaponAnimSpeed[0];
         with (oPlayer)
             physicalClearMaskKick();
         break;
+        
+        
+        
+        
     case WEAPON_STATES.__RANGE_SHOT:
-        canAttack = 0;
-        canAttackTmr = oPlayer.weaponInf[W_PR.__SHOOT_CD];
+        if (oPlayer.weaponAmmo < oPlayer.weaponInf[W_PR.__BULLETS_PER_SHOT])
+        {
+            canAttackTmr = -1;
+        }
+        else
+        {
+            canAttack = 0;
+            canAttackTmr = oPlayer.weaponInf[W_PR.__SHOOT_CD];
+        }
         
         sprite_index = oPlayer.weaponSprite[1];
         anImageSpeed = oPlayer.weaponAnimSpeed[1];
@@ -36,24 +50,32 @@ with (weaponObj)
         anImageSpeed = oPlayer.weaponAnimSpeed[0];
         break;
         
+        
+        
+        
     case WEAPON_STATES.__MELEE_DOWN:
+        canAttack = 0;
+        canAttackTmr = oPlayer.weaponInf[W_PR.__ME_SHOOT_CD];
+
         angleNeed = angleNeedDown + (90 - angleNeedDown) * (image_xscale < 0); //+ 180 * (image_xscale < 0) + angleNeedDown * -1 * (image_xscale < 0);
         angleRot = angleRotDown;
         angleBegin = image_angle;
-
-        canAttack = 0;
-        canAttackTmr = oPlayer.weaponInf[W_PR.__ME_SHOOT_CD];
         
         sprite_index = oPlayer.weaponSprite[1];
         anImageSpeed = oPlayer.weaponAnimSpeed[0];
         break;
         
     case WEAPON_STATES.__MELEE_UP:
-        angleNeed = angleNeedUp;;// + 180 * (image_xscale < 0) + angleNeedUp * -1 * (image_xscale < 0);
+        angleNeed = angleNeedUp;// + 180 * (image_xscale < 0) + angleNeedUp * -1 * (image_xscale < 0);
         angleRot = angleRotUp;
         
         sprite_index = oPlayer.weaponSprite[2];
         anImageSpeed = oPlayer.weaponAnimSpeed[2];
+        break;
+        
+    case WEAPON_STATES.__RETURN_TO_TOP:
+        angleNeed = angleNeedUp;
+        angleRot = angleRotUp;
         break;
     }
     anImageNumber = sprite_get_number(sprite_index);

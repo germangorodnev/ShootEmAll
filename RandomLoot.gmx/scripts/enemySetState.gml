@@ -23,6 +23,8 @@ case ENEMY_STATE.__CUCKED:
     break;
     
 case ENEMY_STATE.__DIE:
-    instance_destroy();
+    enemyCreateJibs();
+    destrTmr = 1.5 * room_speed;
+    //instance_destroy();
     break;
 }

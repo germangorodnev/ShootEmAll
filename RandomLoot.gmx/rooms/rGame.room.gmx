@@ -63,7 +63,7 @@
     <instance objName="oWall" x="100" y="176" name="inst_3A9D3003" locked="0" code="" scaleX="21.875" scaleY="0.379999995231628" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="592" y="476" name="inst_04823330" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__RXP, 17);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="316" y="320" name="inst_7A7871B0" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__HALFSWORD);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPickupWeapon" x="644" y="496" name="inst_01B42269" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__RECT1, 8);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="644" y="496" name="inst_01B42269" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__RECT1, 0);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="496" y="512" name="inst_C4F624E6" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__COPPER_DEVIL);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="288" y="272" name="inst_3B02D2CA" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__STICK);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="236" y="328" name="inst_045E5E11" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__ARIA_ARTH);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -88,6 +88,12 @@
     <instance objName="oPickupMoney" x="552" y="688" name="inst_3849DD73" locked="0" code="pickupableInit(PICKUP.__MONEY, 10);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupHP" x="492" y="324" name="inst_BB55B4C3" locked="0" code="pickupableInit(PICKUP.__HP, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupHP" x="408" y="340" name="inst_417D8499" locked="0" code="pickupableInit(PICKUP.__HP, 2);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPillow" x="1072" y="336" name="inst_8D7B2EDB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPillow" x="904" y="140" name="inst_125D0975" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPillow" x="992" y="464" name="inst_D9F56FA6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPillow" x="1120" y="236" name="inst_E47B5D31" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oBuddyTest" x="748" y="556" name="inst_03D4922C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oBuddyTest" x="664" y="624" name="inst_1D420516" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tls1" x="64" y="128" w="64" h="64" xo="2" yo="134" id="10000011" name="inst_C8434BC5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

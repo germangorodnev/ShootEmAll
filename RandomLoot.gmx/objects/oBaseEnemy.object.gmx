@@ -39,6 +39,8 @@ damagable = 1;
 vecdir = 0;
 angle = 0;
 
+destrTmr = -1;
+
 mX = x;
 mY = y;
 
@@ -57,6 +59,9 @@ weapon = ENEMY_WEAPON.__MACHINEGUN;
 weaponSprite[2] = -1;
 weaponAnimSpeed[2] = 0;
 projectile = PROJECTILE.__ENEMY_BULLET;
+
+psys = -1;
+pem = -1;
 
 ldirx = 0;
 ldiry = 0;
@@ -98,6 +103,8 @@ anims[ENEMY_ANIM.__CNT - 1] = sprite_index;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if (pem != -1)
+    part_emitter_destroy(psys, pem);
 </string>
           </argument>
         </arguments>

@@ -85,6 +85,8 @@ enum WEAPON_ATTACK_TYPE
 enum WEAPON_STATES
 {
     __MOVE = 0,
+    __MOVE_NOANIM,
+    __RETURN_TO_TOP,
     __RANGE_SHOT,
     __RANGE_RECOIL,
     __RANGE_RELOAD,

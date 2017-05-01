@@ -230,7 +230,11 @@ case ENEMY_STATE.__CUCKED:
     break;
     
 case ENEMY_STATE.__DIE:
-
+    anAngle = 90;
+    if (destrTmr &amp;&amp; !--destrTmr)
+    {
+        instance_destroy();
+    }
     break;
 }
 </string>

@@ -30,7 +30,7 @@ image_speed = 0;
 visible = 0;
 par = noone;
 group = 0;
-cd = 0.3 * room_speed;
+cd = 0.6 * room_speed;
 
 xx = 0;
 yy = 0;
