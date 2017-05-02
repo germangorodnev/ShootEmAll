@@ -2,7 +2,6 @@
 with (weaponObj)
 {
     state = argument[0];
-    attackCount = 0; // warning
     animEnded = 0;
     anImageIndex = 0;
     if (oPlayer.weapon == WEAPONS.__NONE)
@@ -15,10 +14,10 @@ with (weaponObj)
     switch (state)
     {
     case WEAPON_STATES.__MOVE:
+        attackCount = 0; // warning
         hitCount = 0;
         animIndex = 0;
-        anOffXNeed[0] = 0;
-        anOffYNeed[0] = 0;
+        animIndexNext = 0;
         sprite_index = oPlayer.weaponSprite[0];
         anImageSpeed = oPlayer.weaponAnimSpeed[0];
         with (oPlayer)
@@ -73,6 +72,11 @@ with (weaponObj)
         
         sprite_index = oPlayer.weaponSprite[2];
         anImageSpeed = oPlayer.weaponAnimSpeed[2];
+        break;
+        
+    case WEAPON_STATES.__MOVE_NOANIM:
+        sprite_index = oPlayer.weaponSprite[0];
+        anImageSpeed = oPlayer.weaponAnimSpeed[0];
         break;
         
     case WEAPON_STATES.__RETURN_TO_TOP:

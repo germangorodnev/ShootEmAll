@@ -26,6 +26,7 @@ with (weaponObj)
     canShootTmr = -1;
     canShoot = 1;
     attackType = -1;
+    animIndex = 0;
     angleNeedDown[0] = 0; 
     angleNeedUp[0] = 0;
     anOffXNeed[0] = 0; anOffXSpd[0] = 0;

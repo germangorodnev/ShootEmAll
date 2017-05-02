@@ -1,7 +1,7 @@
 ///gameGetWeaponParams(WEAPONS.__, WEAPON_TYPE.__)
 var ww = argument[0];
 var _arr;
-
+// resets
 if (argument[1] == WEAPON_TYPE.__RANGE)
 {
     _arr[W_PR.__RANGE_CNT - 1] = 0;
@@ -11,6 +11,7 @@ else
 {
     _arr[W_PR.__MELEE_CNT - 1] = 0;
     _arr[W_PR.__ME_BUTTON_STATE] = 0; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__ME_CRIT_CHANCE] = 0;
 }
     
 /*

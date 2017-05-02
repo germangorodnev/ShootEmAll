@@ -53,6 +53,7 @@ angleBegin = 0;
 
 animCnt = 0;
 animIndex = 0;
+animIndexNext = 0;
 angleNeed = 0;
 angleNeedDown[0] = 0;
 angleNeedUp[0] = 0;
@@ -159,7 +160,7 @@ case WEAPON_STATES.__RETURN_TO_TOP:
         else
         {
             with (oPlayer)
-                playerAttack(); 
+                playerAttack(0); 
         }      
     }            
     break;
@@ -185,16 +186,25 @@ case WEAPON_STATES.__MELEE_DOWN:
             &amp;&amp; anOffX == anOffXNeed[animIndex]
             &amp;&amp; anOffY == anOffYNeed[animIndex])
         {
-            // do not reset angle
-            with (oPlayer)
-            {
-                physicalClearMaskKick();
-                playerWeaponSetState(WEAPON_STATES.__MOVE_NOANIM);   
-                playerWeaponComboIncrease();
-            }
-            image_angle = angleNeed;
-            ret = returnTmrCnt;
+            animIndexNext = animIndex + 1;
             // combo
+            if (attackCount == 1)
+            {
+                // do not reset angle
+                with (oPlayer)
+                {
+                    physicalClearMaskKick();
+                    playerWeaponSetState(WEAPON_STATES.__MOVE_NOANIM);   
+                }
+                image_angle = angleNeed;
+                ret = returnTmrCnt;
+            }
+            else
+            {
+                attackCount--;
+                with (oPlayer)
+                    playerAttack(0); 
+            }      
         }            
         break;
         
@@ -202,6 +212,7 @@ case WEAPON_STATES.__MELEE_DOWN:
         image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
+            animIndexNext = animIndex + 1;
             with (oPlayer)
                 playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
         }            
@@ -214,11 +225,11 @@ case WEAPON_STATES.__MELEE_UP:
     {
     case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
         image_angle = approach(image_angle, angleNeed, angleRot);
-        anOffX = approach(anOffX, 0, anOffXSpd);
-        anOffY = approach(anOffY, 0, anOffYSpd);
+        anOffX = approach(anOffX, 0, anOffXSpd[animIndex]);
+        anOffY = approach(anOffY, 0, anOffYSpd[animIndex]);
         if (image_angle == angleNeed 
-            &amp;&amp; anOffX == anOffXNeed
-            &amp;&amp; anOffY == anOffYNeed)
+            &amp;&amp; anOffX == anOffXNeed[animIndex]
+            &amp;&amp; anOffY == anOffYNeed[animIndex])
         {
             // reset angle
             with (oPlayer)
@@ -235,7 +246,7 @@ case WEAPON_STATES.__MELEE_UP:
                     playerWeaponSetState(WEAPON_STATES.__MOVE);       
             else
                 with (oPlayer)
-                    playerAttack();       
+                    playerAttack(0);       
         }
         break;   
     }

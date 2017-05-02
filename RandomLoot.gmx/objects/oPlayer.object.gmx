@@ -217,7 +217,7 @@ case PLAYER_STATES.__IDLE:
         playerSetState(PLAYER_STATES.__WALK);
     var can = playerCanShoot();
     if (can == 1)
-        playerAttack();
+        playerAttack(1);
     else
     {
         if ((can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
@@ -261,7 +261,7 @@ case PLAYER_STATES.__WALK:
     }
     var can = playerCanShoot();
     if (can == 1)
-        playerAttack();
+        playerAttack(1);
     else
         if ((can == -2 &amp;&amp; weaponInf[W_PR.__SCORE_SIZE] == 1)
             || (can == -2 &amp;&amp; key[KEY.KICK] == 1))

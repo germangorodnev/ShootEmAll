@@ -4,6 +4,7 @@ var st = argument[1];
 switch (st)
 {
 case WEAPON_STATES.__MELEE_DOWN:
+    animIndex = animIndexNext mod animCnt;
     switch (argument[0])
     {
     case WEAPONS.__ARIA_ARTH:

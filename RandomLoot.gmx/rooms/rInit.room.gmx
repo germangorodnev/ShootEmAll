@@ -119,6 +119,9 @@ enum W_PR
     
     __ME_DAMAGE_MIN = 0,
     __ME_DAMAGE_MAX,
+    __ME_CRIT_CHANCE,
+    __ME_CRIT_DAMAGE_MIN,
+    __ME_CRIT_DAMAGE_MAX,
     __ME_SHOOT_CD,
     __ME_BUTTON_STATE,
     __MELEE_CNT

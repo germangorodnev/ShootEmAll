@@ -174,13 +174,13 @@ if (weapon != WEAPONS.__NONE)
     
 depth = -y;
 
-masksMove();
-
 hp = clamp(hp, 0, _hp);
 if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 {
     enemySetState(ENEMY_STATE.__DIE);
 }
+
+masksMove();
 
 switch (state)
 {

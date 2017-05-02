@@ -1,3 +1,9 @@
+///playerAttack(bool first attack)
+if (argument[0])
+    playerWeaponSetKickCount(1);
+    
+weaponObj.hitCount++;
+
 switch (weaponType)
 {
 /* ******************************************************** MELEE ***********************************************************/    
@@ -19,19 +25,38 @@ case WEAPON_TYPE.__MELEE:
         break;
         
     case WEAPONS.__ARIA_ARTH:
+        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));
         with (weaponObj)
             weaponSetAnimation(WEAPONS.__ARIA_ARTH, WEAPON_STATES.__MELEE_DOWN);
-
-        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));
-             
+        //var cc = weaponObj.animIndex;
+            
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         maskKick.dmgcd = weaponCd;
         // random double shot
-        if (choose(0, 1))
-            playerWeaponSetKickCount(2);  
+        if (argument[0])
+            if (choose(1, 0))
+                playerWeaponSetKickCount(2);  
         break;
         
+    case WEAPONS.__COPPER_DEVIL:
+        with (weaponObj)
+            weaponSetAnimation(oPlayer.weapon, WEAPON_STATES.__MELEE_DOWN);
+        
+        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
+            
+        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
+        var _min = W_PR.__ME_DAMAGE_MIN,
+            _max = W_PR.__ME_DAMAGE_MAX;
+        if (weaponObj.hitCount % 3 == 0) // crit
+        {
+            _min = W_PR.__ME_CRIT_DAMAGE_MIN;
+            _max = W_PR.__ME_CRIT_DAMAGE_MAX;
+        }
+        maskKick.dmg = irandom_range(weaponInf[_min], weaponInf[_max]); 
+        maskKick.dmgcd = weaponCd;
+        break;
+                
     default: // just common melee weapon
         with (weaponObj)
             weaponSetAnimation(oPlayer.weapon, WEAPON_STATES.__MELEE_DOWN);

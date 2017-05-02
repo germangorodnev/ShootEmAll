@@ -8,24 +8,24 @@ case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
     case WEAPONS.__ARIA_ARTH:  //sAriaArthef
         animCnt = 3;  
         // 1st
-        angleNeedDown[0] = -25; 
+        angleNeedDown[0] = -60; 
         angleNeedUp[0] = 0;
-        anOffXNeed[0] = 15; anOffXSpd[0] = 2.5;
-        anOffYNeed[0] = -24; anOffYSpd[0] = 2.5;
+        anOffXNeed[0] = 13; anOffXSpd[0] = 2.5;
+        anOffYNeed[0] = -17; anOffYSpd[0] = 2.5;
         angleRotDown[0] = 35;
         angleRotUp[0] = 35;
         // 2nd
-        angleNeedDown[1] = -60; 
+        angleNeedDown[1] = -25; 
         angleNeedUp[1] = 0;
-        anOffXNeed[1] = 16; anOffXSpd[1] = 2.5;
-        anOffYNeed[1] = -17; anOffYSpd[1] = 2.5;
+        anOffXNeed[1] = 15; anOffXSpd[1] = 2.5;
+        anOffYNeed[1] = -24; anOffYSpd[1] = 2.5;
         angleRotDown[1] = 35;
         angleRotUp[1] = 35;
         // 3rd
         angleNeedDown[2] = -115; 
         angleNeedUp[2] = 0;
         anOffXNeed[2] = 4; anOffXSpd[2] = 2.5;
-        anOffYNeed[2] = 0; anOffYSpd[2] = 2.5;
+        anOffYNeed[2] = 6; anOffYSpd[2] = 2.5;
         angleRotDown[2] = 35;
         angleRotUp[2] = 35;
         break;

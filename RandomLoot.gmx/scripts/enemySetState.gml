@@ -1,5 +1,6 @@
 ///enemySetState(ENEMY_STATE.__)
 state = argument[0];
+hittable = 1;
 
 switch (state)
 {
@@ -23,6 +24,7 @@ case ENEMY_STATE.__CUCKED:
     break;
     
 case ENEMY_STATE.__DIE:
+    hittable = 0;
     enemyCreateJibs();
     destrTmr = 1.5 * room_speed;
     //instance_destroy();
