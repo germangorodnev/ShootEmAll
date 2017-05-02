@@ -36,15 +36,15 @@ case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
         angleNeedUp[0] = 0;
         anOffXNeed[0] = 0; anOffXSpd[0] = 0;
         anOffYNeed[0] = 0; anOffYSpd[0] = 0;
-        angleRotDown[0] = 25;
-        angleRotUp[0] = 25;
+        angleRotDown[0] = 12;
+        angleRotUp[0] = 12;
         // 2nd
         angleNeedDown[1] = -15; 
         angleNeedUp[1] = 0;
         anOffXNeed[1] = 0; anOffXSpd[1] = 0;
         anOffYNeed[1] = 0; anOffYSpd[1] = 0;
-        angleRotDown[1] = 25;
-        angleRotUp[1] = 25;
+        angleRotDown[1] = 12;
+        angleRotUp[1] = 12;
         break;
     }
     break;

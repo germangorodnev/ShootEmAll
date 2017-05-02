@@ -74,8 +74,8 @@ case WEAPONS.__POMPINGTON:
     _arr[W_PR.__PROJECTILE_AMOUNT] = 4;
     _arr[W_PR.__PROJECTILE_SPEED] = 9;
     _arr[W_PR.__RELOAD_TIME] = -3 * room_speed;
-    _arr[W_PR.__DAMAGE_MIN] = 3;
-    _arr[W_PR.__DAMAGE_MAX] = 6;
+    _arr[W_PR.__DAMAGE_MIN] = 7;
+    _arr[W_PR.__DAMAGE_MAX] = 12;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__SHOTGUN;
     _arr[W_PR.__CRIT_CHANCE] = 5;
     _arr[W_PR.__CRIT_DAMAGE_MIN] = 4;

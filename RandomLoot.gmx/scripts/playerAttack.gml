@@ -35,7 +35,7 @@ case WEAPON_TYPE.__MELEE:
         maskKick.dmgcd = weaponCd;
         // random double shot
         if (argument[0])
-            if (choose(1, 0))
+            if (irandom(100) <= 20)
                 playerWeaponSetKickCount(2);  
         break;
         

@@ -31,6 +31,7 @@ hspd = 0;
 vspd = 0;
 spd = 3;
 speedmod = 1;
+fric = 0;
 
 hittable = 1;
 

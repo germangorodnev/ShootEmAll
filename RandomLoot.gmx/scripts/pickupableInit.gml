@@ -26,7 +26,7 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__ARIA_ARTH:
         sprite_index = sAriaArthef; 
-        image_angle = 60;
+        image_angle = 45;
         break;
 
     

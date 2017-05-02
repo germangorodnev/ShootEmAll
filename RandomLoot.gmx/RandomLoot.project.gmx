@@ -217,6 +217,7 @@
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
       <script>scripts\gamePlaySound.gml</script>
       <script>scripts\punchEffectCreate.gml</script>
+      <script>scripts\gameCreateExplosion.gml</script>
     </scripts>
     <scripts name="Bullets">
       <script>scripts\projectileInited.gml</script>

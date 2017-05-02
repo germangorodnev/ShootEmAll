@@ -26,18 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+image_speed = 0;
 parent = noone;
 damage = 0;
 group = 0; // 0 - player, 1 - enemy
 cuck = CUCKED.__NORMAL;
 
-prt = 2;
-visible = 0;
-active = 0;
+animEnded = 0;
+anImageSpeed = 0.6;
 
 dmgcd = 0;
 
-cntgothrough = 1;
+
 </string>
           </argument>
         </arguments>
@@ -85,6 +85,19 @@ cntgothrough = 1;
             <kind>1</kind>
             <string>if (!updatable)
     exit;
+    
+image_index += anImageSpeed;
+if (image_index &gt;= image_number)
+{
+    animEnded = 1;
+    anImageIndex = 0;
+}
+
+if (animEnded)
+{
+    instance_destroy();
+}
+
 </string>
           </argument>
         </arguments>

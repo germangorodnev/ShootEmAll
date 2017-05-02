@@ -30,7 +30,9 @@ image_speed = 0;
 
 damage = 0;
 group = 0; // 0 - player, 1 - enemy
-
+cuck = CUCKED.__NORMAL;
+fric = 0.1;
+dtmr = 3 * room_speed;
 </string>
           </argument>
         </arguments>
@@ -76,7 +78,33 @@ group = 0; // 0 - player, 1 - enemy
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>projectileStep();
+            <string>if (!updatable)
+    exit;
+image_angle = direction;
+projectileTimer();
+if (!active)
+    exit;
+speed = approach(speed, 0, fric);
+if (dtmr &amp;&amp; !--dtmr)
+{
+    gameCreateExplosion(x, y, damage, group, cuck, dmgcd);
+    instance_destroy();
+}
+
+if (outsideRoom())
+    instance_destroy();
+if (place_meeting(x, y, oSolidObject))
+    speed -= 0.03;
+var ic = instance_place(x, y, oMaskHit);
+if (ic != noone)
+{
+    if (ic.group == group) // same teamz
+        exit;
+    if (!ic.par.hittable) // invulnerable
+        exit;
+    dtmr = 1;
+}
+
 </string>
           </argument>
         </arguments>
