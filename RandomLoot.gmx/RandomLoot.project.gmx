@@ -184,9 +184,10 @@
       <scripts name="Weapon">
         <script>scripts\playerWeaponSetState.gml</script>
         <script>scripts\weaponImageIndexAccumulate.gml</script>
-        <script>scripts\weaponAttackTypeInit.gml</script>
         <script>scripts\playerWeaponSetKickCount.gml</script>
         <script>scripts\weaponSetAnimation.gml</script>
+        <script>scripts\weaponAttackTypeInit.gml</script>
+        <script>scripts\playerWeaponComboIncrease.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">

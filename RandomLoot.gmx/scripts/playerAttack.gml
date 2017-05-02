@@ -7,11 +7,11 @@ case WEAPON_TYPE.__MELEE:
     case WEAPONS.__CUSTOM:
         break;
         
-    case WEAPONS.__BLOOD_FLAG:
-        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);    
-
+    case WEAPONS.__BLOOD_FLAG:  
         with (weaponObj)
             weaponSetAnimation(WEAPONS.__BLOOD_FLAG, WEAPON_STATES.__MELEE_DOWN);
+
+        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);    
 
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
@@ -19,11 +19,11 @@ case WEAPON_TYPE.__MELEE:
         break;
         
     case WEAPONS.__ARIA_ARTH:
-        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));
-          
         with (weaponObj)
             weaponSetAnimation(WEAPONS.__ARIA_ARTH, WEAPON_STATES.__MELEE_DOWN);
-    
+
+        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));
+             
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         maskKick.dmgcd = weaponCd;
@@ -33,13 +33,14 @@ case WEAPON_TYPE.__MELEE:
         break;
         
     default: // just common melee weapon
+        with (weaponObj)
+            weaponSetAnimation(oPlayer.weapon, WEAPON_STATES.__MELEE_DOWN);
+        
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
+            
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         maskKick.dmgcd = weaponCd;
-        //weaponObj.angleNeed = weaponInf[W_PR.__ME_DOWN_ANGLE] + 180 * (image_xscale < 0);
-        //weaponObj.angleRot = weaponInf[W_PR.__ME_DOWN_SPEED];
-        //weaponObj.angleBegin = weaponObj.image_angle;
         break;
     }
     break;

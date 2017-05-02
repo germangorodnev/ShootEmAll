@@ -26,9 +26,17 @@ with (weaponObj)
     canShootTmr = -1;
     canShoot = 1;
     attackType = -1;
+    angleNeedDown[0] = 0; 
+    angleNeedUp[0] = 0;
+    anOffXNeed[0] = 0; anOffXSpd[0] = 0;
+    anOffYNeed[0] = 0; anOffYSpd[0] = 0;
+    angleRotDown[0] = 0;
+    angleRotUp[0] = 0;
 }
 if (weaponType == WEAPON_TYPE.__MELEE)
     weaponCd = 0.5;
+    
+    
 //SWITCH ADD WEAPONS
 switch (weapon)
 {
@@ -45,14 +53,11 @@ case WEAPONS.__BLOOD_FLAG:
     weaponXoff = 15;
     weaponYoff = -sprite_height / 2 + 15;
     weaponObj.anMaxAngle = 10;
-    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
-    weaponObj.angleNeedDown = -90;
     
-    weaponObj.angleNeedUp = 0;
-    weaponObj.angleRotUp = 15;
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
 
-    //with (weaponObj)
-    //    weaponAttackTypeInit();
+    with (weaponObj)
+        weaponAttackTypeInit();
         
     // mask
     kx1 = 57;
@@ -62,6 +67,7 @@ case WEAPONS.__BLOOD_FLAG:
     break;
     
 case WEAPONS.__HALFSWORD:
+    weaponCd = 0.5 * room_speed;
     weaponSprite[0] = sHalfsword;
     weaponSprite[1] = sHalfsword;
     weaponSprite[2] = sHalfsword;
@@ -70,11 +76,9 @@ case WEAPONS.__HALFSWORD:
     weaponObj.anMaxAngle = 10;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
-    weaponObj.angleNeedDown = -90;
-    weaponObj.angleRotDown = 22;
     
-    weaponObj.angleNeedUp = 0;
-    weaponObj.angleRotUp = 15;
+    with (weaponObj)
+        weaponAttackTypeInit();
     
     // mask
     kx1 = 57;
@@ -93,11 +97,10 @@ case WEAPONS.__COPPER_DEVIL:
     weaponObj.anMaxAngle = 5;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
-    weaponObj.angleNeedDown = -90;
-    weaponObj.angleRotDown = 22;
-    
-    weaponObj.angleNeedUp = 0;
-    weaponObj.angleRotUp = 15;
+
+    with (weaponObj)
+        weaponAttackTypeInit();
+
     // mask
     kx1 = 57;
     ky1 = 15;
@@ -114,11 +117,10 @@ case WEAPONS.__STICK:
     weaponObj.anMaxAngle = 5;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
-    weaponObj.angleNeedDown = -120;
-    weaponObj.angleRotDown = 22;
     
-    weaponObj.angleNeedUp = 0;
-    weaponObj.angleRotUp = 18;
+    with (weaponObj)
+        weaponAttackTypeInit();
+
     // mask
     kx1 = 57;
     ky1 = 20;
@@ -134,13 +136,12 @@ case WEAPONS.__ARIA_ARTH:
     weaponXoff = 17;
     weaponYoff = -8;
     weaponObj.anMaxAngle = 5;
-    
+        
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
-    weaponObj.angleNeedDown = -155;
-    weaponObj.angleRotDown = 22;
     
-    weaponObj.angleNeedUp = 0;
-    weaponObj.angleRotUp = 8;
+    with (weaponObj)
+        weaponAttackTypeInit();
+
     // mask
     kx1 = 57;
     ky1 = 15;
