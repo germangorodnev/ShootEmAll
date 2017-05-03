@@ -54,6 +54,10 @@ angleBegin = 0;
 animCnt = 0;
 animIndex = 0;
 animIndexNext = 0;
+
+anglePrevCnt = 2;
+anglePrev[anglePrevCnt - 1] = image_angle;
+
 angleNeed = 0;
 angleNeedDown[0] = 0;
 angleNeedUp[0] = 0;
@@ -148,6 +152,7 @@ case WEAPON_STATES.__MOVE:
     break;
     
 case WEAPON_STATES.__RETURN_TO_TOP:
+    //weaponFleeAngleSet(image_angle);
     image_angle = approach(image_angle, angleNeed, angleRot);
     if (image_angle == angleNeed)
     {
@@ -179,6 +184,7 @@ case WEAPON_STATES.__MELEE_DOWN:
     switch (attackType)
     {
     case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
+
         image_angle = approach(image_angle, angleNeed, angleRot);
         anOffX = approach(anOffX, anOffXNeed[animIndex], anOffXSpd[animIndex]);
         anOffY = approach(anOffY, anOffYNeed[animIndex], anOffYSpd[animIndex]);
@@ -209,6 +215,7 @@ case WEAPON_STATES.__MELEE_DOWN:
         break;
         
     default:
+
         image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
@@ -318,7 +325,12 @@ case WEAPON_STATES.__RANGE_RELOAD:
           <argument>
             <kind>1</kind>
             <string>if (sprite_index != -1)
+{
+    // prev
+    //draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * image_xscale, y + anOffY * image_yscale, image_xscale, image_yscale, anglePrev, image_blend, image_alpha / 1.5);
     draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * image_xscale, y + anOffY * image_yscale, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+    
+}
 </string>
           </argument>
         </arguments>

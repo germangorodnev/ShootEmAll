@@ -188,6 +188,7 @@
         <script>scripts\weaponSetAnimation.gml</script>
         <script>scripts\weaponAttackTypeInit.gml</script>
         <script>scripts\playerWeaponComboIncrease.gml</script>
+        <script>scripts\weaponFleeAngleSet.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -258,6 +259,7 @@
     <objects name="Game">
       <object>objects\oCamera</object>
       <object>objects\oGameGUI</object>
+      <object>objects\oLevel</object>
     </objects>
     <object>objects\oControl</object>
     <objects name="Player">
@@ -298,6 +300,7 @@
   <rooms name="rooms">
     <room>rooms\rInit</room>
     <room>rooms\rGame</room>
+    <room>rooms\rRandom</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -1,0 +1,2 @@
+///weaponFleeAngleSet(new angle)
+

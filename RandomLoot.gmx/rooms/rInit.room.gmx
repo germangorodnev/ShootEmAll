@@ -15,6 +15,15 @@
     __LAYER_SIZE = 32
 }
 
+enum LEVEL
+{
+    TILE_W = 64,
+    TILE_H = 64,
+    FLOOR = -5,
+    WALL = -6,
+    VOID = -7    
+}
+
 enum GAME_STATES
 {
     __INIT = 0,
