@@ -63,7 +63,11 @@ case WEAPONS.__ARIA_ARTH:
     _arr[W_PR.__ME_DAMAGE_MAX] = 29;
     _arr[W_PR.__ME_SHOOT_CD] = 0.2 * room_speed;
     break;
-    
+case WEAPONS.__RAZORBLADE:
+    _arr[W_PR.__ME_DAMAGE_MIN] = 17;
+    _arr[W_PR.__ME_DAMAGE_MAX] = 35;
+    _arr[W_PR.__ME_SHOOT_CD] = 0.7 * room_speed;
+    break;    
 /* ******************************************************** RANGE ***********************************************************/        
 case WEAPONS.__POMPINGTON:
     _arr[W_PR.__SPRAY_ANGLE] = 7;

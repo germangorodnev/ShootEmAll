@@ -73,6 +73,13 @@ case WEAPON_ATTACK_TYPE.__DOWN_UP:
         angleNeedUp[0] = 0;
         angleRotUp[0] = 18;
         break;    
+    case WEAPONS.__RAZORBLADE:    
+        angleNeedDown[0] = -120;
+        angleRotDown[0] = 22;
+        
+        angleNeedUp[0] = 0;
+        angleRotUp[0] = 18;
+        break;    
     }
     break;
 }

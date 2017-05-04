@@ -28,6 +28,10 @@ case PICKUP.__WEAPON:
         sprite_index = sAriaArthef; 
         image_angle = 45;
         break;
+    case WEAPONS.__RAZORBLADE:
+        sprite_index = sRazorblade; 
+        image_angle = 65;
+        break;
 
     
     case WEAPONS.__POMPINGTON:

@@ -25,44 +25,33 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Level controller
+            <string>/// BSP Leaf
 image_speed = 0;
 
-tw = LEVEL.TILE_W;
-th = LEVEL.TILE_H;
+w = 0;
+h = 0;
+minSize = oLevel.minLeafSize;
+leftChild = noone;
+rightChild = noone;
 
-minLeafSize = 9;
-maxLeafSize = 24;
-minRoomSize = 6;
-maxRoomSize = 20;
+tw = oLevel.tw;
+th = oLevel.th;
 
-cnt = 0;
-leafs = ds_list_create();
+cc = make_colour_hsv(irandom(255), 200, 200);
 
-floorD = 100000;
-
-
-ww = ceil(room_width / tw);
-hh = ceil(room_height / th)
-
-// grid
-level = ds_grid_create(ww, hh);
-for (var i = 0; i &lt; ww; i ++)
-{
-    for (var j = 0; j &lt; hh; j++)
-    {
-        level[# i, j] = LEVEL.VOID;
-    }
-}
-
-bspGenerate();
-levelGridToTiles();
+// actual room
+rm = noone;
+rx = 0;
+ry = 0;
+rw = 0;
+rh = 0;
+rc = make_colour_hsv(irandom(50), 50, irandom(255));
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -79,8 +68,8 @@ levelGridToTiles();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(leafs);
-ds_grid_destroy(level);
+            <string>draw_rectangle_colour(x * tw, y * th, x * tw + w * tw, y * th + h * th, cc, cc, cc, cc, 0);
+draw_rectangle_colour(rx * tw, ry * th, rx * tw + rw * tw, ry * th + rh * th, rc, rc, rc, rc, 0);
 </string>
           </argument>
         </arguments>

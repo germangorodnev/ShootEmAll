@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-4000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,44 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Level controller
-image_speed = 0;
-
-tw = LEVEL.TILE_W;
-th = LEVEL.TILE_H;
-
-minLeafSize = 9;
-maxLeafSize = 24;
-minRoomSize = 6;
-maxRoomSize = 20;
-
-cnt = 0;
-leafs = ds_list_create();
-
-floorD = 100000;
-
-
-ww = ceil(room_width / tw);
-hh = ceil(room_height / th)
-
-// grid
-level = ds_grid_create(ww, hh);
-for (var i = 0; i &lt; ww; i ++)
-{
-    for (var j = 0; j &lt; hh; j++)
-    {
-        level[# i, j] = LEVEL.VOID;
-    }
-}
-
-bspGenerate();
-levelGridToTiles();
+            <string>image_speed = 0;
+w = 0;
+h = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -79,8 +50,7 @@ levelGridToTiles();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(leafs);
-ds_grid_destroy(level);
+            <string>draw_rectangle_colour(x, y, x + w, y + h, c_black, c_black, c_gray, c_white, 0);
 </string>
           </argument>
         </arguments>

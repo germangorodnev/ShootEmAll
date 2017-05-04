@@ -150,6 +150,26 @@ case WEAPONS.__ARIA_ARTH:
     ky2 = 77;
     break;
 
+case WEAPONS.__RAZORBLADE:
+    weaponCd = 0.5 * room_speed;
+    weaponSprite[0] = sRazorblade;
+    weaponSprite[1] = sRazorblade;
+    weaponSprite[2] = sRazorblade;
+    weaponXoff = 12;
+    weaponYoff = -13;
+    weaponObj.anMaxAngle = 10;
+    
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
+    
+    with (weaponObj)
+        weaponAttackTypeInit();
+    
+    // mask
+    kx1 = 57;
+    ky1 = 15;
+    kx2 = 80;
+    ky2 = 77;
+    break;
     
     
             

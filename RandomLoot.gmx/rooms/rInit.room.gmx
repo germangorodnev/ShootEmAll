@@ -51,7 +51,8 @@ enum PICKUP
     __WEAPON = 0,
     __AMMO,
     __MONEY,
-    __HP
+    __HP,
+    __CRATE
 }
 
 enum WEAPONS
@@ -64,7 +65,7 @@ enum WEAPONS
     __COPPER_DEVIL,
     __STICK,
     __ARIA_ARTH,
-    
+    __RAZORBLADE,
     
     
     __RANGED_BEGIN,
