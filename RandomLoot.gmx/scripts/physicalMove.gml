@@ -1,6 +1,6 @@
 var mult = 1;
 if (hspd != 0 && vspd != 0)
-    mult = .7;
+    mult = .8;
 if (hspd != 0)
 {
     var a = abs(hspd),

@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 image_speed = 0;
-image_xscale = choose(-1, 1);
+xsc = choose(-1, 1);
 
 anMaxAngle = 0;
 hh = sprite_height - 5;

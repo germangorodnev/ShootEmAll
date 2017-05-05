@@ -35,6 +35,8 @@ attackType = -1;
 canAttack = 1;
 canAttackTmr = -1;
 
+xsc = 1;
+
 anImageIndex = 0;
 anImageSpeed = 0;
 anImageNumber = 0;
@@ -258,7 +260,7 @@ case WEAPON_STATES.__RANGE_RECOIL:
           <argument>
             <kind>1</kind>
             <string>if (sprite_index != -1)
-    draw_sprite_ext(sprite_index, anImageIndex, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+    draw_sprite_ext(sprite_index, anImageIndex, x, y, xsc, image_yscale, image_angle, image_blend, image_alpha);
 </string>
           </argument>
         </arguments>

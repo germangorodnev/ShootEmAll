@@ -11,7 +11,7 @@ if (argument[5])
         maskRemoveById(maskKick);
         maskKick = noone;
     }
-    maskKick = instance_create(x + (x1 - sprite_get_xoffset(sprite_index)) * image_xscale, 
+    maskKick = instance_create(x + (x1 - sprite_get_xoffset(sprite_index)) * xsc, 
         y + (y1 - sprite_get_yoffset(sprite_index)) * image_yscale, 
         oMaskAttack);
     ds_list_add(masks, maskKick);
@@ -29,7 +29,7 @@ if (argument[5])
 else
 {
     // just add
-    var newm = instance_create(x + (x1 - sprite_get_xoffset(sprite_index)) * image_xscale, 
+    var newm = instance_create(x + (x1 - sprite_get_xoffset(sprite_index)) * xsc, 
         y + (y1 - sprite_get_yoffset(sprite_index)) * image_yscale, 
         oMaskAttack);
     ds_list_add(masks, newm);

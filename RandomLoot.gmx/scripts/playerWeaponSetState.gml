@@ -58,7 +58,7 @@ with (weaponObj)
         canAttack = 0;
         canAttackTmr = oPlayer.weaponInf[W_PR.__ME_SHOOT_CD];
 
-        angleNeed = angleNeedDown[animIndex] * sign(image_xscale); //+ (90 - angleNeedDown) * (image_xscale < 0); //+ 180 * (image_xscale < 0) + angleNeedDown * -1 * (image_xscale < 0);
+        angleNeed = angleNeedDown[animIndex] * sign(xsc); //+ (90 - angleNeedDown) * (xsc < 0); //+ 180 * (xsc < 0) + angleNeedDown * -1 * (xsc < 0);
         angleRot = angleRotDown[animIndex];
         angleBegin = image_angle;
         
@@ -67,7 +67,7 @@ with (weaponObj)
         break;
         
     case WEAPON_STATES.__MELEE_UP:
-        angleNeed = angleNeedUp[animIndex];// + 180 * (image_xscale < 0) + angleNeedUp * -1 * (image_xscale < 0);
+        angleNeed = angleNeedUp[animIndex];// + 180 * (xsc < 0) + angleNeedUp * -1 * (xsc < 0);
         angleRot = angleRotUp[animIndex];
         
         sprite_index = oPlayer.weaponSprite[2];

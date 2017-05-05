@@ -120,10 +120,6 @@
       <sprite>sprites\sEnemyBullet</sprite>
     </sprites>
     <sprites name="Pickupable">
-      <sprites name="Crate">
-        <sprite>sprites\sCrate</sprite>
-        <sprite>sprites\sCrateCap</sprite>
-      </sprites>
       <sprite>sprites\sAmmoPickup20</sprite>
       <sprite>sprites\sAmmoPickup40</sprite>
       <sprite>sprites\sShotgunAmmoPickup</sprite>
@@ -140,6 +136,13 @@
       <sprite>sprites\sBorianBulgProjectile</sprite>
       <sprite>sprites\sGrenade</sprite>
       <sprite>sprites\sExplosion</sprite>
+    </sprites>
+    <sprites name="Interactable">
+      <sprites name="Crate">
+        <sprite>sprites\sCrate</sprite>
+        <sprite>sprites\sCrateCap</sprite>
+      </sprites>
+      <sprite>sprites\sExplosiveCrate</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -182,6 +185,7 @@
       <script>scripts\playerChangeHP.gml</script>
       <script>scripts\playerMaskCreate.gml</script>
       <script>scripts\playerAddMoney.gml</script>
+      <script>scripts\playerMaskPickup.gml</script>
       <scripts name="Pickup">
         <script>scripts\playerPickup.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
@@ -205,6 +209,7 @@
       <script>scripts\playerDebug.gml</script>
       <script>scripts\debugWrite.gml</script>
       <script>scripts\enemyDebug.gml</script>
+      <script>scripts\explosiveDebug.gml</script>
     </scripts>
     <scripts name="Animation">
       <script>scripts\procedureAnimableProceed.gml</script>
@@ -220,6 +225,9 @@
     </scripts>
     <scripts name="Pickupable">
       <script>scripts\pickupableInit.gml</script>
+      <scripts name="Crates">
+        <script>scripts\crateOpen.gml</script>
+      </scripts>
     </scripts>
     <scripts name="Game">
       <script>scripts\gameGetWeaponParams.gml</script>
@@ -228,6 +236,7 @@
       <script>scripts\gamePlaySound.gml</script>
       <script>scripts\punchEffectCreate.gml</script>
       <script>scripts\gameCreateExplosion.gml</script>
+      <script>scripts\gameGetRandomWeapon.gml</script>
     </scripts>
     <scripts name="Bullets">
       <script>scripts\projectileInited.gml</script>
@@ -277,6 +286,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fCollar</font>
+    <font>fonts\fGame</font>
   </fonts>
   <objects name="objects">
     <objects name="Parents">
@@ -285,6 +295,7 @@
       <object>objects\oAnimatableObject</object>
       <object>objects\oDynamicObject</object>
       <object>objects\oSolidObject</object>
+      <object>objects\oDamageTaker</object>
     </objects>
     <objects name="Game">
       <objects name="BSP">
@@ -329,6 +340,9 @@
       <object>objects\oBaseMask</object>
       <object>objects\oMaskHit</object>
       <object>objects\oMaskAttack</object>
+    </objects>
+    <objects name="Interactable">
+      <object>objects\oExplosiveCrate</object>
     </objects>
     <object>objects\oWall</object>
   </objects>

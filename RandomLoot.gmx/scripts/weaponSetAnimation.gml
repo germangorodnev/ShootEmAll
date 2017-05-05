@@ -9,19 +9,19 @@ case WEAPON_STATES.__MELEE_DOWN:
     {
     case WEAPONS.__ARIA_ARTH:
         returnTmrCnt = 0.5 * room_speed;
-        angleNeed = angleNeedDown[animIndex] * sign(image_xscale);
+        angleNeed = angleNeedDown[animIndex] * sign(xsc);
         angleBegin = image_angle;
         break;
     case WEAPONS.__BLOOD_FLAG:
         returnTmrCnt = 0.5 * room_speed;
-        angleNeed = angleNeedDown[animIndex] * sign(image_xscale);
+        angleNeed = angleNeedDown[animIndex] * sign(xsc);
         angleBegin = image_angle;
         break;
         
     default:
         returnTmrCnt = 0;
         animIndex = 0;
-        angleNeed = angleNeedDown[animIndex] * sign(image_xscale);
+        angleNeed = angleNeedDown[animIndex] * sign(xsc);
         angleBegin = image_angle;    
         break;
     }

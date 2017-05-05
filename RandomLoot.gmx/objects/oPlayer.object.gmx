@@ -33,6 +33,8 @@ spd = 4;
 hp = 12;
 _hp = 12;
 
+anMaxAngle = 6;
+
 mousedir = 0;
 
 restore = -1;
@@ -58,6 +60,8 @@ weaponBackAmmo = 0;
 weaponXoff = 0;
 weaponYoff = 0;
 weaponBlend = c_white;
+
+expRad = 0;
 
 state = PLAYER_STATES.__IDLE;
 
@@ -131,7 +135,7 @@ playerSetWeapon(weapon);
             <string>///weapon update
 if (!updatable)
     exit;
-weaponObj.x = x + weaponXoff * sign(image_xscale);
+weaponObj.x = x + weaponXoff * sign(xsc);
 weaponObj.y = y + weaponYoff;
 weaponObj.depth = depth;
 if (weapon != WEAPONS.__NONE)
@@ -146,7 +150,7 @@ if (weapon != WEAPONS.__NONE)
                 image_angle = perc * anMaxAngle;
         }
             
-        weaponObj.image_xscale = image_xscale;
+        weaponObj.xsc = xsc;
         if (mouse_y &lt; y)
         {
             weaponObj.depth = depth + 1;
@@ -157,8 +161,8 @@ if (weapon != WEAPONS.__NONE)
         }
         break;
     case WEAPON_TYPE.__RANGE:
-        weaponObj.image_yscale = sign(image_xscale);
-        weaponObj.image_angle = mousedir + sin(anSinRad) * weaponObj.anMaxAngle; //+ weaponInf[W_PR.__LDIR_DIR] / 4 * (sign(image_xscale) &gt; 0)
+        weaponObj.image_yscale = sign(xsc);
+        weaponObj.image_angle = mousedir + sin(anSinRad) * weaponObj.anMaxAngle; //+ weaponInf[W_PR.__LDIR_DIR] / 4 * (sign(xsc) &gt; 0)
         break;
     }
 }

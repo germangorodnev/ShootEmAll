@@ -30,11 +30,14 @@ image_speed = 0;
 type = PICKUP.__CRATE;
 compareY = y;
 autopickup = 0;
-
+cmp = 1;
 //cap
+cap = 1;
 cx = x;
-cy = y - 10;
+cy = y - 18;
 ca = 1;
+
+depth = -y;
 </string>
           </argument>
         </arguments>
@@ -128,6 +131,7 @@ ca = 1;
           <argument>
             <kind>1</kind>
             <string>/// cap
+draw_self();
 if (cap)
     draw_sprite_ext(sCrateCap, 0, cx, cy, 1, 1, 0, image_blend, ca);
 </string>

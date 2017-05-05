@@ -101,6 +101,8 @@ case WEAPON_TYPE.__RANGE:
             bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
             bb.parent = id;  
             bb.dmgcd = weaponCd;
+            if (weapon == WEAPONS.__GRENADE_LAUNCHER)
+                bb.radius = expRad;
             with (bb)
                 projectileInited();      
         }

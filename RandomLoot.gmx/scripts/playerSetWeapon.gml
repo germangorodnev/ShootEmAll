@@ -21,7 +21,7 @@ for (var i = 0; i < 3; i++)
 with (weaponObj)
 {
     anMaxAngle = 0;
-    image_xscale = 1;
+    xsc = 1;
     image_yscale = 1;
     canShootTmr = -1;
     canShoot = 1;
@@ -232,6 +232,8 @@ case WEAPONS.__BORIAN_BULG:
     break;
 
 case WEAPONS.__GRENADE_LAUNCHER:
+    weaponCd = 1.5;
+    expRad = 45;
     weaponSprite[0] = sOneGL;
     weaponSprite[1] = sOneGLShoot;
     weaponAnimSpeed[1] = 0.15;

@@ -13,12 +13,12 @@ if (y == median(yy - ss, y, yy + ss))
     y = yy;
 if (x < xx)
 {   
-    image_xscale = 1 * chX + (image_xscale * !chX);
+    xsc = 1 * chX + (xsc * !chX);
     hspd += ss * speedmod;
 }
 else if (x > xx)
 {
-    image_xscale = -1 * chX + (image_xscale * !chX);
+    xsc = -1 * chX + (xsc * !chX);
     hspd -= ss * speedmod;
 }
 if (y < yy)

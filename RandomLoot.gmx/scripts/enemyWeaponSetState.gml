@@ -33,7 +33,7 @@ with (weaponObj)
         break;
         
     case WEAPON_STATES.__MELEE_DOWN:
-        angleNeed = angleNeedDown + 180 * (image_xscale < 0) + angleNeedDown * -1 * (image_xscale < 0);
+        angleNeed = angleNeedDown + 180 * (xsc < 0) + angleNeedDown * -1 * (xsc < 0);
         angleRot = angleRotDown;
         angleBegin = image_angle;
 
@@ -45,7 +45,7 @@ with (weaponObj)
         break;
         
     case WEAPON_STATES.__MELEE_UP:
-        angleNeed = angleNeedUp;;// + 180 * (image_xscale < 0) + angleNeedUp * -1 * (image_xscale < 0);
+        angleNeed = angleNeedUp;;// + 180 * (xsc < 0) + angleNeedUp * -1 * (xsc < 0);
         angleRot = angleRotUp;
         
         sprite_index = parent.weaponSprite[2];

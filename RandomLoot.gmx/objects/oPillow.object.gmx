@@ -108,7 +108,7 @@ with(weaponObj)
             <string>///weapon update
 if (!updatable)
     exit;
-weaponObj.x = x + weaponXoff * sign(image_xscale);
+weaponObj.x = x + weaponXoff * sign(xsc);
 weaponObj.y = y + weaponYoff;
 if (weapon != WEAPONS.__NONE)
 {
@@ -121,7 +121,7 @@ if (weapon != WEAPONS.__NONE)
             with(weaponObj)
                 image_angle = perc * anMaxAngle;
         }
-        weaponObj.image_xscale = image_xscale;
+        weaponObj.xsc = xsc;
         if (vecdir &lt; 0)
         {
             weaponObj.depth = depth + 1;
@@ -132,9 +132,9 @@ if (weapon != WEAPONS.__NONE)
         }
         break;
     case WEAPON_TYPE.__RANGE:
-        weaponObj.image_yscale = sign(image_xscale);
+        weaponObj.image_yscale = sign(xsc);
         weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
-        //weaponObj.image_xscale = image_xscale;
+        //weaponObj.xsc = xsc;
         if (angle &gt; 0 &amp;&amp; angle &lt; 180)
         {
             weaponObj.depth = depth + 1;

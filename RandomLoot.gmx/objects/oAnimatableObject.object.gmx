@@ -28,7 +28,7 @@
             <string>event_inherited();
 
 anAngle = 0;
-anMaxAngle = 6;
+anMaxAngle = 8;
 anAngleStep = .5;
 
 xsc = 1;

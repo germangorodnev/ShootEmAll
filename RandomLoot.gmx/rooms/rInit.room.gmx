@@ -77,7 +77,8 @@ enum WEAPONS
     __NOVA_M,
     __BORIAN_BULG,
     __GRENADE_LAUNCHER,
-    __CUSTOM
+    __CUSTOM,
+    __RANGED_END
 }
 
 enum WEAPON_TYPE

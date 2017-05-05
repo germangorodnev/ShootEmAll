@@ -7,8 +7,15 @@ if (pickup != noone)
     else
         pickupId = noone;
 }
-else
-    pickupId = noone;
+else 
+{
+    pickup = playerMaskPickup();
+    if (pickup != noone)
+        pickupId = pickup;
+    else
+        pickupId = noone;
+}
+
 if (pickupId == noone)
     exit;
 if (!pickupId.autopickup)
@@ -22,6 +29,12 @@ if (!pickupId.autopickup)
         playerPickupWeapon(pickupId, pickupId.value);
         with (pickupId)
             instance_destroy();
+        break;
+        
+    case PICKUP.__CRATE:
+        if (!pickupId.cap)
+            exit;
+        crateOpen(pickupId);
         break;
     }
 }

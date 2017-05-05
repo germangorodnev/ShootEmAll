@@ -5,7 +5,7 @@ var x1 = argument[0],
     y2 = argument[3],
     group = argument[4];
 
-maskHit = instance_create(x + (x1 - sprite_get_xoffset(sprite_index)) * image_xscale, 
+maskHit = instance_create(x + (x1 - sprite_get_xoffset(sprite_index)) * xsc, 
     y + (y1 - sprite_get_yoffset(sprite_index)) * image_yscale, 
     oMaskHit);
 ds_list_add(masks, maskHit);

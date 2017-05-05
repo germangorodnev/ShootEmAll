@@ -28,8 +28,8 @@ masksXoff[0] = x1;
 masksYoff[0] = y1;
 var xl = abs(x2 - x1),
     yl = abs(y2 - y1);
-masks[0].image_xscale = xl / 32;
-masksXsc[0] = masks[0].image_xscale;
+masks[0].xsc = xl / 32;
+masksXsc[0] = masks[0].xsc;
 masks[0].image_yscale = yl / 32;    
 
       
