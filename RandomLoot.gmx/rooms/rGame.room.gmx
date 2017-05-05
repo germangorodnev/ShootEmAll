@@ -89,10 +89,7 @@
     <instance objName="oBuddyTest" x="664" y="624" name="inst_1D420516" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="348" y="416" name="inst_9090D49F" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__RAZORBLADE);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
-  <tiles>
-    <tile bgName="tlsWalls" x="768" y="384" w="64" h="64" xo="266" yo="134" id="10000028" name="inst_7F71B7BE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tlsWalls" x="64" y="384" w="64" h="64" xo="200" yo="134" id="10000053" name="inst_5705D6E7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-  </tiles>
+  <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
   <PhysicsWorldLeft>0</PhysicsWorldLeft>

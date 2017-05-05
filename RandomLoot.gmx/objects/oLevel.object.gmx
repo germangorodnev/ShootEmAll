@@ -31,10 +31,10 @@ image_speed = 0;
 tw = LEVEL.TILE_W;
 th = LEVEL.TILE_H;
 
-minLeafSize = 9;
-maxLeafSize = 24;
+minLeafSize = 12;
+maxLeafSize = 18;
 minRoomSize = 6;
-maxRoomSize = 20;
+maxRoomSize = 14;
 
 cnt = 0;
 leafs = ds_list_create();
@@ -47,7 +47,7 @@ hh = ceil(room_height / th)
 
 // grid
 level = ds_grid_create(ww, hh);
-for (var i = 0; i &lt; ww; i ++)
+for (var i = 0; i &lt; ww; i++)
 {
     for (var j = 0; j &lt; hh; j++)
     {

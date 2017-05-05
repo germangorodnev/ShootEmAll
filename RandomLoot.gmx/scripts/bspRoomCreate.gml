@@ -6,4 +6,6 @@ with (argument[0])
     ry = argument[2];
     rw = argument[3];
     rh = argument[4];
+    // tile it 
+    bspTileRoom(rx, ry, rw, rh);
 }

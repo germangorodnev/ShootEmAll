@@ -145,7 +145,6 @@
   <backgrounds name="background">
     <background>background\tlsWalls</background>
     <background>background\tlsFloor</background>
-    <background>background\tlsWang</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -265,6 +264,7 @@
         <scripts name="Room">
           <script>scripts\bspRoomCreate.gml</script>
           <script>scripts\bspGetRoom.gml</script>
+          <script>scripts\bspTileRoom.gml</script>
         </scripts>
         <scripts name="Halls">
           <script>scripts\bspHallCreate.gml</script>

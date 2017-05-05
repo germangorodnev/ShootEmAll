@@ -8,6 +8,6 @@ with (oLevel)
     for (var i = xx, ci = xx + _w; i < ci; i++)
     {
         for (var j = yy, cj = yy + _h; j < cj; j++)
-            level[# i, j] = LEVEL.FLOOR;
+            level[# median(0, i, ww - 1), median(0, j, hh - 1)] = LEVEL.FLOOR;
     }
 }
