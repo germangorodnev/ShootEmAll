@@ -42,7 +42,8 @@ cursor_sprite = sCursorTarget;
 global.money = 0;
 
 // particles
-global.pse = part_system_create();
+global.psyses = ds_list_create();
+global.pse = gamePsysCreate();
 part_system_depth(global.pse, 10);
 // jibs
 // pillow
@@ -56,6 +57,16 @@ part_type_direction(global.pillowjibs, 0, 359, 0, 1);
 part_type_orientation(global.pillowjibs, 0, 360, 0, 0, 0);           
 part_type_blend(global.pillowjibs, false);                         
 part_type_life(global.pillowjibs, 2 * room_speed, 8 * room_speed);    
+
+
+// effects
+// bullet wzhuh
+global.bwzhuh = part_type_create();
+part_type_sprite(global.bwzhuh, sWzhuhBullet, 1, 1, 0);            
+part_type_orientation(global.bwzhuh, 0, 360, 0, 0, 0);           
+part_type_blend(global.bwzhuh, false);                         
+part_type_life(global.bwzhuh, 0.1 * room_speed, 0.2 * room_speed);    
+
 
 
 
@@ -86,7 +97,8 @@ room_goto_next();
           <argument>
             <kind>1</kind>
             <string>part_type_destroy(global.pillowjibs);
-part_system_destroy(global.pse);
+//part_system_destroy(global.pse);
+gamePsysFree();
 </string>
           </argument>
         </arguments>

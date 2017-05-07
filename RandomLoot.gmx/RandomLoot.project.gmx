@@ -88,6 +88,10 @@
           </sprites>
         </sprites>
       </sprites>
+      <sprites name="Effects">
+        <sprite>sprites\sWzhuhMelee</sprite>
+        <sprite>sprites\sWzhuhBullet</sprite>
+      </sprites>
       <sprite>sprites\sPlayer</sprite>
     </sprites>
     <sprites name="Abilities">
@@ -231,6 +235,11 @@
       </scripts>
     </scripts>
     <scripts name="Game">
+      <scripts name="Particle Systems">
+        <script>scripts\gamePsysCreate.gml</script>
+        <script>scripts\gamePsysDelete.gml</script>
+        <script>scripts\gamePsysFree.gml</script>
+      </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
@@ -239,6 +248,7 @@
       <script>scripts\gameCreateExplosion.gml</script>
       <script>scripts\gameGetRandomWeapon.gml</script>
       <script>scripts\gameGetString.gml</script>
+      <script>scripts\gameEffectCreate.gml</script>
     </scripts>
     <scripts name="Bullets">
       <script>scripts\projectileInited.gml</script>

@@ -20,7 +20,7 @@ if (vspd != 0)
         pl = s * mult;
     for (var i = 0; i < a; i++)
     {
-        if (colPlaceFree(x, y + s, 1))
+        if (colPlaceFree(x, y + s, LEVEL.SOLID))
             y += pl;
     }
 }    

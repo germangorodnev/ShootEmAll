@@ -22,6 +22,7 @@ case WEAPON_TYPE.__MELEE:
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         maskKick.dmgcd = weaponCd;
+        //maskKick.image_angle = mousedir;
         break;
         
     case WEAPONS.__ARIA_ARTH:
@@ -33,6 +34,7 @@ case WEAPON_TYPE.__MELEE:
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         maskKick.dmgcd = weaponCd;
+        //maskKick.image_angle = mousedir;
         // random double shot
         if (argument[0])
             if (irandom(100) <= 20)
@@ -77,6 +79,7 @@ case WEAPON_TYPE.__MELEE:
         maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         maskKick.dmgcd = weaponCd;
+        maskKick.image_angle = mousedir;
         break;
     }
     break;

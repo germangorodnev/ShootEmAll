@@ -162,23 +162,32 @@ if (weapon != WEAPONS.__NONE)
     switch (weaponType)
     {
     case WEAPON_TYPE.__MELEE:
-        if (weaponObj.state == WEAPON_STATES.__MOVE)
+        switch (weaponObj.attackType)
         {
-            var perc = anAngle / anMaxAngle;
-            with(weaponObj)
-                image_angle = perc * anMaxAngle;
-        }
+        default:
+            weaponObj.x = x + weaponXoff * sign(xsc); //lengthdir_x(weaponXoff * sign(xsc), mousedir);
+            weaponObj.y = y + weaponYoff; //lengthdir_y(weaponYoff, mousedir);
+            if (weaponObj.state == WEAPON_STATES.__MOVE)
+            {
+                var perc = anAngle / anMaxAngle;
+                with(weaponObj)
+                    image_angle = perc * anMaxAngle;
+            }
+                
+            weaponObj.xsc = xsc;
+            if (mouse_y &lt; y)
+            {
+                weaponObj.depth = depth + 1;
+            }
+            else
+            {
+                weaponObj.depth = depth - 1;
+            }
+            break;
             
-        weaponObj.xsc = xsc;
-        if (mouse_y &lt; y)
-        {
-            weaponObj.depth = depth + 1;
-        }
-        else
-        {
-            weaponObj.depth = depth - 1;
         }
         break;
+        
     case WEAPON_TYPE.__RANGE:
         weaponObj.image_yscale = sign(xsc);
         weaponObj.image_angle = mousedir + sin(anSinRad) * weaponObj.anMaxAngle; //+ weaponInf[W_PR.__LDIR_DIR] / 4 * (sign(xsc) &gt; 0)

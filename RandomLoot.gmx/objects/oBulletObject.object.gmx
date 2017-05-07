@@ -37,6 +37,8 @@ prt = 2;
 visible = 0;
 active = 0;
 
+dtmr = -1;
+
 dmgcd = 0;
 
 cntgothrough = 1;
@@ -63,6 +65,8 @@ cntgothrough = 1;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+//some effects
+gameEffectCreate(x, y, EFFECTS.__BULLET_WZHUH, -y - LEVEL.TILE_H * 2);
 </string>
           </argument>
         </arguments>

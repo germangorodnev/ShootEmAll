@@ -25,6 +25,11 @@ enum LEVEL
     SOLID   
 }
 
+enum EFFECTS
+{
+    __BULLET_WZHUH = 0,
+}
+
 enum ROOMS
 {
     
@@ -41,7 +46,7 @@ enum GAME_STATES
 enum PLAYER_STATES
 {
     __DIE = -1,
-    __IDLE = 0,
+    __IDLE,
     __WALK,
     __CUCKED,
 }   

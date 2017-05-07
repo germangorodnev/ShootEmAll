@@ -30,7 +30,7 @@ image_speed = 0;
 image_index = 1;
 
 visible = global.debug;
-
+//needmove = 0;
 
 cuck = CUCKED.__NORMAL;
 dmg = 0;

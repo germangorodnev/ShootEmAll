@@ -23,8 +23,7 @@ if (instance_exists(oLevel))
     return 1;
 }
 else
-    if (argument2)
-    {
-        return !place_meeting(argument0, argument1, oSolidObject);
-    }
-
+{
+    var nn = argument[2];
+    return !place_meeting(argument[0], argument[1], oSolidObject);
+}
