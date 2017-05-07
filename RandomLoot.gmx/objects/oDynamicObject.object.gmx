@@ -33,6 +33,8 @@ spd = 3;
 speedmod = 1;
 fric = 0;
 
+collideWith = LEVEL.SOLID | LEVEL.WALL;
+
 hittable = 1;
 
 // masks

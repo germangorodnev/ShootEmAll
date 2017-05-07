@@ -30,6 +30,8 @@ if (!pickupId.autopickup)
         pwType = pwId.class;
         if (!key[KEY.PICKUP])
             exit;
+        if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
+            exit;
         playerPickupWeapon(pwId, pwId.value);
         with (pwId)
             instance_destroy();

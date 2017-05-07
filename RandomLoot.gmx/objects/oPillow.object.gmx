@@ -216,7 +216,7 @@ case ENEMY_STATE.__WALK:
             enemyAttack();
         }
     }
-    physicalMove();
+    physicalMove(collideWith);
     break;
 case ENEMY_STATE.__ATTACK:
     procedureAnimableApproachReset();

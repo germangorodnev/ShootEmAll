@@ -25,6 +25,7 @@
         <sprite>sprites\sReloadPart</sprite>
         <sprite>sprites\sMoneyGUI</sprite>
         <sprite>sprites\sAmmoGUI</sprite>
+        <sprite>sprites\sWarnings</sprite>
       </sprites>
       <sprites name="Weapons">
         <sprites name="Melee">
@@ -153,12 +154,15 @@
     <background>background\tlsWalls</background>
     <background>background\tlsFloor</background>
     <background>background\tlsSlats</background>
+    <background>background\tlsPrison</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Physicals">
       <scripts name="Collision">
         <script>scripts\colPlaceFree.gml</script>
+        <script>scripts\colPositionFree.gml</script>
+        <script>scripts\colPlaceFreeSide.gml</script>
       </scripts>
       <scripts name="Masks">
         <script>scripts\maskHitAdd.gml</script>
@@ -315,10 +319,10 @@
     </objects>
     <objects name="Game">
       <objects name="BSP">
-        <object>objects\oLevel</object>
         <object>objects\oLeaf</object>
         <object>objects\oFloor</object>
       </objects>
+      <object>objects\oLevel</object>
       <object>objects\oCamera</object>
       <object>objects\oGameGUI</object>
     </objects>

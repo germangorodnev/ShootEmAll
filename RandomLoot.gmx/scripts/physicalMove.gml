@@ -1,3 +1,5 @@
+///physicalMove(collideWith bitmask)
+var clw = argument[0];
 var mult = 1;
 if (hspd != 0 && vspd != 0)
     mult = .8;
@@ -8,7 +10,7 @@ if (hspd != 0)
         pl = s * mult;
     for (var i = 0; i < a; i++)
     {
-        if (colPlaceFree(x + s, y, LEVEL.SOLID))
+        if (colPlaceFree(x + s, y, clw))
             x += pl;
     }
 }
@@ -20,7 +22,7 @@ if (vspd != 0)
         pl = s * mult;
     for (var i = 0; i < a; i++)
     {
-        if (colPlaceFree(x, y + s, LEVEL.SOLID))
+        if (colPlaceFree(x, y + s, clw))
             y += pl;
     }
 }    

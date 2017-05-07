@@ -47,13 +47,14 @@ hh = ceil(room_height / th)
 
 // grid
 level = ds_grid_create(ww, hh);
-for (var i = 0; i &lt; ww; i++)
+ds_grid_set_region(level, 0, 0, ww, hh, LEVEL.VOID);
+/*for (var i = 0; i &lt; ww; i++)
 {
     for (var j = 0; j &lt; hh; j++)
     {
         level[# i, j] = LEVEL.VOID;
     }
-}
+}*/
 
 bspGenerate();
 levelGridToTiles();

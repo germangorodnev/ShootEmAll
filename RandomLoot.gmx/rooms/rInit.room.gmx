@@ -19,10 +19,15 @@ enum LEVEL
 {
     TILE_W = 64,
     TILE_H = 64,
-    FLOOR = -5,
-    WALL = -6,
-    VOID = -7,
-    SOLID   
+    FLOOR = 1 &lt;&lt; 0,
+    WALL = 1 &lt;&lt; 1,
+    VOID = 1 &lt;&lt; 2,
+    SOLID = 1 &lt;&lt; 3  
+}
+
+enum CANNOT
+{
+    WALL = 1 &lt;&lt; 0
 }
 
 enum EFFECTS

@@ -51,7 +51,7 @@ for (var xx = 0; xx < ww; xx++)
                 if (!bottom)
                 {
                     if (bottomRight)
-                        tile_add(tlsWalls, tw*2, th*1, tw, th, tx+tw, ty, -ty-th*2);
+                        tile_add(tlsWalls, tw*2, th*1, tw, th, tx+tw, ty, -ty-th*4);
                 }
                 else
                 {
@@ -66,11 +66,11 @@ for (var xx = 0; xx < ww; xx++)
                 if (!bottom)
                 {
                     if (bottomLeft)
-                        tile_add(tlsWalls, tw*0, th*1, tw, th, tx-tw, ty, -ty-th*2);
+                        tile_add(tlsWalls, tw*0, th*1, tw, th, tx-tw, ty, -ty-th*4);
                 }
                 else
                 {
-                    tile_add(tlsWalls, tw*0, th*2, tw, th, tx-tw, ty, -ty);
+                    tile_add(tlsWalls, tw*0, th*2, tw, th, tx-tw, ty, -ty-th);
                 }
 
             if (top)
@@ -96,9 +96,9 @@ for (var xx = 0; xx < ww; xx++)
                         
             if (bottom)
                 if (!bottomRight)
-                    tile_add(tlsWalls, tw*4, th*2, tw, th, tx, ty, -ty-th*2);
+                    tile_add(tlsWalls, tw*4, th*2, tw, th, tx, ty, -ty-th*4);
                 else if (!bottomLeft)
-                    tile_add(tlsWalls, tw*3, th*2, tw, th, tx, ty, -ty-th*2);
+                    tile_add(tlsWalls, tw*3, th*2, tw, th, tx, ty, -ty-th*4);
                 else
                     if (!left)
                         tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty, -ty-th); 
@@ -108,15 +108,15 @@ for (var xx = 0; xx < ww; xx++)
                         tile_add(tlsWalls, tw*0, th*2, tw, th, tx, ty-th, -ty);
 
             if (!bottomLeft && !bottomRight && bottom)
-                tile_add(tlsWalls, tw*1, th*3, tw, th, tx, ty, -ty-th*2); 
+                tile_add(tlsWalls, tw*1, th*3, tw, th, tx, ty, -ty-th*5); 
                          
             if (topRight)
                 if (top && right)
-                    tile_add(tlsWalls, tw*2, th*0, tw, th, tx + tw, ty - th, -ty-th*2); 
+                    tile_add(tlsWalls, tw*2, th*0, tw, th, tx + tw, ty - th, -ty-th*4); 
                 
             if (topLeft)
                 if (top && left)
-                    tile_add(tlsWalls, tw*0, th*0, tw, th, tx - tw, ty - th, -ty-th*2); 
+                    tile_add(tlsWalls, tw*0, th*0, tw, th, tx - tw, ty - th, -ty-th*4); 
                                        
             if (!topLeft && !topRight && top)
                 tile_add(tlsWalls, tw*0, th*3, tw, th, tx, ty-th, -ty);                 
@@ -147,7 +147,7 @@ for (var xx = 0; xx < ww; xx++)
             case 0:
                 if (random(100) < 1.5)
                 {
-                    level[# xx, yy] = LEVEL.WALL;            
+                    level[# xx, yy] = LEVEL.SOLID;            
                     instance_create(xr + tw / 2, yr + th / 2, oExplosiveCrate);
                 }
                 break;
@@ -157,8 +157,8 @@ for (var xx = 0; xx < ww; xx++)
                     var x2 = median(0, xx + 1, ww - 1);
                     if (level[# x2, yy] == LEVEL.FLOOR)
                     {
-                        level[# xx, yy] = LEVEL.WALL;            
-                        level[# x2, yy] = LEVEL.WALL;            
+                        level[# xx, yy] = LEVEL.SOLID;            
+                        level[# x2, yy] = LEVEL.SOLID;            
                         instance_create(xr + tw, yr + th / 2, oCrate);
                     }
                 }            
