@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>oDynamicObject</parentName>
+  <parentName>oMaskHit</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,12 +30,13 @@ image_speed = 0;
 
 depth = -y;
 
-hp = 5;
-_hp = 5;
+hp = 25;
+_hp = hp;
+hittable = 1;
+par = id;
+group = 2;
 
 radius = 75;
-
-maskHitAdd(5, 5, 48, 40, 2);
 
 
 </string>
@@ -86,15 +87,21 @@ maskHitAdd(5, 5, 48, 40, 2);
             <kind>1</kind>
             <string>if (!updatable)
     exit;
-    
+visible = 1;    
+if (expire &amp;&amp; !expire)
+{
+    expire = 0;
+}
 
 hp = clamp(hp, 0, _hp);
 if (hp &lt;= 0)
 {
     gameCreateExplosion(x, y, 20, 2, CUCKED.__NORMAL, 0.5 * room_speed, noone, radius);
+    levelFreeSolid(x, y, x, y, LEVEL.FLOOR);
+    instance_destroy();
+    exit;
 }
 
-masksMove();
 
 </string>
           </argument>

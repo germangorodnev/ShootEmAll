@@ -21,8 +21,15 @@ enum LEVEL
     TILE_H = 64,
     FLOOR = -5,
     WALL = -6,
-    VOID = -7    
+    VOID = -7,
+    SOLID   
 }
+
+enum ROOMS
+{
+    
+    __BOSS
+}   
 
 enum GAME_STATES
 {

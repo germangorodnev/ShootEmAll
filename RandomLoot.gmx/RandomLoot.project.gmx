@@ -18,13 +18,13 @@
           <sprite>sprites\sWoltmeterArrow</sprite>
         </sprites>
         <sprite>sprites\sPlayerHP</sprite>
+        <sprite>sprites\sPickupWI</sprite>
         <sprite>sprites\sPickup</sprite>
-        <sprite>sprites\sAmmoGUIShotgun</sprite>
         <sprite>sprites\sAmmoGUIEnergy</sprite>
-        <sprite>sprites\sAmmoGUIGrenades</sprite>
         <sprite>sprites\sCursorTarget</sprite>
         <sprite>sprites\sReloadPart</sprite>
         <sprite>sprites\sMoneyGUI</sprite>
+        <sprite>sprites\sAmmoGUI</sprite>
       </sprites>
       <sprites name="Weapons">
         <sprites name="Melee">
@@ -148,6 +148,7 @@
   <backgrounds name="background">
     <background>background\tlsWalls</background>
     <background>background\tlsFloor</background>
+    <background>background\tlsSlats</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -237,6 +238,7 @@
       <script>scripts\punchEffectCreate.gml</script>
       <script>scripts\gameCreateExplosion.gml</script>
       <script>scripts\gameGetRandomWeapon.gml</script>
+      <script>scripts\gameGetString.gml</script>
     </scripts>
     <scripts name="Bullets">
       <script>scripts\projectileInited.gml</script>
@@ -262,30 +264,34 @@
       <script>scripts\damagingCollisionDetect.gml</script>
       <script>scripts\instancePlaceList.gml</script>
     </scripts>
-    <scripts name="Level Generation">
-      <scripts name="BSP">
-        <scripts name="Leaf">
-          <script>scripts\bspLeafCreate.gml</script>
-          <script>scripts\bspLeafSplit.gml</script>
-          <script>scripts\bspLeafCreateRooms.gml</script>
-          <script>scripts\bspLeafAddRect.gml</script>
+    <scripts name="Level">
+      <scripts name="Level Generation">
+        <scripts name="BSP">
+          <scripts name="Leaf">
+            <script>scripts\bspLeafCreate.gml</script>
+            <script>scripts\bspLeafSplit.gml</script>
+            <script>scripts\bspLeafCreateRooms.gml</script>
+            <script>scripts\bspLeafAddRect.gml</script>
+          </scripts>
+          <scripts name="Room">
+            <script>scripts\bspRoomCreate.gml</script>
+            <script>scripts\bspGetRoom.gml</script>
+            <script>scripts\bspTileRoom.gml</script>
+          </scripts>
+          <scripts name="Halls">
+            <script>scripts\bspHallCreate.gml</script>
+            <script>scripts\bspHallAddRect.gml</script>
+          </scripts>
+          <script>scripts\bspGenerate.gml</script>
         </scripts>
-        <scripts name="Room">
-          <script>scripts\bspRoomCreate.gml</script>
-          <script>scripts\bspGetRoom.gml</script>
-          <script>scripts\bspTileRoom.gml</script>
-        </scripts>
-        <scripts name="Halls">
-          <script>scripts\bspHallCreate.gml</script>
-          <script>scripts\bspHallAddRect.gml</script>
-        </scripts>
-        <script>scripts\bspGenerate.gml</script>
+        <script>scripts\levelGridToTiles.gml</script>
       </scripts>
-      <script>scripts\levelGridToTiles.gml</script>
+      <script>scripts\levelFreeSolid.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\fCollar</font>
+    <font>fonts\fWeaponType</font>
+    <font>fonts\fWeaponName</font>
     <font>fonts\fGame</font>
   </fonts>
   <objects name="objects">

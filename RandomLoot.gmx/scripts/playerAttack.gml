@@ -56,6 +56,17 @@ case WEAPON_TYPE.__MELEE:
         maskKick.dmg = irandom_range(weaponInf[_min], weaponInf[_max]); 
         maskKick.dmgcd = weaponCd;
         break;
+        
+    case WEAPONS.__HALFSWORD:
+        with (weaponObj)
+            weaponSetAnimation(oPlayer.weapon, WEAPON_STATES.__MELEE_DOWN);
+        
+        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
+            
+        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
+        maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]) * choose(-1, 1); 
+        maskKick.dmgcd = max(2, weaponCd * (maskKick.dmg != 0));
+        break;
                 
     default: // just common melee weapon
         with (weaponObj)

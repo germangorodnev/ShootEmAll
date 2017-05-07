@@ -95,8 +95,12 @@ if (dtmr &amp;&amp; !--dtmr)
 
 if (outsideRoom())
     instance_destroy();
-if (place_meeting(x, y, oSolidObject))
+if (!colPlaceFree(x, y, LEVEL.WALL))
+{
     speed -= 0.03;
+    // bounce 
+    //direction += direction;
+}
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)
 {

@@ -31,6 +31,9 @@ type = PICKUP.__WEAPON;
 value = WEAPONS.__NONE;
 ammo = 0;
 depth = -y;
+
+name = "";
+class = "";
 </string>
           </argument>
         </arguments>

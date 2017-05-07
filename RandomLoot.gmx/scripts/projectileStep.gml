@@ -4,8 +4,7 @@ if (!active)
     exit;
 if (outsideRoom())
     instance_destroy();
-if (place_meeting(x, y, oSolidObject))
-    instance_destroy();
+
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)
 {
@@ -35,3 +34,10 @@ if (ic != noone)
         }
     }
 }
+
+//if (!colPlaceFree(x + lengthdir_x(speed, direction - 180), y + lengthdir_y(speed, direction - 180), 1))
+if (!colPlaceFree(x, y, LEVEL.WALL))
+{
+    instance_destroy();
+}
+

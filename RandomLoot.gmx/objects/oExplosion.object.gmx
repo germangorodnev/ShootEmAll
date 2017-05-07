@@ -31,7 +31,7 @@ parent = noone;
 damage = 0;
 group = 0; // 0 - player, 1 - enemy
 cuck = CUCKED.__NORMAL;
-
+depth = -y;
 ls = ds_list_create();
 
 animEnded = 0;
@@ -200,7 +200,8 @@ for (var i = 0, cnt = ds_list_size(ls); i &lt; cnt; i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>explosiveDebug();
+            <string>draw_self();
+explosiveDebug();
 </string>
           </argument>
         </arguments>

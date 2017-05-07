@@ -11,44 +11,55 @@ case PICKUP.__WEAPON:
     case WEAPONS.__BLOOD_FLAG:
         sprite_index = sBloodFlag; 
         image_angle = 270;
+        name = gameGetString("bfname");
+        class = gameGetString("melee");
         break;
     case WEAPONS.__HALFSWORD:
         sprite_index = sHalfsword; 
         image_angle = -45;
+        class = gameGetString("melee");
         break;
     case WEAPONS.__COPPER_DEVIL:
         sprite_index = sCopperDevil; 
         image_angle = -45;
+        class = gameGetString("melee");
         break;
     case WEAPONS.__STICK:
         sprite_index = sStick; 
         image_angle = 60;
+        class = gameGetString("melee");
         break;
     case WEAPONS.__ARIA_ARTH:
         sprite_index = sAriaArthef; 
         image_angle = 45;
+        class = gameGetString("melee");
         break;
     case WEAPONS.__RAZORBLADE:
         sprite_index = sRazorblade; 
         image_angle = 65;
+        class = gameGetString("melee");
         break;
 
     
     case WEAPONS.__POMPINGTON:
         sprite_index = sPompington; 
         ammo = argument[2];
+        class = gameGetString("ranged");
         break;
     case WEAPONS.__RXP:
         sprite_index = sRXP; 
         ammo = argument[2];
+        class = gameGetString("ranged");
         break;
     case WEAPONS.__RECT1:
         sprite_index = sRECT1; 
         ammo = argument[2];
+        class = gameGetString("ranged");
         break;
     case WEAPONS.__ROMAN_MG:
         sprite_index = sRomanMG; 
         ammo = argument[2];
+        class = gameGetString("ranged");
         break;
     case WEAPONS.__NOVA_M:
         sprite_index = sNovaM; 
@@ -57,10 +68,12 @@ case PICKUP.__WEAPON:
     case WEAPONS.__BORIAN_BULG:
         sprite_index = sBorianBulg; 
         ammo = argument[2];
+        class = gameGetString("ranged");
         break;
     case WEAPONS.__GRENADE_LAUNCHER:
         sprite_index = sOneGL; 
         ammo = argument[2];
+        class = gameGetString("ranged");
         break;
     }
     break;

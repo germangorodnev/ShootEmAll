@@ -8,7 +8,7 @@ if (hspd != 0)
         pl = s * mult;
     for (var i = 0; i < a; i++)
     {
-        if (colPlaceFree(x + s, y, 1))
+        if (colPlaceFree(x + s, y, LEVEL.SOLID))
             x += pl;
     }
 }

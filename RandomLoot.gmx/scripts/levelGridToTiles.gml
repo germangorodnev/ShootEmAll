@@ -142,7 +142,7 @@ for (var xx = 0; xx < ww; xx++)
             yr = yy * th;
         if (tt == LEVEL.FLOOR)
         {
-            switch (choose(0, 1))
+            switch (choose(0, 1)) // bomb \ chest
             {
             case 0:
                 if (random(100) < 1.5)

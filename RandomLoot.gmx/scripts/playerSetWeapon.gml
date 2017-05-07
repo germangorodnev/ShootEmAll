@@ -9,6 +9,7 @@ if (weapon != WEAPONS.__NONE)
 }
 
 // resets
+restoreWeap = 0;
 weaponCd = 0;
 restore = -1;
 recoilSpd = 0;
@@ -84,7 +85,7 @@ case WEAPONS.__HALFSWORD:
     // mask
     kx1 = 57;
     ky1 = 15;
-    kx2 = 80;
+    kx2 = 95;
     ky2 = 77;
     break;
     
@@ -125,7 +126,7 @@ case WEAPONS.__STICK:
     // mask
     kx1 = 57;
     ky1 = 20;
-    kx2 = 80;
+    kx2 = 90;
     ky2 = 70;
     break;
     
@@ -146,7 +147,7 @@ case WEAPONS.__ARIA_ARTH:
     // mask
     kx1 = 57;
     ky1 = 15;
-    kx2 = 95;
+    kx2 = 105;
     ky2 = 77;
     break;
 
@@ -167,7 +168,7 @@ case WEAPONS.__RAZORBLADE:
     // mask
     kx1 = 57;
     ky1 = 15;
-    kx2 = 80;
+    kx2 = 100;
     ky2 = 77;
     break;
     
@@ -222,6 +223,7 @@ case WEAPONS.__NOVA_M:
     break;
     
 case WEAPONS.__BORIAN_BULG:
+    restoreWeap = 1;
     restore = weaponInf[W_PR.__RELOAD_TIME];
     weaponSprite[0] = sBorianBulg;
     weaponSprite[1] = sBorianBulgShoot;

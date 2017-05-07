@@ -9,11 +9,11 @@ if (instance_exists(oLevel))
     x = xto;
     y = yto;
     
-    var xmeet = (oLevel.level[# bbox_right div LEVEL.TILE_W, bbox_top div LEVEL.TILE_H] != LEVEL.FLOOR)
-        || (oLevel.level[# bbox_left div LEVEL.TILE_W, bbox_top div LEVEL.TILE_H] != LEVEL.FLOOR);
+    var xmeet = (oLevel.level[# bbox_right div LEVEL.TILE_W, bbox_top div LEVEL.TILE_H] == argument[2])
+        || (oLevel.level[# bbox_left div LEVEL.TILE_W, bbox_top div LEVEL.TILE_H] == argument[2]);
         
-    var ymeet = (oLevel.level[# bbox_right div LEVEL.TILE_W, bbox_bottom div LEVEL.TILE_H] != LEVEL.FLOOR)
-        || (oLevel.level[# bbox_left div LEVEL.TILE_W, bbox_bottom div LEVEL.TILE_H] != LEVEL.FLOOR);
+    var ymeet = (oLevel.level[# bbox_right div LEVEL.TILE_W, bbox_bottom div LEVEL.TILE_H] == argument[2])
+        || (oLevel.level[# bbox_left div LEVEL.TILE_W, bbox_bottom div LEVEL.TILE_H] == argument[2]);
         
     x = xo;
     y = yo;

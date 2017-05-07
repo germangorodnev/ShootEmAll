@@ -1,4 +1,5 @@
 ///playerPickup()
+pwId = noone;
 var pickup = instance_place(x, y, oPickupableObject);
 if (pickup != noone)
 {
@@ -15,28 +16,38 @@ else
     else
         pickupId = noone;
 }
-
 if (pickupId == noone)
     exit;
+    
 if (!pickupId.autopickup)
 {
-    if (!key[KEY.PICKUP])
-        exit;
-    //SWITCH ADD PICKUP
     switch (pickupId.type)
     {
     case PICKUP.__WEAPON:
-        playerPickupWeapon(pickupId, pickupId.value);
-        with (pickupId)
+        pwId = pickupId;
+        pickupId = noone;
+        pwName = pwId.name;
+        pwType = pwId.class;
+        if (!key[KEY.PICKUP])
+            exit;
+        playerPickupWeapon(pwId, pwId.value);
+        with (pwId)
             instance_destroy();
+        pwId = noone;
         break;
         
     case PICKUP.__CRATE:
         if (!pickupId.cap)
+        {
+            pickupId = noone;
             exit;
-        crateOpen(pickupId);
+        }
+        if (!key[KEY.PICKUP])
+            exit;
+        crateOpen(pickupId, id);
         break;
     }
+    //SWITCH ADD PICKUP
 }
 else
 {

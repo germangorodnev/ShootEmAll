@@ -52,6 +52,7 @@
   </views>
   <instances>
     <instance objName="oLevel" x="0" y="0" name="inst_855B79C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="576" y="384" name="inst_75DD30B3" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__GRENADE_LAUNCHER, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -171,6 +171,8 @@ for (var i = 0; i &lt;= room_width; i += LEVEL.TILE_W)
         draw_line_colour(0, j, room_width, j, c_black, c_black);
     }
 }
+with (oExplosiveCrate)
+    draw_text(x, bbox_top - 5, string(hp));
 </string>
           </argument>
         </arguments>
