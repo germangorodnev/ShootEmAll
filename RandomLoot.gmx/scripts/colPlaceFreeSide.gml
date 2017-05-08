@@ -23,13 +23,13 @@ if (instance_exists(oLevel))
     x = xo;
     y = yo;
 
-    if (rbmeet)
+    if (rbmeet && rtmeet) // right
         return 0;
-    if (lbmeet)
-        return 2;
-    if (rtmeet)
+    if (rtmeet && ltmeet) //top
         return 1;
-    if (ltmeet)
+    if (ltmeet && lbmeet) // left
+        return 2;
+    if (rbmeet && rbmeet) // bottom
         return 3;
     return -1;
 }

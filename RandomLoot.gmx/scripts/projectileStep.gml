@@ -37,7 +37,7 @@ if (ic != noone)
 
 //if (!colPlaceFree(x + lengthdir_x(speed, direction - 180), y + lengthdir_y(speed, direction - 180), 1))
 if (!colPlaceFree(x + lengthdir_x(speed / 2, direction - 180), 
-y + lengthdir_y(speed / 2, direction - 180), LEVEL.WALL))
+y + lengthdir_y(speed / 2, direction - 180), collideWith))
 {
     instance_destroy();
 }

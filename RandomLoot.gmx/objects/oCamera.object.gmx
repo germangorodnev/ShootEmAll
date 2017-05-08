@@ -28,12 +28,12 @@
             <string>///Follows
 event_inherited();
 view_object = oCamera;
-view_wview = global.guiW;
-view_hview = global.guiH;
+view_wview = round(global.guiW / 1);
+view_hview = round(global.guiH / 1);
 view_wport = global.guiW;
 view_hport = global.guiH;
-view_hborder = global.guiW / 2;
-view_vborder = global.guiH / 2;
+view_hborder = view_wport / 2;
+view_vborder = view_hport / 2;
 view_visible = 1;
 
 state = CAM_STATES.__PLAYER;

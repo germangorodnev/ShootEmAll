@@ -1,7 +1,6 @@
 with (oLeaf)
 {
     bspLeafAddRect(rx, ry, rw, rh);
-    instance_destroy();
 }
 // take walls
 for (var i = 1; i < ww - 1; i ++)
@@ -10,10 +9,10 @@ for (var i = 1; i < ww - 1; i ++)
         var tt = level[# i, j];
         if (tt == LEVEL.FLOOR)
         {
-            if (level[# i + 1, j] != LEVEL.FLOOR) level[# i + 1, j] = LEVEL.WALL;
-            if (level[# i - 1, j] != LEVEL.FLOOR) level[# i - 1, j] = LEVEL.WALL;
-            if (level[# i, j + 1] != LEVEL.FLOOR) level[# i, j + 1] = LEVEL.WALL;
-            if (level[# i, j - 1] != LEVEL.FLOOR) level[# i, j - 1] = LEVEL.WALL;
+            if (level[# i + 1, j] & ~LEVEL.FLOOR) level[# i + 1, j] |= LEVEL.WALL;
+            if (level[# i - 1, j] & ~LEVEL.FLOOR) level[# i - 1, j] |= LEVEL.WALL;
+            if (level[# i, j + 1] & ~LEVEL.FLOOR) level[# i, j + 1] |= LEVEL.WALL;
+            if (level[# i, j - 1] & ~LEVEL.FLOOR) level[# i, j - 1] |= LEVEL.WALL;
         }
     }
 
@@ -29,13 +28,13 @@ for (var xx = 0; xx < ww; xx++)
         if  (tt == LEVEL.FLOOR)
         {
             // chance to make vent 
-            if (irandom(100) < 3)
+            /*if (irandom(100) < 3)
             {
                 var tl = tile_layer_find(oLevel.floorD, tx, ty);
                 if (tl != -1)
                     tile_delete(tl);
                 tile_add(tlsFloor, tw * 3, 0, tw, th, tx, ty, oLevel.floorD);
-            }
+            }*/
             
             var left = level[# median(0, xx - 1, ww - 1), yy] != LEVEL.FLOOR,
                 right = level[# median(0, xx + 1, ww - 1), yy] != LEVEL.FLOOR,
@@ -55,7 +54,7 @@ for (var xx = 0; xx < ww; xx++)
                 }
                 else
                 {
-                    tile_add(tlsWalls, tw*2, th*2, tw, th, tx+tw, ty, -ty);
+                    tile_add(tlsWalls, tw*2, th*2, tw, th, tx+tw, ty, -ty-th);
                 }    
             /*if (left)
                 if (!bottom)
@@ -101,9 +100,9 @@ for (var xx = 0; xx < ww; xx++)
                     tile_add(tlsWalls, tw*3, th*2, tw, th, tx, ty, -ty-th*4);
                 else
                     if (!left)
-                        tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty, -ty-th); 
+                        tile_add(tlsWalls, tw*1, th*2, tw, th, tx, ty, -ty-th); 
                     else if (!right)   
-                        tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty, -ty-th); 
+                        tile_add(tlsWalls, tw*1, th*2, tw, th, tx, ty, -ty-th); 
                     else
                         tile_add(tlsWalls, tw*0, th*2, tw, th, tx, ty-th, -ty);
 
@@ -132,6 +131,9 @@ for (var xx = 0; xx < ww; xx++)
     }
 }
 
+// generate rooms themselves
+levelGenerateRooms();
+
 // generate stuff
 for (var xx = 0; xx < ww; xx++)
 {
@@ -140,14 +142,14 @@ for (var xx = 0; xx < ww; xx++)
         var tt = level[# xx, yy];
         var xr = xx * tw,
             yr = yy * th;
-        if (tt == LEVEL.FLOOR)
+        if (tt & LEVEL.FLOOR)
         {
             switch (choose(0, 1)) // bomb \ chest
             {
             case 0:
                 if (random(100) < 1.5)
                 {
-                    level[# xx, yy] = LEVEL.SOLID;            
+                    level[# xx, yy] |= LEVEL.SOLID;            
                     instance_create(xr + tw / 2, yr + th / 2, oExplosiveCrate);
                 }
                 break;
@@ -155,10 +157,10 @@ for (var xx = 0; xx < ww; xx++)
                 if (random(100) < 1.5)
                 {
                     var x2 = median(0, xx + 1, ww - 1);
-                    if (level[# x2, yy] == LEVEL.FLOOR)
+                    if (level[# x2, yy] & LEVEL.FLOOR)
                     {
-                        level[# xx, yy] = LEVEL.SOLID;            
-                        level[# x2, yy] = LEVEL.SOLID;            
+                        level[# xx, yy] |= LEVEL.SOLID;            
+                        level[# x2, yy] |= LEVEL.SOLID;            
                         instance_create(xr + tw, yr + th / 2, oCrate);
                     }
                 }            

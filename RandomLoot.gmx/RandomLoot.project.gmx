@@ -298,7 +298,12 @@
           </scripts>
           <script>scripts\bspGenerate.gml</script>
         </scripts>
+        <scripts name="Prison">
+          <script>scripts\levelPrisonSetRandomBed.gml</script>
+          <script>scripts\levelPrisonSetCloset.gml</script>
+        </scripts>
         <script>scripts\levelGridToTiles.gml</script>
+        <script>scripts\levelGenerateRooms.gml</script>
       </scripts>
       <script>scripts\levelFreeSolid.gml</script>
     </scripts>
