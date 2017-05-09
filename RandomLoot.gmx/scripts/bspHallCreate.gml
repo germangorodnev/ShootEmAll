@@ -1,7 +1,12 @@
 ///bspHallCreate(leaf* lroom, leaf* rroom)
 var l = argument[0],
     r = argument[1];
-        
+if (ds_list_find_index(l.connect, r) != -1
+    || ds_list_find_index(r.connect, l) != -1)
+        exit;
+ds_list_add(l.connect, r);
+ds_list_add(r.connect, l);
+            
 var p1x = irandom_range(l.rx + 1, l.rx + l.rw - 2),
     p1y = irandom_range(l.ry + 1, l.ry + l.rh - 2),
     p2x = irandom_range(r.rx + 1, r.rx + r.rw - 2),

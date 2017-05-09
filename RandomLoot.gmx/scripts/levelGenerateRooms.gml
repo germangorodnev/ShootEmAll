@@ -13,6 +13,7 @@ for (var i = 0, cnt = instance_number(oLeaf); i < cnt; i++)
             /*
             // PRISON //
             */
+            // set the floor
             for (var i = rx, ci = rx + rw; i < ci; i++)
             {
                 for (var j = ry, cj = ry + rh; j < cj; j++)
@@ -26,9 +27,24 @@ for (var i = 0, cnt = instance_number(oLeaf); i < cnt; i++)
                     tile_add(tlsPrison, tw * 3, 0, tw, th, xx, yy, oLevel.floorD);
                 }
             }
+            // create the hallway
+            //create hallway
+            levelPrisonCreateHallway();
+            //split free space on cells
+            // all other cells are actual cells
+            levelPrisonSplitByCells();
+            
+            
+            
+            //levelPrisonCreateHallway();
+            //levelPrisonGenerateCells();
+
+            // create the prison cells 
+             
             // set the bed
             //repeat(floor(rw / 2))
                 //levelPrisonSetRandomBed();
+                
             // closet
             //levelPrisonSetCloset(0);
             break;
@@ -38,5 +54,5 @@ for (var i = 0, cnt = instance_number(oLeaf); i < cnt; i++)
         }
     }
 }
-with (oLeaf)
-    instance_destroy();
+//with (oLeaf)
+//    instance_destroy();

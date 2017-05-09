@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-3</depth>
+  <depth>-4</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,61 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// BSP Leaf
+            <string>///Room
 image_speed = 0;
-
-w = 0;
-h = 0;
-minSize = oLevel.minLeafSize;
-leftChild = noone;
-rightChild = noone;
-
-tw = oLevel.tw;
-th = oLevel.th;
-
-cc = make_colour_hsv(irandom(255), 200, 200);
-
-// actual room
-rm = noone;
-rx = 0;
-ry = 0;
 rw = 0;
 rh = 0;
-rc = make_colour_hsv(irandom(50), 50, irandom(255));
-connect = ds_list_create();
+tw = oLevel.tw;
+th = oLevel.th;
+var ccc = irandom(127);
+cc = make_colour_hsv(ccc, ccc, ccc);
 
-// prison params
-hallType = -1;
-hallway = ds_list_create();
-cw = 1;
-ch = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>for (var i = 0, size = ds_list_size(hallway); i &lt; size; i++)
-    with (hallway[| i])
-        instance_destroy();
-ds_list_destroy(hallway);
-ds_list_destroy(connect);
 </string>
           </argument>
         </arguments>
@@ -102,14 +56,8 @@ ds_list_destroy(connect);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_rectangle_colour(x * tw, y * th, x * tw + w * tw, y * th + h * th, cc, cc, cc, cc, 0);
-//draw_rectangle_colour(rx * tw, ry * th, rx * tw + rw * tw, ry * th + rh * th, rc, rc, rc, rc, 0);
+            <string>draw_rectangle_colour(x*tw, y*th, x*tw+rw*tw, y*th+rh*th, cc, cc, cc, cc, 0);
 
-if (leftChild != noone)
-    if (rightChild != noone)
-        draw_line_width_colour(leftChild.rx * tw + leftChild.rw * tw / 2, leftChild.ry * th + leftChild.rh * th / 2,
-            rightChild.rx * tw + rightChild.rw * tw / 2, rightChild.ry * th + rightChild.rh * th / 2,
-                4, c_red, c_red);
 </string>
           </argument>
         </arguments>

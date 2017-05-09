@@ -299,6 +299,9 @@
           <script>scripts\bspGenerate.gml</script>
         </scripts>
         <scripts name="Prison">
+          <script>scripts\levelPrisonSplitByCells.gml</script>
+          <script>scripts\levelPrisonCreateHallway.gml</script>
+          <script>scripts\levelPrisonGenerateCells.gml</script>
           <script>scripts\levelPrisonSetRandomBed.gml</script>
           <script>scripts\levelPrisonSetCloset.gml</script>
         </scripts>
@@ -306,6 +309,7 @@
         <script>scripts\levelGenerateRooms.gml</script>
       </scripts>
       <script>scripts\levelFreeSolid.gml</script>
+      <script>scripts\levelRoomAdd.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -325,7 +329,9 @@
     <objects name="Game">
       <objects name="BSP">
         <object>objects\oLeaf</object>
+        <object>objects\oCell</object>
         <object>objects\oFloor</object>
+        <object>objects\oRoom</object>
       </objects>
       <object>objects\oLevel</object>
       <object>objects\oCamera</object>
