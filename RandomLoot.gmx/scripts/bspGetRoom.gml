@@ -4,7 +4,7 @@ with (ll)
 {
     if (rm != noone)
     {
-        return id;
+        return rm;
     }
     else
     {

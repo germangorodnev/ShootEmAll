@@ -33,7 +33,33 @@ tw = oLevel.tw;
 th = oLevel.th;
 var ccc = irandom(127);
 cc = make_colour_hsv(ccc, ccc, ccc);
+number = 0;
 
+connect = ds_list_create();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ds_list_destroy(connect);
 </string>
           </argument>
         </arguments>
@@ -57,7 +83,14 @@ cc = make_colour_hsv(ccc, ccc, ccc);
           <argument>
             <kind>1</kind>
             <string>draw_rectangle_colour(x*tw, y*th, x*tw+rw*tw, y*th+rh*th, cc, cc, cc, cc, 0);
-
+draw_text_transformed_colour(x*tw+rw/2*tw, y*th+rh/2*th, string(number), 6, 6, 0,
+    c_red, c_red, c_red, c_red, 1);
+/*if (leftChild != noone)
+    if (rightChild != noone)
+        draw_line_width_colour(leftChild.rx * tw + leftChild.rw * tw / 2, leftChild.ry * th + leftChild.rh * th / 2,
+            rightChild.rx * tw + rightChild.rw * tw / 2, rightChild.ry * th + rightChild.rh * th / 2,
+                4, c_red, c_red);
+    
 </string>
           </argument>
         </arguments>

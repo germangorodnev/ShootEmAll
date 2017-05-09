@@ -1,7 +1,12 @@
-with (oLeaf)
+var maxw = oLevel.ww,
+    maxh = oLevel.hh;
+with (oCellRoom)
 {
-    bspLeafAddRect(rx, ry, rw, rh);
+    bspLeafAddRect(x, y, rw, rh);
 }
+with (oFloor)
+    bspLeafAddRect(x, y, rw, rh);
+
 // take walls
 for (var i = 1; i < ww - 1; i ++)
     for (var j = 1; j < hh - 1; j++)
@@ -27,6 +32,7 @@ for (var xx = 0; xx < ww; xx++)
         // SWITCH ADD
         if  (tt == LEVEL.FLOOR)
         {
+            tile_add(tlsPrison, tw * 3, 0, tw, th, tx, ty, oLevel.floorD);
             // chance to make vent 
             /*if (irandom(100) < 3)
             {
@@ -130,6 +136,11 @@ for (var xx = 0; xx < ww; xx++)
         }*/
     }
 }
+
+with (oCell)
+    instance_destroy();
+with (oFloor)
+    instance_destroy();
 
 // generate rooms themselves
 /*levelGenerateRooms();
