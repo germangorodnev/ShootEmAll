@@ -1,43 +1,30 @@
-switch (hallType)
+var prcellw = oLevel.prisonCellW,
+    prcellh = oLevel.prisonCellH,
+    off = 0;
+switch (par.size)
 {
 case 0:
-    /*
-    ###
-    ---
-    ###
-    */
-    
-   
+    // create 4 cells
+    levelPrisonCreate4Cells(x + 1, y + 1);
     break;
     
-case 1:
-    /*
-    #|#
-    #|#
-    #|#
-    */
+case 1: //##
+    levelPrisonCreate4Cells(x + 1, y + 1);
+    levelPrisonCreate4Cells(x + prcellw*2+off, y + 1);
+    break;
     
+case 2: //#\n#
+    levelPrisonCreate4Cells(x + 1, y + 1);
+    levelPrisonCreate4Cells(x + 1, y + prcellh*2+off);
+
+    break;
     
+case 3:
+    levelPrisonCreate4Cells(x + 1, y + 2);
+    levelPrisonCreate4Cells(x + prcellw*2+off+1, y + 2);
+    levelPrisonCreate4Cells(x + prcellw*2+off+1, y + prcellh*2+off+3);
+    levelPrisonCreate4Cells(x + 1, y + prcellh*2+off+3);
+
     break;
 }
 
-/*cw = round(rw / 4);
-ch = round(rh / 3);
-
-for (var i = rx, ci = rx + rw; i < ci; i += cw)
-{
-    for (var j = ry, cj = ry + rh; j < cj; j += ch)
-    {
-        //var _cw = cw,
-        //    _ch = ch;
-        //if (i + _cw >= rw
-        //    || j + _ch >= rh)
-        //        continue;
-        var _cw = min(abs(i - ci), cw),
-            _ch = min(abs(j - cj), ch);
-        var rr = levelRoomAdd(i, j, _cw, _ch);
-        rr.cc = make_colour_hsv(irandom(180), 255, 100);
-        ds_list_add(hallway, rr);    
-        
-    }
-}*/

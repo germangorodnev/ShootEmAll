@@ -17,7 +17,7 @@ with (oLevel)
     {
         for (var j = yy, cj = yy + _h; j < cj; j++)
         {
-            level[# i, j] = LEVEL.FLOOR;
+            level[# i, j] |= LEVEL.FLOOR;
             if (tile_layer_find(oLevel.floorD, i * tw, j * th) == -1)
                 tile_add(tlsFloor, 0, 0, tw, th, i * tw, j * th, oLevel.floorD);            
         }

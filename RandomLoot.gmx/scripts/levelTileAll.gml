@@ -1,9 +1,8 @@
 var maxw = oLevel.ww,
     maxh = oLevel.hh;
 with (oCellRoom)
-{
     bspLeafAddRect(x, y, rw, rh);
-}
+
 with (oFloor)
     bspLeafAddRect(x, y, rw, rh);
 
@@ -12,12 +11,12 @@ for (var i = 1; i < ww - 1; i ++)
     for (var j = 1; j < hh - 1; j++)
     {
         var tt = level[# i, j];
-        if (tt == LEVEL.FLOOR)
+        if (tt & LEVEL.FLOOR)
         {
-            if (level[# i + 1, j] & ~LEVEL.FLOOR) level[# i + 1, j] |= LEVEL.WALL;
-            if (level[# i - 1, j] & ~LEVEL.FLOOR) level[# i - 1, j] |= LEVEL.WALL;
-            if (level[# i, j + 1] & ~LEVEL.FLOOR) level[# i, j + 1] |= LEVEL.WALL;
-            if (level[# i, j - 1] & ~LEVEL.FLOOR) level[# i, j - 1] |= LEVEL.WALL;
+            if (level[# i + 1, j] & LEVEL.FLOOR == 0) level[# i + 1, j] |= LEVEL.WALL;
+            if (level[# i - 1, j] & LEVEL.FLOOR == 0) level[# i - 1, j] |= LEVEL.WALL;
+            if (level[# i, j + 1] & LEVEL.FLOOR == 0) level[# i, j + 1] |= LEVEL.WALL;
+            if (level[# i, j - 1] & LEVEL.FLOOR == 0) level[# i, j - 1] |= LEVEL.WALL;
         }
     }
 
@@ -30,27 +29,19 @@ for (var xx = 0; xx < ww; xx++)
             ty = yy * th;
             
         // SWITCH ADD
-        if  (tt == LEVEL.FLOOR)
+        if  (tt & LEVEL.FLOOR)
         {
-            tile_add(tlsPrison, tw * 3, 0, tw, th, tx, ty, oLevel.floorD);
-            // chance to make vent 
-            /*if (irandom(100) < 3)
-            {
-                var tl = tile_layer_find(oLevel.floorD, tx, ty);
-                if (tl != -1)
-                    tile_delete(tl);
-                tile_add(tlsFloor, tw * 3, 0, tw, th, tx, ty, oLevel.floorD);
-            }*/
+            tile_add(tlsFloor, 0, 0, tw, th, tx, ty, oLevel.floorD);
             
-            var left = level[# median(0, xx - 1, ww - 1), yy] != LEVEL.FLOOR,
-                right = level[# median(0, xx + 1, ww - 1), yy] != LEVEL.FLOOR,
-                top = level[# xx, median(0, yy - 1, hh - 1)] != LEVEL.FLOOR,
-                bottom = level[# xx, median(0, yy + 1, hh - 1)] != LEVEL.FLOOR;
+            var left = level[# median(0, xx - 1, ww - 1), yy] & LEVEL.FLOOR == 0,
+                right = level[# median(0, xx + 1, ww - 1), yy] & LEVEL.FLOOR == 0,
+                top = level[# xx, median(0, yy - 1, hh - 1)] & LEVEL.FLOOR == 0,
+                bottom = level[# xx, median(0, yy + 1, hh - 1)] & LEVEL.FLOOR == 0;
                 
-            var topLeft = level[# median(0, xx - 1, ww - 1), median(0, yy - 1, hh - 1)] != LEVEL.FLOOR,
-                topRight = level[# median(0, xx + 1, ww - 1), median(0, yy - 1, hh - 1)] != LEVEL.FLOOR,
-                bottomLeft = level[# median(0, xx - 1, ww - 1), median(0, yy + 1, hh - 1)] != LEVEL.FLOOR,
-                bottomRight = level[# median(0, xx + 1, ww - 1), median(0, yy + 1, hh - 1)] != LEVEL.FLOOR;               
+            var topLeft = level[# median(0, xx - 1, ww - 1), median(0, yy - 1, hh - 1)] & LEVEL.FLOOR == 0,
+                topRight = level[# median(0, xx + 1, ww - 1), median(0, yy - 1, hh - 1)] & LEVEL.FLOOR == 0,
+                bottomLeft = level[# median(0, xx - 1, ww - 1), median(0, yy + 1, hh - 1)] & LEVEL.FLOOR == 0,
+                bottomRight = level[# median(0, xx + 1, ww - 1), median(0, yy + 1, hh - 1)] & LEVEL.FLOOR == 0;               
 
             if (right)
                 if (!bottom)
@@ -137,47 +128,4 @@ for (var xx = 0; xx < ww; xx++)
     }
 }
 
-with (oCell)
-    instance_destroy();
-with (oFloor)
-    instance_destroy();
 
-// generate rooms themselves
-/*levelGenerateRooms();
-
-// generate stuff
-for (var xx = 0; xx < ww; xx++)
-{
-    for (var yy = 0; yy < hh; yy++)
-    {
-        var tt = level[# xx, yy];
-        var xr = xx * tw,
-            yr = yy * th;
-        if (tt & LEVEL.FLOOR)
-        {
-            switch (choose(0, 1)) // bomb \ chest
-            {
-            case 0:
-                if (random(100) < 1.5)
-                {
-                    level[# xx, yy] |= LEVEL.SOLID;            
-                    instance_create(xr + tw / 2, yr + th / 2, oExplosiveCrate);
-                }
-                break;
-            case 1:
-                if (random(100) < 1.5)
-                {
-                    var x2 = median(0, xx + 1, ww - 1);
-                    if (level[# x2, yy] & LEVEL.FLOOR)
-                    {
-                        level[# xx, yy] |= LEVEL.SOLID;            
-                        level[# x2, yy] |= LEVEL.SOLID;            
-                        instance_create(xr + tw, yr + th / 2, oCrate);
-                    }
-                }            
-                break;
-            }
-        }
-    }
-    
-}

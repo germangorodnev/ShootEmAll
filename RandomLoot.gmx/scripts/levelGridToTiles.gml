@@ -36,10 +36,10 @@ for (var xx = 0; xx < ww; xx++)
                 tile_add(tlsFloor, tw * 3, 0, tw, th, tx, ty, oLevel.floorD);
             }*/
             
-            var left = level[# median(0, xx - 1, ww - 1), yy] != LEVEL.FLOOR,
-                right = level[# median(0, xx + 1, ww - 1), yy] != LEVEL.FLOOR,
-                top = level[# xx, median(0, yy - 1, hh - 1)] != LEVEL.FLOOR,
-                bottom = level[# xx, median(0, yy + 1, hh - 1)] != LEVEL.FLOOR;
+            var left = level[# median(0, xx - 1, ww - 1), yy] & LEVEL.FLOOR == 0,
+                right = level[# median(0, xx + 1, ww - 1), yy] != LEVEL.FLOOR == 0,
+                top = level[# xx, median(0, yy - 1, hh - 1)] != LEVEL.FLOOR == 0,
+                bottom = level[# xx, median(0, yy + 1, hh - 1)] != LEVEL.FLOOR == 0;
                 
             var topLeft = level[# median(0, xx - 1, ww - 1), median(0, yy - 1, hh - 1)] != LEVEL.FLOOR,
                 topRight = level[# median(0, xx + 1, ww - 1), median(0, yy - 1, hh - 1)] != LEVEL.FLOOR,

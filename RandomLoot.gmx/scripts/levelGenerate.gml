@@ -5,6 +5,8 @@ APPROACH:
 3. generate room in each block
 4. connect rooms
 5. tile everything 
+6. create zones\rooms
+7. tile new rooms
 */
 
 // Phase 1 - splitting
@@ -174,5 +176,21 @@ with (oCell)
     }
 }
 
-// Phase 5 - aall tiled
+// Phase 5 - all tiled
 levelTileAll();
+
+
+
+// Phase 6 - rooms
+levelGenerateRooms();
+
+// Phase 7 - tile the rooms
+levelTileRooms();
+
+with (oCell)
+    instance_destroy();
+with (oFloor)
+    instance_destroy();
+with (oPrisonCell)
+    instance_destroy();
+

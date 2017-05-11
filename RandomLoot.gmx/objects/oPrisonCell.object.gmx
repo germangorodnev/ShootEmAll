@@ -3,10 +3,10 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-3</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <parentName>self</parentName>
+  <maskName>sMask32x32</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -25,61 +25,30 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Level controller
+            <string>/// BSP Leaf
 image_speed = 0;
 
-tw = LEVEL.TILE_W;
-th = LEVEL.TILE_H;
+rw = 0;
+rh = 0;
 
-minLeafSize = 12;
-maxLeafSize = 18;
-minRoomSize = 8;
-maxRoomSize = 15;
+tw = oLevel.tw;
+th = oLevel.th;
 
-cnt = 0;
-leafs = ds_list_create();
-rcnt = 0;
+var ccv = irandom(180);
+cc = make_colour_hsv(ccv, ccv, ccv);
 
-floorD = 100000;
-carpetD = 99999;
+number = 0;
 
-toiletLeftoff = 5;
+doorPosX = x;
+doorPosY = y;
 
-ww = ceil(room_width / tw);
-hh = ceil(room_height / th)
-
-// grid
-level = ds_grid_create(ww, hh);
-ds_grid_set_region(level, 0, 0, ww, hh, LEVEL.VOID);
-/*for (var i = 0; i &lt; ww; i++)
-{
-    for (var j = 0; j &lt; hh; j++)
-    {
-        level[# i, j] = LEVEL.VOID;
-    }
-}*/
-
-// NEW
-cellW = 12;
-cellH = 12;
-cellRoomW = 10;
-cellRoomH = 10;
-prisonCellW = 5;
-prisonCellH = 4;
-// 2d array for graph
-cells = ds_list_create();
-cellsVis[0] = 0; //room_width div cellW * room_height div cellH
-
-levelGenerate();
-
-//bspGenerate();
-//levelGridToTiles();
+pos = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -96,10 +65,10 @@ levelGenerate();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(leafs);
-ds_grid_destroy(level);
-ds_list_destroy(cells);
-cellsVis = 0;
+            <string>//draw_set_alpha(0.3);
+draw_rectangle_colour(x * tw, y * th, x * tw + rw * tw, y * th + rh * th, cc, cc, cc, cc, 0);
+//draw_set_alpha(1);
+
 </string>
           </argument>
         </arguments>

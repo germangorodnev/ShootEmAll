@@ -2,8 +2,8 @@
 var _rw = oLevel.cellRoomW,
     _rh = oLevel.cellRoomH;
     
-var xx = x + irandom_range(1, 2),
-    yy = y + irandom_range(1, 2);
+var xx = x + irandom_range(1, 1),
+    yy = y + irandom_range(1, 1);
     
 switch (size)
 {
@@ -34,4 +34,4 @@ case 3: // ##
     break;   
 }
 rm.number = oLevel.rcnt++;
-
+rm.par = id;

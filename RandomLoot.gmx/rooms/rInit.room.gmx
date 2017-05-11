@@ -37,8 +37,9 @@ enum EFFECTS
 
 enum ROOMS
 {
-    
-    __BOSS
+    __NONE = -1,
+    __SINGLE_PRISON_CELL = 0,
+    __PRISON_CELLS_SIZE_3,
 }   
 
 enum GAME_STATES
