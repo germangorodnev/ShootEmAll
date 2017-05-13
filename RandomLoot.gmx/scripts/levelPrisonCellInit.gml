@@ -117,7 +117,32 @@ if (pos & 1)
     tile_add(tlsPrisonCarpet, tw, th*2, tw*2, th, (x + 3)*tw-6, (y+3)*th+hf, oLevel.carpetD);
 }
 else
-    tile_add(tlsPrisonCarpet, 0, 0, tw * 3, th * 3, (x + 1)*tw, (y+1)*th, oLevel.carpetD);
+{
+    switch (choose(0, 1))
+    {
+    case 0:
+        var hf = -3;
+        var yof = (y+1)*th+hf;
+        tile_add(tlsPrisonCarpet, 0, 0, tw*2, th, (x)*tw-3, yof, oLevel.carpetD);
+        tile_add(tlsPrisonCarpet, tw, 0, tw, th, (x + 2)*tw-3, yof, oLevel.carpetD);
+        tile_add(tlsPrisonCarpet, tw, 0, tw*2, th, (x + 3)*tw-3, yof, oLevel.carpetD);
+        yof = (y+2)*th+hf;
+        tile_add(tlsPrisonCarpet, 0, th*1, tw*2, th, (x)*tw-3, yof, oLevel.carpetD);
+        tile_add(tlsPrisonCarpet, tw, th*1, tw, th, (x + 2)*tw-3, yof, oLevel.carpetD);
+        tile_add(tlsPrisonCarpet, tw, th*1, tw*2, th, (x + 3)*tw-3, yof, oLevel.carpetD);
+        yof = (y+3)*th+hf;
+        tile_add(tlsPrisonCarpet, 0, th*2, tw*2, th, (x)*tw-3, yof, oLevel.carpetD);
+        tile_add(tlsPrisonCarpet, tw, th*2, tw, th, (x + 2)*tw-3, yof, oLevel.carpetD);
+        tile_add(tlsPrisonCarpet, tw, th*2, tw*2, th, (x + 3)*tw-3, yof, oLevel.carpetD);
+        break;
+    case 1:
+        var hf = -3;
+        var yof = (y+1)*th+hf;
+        tile_add(tlsPrisonCarpet, 0, 0, tw*1, th*3, (x)*tw+tw/2, yof, oLevel.carpetD);
+        tile_add(tlsPrisonCarpet, tw*2, 0, tw*1, th*3, (x+1)*tw+tw/2, yof, oLevel.carpetD);
+        break;
+    }
+}
 
 // now indoor
 levelPrisonSetIndoor();

@@ -38,7 +38,7 @@ enum EFFECTS
 enum ROOMS
 {
     __NONE = -1,
-    __SINGLE_PRISON_CELL = 0,
+    __PRISON_CANTEEN_2W = 0,
     __PRISON_CELLS_SIZE_3,
 }   
 

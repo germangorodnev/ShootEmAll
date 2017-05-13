@@ -320,6 +320,9 @@
               <script>scripts\levelPrisonCellDoorInit.gml</script>
               <script>scripts\levelPrisonSetIndoor.gml</script>
             </scripts>
+            <scripts name="Canteen">
+              <script>scripts\levelPrisonCanteenInit.gml</script>
+            </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>
             <script>scripts\levelPrisonSetCloset.gml</script>
             <script>scripts\levelPrisonCreate4Cells.gml</script>
