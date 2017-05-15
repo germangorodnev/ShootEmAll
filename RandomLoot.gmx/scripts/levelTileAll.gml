@@ -47,84 +47,110 @@ for (var xx = 0; xx < ww; xx++)
                 if (!bottom)
                 {
                     if (bottomRight)
+                    {
                         tile_add(tlsWalls, tw*2, th*1, tw, th, tx+tw, ty, -ty-th*4);
+                        levelTileMark(xx+1, yy, TILES.__WALL);    
+                    }
                 }
                 else
                 {
                     tile_add(tlsWalls, tw*2, th*2, tw, th, tx+tw, ty, -ty-th);
+                    levelTileMark(xx+1, yy, TILES.__WALL);  
                 }    
-            /*if (left)
-                if (!bottom)
-                    tile_add(tlsWalls, tw*0, th*1, tw, th, tx-tw, ty, -ty-th);
-                else
-                    tile_add(tlsWalls, tw*0, th*2, tw, th, tx-tw, ty, -ty);*/
+
             if (left)
                 if (!bottom)
                 {
                     if (bottomLeft)
+                    {
                         tile_add(tlsWalls, tw*0, th*1, tw, th, tx-tw, ty, -ty-th*4);
+                        levelTileMark(xx-1, yy, TILES.__WALL);  
+                    }
                 }
                 else
                 {
                     tile_add(tlsWalls, tw*0, th*2, tw, th, tx-tw, ty, -ty-th);
+                    levelTileMark(xx-1, yy, TILES.__WALL);  
                 }
 
             if (top)
                 if (!topRight)
                 {
                     if (topLeft)
+                    {
                         tile_add(tlsWalls, tw*5, th*2, tw, th, tx, ty-th, -ty);
+                        levelTileMark(xx, yy-1, TILES.__WALL);  
+                    }
                 }
                 else if (!topLeft)
                 {
-                    //if (!topLeft)
-                        //tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty-th, -ty);
-                    //else
-                        tile_add(tlsWalls, tw*5, th*1, tw, th, tx, ty-th, -ty);                        
+                    tile_add(tlsWalls, tw*5, th*1, tw, th, tx, ty-th, -ty);  
+                    levelTileMark(xx, yy-1, TILES.__WALL);                                            
                 }
                 else
-                    tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty-th, -ty);
-                    //if (!left)
-                    //    tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty-th, -ty);
-                    //else if (!right)
-                    //    tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty-th, -ty);
-                        
+                {
+                    tile_add(tlsWalls, tw*1, th*0, tw, th, tx, ty-th, -ty);    
+                    levelTileMark(xx, yy-1, TILES.__WALL);                                            
+                }                    
                         
             if (bottom)
                 if (!bottomRight)
+                {
                     tile_add(tlsWalls, tw*4, th*2, tw, th, tx, ty, -ty-th*4);
+                    levelTileMark(xx, yy+1, TILES.__WALL);                                            
+                }
                 else if (!bottomLeft)
+                {
                     tile_add(tlsWalls, tw*3, th*2, tw, th, tx, ty, -ty-th*4);
+                    levelTileMark(xx, yy+2, TILES.__WALL);                                            
+                }
                 else
+                {
                     if (!left)
+                    {
                         tile_add(tlsWalls, tw*1, th*2, tw, th, tx, ty, -ty-th); 
+                        levelTileMark(xx, yy+1, TILES.__WALL);                                            
+                    }
                     else if (!right)   
+                    {
                         tile_add(tlsWalls, tw*1, th*2, tw, th, tx, ty, -ty-th); 
+                        levelTileMark(xx, yy+1, TILES.__WALL);                                            
+                    }
                     else
+                    {
                         tile_add(tlsWalls, tw*0, th*2, tw, th, tx, ty-th, -ty);
+                        //levelTileMark(xx, yy-1, TILES.__WALL);                                            
+                        levelTileMark(xx-1, yy, TILES.__WALL);                                            
+                    }
+                        
+                }
 
-            if (!bottomLeft && !bottomRight && bottom)
+            if (!bottomLeft && !bottomRight && bottom)              
+            {
                 tile_add(tlsWalls, tw*1, th*3, tw, th, tx, ty, -ty-th*5); 
+                levelTileMark(xx, yy, TILES.__WALL);
+            }
                          
             if (topRight)
                 if (top && right)
-                    tile_add(tlsWalls, tw*2, th*0, tw, th, tx + tw, ty - th, -ty-th*4); 
-                
+                {
+                    tile_add(tlsWalls, tw*2, th*0, tw, th, tx + tw, ty - th, -ty-th*4);
+                    levelTileMark(xx+1, yy-1, TILES.__WALL);
+                }
+
             if (topLeft)
                 if (top && left)
-                    tile_add(tlsWalls, tw*0, th*0, tw, th, tx - tw, ty - th, -ty-th*4); 
+                {
+                    tile_add(tlsWalls, tw*0, th*0, tw, th, tx - tw, ty - th, -ty-th*4);
+                    levelTileMark(xx-1, yy-1, TILES.__WALL);
+                }
                                        
             if (!topLeft && !topRight && top)
-                tile_add(tlsWalls, tw*0, th*3, tw, th, tx, ty-th, -ty);                 
-            
-            //if (top && topLeft && !topRight)
-            //    tile_add(tlsWalls, tw*2, th*2, tw, th, tx, ty-th, -ty);
-                          
+            {
+                tile_add(tlsWalls, tw*0, th*3, tw, th, tx, ty-th, -ty);    
+                levelTileMark(xx, yy-1, TILES.__WALL);
+            }                                      
         }
-        /*else if (tt == LEVEL.VOID || tt == LEVEL.WALL)
-        {
-            tile_add(tlsFloor, 0 * tw, 1 * th, tw, th, tx, ty, -oLevel.floorD);
-        }*/
     }
 }
 

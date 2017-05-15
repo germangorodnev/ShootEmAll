@@ -25,6 +25,17 @@ enum LEVEL
     SOLID = 1 &lt;&lt; 3  
 }
 
+enum TILES
+{
+    __NONE = 0,
+    __WALL,
+    __TABLE_LEFT,
+    __TABLE_HOR_CENT,
+    __TABLE_RIGHT,
+    __TABLE_VERT
+    
+}
+
 enum CANNOT
 {
     WALL = 1 &lt;&lt; 0
