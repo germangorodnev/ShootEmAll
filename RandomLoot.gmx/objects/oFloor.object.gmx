@@ -26,8 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
-w = 0;
-h = 0;
+rw = 0;
+rh = 0;
+tw = oLevel.tw;
+th = oLevel.th;
+
+cc = make_colour_hsv(10, 215, 100);
 </string>
           </argument>
         </arguments>
@@ -50,7 +54,8 @@ h = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_rectangle_colour(x, y, x + w, y + h, c_black, c_black, c_gray, c_white, 0);
+            <string>draw_rectangle_colour(x * tw, y * th, x * tw + rw * tw, y * th + rh * th, cc, cc, cc, cc, 0);
+
 </string>
           </argument>
         </arguments>

@@ -25,6 +25,30 @@ enum LEVEL
     SOLID = 1 &lt;&lt; 3  
 }
 
+enum TILES
+{
+    __NONE = -6,
+    __WALL = 0,
+    // prison
+    __PS_LEFT,
+    __PS_RIGHT,
+    __PS_TOP,
+    __PS_BOTTOM,
+    __PS_BOTTOM_RIGHT,
+    __PS_TOP_LEFT,
+    __BED_HL,
+    __BED_HR,
+    __BED_VT,
+    __BED_VB,
+    __CURBSTONE,
+    // canteen
+    __TABLE_LEFT,
+    __TABLE_HOR_CENT,
+    __TABLE_RIGHT,
+    __TABLE_VERT
+    
+}
+
 enum CANNOT
 {
     WALL = 1 &lt;&lt; 0
@@ -37,8 +61,11 @@ enum EFFECTS
 
 enum ROOMS
 {
-    
-    __BOSS
+    __NONE = -1,
+    __PRISON_CANTEEN_2W = 0,
+    __PRISON_CANTEEN_1W,
+    __PRISON_CELLS_SIZE_1,
+    __PRISON_CELLS_SIZE_3,
 }   
 
 enum GAME_STATES

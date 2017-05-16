@@ -8,4 +8,7 @@ with (argument[0])
     rh = argument[4];
     // tile it 
     bspTileRoom(rx, ry, rw, rh);
+    var rr = levelRoomAdd(rx, ry, rw, rh);
+    //rr.cc = make_colour_hsv(irandom(50), 50, irandom(255));
+    return rr;
 }

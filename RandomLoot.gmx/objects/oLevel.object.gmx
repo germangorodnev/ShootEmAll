@@ -38,9 +38,12 @@ maxRoomSize = 15;
 
 cnt = 0;
 leafs = ds_list_create();
+rcnt = 0;
 
 floorD = 100000;
+carpetD = 99999;
 
+toiletLeftoff = 5;
 
 ww = ceil(room_width / tw);
 hh = ceil(room_height / th)
@@ -48,16 +51,66 @@ hh = ceil(room_height / th)
 // grid
 level = ds_grid_create(ww, hh);
 ds_grid_set_region(level, 0, 0, ww, hh, LEVEL.VOID);
-/*for (var i = 0; i &lt; ww; i++)
+// collision indicies
+colLevel = ds_grid_create(ww, hh);
+for (var i = 0; i &lt; ww; i++)
 {
     for (var j = 0; j &lt; hh; j++)
     {
-        level[# i, j] = LEVEL.VOID;
+        colLevel[# i, j] = undefined;
     }
-}*/
+}
 
-bspGenerate();
-levelGridToTiles();
+
+// collision helper
+////////////////////////////////////////////////// r  t   l  b
+colOffset = ds_map_create();
+levelCollisionHelperInit(TILES.__WALL, 0, 0, 0, 0);
+// prison cells
+levelCollisionHelperInit(TILES.__PS_LEFT,          45, 0, 0, 0);
+levelCollisionHelperInit(TILES.__PS_RIGHT,         0, 0, 45, 0);
+levelCollisionHelperInit(TILES.__PS_TOP,           0, 50, 0, 0);
+levelCollisionHelperInit(TILES.__PS_BOTTOM,        0, 50, 0, 0);
+
+levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 50, 0, 0);
+levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 0, 45, 0);
+
+levelCollisionHelperInit(TILES.__BED_HL,           0, 25, 9, 0);
+levelCollisionHelperInit(TILES.__BED_HR,           13, 25, 0, 0);
+
+levelCollisionHelperInit(TILES.__BED_VT,           11, 18, 8, 0);
+levelCollisionHelperInit(TILES.__BED_VB,           11, 0, 8, 13);
+
+levelCollisionHelperInit(TILES.__CURBSTONE,        5, 40, 4, 0);
+
+//
+
+// canteen
+levelCollisionHelperInit(TILES.__TABLE_LEFT, 0, 20, 10, 0);
+levelCollisionHelperInit(TILES.__TABLE_HOR_CENT, 0, 20, 0, 0);
+levelCollisionHelperInit(TILES.__TABLE_RIGHT, 12, 20, 0, 0);
+
+levelCollisionHelperInit(TILES.__TABLE_VERT, 8, 0, 8, 0);
+
+
+// NEW
+cellW = 12;
+cellH = 12;
+cellRoomW = 10;
+cellRoomH = 10;
+prisonCellW = 5;
+prisonCellH = 4;
+// 2d array for graph
+cells = ds_list_create();
+cellsVis[0] = 0; //room_width div cellW * room_height div cellH
+
+
+
+levelGenerate();
+ds_list_destroy(cells);
+cellsVis = 0;
+
+
 </string>
           </argument>
         </arguments>
@@ -82,6 +135,32 @@ levelGridToTiles();
             <kind>1</kind>
             <string>ds_list_destroy(leafs);
 ds_grid_destroy(level);
+ds_list_destroy(cells);
+cellsVis = 0;
+ds_grid_destroy(colLevel);
+
+for (var i = 0; i &lt; ww; i++)
+    for (var j = 0; j &lt; hh; j++)
+    {
+        var list = colLevel[# i, j];
+        for (var l = 0, lc = ds_list_size(list); l &lt; lc; l++)
+            list[| l] = 0;
+            //ds_list_destroy(ds_list_find_value(colLevel[# i, j], l));
+        ds_list_destroy(list);
+    }
+    
+var first = ds_map_find_first(colOffset);
+for (var i = 0, sz = ds_map_size(colOffset); i &lt; sz; i++;)
+{
+    var list = colOffset[? first] = 0; 
+    for (var k = 0, lsize = ds_list_size(list); k &lt; lsize; k++)
+        list[| k] = 0; // clear the array
+    ds_list_destroy(list);
+    first = ds_map_find_next(colOffset, first);
+}
+
+     
+ds_map_destroy(colOffset);
 </string>
           </argument>
         </arguments>

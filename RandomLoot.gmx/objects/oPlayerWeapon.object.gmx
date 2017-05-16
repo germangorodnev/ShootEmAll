@@ -44,7 +44,7 @@ reloadCnt = 0;
 reloadTmrCnt = 0;
 reloadTmrNewbull = -1;
 reloadTmrBegin = -1;
-
+weaponMaxAngle = 6;
 hitCount = 0;
 
 animEnded = 0;

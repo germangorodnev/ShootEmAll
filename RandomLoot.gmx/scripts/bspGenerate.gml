@@ -1,6 +1,6 @@
 var ll = noone; // helper leaf
 
-// create the root leaf
+// create the root leafb
 var root = bspLeafCreate(0, 0, ww, hh);
 ds_list_add(leafs, root);
 var splitted = 1;
@@ -8,7 +8,7 @@ var splitted = 1;
 while (splitted)
 {
     splitted = 0;
-    for (var i = 0, cnt = ds_list_size(leafs); i < ds_list_size(leafs); i++)
+    for (var i = 0; i < ds_list_size(leafs); i++)
     {
         ll = leafs[| i];
         if (ll.leftChild == noone && ll.rightChild == noone)

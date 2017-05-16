@@ -149,12 +149,20 @@
       </sprites>
       <sprite>sprites\sExplosiveCrate</sprite>
     </sprites>
+    <sprites name="Prison Objects">
+      <sprite>sprites\sPrisonDoorTopBot</sprite>
+      <sprite>sprites\sPrisonDoorRight</sprite>
+      <sprite>sprites\sPrisonDoorLeft</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\tlsWalls</background>
     <background>background\tlsFloor</background>
     <background>background\tlsSlats</background>
     <background>background\tlsPrison</background>
+    <background>background\tlsPrisonSlats</background>
+    <background>background\tlsPrisonCarpet</background>
+    <background>background\tlsCanteen</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -163,6 +171,7 @@
         <script>scripts\colPlaceFree.gml</script>
         <script>scripts\colPositionFree.gml</script>
         <script>scripts\colPlaceFreeSide.gml</script>
+        <script>scripts\rectWithRect.gml</script>
       </scripts>
       <scripts name="Masks">
         <script>scripts\maskHitAdd.gml</script>
@@ -291,6 +300,7 @@
             <script>scripts\bspRoomCreate.gml</script>
             <script>scripts\bspGetRoom.gml</script>
             <script>scripts\bspTileRoom.gml</script>
+            <script>scripts\levelRoomsAreConnected.gml</script>
           </scripts>
           <scripts name="Halls">
             <script>scripts\bspHallCreate.gml</script>
@@ -298,14 +308,47 @@
           </scripts>
           <script>scripts\bspGenerate.gml</script>
         </scripts>
-        <scripts name="Prison">
-          <script>scripts\levelPrisonSetRandomBed.gml</script>
-          <script>scripts\levelPrisonSetCloset.gml</script>
+        <scripts name="New Gener">
+          <scripts name="Cells">
+            <script>scripts\levelCellCreate.gml</script>
+            <script>scripts\levelCellCreateRoom.gml</script>
+            <script>scripts\levelCellsConnected.gml</script>
+            <script>scripts\levelCellRoomsConnect.gml</script>
+          </scripts>
+          <scripts name="Prison">
+            <scripts name="Cells">
+              <script>scripts\levelPrisonCellInit.gml</script>
+              <script>scripts\levelPrisonCellGenerateDoor.gml</script>
+              <script>scripts\levelPrisonCellDoorInit.gml</script>
+              <script>scripts\levelPrisonSetIndoor.gml</script>
+              <script>scripts\levelPrisonSetFloor.gml</script>
+            </scripts>
+            <scripts name="Canteen">
+              <scripts name="Tables">
+                <script>scripts\levelPrisonCanteenCreateTableHor.gml</script>
+                <script>scripts\levelPrisonCanteenCreateTableVert.gml</script>
+              </scripts>
+              <script>scripts\levelPrisonCanteenInit.gml</script>
+            </scripts>
+            <script>scripts\levelPrisonSplitByCells.gml</script>
+            <script>scripts\levelPrisonSetCloset.gml</script>
+            <script>scripts\levelPrisonCreate4Cells.gml</script>
+          </scripts>
+          <scripts name="Bfs">
+            <script>scripts\bfsReset.gml</script>
+            <script>scripts\bfs.gml</script>
+          </scripts>
+          <script>scripts\levelGenerate.gml</script>
+          <script>scripts\levelTileAll.gml</script>
+          <script>scripts\levelGenerateRooms.gml</script>
+          <script>scripts\levelTileRooms.gml</script>
         </scripts>
         <script>scripts\levelGridToTiles.gml</script>
-        <script>scripts\levelGenerateRooms.gml</script>
+        <script>scripts\levelCollisionHelperInit.gml</script>
       </scripts>
       <script>scripts\levelFreeSolid.gml</script>
+      <script>scripts\levelRoomAdd.gml</script>
+      <script>scripts\levelTileMark.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -323,9 +366,18 @@
       <object>objects\oDamageTaker</object>
     </objects>
     <objects name="Game">
-      <objects name="BSP">
+      <objects name="Generation">
+        <objects name="New">
+          <object>objects\oCell</object>
+          <object>objects\oCellRoom</object>
+        </objects>
+        <objects name="Prison">
+          <object>objects\oPrisonCell</object>
+          <object>objects\oPrisonDoor</object>
+        </objects>
         <object>objects\oLeaf</object>
         <object>objects\oFloor</object>
+        <object>objects\oRoom</object>
       </objects>
       <object>objects\oLevel</object>
       <object>objects\oCamera</object>

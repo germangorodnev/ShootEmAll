@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10000</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -68,6 +68,8 @@ part_type_blend(global.bwzhuh, false);
 part_type_life(global.bwzhuh, 0.1 * room_speed, 0.2 * room_speed);    
 
 
+// PURE EBUG
+debugTopReal = 0;
 
 
 
@@ -185,6 +187,8 @@ for (var i = 0; i &lt;= room_width; i += LEVEL.TILE_W)
 }
 with (oExplosiveCrate)
     draw_text(x, bbox_top - 5, string(hp));
+    
+
 </string>
           </argument>
         </arguments>

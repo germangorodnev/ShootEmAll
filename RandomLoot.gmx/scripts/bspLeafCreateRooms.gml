@@ -10,7 +10,10 @@ with (argument[0])
             
         if (leftChild != noone && rightChild != noone)
         {
-            bspHallCreate(bspGetRoom(leftChild), bspGetRoom(rightChild));
+            var r1 = bspGetRoom(leftChild),
+                r2 = bspGetRoom(rightChild);
+            if (!levelRoomsAreConnected(r1, r2))
+                bspHallCreate(r1, r2);
         }
     }
     else
@@ -20,6 +23,7 @@ with (argument[0])
             roomSizeY = irandom_range(mrs, h - 2);
         var roomPosX = irandom_range(1, w - roomSizeX - 1),
             roomPosY = irandom_range(1, h - roomSizeY - 1);
-        bspRoomCreate(id, x + roomPosX, y + roomPosY, roomSizeX, roomSizeY);            
+        rm = bspRoomCreate(id, x + roomPosX, y + roomPosY, roomSizeX, roomSizeY);  
+        rm.number = oLevel.rcnt++;          
     }
 }
