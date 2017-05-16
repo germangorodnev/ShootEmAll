@@ -183,15 +183,12 @@ for (var i = 0; i &lt;= room_width; i += LEVEL.TILE_W)
     for (var j = 0; j &lt;= room_height; j += LEVEL.TILE_H)
     {
         draw_line_colour(0, j, room_width, j, c_black, c_black);
-        //if (oLevel.colLevel[# i div LEVEL.TILE_W, j div LEVEL.TILE_H] == TILES.__WALL)
-            //draw_rectangle_colour(i ,j , i + LEVEL.TILE_W, j + LEVEL.TILE_H, c_red,
-            //c_red, c_red, c_blue, 0);
     }
 }
 with (oExplosiveCrate)
     draw_text(x, bbox_top - 5, string(hp));
     
-draw_circle_colour(oPlayer.x, debugTopReal, 3, c_red, c_red, 0);
+
 </string>
           </argument>
         </arguments>

@@ -10,6 +10,8 @@ case 0: // door is on the right
         // bed
         //xx += irandom(1);
         tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, xx*tw, yy*th, (-yy-1)*th);
+        levelTileMark(xx, yy, TILES.__BED_VT);
+        levelTileMark(xx, yy+1, TILES.__BED_VB);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx, yy+1] |= LEVEL.SOLID;
         // curbstone
@@ -23,6 +25,8 @@ case 0: // door is on the right
         tile_add(tlsPrison, 0*tw, 2*th, tw*2, th, xx*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx+1, yy] |= LEVEL.SOLID;
+        levelTileMark(xx, yy, TILES.__BED_HL);
+        levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
         tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th);
         lvl[# xx - 1, yy] |= LEVEL.SOLID; 
@@ -43,6 +47,8 @@ case 2: // door is on the left
         tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, xx*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx, yy+1] |= LEVEL.SOLID;
+        levelTileMark(xx, yy, TILES.__BED_VT);
+        levelTileMark(xx, yy+1, TILES.__BED_VB);
         // curbstone
         tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-0.8)*tw, yy*th, -yy*th);
         lvl[# xx - 1, yy] |= LEVEL.SOLID;
@@ -54,6 +60,8 @@ case 2: // door is on the left
         tile_add(tlsPrison, 0*tw, 2*th, tw*2, th, xx*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx+1, yy] |= LEVEL.SOLID;
+        levelTileMark(xx, yy, TILES.__BED_HL);
+        levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
         tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th);
         lvl[# xx - 1, yy] |= LEVEL.SOLID; 
@@ -72,9 +80,11 @@ case 1: // top
         // bed
         yy++;
         xx -= irandom(1) * (!(pos & 1));
-        tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, (xx+.2)*tw, yy*th, (-yy-1)*th);
+        tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, (xx)*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx, yy+1] |= LEVEL.SOLID;
+        levelTileMark(xx, yy, TILES.__BED_VT);
+        levelTileMark(xx, yy+1, TILES.__BED_VB);
         // curbstone
         tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx+.1)*tw, (yy-1)*th, -yy*th);
         lvl[# xx, yy - 1] |= LEVEL.SOLID;
@@ -87,6 +97,8 @@ case 1: // top
         tile_add(tlsPrison, 0*tw, 2*th, tw*2, th, (xx+.2)*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx+1, yy] |= LEVEL.SOLID;
+        levelTileMark(xx, yy, TILES.__BED_HL);
+        levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
         tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx+.3)*tw, (yy-1)*th, -yy*th);
         lvl[# xx, yy - 1] |= LEVEL.SOLID; 
@@ -105,9 +117,11 @@ case 3: // bottom
         // bed
         //xx -= (pos & 1 == 0)
         xx++;
-        tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, (xx+.2)*tw, yy*th, (-yy-1)*th);
+        tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, (xx)*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx, yy+1] |= LEVEL.SOLID;
+        levelTileMark(xx, yy, TILES.__BED_VT);
+        levelTileMark(xx, yy+1, TILES.__BED_VB);
         // curbstone
         tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-0.8)*tw, (yy)*th, -yy*th);
         lvl[# xx-1, yy] |= LEVEL.SOLID;
@@ -116,9 +130,11 @@ case 3: // bottom
         break;
     case 1: // horizontal one
         xx++;
-        tile_add(tlsPrison, 0*tw, 2*th, tw*2, th, (xx+0.2)*tw, yy*th, (-yy-1)*th);
+        tile_add(tlsPrison, 0*tw, 2*th, tw*2, th, (xx)*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx+1, yy] |= LEVEL.SOLID;
+        levelTileMark(xx, yy, TILES.__BED_HL);
+        levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
         tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, (yy)*th, -yy*th);
         lvl[# xx-1, yy] |= LEVEL.SOLID; 

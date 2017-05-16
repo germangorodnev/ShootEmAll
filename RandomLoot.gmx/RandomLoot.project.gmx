@@ -162,6 +162,7 @@
     <background>background\tlsPrison</background>
     <background>background\tlsPrisonSlats</background>
     <background>background\tlsPrisonCarpet</background>
+    <background>background\tlsCanteen</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -338,6 +339,7 @@
           <script>scripts\levelTileRooms.gml</script>
         </scripts>
         <script>scripts\levelGridToTiles.gml</script>
+        <script>scripts\levelCollisionHelperInit.gml</script>
       </scripts>
       <script>scripts\levelFreeSolid.gml</script>
       <script>scripts\levelRoomAdd.gml</script>

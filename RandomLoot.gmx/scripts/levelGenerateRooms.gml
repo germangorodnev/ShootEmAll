@@ -39,27 +39,46 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
             break;
             
         case 1: // canteen
-            if (par.size != 1)
-                continue;
-            type = ROOMS.__PRISON_CANTEEN_2W;
-            // set the floor
-            for (var i = x, ci = x + rw; i < ci; i++)
+            switch (par.size)
             {
-                for (var j = y, cj = y + rh; j < cj; j++)
+            case 5: // #
+                type = ROOMS.__PRISON_CANTEEN_1W;
+                for (var i = x, ci = x + rw; i < ci; i++)
                 {
-                    var xx = i * tw,
-                        yy = j * th;
-                    // fill with the floor
-                    lvl[# i, j] |= LEVEL.FLOOR;
-                    var tl = tile_layer_find(oLevel.floorD, xx, yy);
-                    if (tl != -1)
-                        tile_delete(tl);
-                    tile_add(tlsPrison, tw * 3, 0, tw, th, xx, yy, oLevel.floorD);
+                    for (var j = y, cj = y + rh; j < cj; j++)
+                    {
+                        var xx = i * tw,
+                            yy = j * th;
+                        // fill with the floor
+                        lvl[# i, j] |= LEVEL.FLOOR;
+                        var tl = tile_layer_find(oLevel.floorD, xx, yy);
+                        if (tl != -1)
+                            tile_delete(tl);
+                        tile_add(tlsCanteen, tw * choose(1,2), 0, tw, th, xx, yy, oLevel.floorD);
+                    }
                 }
+                levelPrisonCanteenInit();            
+                break;
+            case 1: // ##
+                type = ROOMS.__PRISON_CANTEEN_2W;
+                // set the floor
+                for (var i = x, ci = x + rw; i < ci; i++)
+                {
+                    for (var j = y, cj = y + rh; j < cj; j++)
+                    {
+                        var xx = i * tw,
+                            yy = j * th;
+                        // fill with the floor
+                        lvl[# i, j] |= LEVEL.FLOOR;
+                        var tl = tile_layer_find(oLevel.floorD, xx, yy);
+                        if (tl != -1)
+                            tile_delete(tl);
+                        tile_add(tlsCanteen, tw * choose(1,2), 0, tw, th, xx, yy, oLevel.floorD);
+                    }
+                }
+                levelPrisonCanteenInit();
+                break;
             }
-            //split free space on cells
-            // all other cells are actual cells
-            levelPrisonCanteenInit();
             break;
             
         case 2: // leave blank

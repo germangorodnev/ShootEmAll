@@ -22,36 +22,26 @@ if (!onleft)
     if (!ontop)
     {
         if (choose(0, 1))
-        {
             // door on the left
             levelPrisonCellGenerateDoor(2);
-        }
         else
-        {
             // door on the top
             levelPrisonCellGenerateDoor(1);
-        }
     }
     else
     {
         if (!onbottom)
         {
             if (choose(0, 1))
-            {
                 // door on the left
                 levelPrisonCellGenerateDoor(2);
-            }
             else
-            {
                 // door on the bottom
                 levelPrisonCellGenerateDoor(3);
-            }
         }
         else
-        {
             // door on the left
             levelPrisonCellGenerateDoor(2);
-        }
     }   
 }
 if (!onright)
@@ -59,36 +49,26 @@ if (!onright)
     if (!ontop)
     {
         if (choose(0, 1))
-        {
             // door on the right
             levelPrisonCellGenerateDoor(0);
-        }
         else
-        {
             // door on the top
             levelPrisonCellGenerateDoor(1);
-        }
     }
     else
     {
         if (!onbottom)
         {
             if (choose(0, 1))
-            {
                 // door on the right
                 levelPrisonCellGenerateDoor(0);
-            }
             else
-            {
                 // door on the bottom
                 levelPrisonCellGenerateDoor(3);
-            }
         }
         else
-        {
             // door on the right
             levelPrisonCellGenerateDoor(0);
-        }
     }   
 }
 

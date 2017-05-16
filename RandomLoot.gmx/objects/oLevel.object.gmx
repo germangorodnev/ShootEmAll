@@ -53,37 +53,39 @@ level = ds_grid_create(ww, hh);
 ds_grid_set_region(level, 0, 0, ww, hh, LEVEL.VOID);
 // collision indicies
 colLevel = ds_grid_create(ww, hh);
-ds_grid_set_region(colLevel, 0, 0, ww, hh, TILES.__NONE);
+for (var i = 0; i &lt; ww; i++)
+{
+    for (var j = 0; j &lt; hh; j++)
+    {
+        colLevel[# i, j] = undefined;
+    }
+}
+
 
 // collision helper
+////////////////////////////////////////////////// r  t   l  b
 colOffset = ds_map_create();
-var arr;
-arr[3] = 0;
-arr[0] = 0;
-arr[1] = 0;
-arr[2] = 0;
-ds_map_add(colOffset, TILES.__WALL, arr);
+levelCollisionHelperInit(TILES.__WALL, 0, 0, 0, 0);
+// prison cells
+levelCollisionHelperInit(TILES.__PS_LEFT,          45, 0, 0, 0);
+levelCollisionHelperInit(TILES.__PS_RIGHT,         0, 0, 45, 0);
+levelCollisionHelperInit(TILES.__PS_TOP,           0, 50, 0, 0);
+levelCollisionHelperInit(TILES.__PS_BOTTOM,        0, 50, 0, 0);
 
-arr = 0;
-arr[0] = 0;
-arr[1] = 20;
-arr[2] = 10;
-arr[3] = 0;
-ds_map_add(colOffset, TILES.__TABLE_LEFT, arr);
+levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 50, 0, 0);
+levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 0, 45, 0);
 
-arr = 0;
-arr[0] = 0;
-arr[1] = 20;
-arr[2] = 0;
-arr[3] = 0;
-ds_map_add(colOffset, TILES.__TABLE_HOR_CENT, arr);
+levelCollisionHelperInit(TILES.__BED_HL,  0, 25, 9, 0);
+levelCollisionHelperInit(TILES.__BED_HR,  13, 25, 0, 0);
 
-arr = 0;
-arr[0] = 10;
-arr[1] = 20;
-arr[2] = 0;
-arr[3] = 0;
-ds_map_add(colOffset, TILES.__TABLE_RIGHT, arr);
+levelCollisionHelperInit(TILES.__BED_VT,  11, 18, 8, 0);
+levelCollisionHelperInit(TILES.__BED_VB,  11, 0, 8, 13);
+
+// canteen
+levelCollisionHelperInit(TILES.__TABLE_LEFT, 0, 20, 10, 0);
+levelCollisionHelperInit(TILES.__TABLE_HOR_CENT, 0, 20, 0, 0);
+levelCollisionHelperInit(TILES.__TABLE_RIGHT, 12, 20, 0, 0);
+
 
 
 // NEW
@@ -97,10 +99,13 @@ prisonCellH = 4;
 cells = ds_list_create();
 cellsVis[0] = 0; //room_width div cellW * room_height div cellH
 
-levelGenerate();
 
-//bspGenerate();
-//levelGridToTiles();
+
+levelGenerate();
+ds_list_destroy(cells);
+cellsVis = 0;
+
+
 </string>
           </argument>
         </arguments>
@@ -129,12 +134,26 @@ ds_list_destroy(cells);
 cellsVis = 0;
 ds_grid_destroy(colLevel);
 
-var first = ds_map_find_first(inventory);
+for (var i = 0; i &lt; ww; i++)
+    for (var j = 0; j &lt; hh; j++)
+    {
+        var list = colLevel[# i, j];
+        for (var l = 0, lc = ds_list_size(list); l &lt; lc; l++)
+            list[| l] = 0;
+            //ds_list_destroy(ds_list_find_value(colLevel[# i, j], l));
+        ds_list_destroy(list);
+    }
+    
+var first = ds_map_find_first(colOffset);
 for (var i = 0, sz = ds_map_size(colOffset); i &lt; sz; i++;)
 {
-    colOffset[? first] = 0; // clear the array
+    var list = colOffset[? first] = 0; 
+    for (var k = 0, lsize = ds_list_size(list); k &lt; lsize; k++)
+        list[| k] = 0; // clear the array
+    ds_list_destroy(list);
     first = ds_map_find_next(colOffset, first);
 }
+
      
 ds_map_destroy(colOffset);
 </string>

@@ -27,8 +27,20 @@ enum LEVEL
 
 enum TILES
 {
-    __NONE = 0,
-    __WALL,
+    __NONE = -6,
+    __WALL = 0,
+    // prison
+    __PS_LEFT,
+    __PS_RIGHT,
+    __PS_TOP,
+    __PS_BOTTOM,
+    __PS_BOTTOM_RIGHT,
+    __PS_TOP_LEFT,
+    __BED_HL,
+    __BED_HR,
+    __BED_VT,
+    __BED_VB,
+    // canteen
     __TABLE_LEFT,
     __TABLE_HOR_CENT,
     __TABLE_RIGHT,
@@ -50,6 +62,7 @@ enum ROOMS
 {
     __NONE = -1,
     __PRISON_CANTEEN_2W = 0,
+    __PRISON_CANTEEN_1W,
     __PRISON_CELLS_SIZE_3,
 }   
 
