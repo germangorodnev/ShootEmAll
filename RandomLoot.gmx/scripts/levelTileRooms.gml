@@ -11,6 +11,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
             continue;
             break;
         case ROOMS.__PRISON_CELLS_SIZE_3:
+        case ROOMS.__PRISON_CELLS_SIZE_1:
             /*
             // PRISON //
             */

@@ -40,6 +40,7 @@ enum TILES
     __BED_HR,
     __BED_VT,
     __BED_VB,
+    __CURBSTONE,
     // canteen
     __TABLE_LEFT,
     __TABLE_HOR_CENT,
@@ -63,6 +64,7 @@ enum ROOMS
     __NONE = -1,
     __PRISON_CANTEEN_2W = 0,
     __PRISON_CANTEEN_1W,
+    __PRISON_CELLS_SIZE_1,
     __PRISON_CELLS_SIZE_3,
 }   
 

@@ -321,8 +321,13 @@
               <script>scripts\levelPrisonCellGenerateDoor.gml</script>
               <script>scripts\levelPrisonCellDoorInit.gml</script>
               <script>scripts\levelPrisonSetIndoor.gml</script>
+              <script>scripts\levelPrisonSetFloor.gml</script>
             </scripts>
             <scripts name="Canteen">
+              <scripts name="Tables">
+                <script>scripts\levelPrisonCanteenCreateTableHor.gml</script>
+                <script>scripts\levelPrisonCanteenCreateTableVert.gml</script>
+              </scripts>
               <script>scripts\levelPrisonCanteenInit.gml</script>
             </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>

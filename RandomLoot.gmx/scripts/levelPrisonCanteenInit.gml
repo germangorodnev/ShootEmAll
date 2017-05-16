@@ -1,39 +1,88 @@
 //firstly - tables
 var xs = x,
-    ys = y + 2,
+    ys = y+2,
     lvl = oLevel.level,
     collvl = oLevel.colLevel;
 
-switch (choose(0, 0))
+switch (choose(0, 1)) // vert\hor tables
 {
 case 0: // horizontal tables
-    var xstartoff = 3,
-        xbetw = 4;
+    // size == 2
+    xs = x + 3;
+    var cols = 4,
+        rows = 3,
+        xbetw = 4,
+        ybetw = 2,
+        yoff = 2;
     if (par.size == 0)
-        xstartoff = 1;
-    for (var hcnt = 0; hcnt < 4; hcnt++)
     {
-        for (var ypos = ys, ymax = ys + 5; ypos < ymax; ypos += 2)
+        yoff = 3;
+        xs = x + 1;
+        cols = 2;
+        rows = 3;
+
+    }
+    repeat (cols)
+    {
+        ys = y + yoff;
+        repeat (rows)
         {
-            for (var i = xs + xstartoff, ci = xs ; i < ci; i++)
-            {
-                lvl[# i, ypos] |= LEVEL.SOLID;
-                //levelTileMark(i, ypos, TILES.__TABLE_HOR);
-                tile_add(tlsPrison, tw*2, 0, tw, th, i*tw, ypos*th-irandom_range(9, 17), -ypos*th+14);
-                var ypp = (ypos+1)*th-irandom_range(15, 20);
-                tile_add(tlsPrison, tw*2, 0, tw, th, i*tw, ypp, -ypp-th/1.5);
-            }
-            tile_add(tlsPrison, 0, th, tw*3, th, xs*tw, ypos*th, -ypos*th-th);
-            levelTileMark(xs, ypos, TILES.__TABLE_LEFT);
-            levelTileMark(xs+1, ypos, TILES.__TABLE_HOR_CENT);
-            levelTileMark(xs+2, ypos, TILES.__TABLE_RIGHT);
+            levelPrisonCanteenCreateTableHor(xs, ys);
+            ys += ybetw;
         }
-        xs += 4;
+        xs += xbetw;
     }
     break;
     
 case 1:
-    
+    // size == 2
+    var cols = 9,
+        rows = 2,
+        xbetw = 2,
+        ybetw = 4,
+        yoff = 1;
+    xs = x + 2;
+    if (par.size == 0)
+    {
+        xs = x + irandom_range(1, 2);
+        yoff = 1;
+        cols = 4;
+        rows = 2;
+    }
+    repeat (cols)
+    {
+        ys = y + yoff;
+        repeat (rows)
+        {
+            levelPrisonCanteenCreateTableVert(xs, ys);
+            ys += ybetw;
+        }
+        xs += xbetw;
+    } 
     break;
     
 }
+
+// now some posters
+var dpt = -y*th-1;
+repeat(irandom_range(2, 4))
+{
+    var xp = x+1,
+        yp = y-1;
+    do
+    {
+        xp = irandom_range(x+1, x+rw-2);
+    } until (tile_layer_find(dpt, xp*tw, yp*tw) == -1
+        && lvl[# xp, yp] & LEVEL.WALL);
+    var tly = th * irandom(1),
+        tlx = 0;
+    if (tly == 0)
+    {
+        tlx = tw*3 + irandom(2)*tw;
+    }
+    else if (tly == th)
+    {
+        tlx = tw + irandom(3)*tw;    
+    }
+    tile_add(tlsCanteen, tlx, tly, tw, th, xp*tw, yp*th, dpt);
+}   
