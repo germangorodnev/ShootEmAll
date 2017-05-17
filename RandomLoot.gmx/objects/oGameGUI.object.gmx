@@ -291,6 +291,14 @@ case AMMO.__BORIAN:
 }
 
 
+
+
+
+/////// ABILITIES
+for (var i = 0, ic = oPlayer.abilCount; i &lt; ic; i++)
+{
+    draw_sprite_ext(sAbilities, oPlayer.abilsIco[i], abX - abBX*i - abW, abY, 1, 1, 0, image_blend, image_alpha); 
+}
 </string>
           </argument>
         </arguments>

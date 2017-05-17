@@ -5,9 +5,15 @@ switch (pattern)
 {
 case ENEMY_PATTERN.__PATROL:
     enemySetState(ENEMY_STATE.__WALK);
-
-        mX = x + irandom(100) * choose(-1, 1);    
-        mY = y + irandom(100) * choose(-1, 1);    
+    mX = x + irandom(100) * choose(-1, 1);    
+    mY = y + irandom(100) * choose(-1, 1);    
     //} until (!place_meeting(mX, mY, oSolidObject)); 
     break;
+    
+case ENEMY_PATTERN.__FOLLOW:
+    target = argument[1];
+    enemySetState(ENEMY_STATE.__FOLLOW);
+    mX = target.x; 
+    mY = target.y;  
+    break;  
 }

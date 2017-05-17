@@ -14,7 +14,8 @@ case WEAPON_TYPE.__MELEE:
 /* ******************************************************** RANGE ***********************************************************/    
 case WEAPON_TYPE.__RANGE:
     // create some bulleetz
-    weaponObj.image_angle = point_direction(x, y, oPlayer.x, oPlayer.y);
+    angle = point_direction(x, y, oPlayer.x, oPlayer.y);
+    xsc = (oPlayer.x > x) * 2 - 1;
     switch (weapon)
     {
     case WEAPONS.__CUSTOM:
@@ -39,7 +40,8 @@ case WEAPON_TYPE.__RANGE:
                 bb.damage = irandom_range(mindmg, maxdmg);   
             }
             bb.direction = angle + irandom(sprayAngle);       
-            bb.speed = projectileSpeed;   
+            bb.speed = projectileSpeed;  
+            bb.parent = id; 
             with (bb)
                 projectileInited();      
         }

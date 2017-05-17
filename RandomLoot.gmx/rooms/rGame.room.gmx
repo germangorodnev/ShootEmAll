@@ -60,7 +60,6 @@
     <instance objName="oPickupWeapon" x="496" y="512" name="inst_C4F624E6" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__COPPER_DEVIL);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="288" y="272" name="inst_3B02D2CA" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__STICK);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="236" y="328" name="inst_045E5E11" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__ARIA_ARTH);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPillow" x="924" y="324" name="inst_EB7086E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="580" y="552" name="inst_D35F779E" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__ROMAN_MG, 80);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="508" y="560" name="inst_858FB6CC" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__NOVA_M, 20);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="436" y="580" name="inst_CFBC7D06" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__BORIAN_BULG, 5);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -81,10 +80,6 @@
     <instance objName="oPickupMoney" x="552" y="688" name="inst_3849DD73" locked="0" code="pickupableInit(PICKUP.__MONEY, 10);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupHP" x="492" y="324" name="inst_BB55B4C3" locked="0" code="pickupableInit(PICKUP.__HP, 1);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupHP" x="408" y="340" name="inst_417D8499" locked="0" code="pickupableInit(PICKUP.__HP, 2);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPillow" x="1072" y="336" name="inst_8D7B2EDB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPillow" x="904" y="140" name="inst_125D0975" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPillow" x="992" y="464" name="inst_D9F56FA6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPillow" x="1120" y="236" name="inst_E47B5D31" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oBuddyTest" x="748" y="556" name="inst_03D4922C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oBuddyTest" x="664" y="624" name="inst_1D420516" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="348" y="416" name="inst_9090D49F" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__RAZORBLADE);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

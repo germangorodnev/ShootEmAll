@@ -19,7 +19,7 @@ with (weaponObj)
         break;
     case WEAPON_STATES.__RANGE_SHOT:
         canAttack = 0;
-        canAttackTmr = parent.weaponInf[W_PR.__SHOOT_CD];
+        canAttackTmr = parent.shootcd; //parent.weaponInf[W_PR.__SHOOT_CD];
         
         sprite_index = parent.weaponSprite[1];
         anImageSpeed = parent.weaponAnimSpeed[1];

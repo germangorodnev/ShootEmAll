@@ -221,6 +221,9 @@
         <script>scripts\playerWeaponComboIncrease.gml</script>
         <script>scripts\weaponFleeAngleSet.gml</script>
       </scripts>
+      <scripts name="Abilities">
+        <script>scripts\abilityAdd.gml</script>
+      </scripts>
     </scripts>
     <scripts name="Debug">
       <script>scripts\debugInit.gml</script>
@@ -240,6 +243,7 @@
       <script>scripts\approach.gml</script>
       <script>scripts\physicalOnOneLine.gml</script>
       <script>scripts\outsideRoom.gml</script>
+      <script>scripts\collisionLine.gml</script>
     </scripts>
     <scripts name="Pickupable">
       <script>scripts\pickupableInit.gml</script>
@@ -262,6 +266,7 @@
       <script>scripts\gameGetRandomWeapon.gml</script>
       <script>scripts\gameGetString.gml</script>
       <script>scripts\gameEffectCreate.gml</script>
+      <script>scripts\gameEnemyGetObjectById.gml</script>
     </scripts>
     <scripts name="Bullets">
       <script>scripts\projectileInited.gml</script>
@@ -342,6 +347,7 @@
           <script>scripts\levelTileAll.gml</script>
           <script>scripts\levelGenerateRooms.gml</script>
           <script>scripts\levelTileRooms.gml</script>
+          <script>scripts\levelCreateEnemy.gml</script>
         </scripts>
         <script>scripts\levelGridToTiles.gml</script>
         <script>scripts\levelCollisionHelperInit.gml</script>
@@ -408,9 +414,9 @@
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>
+      <object>objects\oEnemyWeapon</object>
       <object>objects\oPillow</object>
       <object>objects\oBuddyTest</object>
-      <object>objects\oEnemyWeapon</object>
       <object>objects\oEnemyBullet</object>
     </objects>
     <objects name="Masks">

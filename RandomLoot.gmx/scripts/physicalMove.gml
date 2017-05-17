@@ -13,6 +13,8 @@ if (vspd != 0)
     {
         if (colPlaceFree(x, y + s, clw))
             y += pl;
+        else 
+            break;
     }
 }    
 if (hspd != 0)
@@ -24,6 +26,8 @@ if (hspd != 0)
     {
         if (colPlaceFree(x + s, y, clw))
             x += pl;
+        else
+            break;
     }
 }
 

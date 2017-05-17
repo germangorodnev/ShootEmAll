@@ -35,7 +35,7 @@ enum TILES
     __PS_TOP,
     __PS_BOTTOM,
     __PS_BOTTOM_RIGHT,
-    __PS_TOP_LEFT,
+    __PS_BOTTOM_LEFT,
     __BED_HL,
     __BED_HR,
     __BED_VT,
@@ -57,6 +57,11 @@ enum CANNOT
 enum EFFECTS
 {
     __BULLET_WZHUH = 0,
+}
+
+enum ABILITIES
+{
+    __DASH = 0
 }
 
 enum ROOMS
@@ -232,6 +237,7 @@ enum ENEMY_STATE
     __IDLE = 0,
     __WALK,
     __ATTACK,
+    __FOLLOW,
     __CUCKED
 }
 
@@ -250,6 +256,7 @@ enum ENEMY_PATTERN
 {
     __NONE = 0,
     __PATROL,
+    __FOLLOW
 }
 
 enum ENEMY_ANIM

@@ -54,8 +54,8 @@ maskHitAdd(7, 6, 36, 53, 1);
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sprite_index;
 anims[ENEMY_ANIM.__CUCKED] = sEnemyPillowCucked;
-    
-enemyStartPattern(ENEMY_PATTERN.__PATROL);
+enemySetState(ENEMY_STATE.__IDLE);
+//enemyStartPattern(ENEMY_PATTERN.__PATROL);
 
 
 </string>
@@ -122,17 +122,9 @@ if (weapon != WEAPONS.__NONE)
                 image_angle = perc * anMaxAngle;
         }
         weaponObj.xsc = xsc;
-        if (vecdir &lt; 0)
-        {
-            weaponObj.depth = depth + 1;
-        }
-        else
-        {
-            weaponObj.depth = depth - 1;
-        }
         break;
     case WEAPON_TYPE.__RANGE:
-        weaponObj.image_yscale = sign(xsc);
+        weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
         weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
         //weaponObj.xsc = xsc;
         if (angle &gt; 0 &amp;&amp; angle &lt; 180)
@@ -180,6 +172,8 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
     enemySetState(ENEMY_STATE.__DIE);
 }
 
+idleTmr++;
+
 masksMove();
 
 switch (state)
@@ -194,9 +188,55 @@ case ENEMY_STATE.__IDLE:
         if (enemyCanAttack())
         {
             enemyAttack();
+            // now we follow the player
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+        }
+    }
+    if (target != noone)
+    {
+        angle = point_direction(x, y, oPlayer.x, oPlayer.y);        
+        if (idleTmr &gt; 2 * room_speed)
+        {
+            enemySetState(ENEMY_STATE.__WALK);
+            var try = 0,
+                dtw = dist / LEVEL.TILE_W;
+            do
+            {
+                mX = target.x + irandom_range(-(dtw - 20), dtw - 20);
+                mY = target.y + irandom_range(-(dtw - 20), dtw - 20);
+            } until (colPlaceFree(mX, mY, collideWith) &amp;&amp; try &lt; 6);
         }
     }
     break;
+    
+case ENEMY_STATE.__FOLLOW:
+    procedureAnimableProceed();    
+    physicalBeginStep();
+    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    targetDist = distance_to_object(target);
+    if (done || targetDist &lt;= dist)
+    {
+        // wow we're actually done
+        enemySetState(ENEMY_STATE.__IDLE);
+        exit;
+    }
+    detect = enemyDetectPlayer();
+    if (detect == 1)
+    {
+        // well, maybe shoot
+        if (enemyCanAttack())
+        {
+            enemyAttack();
+        }
+    }
+    else
+    {
+        if (detect == -1)
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+    }
+    physicalMove(collideWith);
+    break;    
+    
 case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
     physicalBeginStep();
@@ -204,17 +244,22 @@ case ENEMY_STATE.__WALK:
     if (done)
     {
         // wow we're actually done
-        enemyStartPattern(ENEMY_PATTERN.__PATROL);
+        enemySetState(ENEMY_STATE.__IDLE);
         exit;
     }
     detect = enemyDetectPlayer();
-    if (detect)
+    if (detect == 1)
     {
         // well, maybe shoot
         if (enemyCanAttack())
         {
             enemyAttack();
         }
+    }
+    else
+    {
+        if (detect == -1)
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
     physicalMove(collideWith);
     break;
@@ -309,8 +354,18 @@ case ENEMY_STATE.__DIE:
             <string>if (!drawable)
     exit;
 enemyDebug();
-procedureAnimableDrawPerson();
-
+if (vecdir &lt; 0)
+{
+    with (weaponObj)
+        event_perform(ev_other, ev_user3);
+    procedureAnimableDrawPerson();
+}   
+else
+{
+    procedureAnimableDrawPerson();
+    with (weaponObj)
+        event_perform(ev_other, ev_user3);
+}
 </string>
           </argument>
         </arguments>

@@ -1,6 +1,7 @@
 ///enemySetState(ENEMY_STATE.__)
 state = argument[0];
 hittable = 1;
+idleTmr = 0;
 
 switch (state)
 {
@@ -16,6 +17,19 @@ case ENEMY_STATE.__WALK:
 case ENEMY_STATE.__ATTACK:
 
     break;
+    
+case ENEMY_STATE.__FOLLOW:
+    if (instance_exists(target))
+    {
+        mX = target.x; 
+        mY = target.y;   
+    }
+    else
+    {
+        target = noone;
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);
+    }   
+    break;  
     
 case ENEMY_STATE.__CUCKED:
     sprite_index = anims[ENEMY_ANIM.__CUCKED];

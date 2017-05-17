@@ -7,6 +7,7 @@ APPROACH:
 5. tile everything 
 6. create zones\rooms
 7. tile new rooms
+8. generate enemies
 */
 
 // Phase 1 - splitting
@@ -186,6 +187,7 @@ levelGenerateRooms();
 
 // Phase 7 - tile the rooms
 levelTileRooms();
+
 
 with (oCell)
     instance_destroy();

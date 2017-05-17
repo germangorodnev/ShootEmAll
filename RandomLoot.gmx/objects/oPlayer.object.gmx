@@ -95,6 +95,13 @@ ky1 = 0;
 kx2 = 0;
 ky2 = 0;
 
+// abilities
+abilCount = 0;
+abils[0] = 0;
+abilsTmr[0] = -1;
+abilsIco[0] = 0;
+abilityAdd(ABILITIES.__DASH);
+
 // gui 
 pwId = noone;
 pwType = "";
@@ -174,17 +181,8 @@ if (weapon != WEAPONS.__NONE)
                 var perc = anAngle / anMaxAngle;
                 with(weaponObj)
                     image_angle = perc * anMaxAngle;
-            }
-                
+            }                
             weaponObj.xsc = xsc;
-            /*if (mouse_y &lt; y)
-            {
-                weaponObj.depth = depth + 1;
-            }
-            else
-            {
-                weaponObj.depth = depth - 1;
-            }*/
             break;
             
         }
@@ -231,6 +229,8 @@ if (cuckTmr &amp;&amp; !--cuckTmr)
 {
     cuckTmr = -1;
 }
+
+hp = median(0, hp, _hp);
 
 weaponRestore();
 masksMove();

@@ -74,7 +74,7 @@ if (!onright)
 
 // concrete
 for (var i = x; i < x + rw; i++)
-    for (var j = y; j < y + rh; j++)
+    for (var j = y+1; j < y + rh; j++)
     {
         var tile = tile_layer_find(oLevel.floorD, i*tw, j*th);
         if (tile != -1)

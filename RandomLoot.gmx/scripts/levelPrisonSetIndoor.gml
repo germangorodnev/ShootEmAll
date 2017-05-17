@@ -20,6 +20,8 @@ case 0: // door is on the right
         lvl[# xx + 1, yy] |= LEVEL.SOLID;
         // toilet
         tile_add(tlsPrison, 0, 0, tw, th, (xx+irandom_range(2, 3))*tw, (yy-0.8)*th, -(yy)*th-1-1*(pos == 3));                   
+        // enemy
+        levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, ENEMY.__PILLOW);
         break;
     case 1: // horizontal one
         xx = x+2;
@@ -34,6 +36,7 @@ case 0: // door is on the right
         lvl[# xx - 1, yy] |= LEVEL.SOLID; 
         // toilet
         tile_add(tlsPrison, tw, 0, tw, th, (xx-1)*tw-oLevel.toiletLeftoff, (yy+1)*th, -yy*th);                   
+        levelCreateEnemy((xx)*tw+tw/2, (yy+1)*th+tw/2, ENEMY.__PILLOW);
         break;
     }
     break;
@@ -84,7 +87,7 @@ case 1: // top
         // bed
         yy++;
         xx -= irandom(1) * (!(pos & 1));
-        tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, (xx)*tw, yy*th, (-yy-1)*th);
+        tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, (xx+.1)*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx, yy+1] |= LEVEL.SOLID;
         levelTileMark(xx, yy, TILES.__BED_VT);
@@ -94,7 +97,7 @@ case 1: // top
         levelTileMark(xx, yy-1, TILES.__CURBSTONE);
         lvl[# xx, yy - 1] |= LEVEL.SOLID;
         // toilet
-        tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-1.8)*th, -(yy)*th-1*(pos == 2));                   
+        tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-1.8)*th, -(y+1)*th-2);                   
         break;
     case 1: // horizontal one
         xx -= !(pos & 1);
@@ -105,11 +108,11 @@ case 1: // top
         levelTileMark(xx, yy, TILES.__BED_HL);
         levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx)*tw, (yy-1)*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx+.2)*tw, (yy-1)*th, -yy*th-5);
         levelTileMark(xx, yy-1, TILES.__CURBSTONE);
         lvl[# xx, yy - 1] |= LEVEL.SOLID; 
         // toilet
-        tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-1.8)*th, -(yy)*th-1*(pos == 1));                   
+        tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-1.8)*th, -(y+1)*th-2);                   
         break;
     }
     break;

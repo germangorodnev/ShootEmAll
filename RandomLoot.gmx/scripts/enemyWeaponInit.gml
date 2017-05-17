@@ -21,6 +21,7 @@ case ENEMY_WEAPON.__MACHINEGUN:
     maxdmg = 5;
     projectileSpeed = 7;
     sprayAngle = 5;
+    shootcd = 2 * room_speed;
     break;
 }
 enemyWeaponSetState(WEAPON_STATES.__MOVE);

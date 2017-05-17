@@ -57,7 +57,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             if (i == ci - 1)
                             {
                                 tile_add(tlsPrisonSlats, 3*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(x, i, TILES.__PS_LEFT);
+                                levelTileMark(x, i, TILES.__PS_BOTTOM_LEFT) // left;
                             }
                             else
                             {
@@ -79,7 +79,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             }
                             else
                             {
-                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th);
+                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th*2);
                                 levelTileMark(cx, i, TILES.__PS_RIGHT);
                             }                                    
                         }
@@ -134,7 +134,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             }
                             else
                             {
-                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th);                                    
+                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th*2);                                    
                                 levelTileMark(cx, i, TILES.__PS_RIGHT);
                             }
                         }
@@ -183,7 +183,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             }
                             else
                             {
-                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th);          
+                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th*2);          
                                 levelTileMark(cx, i, TILES.__PS_RIGHT);
                             }                          
                         }
@@ -214,7 +214,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             }
                             else
                             {
-                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th);
+                                tile_add(tlsPrisonSlats, 2*tw, 1*th, tw, th, tx, ty, -ty-th*2);
                                 levelTileMark(cx, i, TILES.__PS_RIGHT);
                             }                                    
                         }

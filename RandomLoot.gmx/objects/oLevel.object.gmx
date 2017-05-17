@@ -75,13 +75,16 @@ levelCollisionHelperInit(TILES.__PS_BOTTOM,        0, 50, 0, 0);
 levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 50, 0, 0);
 levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 0, 45, 0);
 
+levelCollisionHelperInit(TILES.__PS_BOTTOM_LEFT,  0, 50, 0, 0);
+levelCollisionHelperInit(TILES.__PS_BOTTOM_LEFT,  45, 0, 0, 0);
+
 levelCollisionHelperInit(TILES.__BED_HL,           0, 25, 9, 0);
 levelCollisionHelperInit(TILES.__BED_HR,           13, 25, 0, 0);
 
-levelCollisionHelperInit(TILES.__BED_VT,           11, 18, 8, 0);
-levelCollisionHelperInit(TILES.__BED_VB,           11, 0, 8, 13);
+levelCollisionHelperInit(TILES.__BED_VT,           6, 18, 5, 0);
+levelCollisionHelperInit(TILES.__BED_VB,           6, 0, 5, 13);
 
-levelCollisionHelperInit(TILES.__CURBSTONE,        5, 40, 4, 0);
+levelCollisionHelperInit(TILES.__CURBSTONE,        2, 40, 2, 0);
 
 //
 

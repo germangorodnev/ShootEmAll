@@ -16,7 +16,7 @@ case 0: // horizontal tables
         yoff = 2;
     if (par.size == 0)
     {
-        yoff = 3;
+        yoff = 2;
         xs = x + 1;
         cols = 2;
         rows = 3;
@@ -86,3 +86,15 @@ repeat(irandom_range(2, 4))
     }
     tile_add(tlsCanteen, tlx, tly, tw, th, xp*tw, yp*th, dpt);
 }   
+
+// now some enemies
+repeat (irandom_range(3, 5))
+{
+    var ex, ey;
+    do
+    {
+        ex = irandom_range(x + 1, x + rw - 2);
+        ey = irandom_range(y + 1, y + rh - 2);
+    } until (lvl[# ex, ey] & LEVEL.SOLID == 0);
+    levelCreateEnemy(ex * tw + tw / 2, ey * th + th / 2, ENEMY.__PILLOW);
+}
