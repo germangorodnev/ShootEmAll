@@ -70,7 +70,12 @@ grbx = 28;
 grby = sprite_get_height(sAmmoGrenade) - 3;
 grrow = 17;
 
-
+// abilities
+abX = global.guiW - 75;
+abY = global.guiH - 75;
+abBX = 50;
+abW = sprite_get_width(sAbilities);
+abH = sprite_get_height(sAbilities);
 
 //params
 phbw = sprite_get_width(sPlayerHP);
@@ -297,7 +302,18 @@ case AMMO.__BORIAN:
 /////// ABILITIES
 for (var i = 0, ic = oPlayer.abilCount; i &lt; ic; i++)
 {
-    draw_sprite_ext(sAbilities, oPlayer.abilsIco[i], abX - abBX*i - abW, abY, 1, 1, 0, image_blend, image_alpha); 
+    var maxtmr = oPlayer.abilsTmrCnt[i],
+        tmr = oPlayer.abilsTmr[i];
+    if (tmr == -1) // ready
+        draw_sprite_ext(sAbilities, oPlayer.abilsIco[i], abX - abBX*i - abW, abY, 1, 1, 0, image_blend, image_alpha); 
+    else
+    {
+        shader_set(shdGray);
+        var percent = (maxtmr - tmr) / maxtmr,
+            abHPercent = abH - abH * percent;
+        draw_sprite_part_ext(sAbilities, oPlayer.abilsIco[i], 0, abHPercent, abW, (abH - abHPercent), abX - abBX*i - abW, abY + abHPercent, 1, 1, image_blend, image_alpha);     
+        shader_reset();
+    }
 }
 </string>
           </argument>

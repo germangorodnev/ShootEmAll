@@ -86,6 +86,7 @@ enum PLAYER_STATES
     __IDLE,
     __WALK,
     __CUCKED,
+    __DASH
 }   
 
 enum CUCKED
@@ -198,6 +199,7 @@ enum KEY
     PICKUP,
     RELOAD,
     WEAP_CHANGE,
+    ABIL,
     CNT
 }
 

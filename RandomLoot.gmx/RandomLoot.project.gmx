@@ -223,6 +223,9 @@
       </scripts>
       <scripts name="Abilities">
         <script>scripts\abilityAdd.gml</script>
+        <script>scripts\playerAbilityKeyCheck.gml</script>
+        <script>scripts\playerAbilityUse.gml</script>
+        <script>scripts\playerAbilitiesCooldown.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -357,6 +360,9 @@
       <script>scripts\levelTileMark.gml</script>
     </scripts>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shdGray.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\fWeaponType</font>
     <font>fonts\fWeaponName</font>

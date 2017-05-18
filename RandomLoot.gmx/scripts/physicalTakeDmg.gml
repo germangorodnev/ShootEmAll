@@ -4,7 +4,7 @@
 switch (object_index)
 {
 case oPlayer:
-    hp -= argument[0];
+    hp = max(0, hp - argument[0]);
     return 1;
     break;
     

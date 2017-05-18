@@ -17,8 +17,8 @@ case ENEMY_WEAPON.__MACHINEGUN:
     ldiry = 37;
     ldirdir = 12;
     critchance = 0;
-    mindmg = 3;
-    maxdmg = 5;
+    mindmg = 1;
+    maxdmg = 1;
     projectileSpeed = 7;
     sprayAngle = 5;
     shootcd = 2 * room_speed;

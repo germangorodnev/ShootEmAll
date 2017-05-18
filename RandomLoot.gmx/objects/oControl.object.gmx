@@ -177,7 +177,10 @@ if (keyboard_check_released(ord('M')))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!global.debug)
+            <string>draw_set_font(fGame);
+draw_text(view_xview + 530, view_yview + 10, string(fps));
+draw_text(view_xview + 530, view_yview + 40, string(instance_count));
+if (!global.debug)
     exit;
 for (var i = 0; i &lt;= room_width; i += LEVEL.TILE_W)
 {

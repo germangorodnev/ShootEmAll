@@ -21,12 +21,15 @@ case os_win32:
     else
         key[KEY.KICK] = -1;
         
+        
     if (keyboard_check_released(ord('E')))
         key[KEY.PICKUP] = 1;
     if (keyboard_check_released(ord('R')))
         key[KEY.RELOAD] = 1;
     if (keyboard_check_released(vk_space))
         key[KEY.WEAP_CHANGE] = 1;
+    if (mouse_check_button_pressed(mb_right))// || gamepad_button_check_released(0, gp_face2))
+        key[KEY.ABIL] = 1;
     break;
     
 /*case os_android:

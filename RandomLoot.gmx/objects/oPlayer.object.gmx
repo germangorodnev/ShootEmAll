@@ -45,6 +45,10 @@ recoilApply = 0;
 
 cannot = 0;
 
+mX = x;
+mY = y;
+mD = 0;
+ 
 ammo[AMMO.__CNT - 1] = 0; // ammo we have right now
 ammoMax[AMMO.__CNT - 1] = 300;
 for (var i = 0; i &lt; AMMO.__CNT; i++)
@@ -99,8 +103,11 @@ ky2 = 0;
 abilCount = 0;
 abils[0] = 0;
 abilsTmr[0] = -1;
+abilsTmrCnt[0] = -1;
 abilsIco[0] = 0;
+abilsParams[0] = 0;
 abilityAdd(ABILITIES.__DASH);
+
 
 // gui 
 pwId = noone;
@@ -235,8 +242,11 @@ hp = median(0, hp, _hp);
 weaponRestore();
 masksMove();
 
+playerAbilitiesCooldown();
+
 switch (state)
 {
+/* *********************************************** IDLE *********************************************** */
 case PLAYER_STATES.__IDLE:
     procedureAnimableApproachReset();
     playerRotateToMouse();
@@ -245,7 +255,6 @@ case PLAYER_STATES.__IDLE:
     playerGetKeys();
     
     physicalApplyRecoil(recoilSpd, mousedir - 180);
-    
     
     if ((key[KEY.LEFT] ^^ key[KEY.RIGHT]) || (key[KEY.TOP] ^^ key[KEY.BOT]))
         playerSetState(PLAYER_STATES.__WALK);
@@ -262,6 +271,13 @@ case PLAYER_STATES.__IDLE:
     
     playerPickup();
     
+    var abilUse = playerAbilityKeyCheck();
+    if (abilUse == 1)
+    {
+        playerAbilityUse(0);
+        exit;
+    }
+    
     if (key[KEY.RELOAD])
         playerReload();
     if (key[KEY.WEAP_CHANGE])
@@ -269,7 +285,8 @@ case PLAYER_STATES.__IDLE:
         
     physicalMove(collideWith);
     break;
-
+    
+/* *********************************************** WALK *********************************************** */
 case PLAYER_STATES.__WALK:
     procedureAnimableProceed();    
     playerRotateToMouse();
@@ -314,14 +331,71 @@ case PLAYER_STATES.__WALK:
         
     playerPickup();
     
+    var abilUse = playerAbilityKeyCheck();
+    if (abilUse == 1)
+    {
+        playerAbilityUse(0);
+        exit;
+    }
+    
     hspd += spd * speedmod * hmove;
     vspd += spd * speedmod * vmove;
     physicalMove(collideWith);
     break;
+    
+// **************************************************************************************************** 
+// ****************************************   ABILITIES   ********************************************* 
+// **************************************************************************************************** 
 
+/* *********************************************** DASH *********************************************** */
+case PLAYER_STATES.__DASH:
+    procedureAnimableProceed();    
+    playerRotateToMouse();
+    
+    physicalBeginStep();
+    playerGetKeys();
+                
+    playerPickup();
+    
+    var toX = x,
+        toY = y;
+    
+    var dSpd = abilsParams[1],
+        dist = distance_to_point(mX, mY);
+    var finspd = max(dist / 4, dSpd);
+    if (dist &lt; finspd)
+    {
+        // end
+        x = mX;
+        y = mY;        
+        playerSetState(PLAYER_STATES.__IDLE); 
+        exit;    
+    }
+    else
+    {            
+        toX = x + lengthdir_x(finspd, mD);
+        toY = y + lengthdir_y(finspd, mD);
+    }
+    var free = colPlaceFree(toX, toY, collideWith);
+    if (free)
+    {
+        x = toX;
+        y = toY;
+    }
+    //mD = point_direction(x, y, mX, mY);
+    if (!free)
+    {
+        // end       
+        playerSetState(PLAYER_STATES.__IDLE); 
+        exit;    
+    }
+    break;
+
+/* *********************************************** CUCKED *********************************************** */
 case PLAYER_STATES.__CUCKED:
     break;    
     
+/* *********************************************** DIE *********************************************** */
 case PLAYER_STATES.__DIE:
 
     break;

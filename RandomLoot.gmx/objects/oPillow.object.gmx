@@ -204,7 +204,8 @@ case ENEMY_STATE.__IDLE:
             {
                 mX = target.x + irandom_range(-(dtw - 20), dtw - 20);
                 mY = target.y + irandom_range(-(dtw - 20), dtw - 20);
-            } until (colPlaceFree(mX, mY, collideWith) &amp;&amp; try &lt; 6);
+                try++;
+            } until (colPlaceFree(mX, mY, collideWith) || try &lt; 6);
         }
     }
     break;
