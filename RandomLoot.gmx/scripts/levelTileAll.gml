@@ -64,7 +64,7 @@ for (var xx = 0; xx < ww; xx++)
                     if (bottomLeft)
                     {
                         tile_add(tlsWalls, tw*0, th*1, tw, th, tx-tw, ty, -ty-th*4);
-                        levelTileMark(xx-1, yy, TILES.__WALL);  
+                        levelTileMark(xx-1, yy, TILES.__WALL); 
                     }
                 }
                 else
@@ -108,7 +108,7 @@ for (var xx = 0; xx < ww; xx++)
                 {
                     if (!left)
                     {
-                        tile_add(tlsWalls, tw*1, th*2, tw, th, tx, ty, -ty-th); 
+                        tile_add(tlsWalls, tw*1, th*2, tw, th, tx, ty, -ty-th*2); //ch2005 
                         levelTileMark(xx, yy+1, TILES.__WALL);                                            
                     }
                     else if (!right)   

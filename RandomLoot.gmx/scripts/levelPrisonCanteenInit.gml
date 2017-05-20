@@ -28,6 +28,17 @@ case 0: // horizontal tables
         repeat (rows)
         {
             levelPrisonCanteenCreateTableHor(xs, ys);
+            // chance to place a card
+            if (irandom(50) <= 25)
+            {
+                var cardx = xs*tw - tw/2, 
+                    cardy = ys*th + th / 2;
+                with (instance_create(cardx, cardy, oPickupCard))
+                {
+                    pickupableInit(PICKUP.__SU_CARDS, choose(SINGLEUSE.__FULL_HEART, SINGLEUSE.__40_SHOTGUN_SHELLS, SINGLEUSE.__INF_AMMO));
+                    depth = y;
+                }
+            }
             ys += ybetw;
         }
         xs += xbetw;
@@ -86,6 +97,21 @@ repeat(irandom_range(2, 4))
     }
     tile_add(tlsCanteen, tlx, tly, tw, th, xp*tw, yp*th, dpt);
 }   
+
+// now some coole automats
+repeat (irandom_range(1, 2))
+{
+    var xp = x+1,
+        yp = y-1;
+    do
+    {
+        xp = irandom_range(x+1, x+rw-2);
+    } until (lvl[# xp, yp] & LEVEL.WALL);
+    var rly = (yp+1)*th;
+    tile_add(tlsCanteen, 0, th, tw, th, xp*tw, rly-th/2, -rly-th/2-1);
+    lvl[# xp, yp+1] |= LEVEL.WALL;
+    levelTileMark(xp, yp+1, TILES.__COOLEOLA_VERT);
+}
 
 // now some enemies
 repeat (irandom_range(3, 5))

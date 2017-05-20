@@ -46,6 +46,7 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
             {
             case 0: // #
                 type = ROOMS.__PRISON_CANTEEN_1W;
+                // floor
                 for (var i = x, ci = x + rw; i < ci; i++)
                 {
                     for (var j = y, cj = y + rh; j < cj; j++)
@@ -58,6 +59,9 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
                         if (tl != -1)
                             tile_delete(tl);
                         tile_add(tlsCanteen, tw * choose(1,2), 0, tw, th, xx, yy, oLevel.floorD);
+                        // some bue on floor
+                        if (irandom(50) < 2)
+                            tile_add(tlsPrisonShit, 4*tw, th*irandom(1), tw, th, xx, yy, oLevel.carpetD);
                     }
                 }
                 levelPrisonCanteenInit();            
@@ -77,6 +81,9 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
                         if (tl != -1)
                             tile_delete(tl);
                         tile_add(tlsCanteen, tw * choose(1,2), 0, tw, th, xx, yy, oLevel.floorD);
+                        // some bue on floor
+                        if (irandom(50) < 2)
+                            tile_add(tlsPrisonShit, 4*tw, th*irandom(1), tw, th, xx, yy, oLevel.carpetD);
                     }
                 }
                 levelPrisonCanteenInit();

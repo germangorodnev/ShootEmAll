@@ -92,6 +92,28 @@ case WEAPON_TYPE.__RANGE:
     case WEAPONS.__CUSTOM:
         break;
         
+    // line projectile
+    case WEAPONS.__FOREST_MANTIS:
+    case WEAPONS.__OVERKILLINGTON:
+        // laser
+        var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
+            xx = weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR]),
+            yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle - weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale));
+        var bb = instance_create(xx, yy, bullet);
+        // no crit
+        bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
+        bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
+        bb.parent = id;  
+        bb.dmgcd = weaponCd;
+        bb.liveTmr = lasLong;
+        with (bb)
+        {
+            laserFindCollisionPoint(LEVEL.WALL);
+            projectileInited(); 
+        }         
+        playerControlledLineAdd(bb);
+        break;
+        
     default:
         // just by params
         var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
@@ -111,7 +133,7 @@ case WEAPON_TYPE.__RANGE:
                 // no crit
                 bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
             }
-            bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
+            bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
             bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
             bb.parent = id;  
             bb.dmgcd = weaponCd;
@@ -122,8 +144,10 @@ case WEAPON_TYPE.__RANGE:
         }
         break;
     }
+    
     // decrease the bullets
-    weaponAmmo -= weaponInf[W_PR.__BULLETS_PER_SHOT];
+    if (!(SPECIAL_FLAGS & SPECIAL.__INF_AMMO))
+        weaponAmmo -= weaponInf[W_PR.__BULLETS_PER_SHOT];
     playerWeaponSetState(WEAPON_STATES.__RANGE_SHOT);
     // recoil if any
     if (recoilSpd != 0)

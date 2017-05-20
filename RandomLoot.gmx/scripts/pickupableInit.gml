@@ -75,6 +75,16 @@ case PICKUP.__WEAPON:
         ammo = argument[2];
         class = gameGetString("ranged");
         break;
+    case WEAPONS.__FOREST_MANTIS:
+        sprite_index = sForestMantis; 
+        ammo = argument[2];
+        class = gameGetString("ranged");    
+        break;
+    case WEAPONS.__OVERKILLINGTON:
+        sprite_index = sOverkillington; 
+        ammo = argument[2];
+        class = gameGetString("ranged");    
+        break;
     }
     break;
     
@@ -164,6 +174,13 @@ case PICKUP.__HP:
         sprite_index = sHPPickup;
         image_index = 2;
     }
+    break;
+    
+case PICKUP.__SU_CARDS:
+    value = argument[1];
+    depth = compareY;
+    image_index = value;
+    image_angle = -45;
     break;
 }
 

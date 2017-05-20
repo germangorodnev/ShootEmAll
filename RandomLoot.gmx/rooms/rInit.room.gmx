@@ -45,8 +45,8 @@ enum TILES
     __TABLE_LEFT,
     __TABLE_HOR_CENT,
     __TABLE_RIGHT,
-    __TABLE_VERT
-    
+    __TABLE_VERT,
+    __COOLEOLA_VERT
 }
 
 enum CANNOT
@@ -57,11 +57,22 @@ enum CANNOT
 enum EFFECTS
 {
     __BULLET_WZHUH = 0,
+    __LASER_GREEN_WZHUH
 }
 
 enum ABILITIES
 {
     __DASH = 0
+}
+
+enum SINGLEUSE
+{
+    __NONE = -1,
+    __INF_AMMO,
+    __FULL_HEART,
+    __40_SHOTGUN_SHELLS,
+    __DMG_SINGLE_ENEMY,
+    __ALLY_ROBOT
 }
 
 enum ROOMS
@@ -102,7 +113,8 @@ enum PICKUP
     __AMMO,
     __MONEY,
     __HP,
-    __CRATE
+    __CRATE,
+    __SU_CARDS
 }
 
 enum WEAPONS
@@ -127,6 +139,8 @@ enum WEAPONS
     __NOVA_M,
     __BORIAN_BULG,
     __GRENADE_LAUNCHER,
+    __FOREST_MANTIS,
+    __OVERKILLINGTON,
     __CUSTOM,
     __RANGED_END
 }
@@ -200,7 +214,13 @@ enum KEY
     RELOAD,
     WEAP_CHANGE,
     ABIL,
+    SINGLEUSE_ITEM,
     CNT
+}
+
+enum SPECIAL
+{
+    __INF_AMMO = 1 &lt;&lt; 0
 }
 
 enum CAM_STATES 
@@ -216,7 +236,9 @@ enum PROJECTILE
     __ENEMY_BULLET,
     __FAST_BULLET,
     __BORIAN,
-    __GRENADE_ONE_GL
+    __GRENADE_ONE_GL,
+    __LASER,
+    __BULLET_LINE
 }
 
 enum AMMO

@@ -126,15 +126,6 @@ if (weapon != WEAPONS.__NONE)
     case WEAPON_TYPE.__RANGE:
         weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
         weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
-        //weaponObj.xsc = xsc;
-        if (angle &gt; 0 &amp;&amp; angle &lt; 180)
-        {
-            weaponObj.depth = depth + 1;
-        }   
-        else
-        {
-            weaponObj.depth = depth - 1;
-        }
         break;
     }
 }
@@ -277,6 +268,7 @@ case ENEMY_STATE.__CUCKED:
     
 case ENEMY_STATE.__DIE:
     anAngle = 90;
+    depth = 100;
     if (destrTmr &amp;&amp; !--destrTmr)
     {
         instance_destroy();

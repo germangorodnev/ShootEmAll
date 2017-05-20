@@ -67,6 +67,22 @@ part_type_orientation(global.bwzhuh, 0, 360, 0, 0, 0);
 part_type_blend(global.bwzhuh, false);                         
 part_type_life(global.bwzhuh, 0.1 * room_speed, 0.2 * room_speed);    
 
+// green laser eff
+global.lasergreen = part_type_create();
+part_type_sprite(global.lasergreen, sLaserWzhuh, 1, 1, 0);            
+part_type_orientation(global.lasergreen, 0, 360, 0, 0, 0);           
+part_type_blend(global.lasergreen, false);                         
+part_type_life(global.lasergreen, 0.1 * room_speed, 0.2 * room_speed);    
+
+// player dash
+global.pldash = part_type_create();
+part_type_sprite(global.pldash, sWzhuhBullet, 1, 1, 0);            
+part_type_size(global.pldash, 0.7, 1.2, 0, 0);                    
+//part_type_scale(global.pldash, 1, 1);                       
+part_type_orientation(global.pldash, 0, 360, 0, 0, 0);           
+part_type_blend(global.pldash, false);                         
+part_type_life(global.pldash, 0.1 * room_speed, 0.2 * room_speed);    
+
 
 // PURE EBUG
 debugTopReal = 0;
@@ -99,6 +115,9 @@ room_goto_next();
           <argument>
             <kind>1</kind>
             <string>part_type_destroy(global.pillowjibs);
+part_type_destroy(global.bwzhuh);
+part_type_destroy(global.pldash);
+part_type_destroy(global.lasergreen);
 //part_system_destroy(global.pse);
 gamePsysFree();
 </string>

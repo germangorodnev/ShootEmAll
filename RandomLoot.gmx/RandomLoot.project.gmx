@@ -17,6 +17,9 @@
           <sprite>sprites\sWoltmeter</sprite>
           <sprite>sprites\sWoltmeterArrow</sprite>
         </sprites>
+        <sprites name="Abilities">
+          <sprite>sprites\sAbilities</sprite>
+        </sprites>
         <sprite>sprites\sPlayerHP</sprite>
         <sprite>sprites\sPickupWI</sprite>
         <sprite>sprites\sPickup</sprite>
@@ -87,16 +90,22 @@
             <sprite>sprites\sForestMantis</sprite>
             <sprite>sprites\sForestMantisShoot</sprite>
           </sprites>
+          <sprites name="Overkillington">
+            <sprite>sprites\sOverkillington</sprite>
+            <sprite>sprites\sOverkillingtonShoot</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprites name="Effects">
         <sprite>sprites\sWzhuhMelee</sprite>
         <sprite>sprites\sWzhuhBullet</sprite>
+        <sprite>sprites\sLaserWzhuh</sprite>
       </sprites>
-      <sprite>sprites\sPlayer</sprite>
-    </sprites>
-    <sprites name="Abilities">
-      <sprite>sprites\sAbilities</sprite>
+      <sprites name="Skins">
+        <sprite>sprites\sPlayerCamouflage</sprite>
+        <sprite>sprites\sPlayerKamikaze</sprite>
+      </sprites>
+      <sprite>sprites\sGUIIcoBack</sprite>
     </sprites>
     <sprites name="Masks">
       <sprite>sprites\sMask32x32</sprite>
@@ -132,6 +141,7 @@
       <sprite>sprites\sEnergyAmmoPickup</sprite>
       <sprite>sprites\sHPPickup</sprite>
       <sprite>sprites\sMoneyPickup</sprite>
+      <sprite>sprites\sPickupCards</sprite>
     </sprites>
     <sprites name="Ammo Shot">
       <sprite>sprites\sShotgunProjectile</sprite>
@@ -163,6 +173,7 @@
     <background>background\tlsPrisonSlats</background>
     <background>background\tlsPrisonCarpet</background>
     <background>background\tlsCanteen</background>
+    <background>background\tlsPrisonShit</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -208,6 +219,7 @@
         <script>scripts\playerPickup.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
         <script>scripts\playerPickupAmmo.gml</script>
+        <script>scripts\playerPickupCard.gml</script>
       </scripts>
       <scripts name="GUI">
         <script>scripts\playerRecountGUI.gml</script>
@@ -226,6 +238,14 @@
         <script>scripts\playerAbilityKeyCheck.gml</script>
         <script>scripts\playerAbilityUse.gml</script>
         <script>scripts\playerAbilitiesCooldown.gml</script>
+      </scripts>
+      <scripts name="Single Use">
+        <script>scripts\playerSingleuseUse.gml</script>
+      </scripts>
+      <scripts name="Controllled Projectiles">
+        <script>scripts\playerControlledLineAdd.gml</script>
+        <script>scripts\playerControlledLineDelete.gml</script>
+        <script>scripts\playerControlledLineProceedAll.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -270,11 +290,17 @@
       <script>scripts\gameGetString.gml</script>
       <script>scripts\gameEffectCreate.gml</script>
       <script>scripts\gameEnemyGetObjectById.gml</script>
+      <script>scripts\lineGetCollisionPoint.gml</script>
     </scripts>
     <scripts name="Bullets">
+      <scripts name="Long">
+        <script>scripts\longBulletStep.gml</script>
+        <script>scripts\longBulletGetMasksOnLine.gml</script>
+      </scripts>
       <script>scripts\projectileInited.gml</script>
       <script>scripts\projectileTimer.gml</script>
       <script>scripts\projectileStep.gml</script>
+      <script>scripts\laserFindCollisionPoint.gml</script>
     </scripts>
     <scripts name="Enemies">
       <scripts name="Enemy Weapons">
@@ -406,10 +432,12 @@
       <object>objects\oPickupWeapon</object>
       <object>objects\oPickupAmmo</object>
       <object>objects\oPickupMoney</object>
+      <object>objects\oPickupCard</object>
       <object>objects\oPickupHP</object>
     </objects>
-    <objects name="Ammo">
+    <objects name="Bullets">
       <object>objects\oBulletObject</object>
+      <object>objects\oLongBullet</object>
       <object>objects\oExplosion</object>
       <object>objects\oShotgunPellet</object>
       <object>objects\oBulletProjectile</object>
@@ -417,6 +445,8 @@
       <object>objects\oFastBullet</object>
       <object>objects\oBorianBulg</object>
       <object>objects\oGreande</object>
+      <object>objects\oLaser</object>
+      <object>objects\oBulletLine</object>
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>
@@ -437,8 +467,8 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>
-    <room>rooms\rGame</room>
     <room>rooms\rRandom</room>
+    <room>rooms\rGame</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -23,4 +23,10 @@ case PROJECTILE.__BORIAN:
 case PROJECTILE.__GRENADE_ONE_GL:   
     return oGreande;
     break;
+case PROJECTILE.__LASER:
+    return oLaser;
+    break;
+case PROJECTILE.__BULLET_LINE:
+    return oBulletLine;
+    break;
 }

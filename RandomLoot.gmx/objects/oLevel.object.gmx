@@ -95,6 +95,8 @@ levelCollisionHelperInit(TILES.__TABLE_RIGHT, 12, 20, 0, 0);
 
 levelCollisionHelperInit(TILES.__TABLE_VERT, 8, 0, 8, 0);
 
+levelCollisionHelperInit(TILES.__COOLEOLA_VERT, 10, 0, 10, 22);
+
 
 // NEW
 cellW = 12;

@@ -32,6 +32,7 @@ if (!pickupId.autopickup)
             exit;
         if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
             exit;
+        key[KEY.SINGLEUSE_ITEM] = 0;
         playerPickupWeapon(pwId, pwId.value);
         with (pwId)
             instance_destroy();
@@ -46,7 +47,17 @@ if (!pickupId.autopickup)
         }
         if (!key[KEY.PICKUP])
             exit;
+        key[KEY.SINGLEUSE_ITEM] = 0;
         crateOpen(pickupId, id);
+        break;
+        
+    case PICKUP.__SU_CARDS:
+        if (!key[KEY.PICKUP])
+            exit;
+        key[KEY.SINGLEUSE_ITEM] = 0;
+        playerPickupCard(pickupId);  
+        with (pickupId)
+            instance_destroy();    
         break;
     }
     //SWITCH ADD PICKUP

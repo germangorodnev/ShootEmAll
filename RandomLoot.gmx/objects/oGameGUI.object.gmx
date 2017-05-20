@@ -71,11 +71,16 @@ grby = sprite_get_height(sAmmoGrenade) - 3;
 grrow = 17;
 
 // abilities
-abX = global.guiW - 75;
+abX = global.guiW - 105;
 abY = global.guiH - 75;
 abBX = 50;
 abW = sprite_get_width(sAbilities);
 abH = sprite_get_height(sAbilities);
+abGbx = abW / 2;
+abGby = abH / 2;
+// single items
+sux = abX + 50;
+suy = abY + abH / 3;
 
 //params
 phbw = sprite_get_width(sPlayerHP);
@@ -303,17 +308,29 @@ case AMMO.__BORIAN:
 for (var i = 0, ic = oPlayer.abilCount; i &lt; ic; i++)
 {
     var maxtmr = oPlayer.abilsTmrCnt[i],
-        tmr = oPlayer.abilsTmr[i];
+        tmr = oPlayer.abilsTmr[i],
+        drawx = abX - abBX*i - abW;
     if (tmr == -1) // ready
-        draw_sprite_ext(sAbilities, oPlayer.abilsIco[i], abX - abBX*i - abW, abY, 1, 1, 0, image_blend, image_alpha); 
+    {
+        draw_sprite_ext(sGUIIcoBack, 0, drawx+abGbx, abY+abGby, 1, 1, 0, image_blend, image_alpha); 
+        draw_sprite_ext(sAbilities, oPlayer.abilsIco[i], drawx, abY, 1, 1, 0, image_blend, image_alpha); 
+    }
     else
     {
         shader_set(shdGray);
         var percent = (maxtmr - tmr) / maxtmr,
             abHPercent = abH - abH * percent;
-        draw_sprite_part_ext(sAbilities, oPlayer.abilsIco[i], 0, abHPercent, abW, (abH - abHPercent), abX - abBX*i - abW, abY + abHPercent, 1, 1, image_blend, image_alpha);     
+        draw_sprite_ext(sGUIIcoBack, 0, drawx+abGbx, abY+abGby, 1, 1, 0, image_blend, image_alpha); 
+        draw_sprite_part_ext(sAbilities, oPlayer.abilsIco[i], 0, abHPercent, abW, (abH - abHPercent), drawx, abY + abHPercent, 1, 1, image_blend, image_alpha);     
         shader_reset();
     }
+}
+
+//////// SINGLE USE ITEM
+draw_sprite_ext(sGUIIcoBack, 1, sux, suy, 1, 1, 0, image_blend, image_alpha);
+if (oPlayer.singleuse != SINGLEUSE.__NONE)
+{
+    draw_sprite_ext(sPickupCards, oPlayer.singleusePar[0], sux, suy, 1, 1, 0, image_blend, image_alpha);
 }
 </string>
           </argument>
