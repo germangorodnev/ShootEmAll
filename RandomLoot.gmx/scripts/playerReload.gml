@@ -2,6 +2,8 @@ if (weapon == WEAPONS.__NONE)
     exit;
 if (weaponType == WEAPON_TYPE.__MELEE)
     exit;
+if (weaponObj.state == WEAPON_STATES.__RANGE_SHOT)
+    exit;
 if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
     exit;
 
@@ -11,7 +13,8 @@ if (weaponAmmo == maxAmmo)
     exit; // no need
     
 var ammoType = weaponInf[W_PR.__BULLET_TYPE];
-if (ammo[ammoType] == 0)
+if (ammo[ammoType] == 0
+    || ((ammo[ammoType] < (maxAmmo - weaponAmmo)) && (maxAmmo == weaponInf[W_PR.__BULLETS_PER_SHOT])))
     exit; // no ammo
     
 physicalClearMaskKick();

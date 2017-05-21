@@ -15,7 +15,6 @@ with (weaponObj)
     {
     case WEAPON_STATES.__MOVE:
         attackCount = 0; // warning
-        hitCount = 0;
         animIndex = 0;
         animIndexNext = 0;
         sprite_index = oPlayer.weaponSprite[0];
@@ -47,8 +46,19 @@ with (weaponObj)
         break;
         
     case WEAPON_STATES.__RANGE_RELOAD:
-        sprite_index = oPlayer.weaponSprite[0];
-        anImageSpeed = oPlayer.weaponAnimSpeed[0];
+        hitCount = 0;
+        var sprRel = oPlayer.weaponSprite[3]; 
+        if (sprRel != -1) // there is a special one
+        {
+            sprite_index = sprRel;
+            anImageIndex = 0;
+            anImageSpeed = oPlayer.weaponAnimSpeed[3];
+        }
+        else
+        {
+            sprite_index = oPlayer.weaponSprite[0];
+            anImageSpeed = oPlayer.weaponAnimSpeed[3];            
+        }
         break;
         
         

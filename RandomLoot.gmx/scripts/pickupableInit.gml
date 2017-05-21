@@ -5,6 +5,16 @@ depth = -compareY;
 switch (type)
 {
 case PICKUP.__WEAPON:
+    /*
+    w class
+    -machinegun
+    -rifle
+    -pistol
+    -shotgun
+    -launcher
+    -unique
+    -melee
+    */
     value = argument[1];
     switch (value)
     {
@@ -44,46 +54,62 @@ case PICKUP.__WEAPON:
     case WEAPONS.__POMPINGTON:
         sprite_index = sPompington; 
         ammo = argument[2];
-        class = gameGetString("ranged");
+        class = gameGetString("shotgun");
         break;
     case WEAPONS.__RXP:
         sprite_index = sRXP; 
         ammo = argument[2];
-        class = gameGetString("ranged");
+        class = gameGetString("pistol");
         break;
     case WEAPONS.__RECT1:
         sprite_index = sRECT1; 
         ammo = argument[2];
-        class = gameGetString("ranged");
+        class = gameGetString("pistol");
         break;
     case WEAPONS.__ROMAN_MG:
         sprite_index = sRomanMG; 
         ammo = argument[2];
-        class = gameGetString("ranged");
+        class = gameGetString("machinegun");
         break;
     case WEAPONS.__NOVA_M:
         sprite_index = sNovaM; 
         ammo = argument[2];
+        class = gameGetString("automat");
         break;
     case WEAPONS.__BORIAN_BULG:
         sprite_index = sBorianBulg; 
         ammo = argument[2];
-        class = gameGetString("ranged");
+        class = gameGetString("pistol");
         break;
     case WEAPONS.__GRENADE_LAUNCHER:
         sprite_index = sOneGL; 
         ammo = argument[2];
-        class = gameGetString("ranged");
+        class = gameGetString("launcher");
         break;
     case WEAPONS.__FOREST_MANTIS:
         sprite_index = sForestMantis; 
         ammo = argument[2];
-        class = gameGetString("ranged");    
+        class = gameGetString("automat");    
         break;
     case WEAPONS.__OVERKILLINGTON:
         sprite_index = sOverkillington; 
         ammo = argument[2];
-        class = gameGetString("ranged");    
+        class = gameGetString("rifle");    
+        break;
+    case WEAPONS.__PHASER:
+        sprite_index = sPhaserEmpty; 
+        ammo = argument[2];
+        class = gameGetString("launcher");    
+        break;
+    case WEAPONS.__DESTRUCTOR:
+        sprite_index = sDestructor; 
+        ammo = argument[2];
+        class = gameGetString("pistol");    
+        break;
+    case WEAPONS.__DOUBLE_BARREL:
+        sprite_index = sDoubleBarrel; 
+        ammo = argument[2];
+        class = gameGetString("shotgun");    
         break;
     }
     break;

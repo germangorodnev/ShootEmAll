@@ -5,17 +5,17 @@ var x1 = x,
     y1 = y,
     x2 = eX,
     y2 = eY,
-    gr = !group,
+    gr = group,
     dmgTaken = 0,
     dd = damage,
     cc = cuck,
     pp = parent,
     ddcd = dmgcd,
-    callerisplayer = !group; 
+    callerisplayer = (group == 0); 
     
 with (oMaskHit)
 {
-    if (group != gr)
+    if (group == gr)
         continue;
     if (collision_line(x1, y1, x2, y2, id, 0, 0) == id) // well, we're on line
     {

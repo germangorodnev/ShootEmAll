@@ -12,5 +12,11 @@ case WEAPON_STATES.__MELEE_DOWN:
 case WEAPON_STATES.__MOVE:
     draw_text(bbox_right, bbox_top - 5, string("weaponstate: move"));
     break;
+case WEAPON_STATES.__RANGE_SHOT:
+    draw_text(bbox_right, bbox_top - 5, string("weaponstate: range shot"));
+    break;
+case WEAPON_STATES.__RANGE_RELOAD:
+    draw_text(bbox_right, bbox_top - 5, string("weaponstate: range reload"));
+    break;
 }
-draw_text(bbox_right + 10, bbox_top + 10, string(weaponObj.animIndex));
+draw_text(bbox_right + 10, bbox_top + 15, string(weaponObj.animIndex));

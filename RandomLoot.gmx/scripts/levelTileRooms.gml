@@ -161,7 +161,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             if (i == ci - 1)
                             {
                                 tile_add(tlsPrisonSlats, 0*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(x, i, TILES.__PS_BOTTOM);
+                                levelTileMark(x, i, TILES.__PS_BOTTOM_LEFT); // LEFT
                             }
                             else
                             {

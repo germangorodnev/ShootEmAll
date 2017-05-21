@@ -83,10 +83,13 @@ radius = 75;
             <string>if (!updatable)
     exit;
 image_angle = direction;
+
 projectileTimer();
 if (!active)
     exit;
+    
 speed = approach(speed, 0, fric);
+
 if (dtmr &amp;&amp; !--dtmr)
 {
     gameCreateExplosion(x, y, damage, group, cuck, dmgcd, parent, radius);
@@ -95,35 +98,8 @@ if (dtmr &amp;&amp; !--dtmr)
 
 if (outsideRoom())
     instance_destroy();
-if (speed &gt; 0)
-{
-    var _arr = colPlaceFreeSide(x, y, collideWith);
-    if (_arr != -1)
-    {
-        speed = max(0, speed - 0.1);
-        // bounce 
-        switch (_arr)
-        {
-        case 0: // right
-            var na = 180;
-            direction = 2 * na  - 180 - direction;        
-            break;
-        case 1: // top
-            var na = 270;
-            direction = 2 * na  - 180 - direction;            
-            break;
-        case 2: // left
-            var na = 0;
-            direction = 2 * na  - 180 - direction;            
-            break;
-        case 3: // bot
-            var na = 90;
-            direction = 2 * na  - 180 - direction;   
-            break;     
-        } 
-    }
-    _arr = 0;
-}
+
+bounceBulletStep();    
 
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)

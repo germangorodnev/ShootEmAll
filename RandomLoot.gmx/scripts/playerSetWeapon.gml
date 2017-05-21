@@ -9,13 +9,15 @@ if (weapon != WEAPONS.__NONE)
 }
 
 // resets
+weaponSpriteNoammo = -1;
+hitCount = 0;
 lasLong = 1;
 restoreWeap = 0;
 weaponCd = 0;
 restore = -1;
 recoilSpd = 0;
 weaponBlend = c_white;
-for (var i = 0; i < 3; i++)
+for (var i = 0; i < 4; i++)
 {    
     weaponSprite[i] = -1;
     weaponAnimSpeed[i] = 0;
@@ -263,9 +265,44 @@ case WEAPONS.__OVERKILLINGTON:
     weaponSprite[1] = sOverkillingtonShoot;
     weaponAnimSpeed[1] = 0.15;
     weaponXoff = 5;
-    weaponYoff = -25;
+    weaponYoff = -22;
     weaponObj.anMaxAngle = 3;
     break;
+
+case WEAPONS.__PHASER:
+    expRad = 75;
+    weaponCd = 1 * room_speed;
+    weaponSprite[0] = sPhaser;
+    weaponSprite[1] = sPhaserEmpty;
+    weaponSprite[3] = sPhaserRecharge;
+    weaponSpriteNoammo = sPhaserEmpty;
+    weaponAnimSpeed[1] = 0.15;
+    weaponAnimSpeed[3] = 0.005;
+    weaponXoff = 5;
+    weaponYoff = -22;
+    weaponObj.anMaxAngle = 3;
+    break;
+    
+case WEAPONS.__DESTRUCTOR:
+    weaponCd = 0 * room_speed;
+    weaponSprite[0] = sDestructor;
+    weaponSprite[1] = sDestructorShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -22;
+    weaponObj.anMaxAngle = 3;
+    break;
+
+case WEAPONS.__DOUBLE_BARREL:
+    weaponCd = 0 * room_speed;
+    weaponSprite[0] = sDoubleBarrel;
+    weaponSprite[1] = sDoubleBarrelShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -22;
+    weaponObj.anMaxAngle = 3;
+    break;
+
 }
 
 playerWeaponSetState(WEAPON_STATES.__MOVE);

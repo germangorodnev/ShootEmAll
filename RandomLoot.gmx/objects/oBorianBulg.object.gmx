@@ -76,7 +76,9 @@ group = 0; // 0 - player, 1 - enemy
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>projectileStep();
+            <string>if (!updatable)
+    exit;
+projectileStep();
 </string>
           </argument>
         </arguments>

@@ -68,7 +68,7 @@ cntgothrough = 1;
             <kind>1</kind>
             <string>event_inherited();
 //some effects
-gameEffectCreate(x, y, EFFECTS.__BULLET_WZHUH, -y - LEVEL.TILE_H * 2);
+gameEffectCreate(x, y, EFFECTS.__BULLET_WZHUH, -y - LEVEL.TILE_H);
 </string>
           </argument>
         </arguments>

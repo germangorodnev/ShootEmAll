@@ -80,7 +80,9 @@
           </sprites>
           <sprites name="Phase Crusher">
             <sprite>sprites\sPhaser</sprite>
+            <sprite>sprites\sPhaserEmpty</sprite>
             <sprite>sprites\sPhaserRecharge</sprite>
+            <sprite>sprites\sPhaserProjectile</sprite>
           </sprites>
           <sprites name="One Grenade Launcher">
             <sprite>sprites\sOneGL</sprite>
@@ -93,6 +95,14 @@
           <sprites name="Overkillington">
             <sprite>sprites\sOverkillington</sprite>
             <sprite>sprites\sOverkillingtonShoot</sprite>
+          </sprites>
+          <sprites name="Destructor">
+            <sprite>sprites\sDestructor</sprite>
+            <sprite>sprites\sDestructorShoot</sprite>
+          </sprites>
+          <sprites name="Double-Barrel">
+            <sprite>sprites\sDoubleBarrel</sprite>
+            <sprite>sprites\sDoubleBarrelShoot</sprite>
           </sprites>
         </sprites>
       </sprites>
@@ -123,6 +133,11 @@
         </sprites>
         <sprites name="Buddy">
           <sprite>sprites\sBuddyTest</sprite>
+        </sprites>
+        <sprites name="Octopus">
+          <sprites name="Guardian">
+            <sprite>sprites\sOctoGuardian</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprites name="Weapons">
@@ -232,6 +247,8 @@
         <script>scripts\weaponAttackTypeInit.gml</script>
         <script>scripts\playerWeaponComboIncrease.gml</script>
         <script>scripts\weaponFleeAngleSet.gml</script>
+        <script>scripts\weaponSpriteIfNoAmmo.gml</script>
+        <script>scripts\weaponSetSprite.gml</script>
       </scripts>
       <scripts name="Abilities">
         <script>scripts\abilityAdd.gml</script>
@@ -296,6 +313,9 @@
       <scripts name="Long">
         <script>scripts\longBulletStep.gml</script>
         <script>scripts\longBulletGetMasksOnLine.gml</script>
+      </scripts>
+      <scripts name="Bouncing">
+        <script>scripts\bounceBulletStep.gml</script>
       </scripts>
       <script>scripts\projectileInited.gml</script>
       <script>scripts\projectileTimer.gml</script>
@@ -447,6 +467,7 @@
       <object>objects\oGreande</object>
       <object>objects\oLaser</object>
       <object>objects\oBulletLine</object>
+      <object>objects\oPhaserProjectile</object>
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>

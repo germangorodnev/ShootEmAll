@@ -36,8 +36,8 @@ with (par)
     physicalCucked(ccuck, idd);
 
 }
-punchEffectCreate(x + irandom_range(sprite_width / 3, sprite_width / 1.5), 
-                    y + irandom_range(sprite_height / 3, sprite_height / 1.5),
-                    0,
-                    -(par.y + 5));
+//punchEffectCreate(x + irandom_range(sprite_width / 3, sprite_width / 1.5), 
+//                    y + irandom_range(sprite_height / 3, sprite_height / 1.5),
+//                    0,
+//                    -(par.y + 5));
 return 1;

@@ -133,12 +133,18 @@ case WEAPON_TYPE.__RANGE:
                 // no crit
                 bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
             }
+            var adddir = 0;
+            if (weapon == WEAPONS.__DESTRUCTOR)
+                addir = 5 * weaponObj.hitCount;
             bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
             bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
             bb.parent = id;  
             bb.dmgcd = weaponCd;
-            if (weapon == WEAPONS.__GRENADE_LAUNCHER)
+            if (weapon == WEAPONS.__GRENADE_LAUNCHER
+                || weapon == WEAPONS.__PHASER)
+            {
                 bb.radius = expRad;
+            }
             with (bb)
                 projectileInited();      
         }

@@ -29,4 +29,7 @@ case PROJECTILE.__LASER:
 case PROJECTILE.__BULLET_LINE:
     return oBulletLine;
     break;
+case PROJECTILE.__PHASER:
+    return oPhaserProjectile;
+    break;
 }

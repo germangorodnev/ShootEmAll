@@ -33,6 +33,8 @@ global.guiH = 720;
 global.debug = 0;
 display_set_gui_size(global.guiW, global.guiH);
 
+global.language = LANG.__EN;
+
 global.dispW = display_get_width();
 global.dispH = display_get_height();
 

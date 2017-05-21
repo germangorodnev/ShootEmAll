@@ -15,6 +15,12 @@
     __LAYER_SIZE = 32
 }
 
+enum LANG
+{
+    __EN = 0,
+    __RUS
+}
+
 enum LEVEL
 {
     TILE_W = 64,
@@ -141,6 +147,9 @@ enum WEAPONS
     __GRENADE_LAUNCHER,
     __FOREST_MANTIS,
     __OVERKILLINGTON,
+    __PHASER,
+    __DESTRUCTOR,
+    __DOUBLE_BARREL,
     __CUSTOM,
     __RANGED_END
 }
@@ -238,7 +247,8 @@ enum PROJECTILE
     __BORIAN,
     __GRENADE_ONE_GL,
     __LASER,
-    __BULLET_LINE
+    __BULLET_LINE,
+    __PHASER
 }
 
 enum AMMO

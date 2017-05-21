@@ -262,6 +262,8 @@ case WEAPON_STATES.__MELEE_UP:
     
     
     
+    
+    
 case WEAPON_STATES.__RANGE_SHOT:
     if (animEnded)
     {

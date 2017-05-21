@@ -86,7 +86,9 @@ gameEffectCreate(eX, eY, EFFECTS.__BULLET_WZHUH, -eY);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (liveTmr &amp;&amp; !--liveTmr)
+            <string>if (!updatable)
+    exit;
+if (liveTmr &amp;&amp; !--liveTmr)
 {
     // well, delete
     instance_destroy();
