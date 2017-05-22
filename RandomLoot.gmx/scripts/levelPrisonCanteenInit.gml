@@ -111,6 +111,7 @@ repeat (irandom_range(1, 2))
     tile_add(tlsCanteen, 0, th, tw, th, xp*tw, rly-th/2, -rly-th/2-1);
     lvl[# xp, yp+1] |= LEVEL.WALL;
     levelTileMark(xp, yp+1, TILES.__COOLEOLA_VERT);
+    mp_grid_add_cell(oLevel.levelPf, xp, yp+1);
 }
 
 // now some enemies

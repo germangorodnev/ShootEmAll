@@ -36,7 +36,9 @@ case 0: // door is on the right
         lvl[# xx - 1, yy] |= LEVEL.SOLID; 
         // toilet
         tile_add(tlsPrison, tw, 0, tw, th, (xx-1)*tw-oLevel.toiletLeftoff, (yy+1)*th, -yy*th);                   
-        levelCreateEnemy((xx)*tw+tw/2, (yy+1)*th+tw/2, ENEMY.__PILLOW);
+        
+        var enemy = levelCreateEnemy((xx)*tw+tw/2, (yy+1)*th+tw/2, ENEMY.__PILLOW);
+        enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;
     }
     break;

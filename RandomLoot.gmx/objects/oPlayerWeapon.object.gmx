@@ -134,7 +134,7 @@ kickCnt = 0;
 if (sprite_index != -1)
 {
     // accumulate custom image_index
-    weaponImageIndexAccumulate();
+    customAnimableProceed();
 }   
 
 if (canAttackTmr &amp;&amp; !--canAttackTmr)

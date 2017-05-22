@@ -37,6 +37,8 @@ anH = 0;
 anMaxH = 4;
 anHStep = 1;
 
+animEnded = 0;
+
 anSin = 0;
 anSinRad = 0;
 anSinStep = 12;

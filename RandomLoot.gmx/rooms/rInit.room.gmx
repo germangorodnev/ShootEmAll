@@ -277,13 +277,17 @@ enum ENEMY_STATE
 
 enum ENEMY
 {
-    __PILLOW = 0
+    __PILLOW = 0,
+    __JELLY,
+    __OCTO_GUARD
 }
 
 enum ENEMY_WEAPON
 {
     __SELF = 0,
-    __MACHINEGUN
+    __MACHINEGUN,
+    __SHIELD,
+    __TAZER
 }
 
 enum ENEMY_PATTERN 
@@ -297,8 +301,14 @@ enum ENEMY_ANIM
 {
     __IDLE = 0,
     __WALK,
+    __ATTACK,
     __CUCKED,
     __CNT
+}
+
+enum ENEMY_F
+{
+    __IN_PRISON = 1 &lt;&lt; 0
 }</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>

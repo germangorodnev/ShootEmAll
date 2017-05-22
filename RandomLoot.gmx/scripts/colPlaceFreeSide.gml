@@ -24,13 +24,29 @@ if (instance_exists(oLevel))
     y = yo;
 
     if (rbmeet && rtmeet) // right
+    {
+        if (pointColGrid(bbox_right, bbox_top, rd, td)
+            && pointColGrid(bbox_right, bbox_bottom, rd, td)) 
         return 0;
+    }
     if (rtmeet && ltmeet) //top
+    {
+        if (pointColGrid(bbox_right, bbox_top, rd, td)
+            && pointColGrid(bbox_left, bbox_top, ld, td)) 
         return 1;
+    }
     if (ltmeet && lbmeet) // left
+    {
+        if (pointColGrid(bbox_left, bbox_top, ld, td)
+            && pointColGrid(bbox_left, bbox_bottom, ld, bd)) 
         return 2;
-    if (rbmeet && rbmeet) // bottom
+    }
+    if (rbmeet && lbmeet) // bottom
+    {
+        if (pointColGrid(bbox_right, bbox_bottom, rd, bd)
+            && pointColGrid(bbox_left, bbox_bottom, ld, bd)) 
         return 3;
+    }
     return -1;
 }
 else

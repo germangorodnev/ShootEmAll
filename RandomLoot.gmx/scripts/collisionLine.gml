@@ -8,6 +8,10 @@ var sx = argument[0],
     mask = argument[4],
     tw = LEVEL.TILE_W,
     th = LEVEL.TILE_H;
+    
+//=== RETURN ===
+// true if line is not free
+// false otherwise
  
 // Check Start + End Point
 var col = (!colPositionFree(sx, sy, mask) || !colPositionFree(tx, ty, mask)); 

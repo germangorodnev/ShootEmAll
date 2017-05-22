@@ -6,8 +6,13 @@ case WEAPON_TYPE.__MELEE:
     {
     // melee
     case ENEMY_WEAPON.__SELF:
+        path_end();
+        enemySetState(ENEMY_STATE.__ATTACK);
+        maskKickAdd(kx1, ky1, kx2, ky2, 1, 1);
+        maskKick.dmg = irandom_range(mindmg, maxdmg); 
+        canAttack = 0;
+        canAttackTmr = canAttackCd;
         break;
-    
     }
     break;
     
@@ -47,7 +52,6 @@ case WEAPON_TYPE.__RANGE:
         }
         break;
     }
-    // decrease the bullets
     enemyWeaponSetState(WEAPON_STATES.__RANGE_SHOT);
     break;
 }   

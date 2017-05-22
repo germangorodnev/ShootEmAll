@@ -129,15 +129,29 @@
         <sprites name="Pillow">
           <sprite>sprites\sEnemyPillow</sprite>
           <sprite>sprites\sEnemyPillowCucked</sprite>
-          <sprite>sprites\sPillowJibs</sprite>
         </sprites>
         <sprites name="Buddy">
           <sprite>sprites\sBuddyTest</sprite>
         </sprites>
         <sprites name="Octopus">
           <sprites name="Guardian">
-            <sprite>sprites\sOctoGuardian</sprite>
+            <sprite>sprites\sOctoGuardNoshield</sprite>
+            <sprite>sprites\sOctoGuardShielded</sprite>
+            <sprite>sprites\sOctoGuardShieldR</sprite>
+            <sprite>sprites\sOctoGuardShieldT</sprite>
+            <sprite>sprites\sOctoGuardTazer</sprite>
           </sprites>
+          <sprites name="Attacker">
+            <sprite>sprites\sOctoAttack</sprite>
+            <sprite>sprites\sOctoAttackW1</sprite>
+            <sprite>sprites\sOctoAttackW2</sprite>
+            <sprite>sprites\sOctoAttackW3</sprite>
+          </sprites>
+        </sprites>
+        <sprites name="Jelly">
+          <sprite>sprites\sJellyIdle</sprite>
+          <sprite>sprites\sJellyMove</sprite>
+          <sprite>sprites\sJellyAttack</sprite>
         </sprites>
       </sprites>
       <sprites name="Weapons">
@@ -147,6 +161,10 @@
         </sprites>
       </sprites>
       <sprite>sprites\sEnemyBullet</sprite>
+      <sprites name="Jibs">
+        <sprite>sprites\sPillowJibs</sprite>
+        <sprite>sprites\sMeatJibs</sprite>
+      </sprites>
     </sprites>
     <sprites name="Pickupable">
       <sprite>sprites\sAmmoPickup20</sprite>
@@ -209,6 +227,7 @@
       </scripts>
       <script>scripts\physicalBeginStep.gml</script>
       <script>scripts\physicalMove.gml</script>
+      <script>scripts\physicalMoveProp.gml</script>
       <script>scripts\physicalMoveToPoint.gml</script>
       <script>scripts\physicalApplyRecoil.gml</script>
       <script>scripts\physicalTakeDmg.gml</script>
@@ -241,14 +260,12 @@
       </scripts>
       <scripts name="Weapon">
         <script>scripts\playerWeaponSetState.gml</script>
-        <script>scripts\weaponImageIndexAccumulate.gml</script>
         <script>scripts\playerWeaponSetKickCount.gml</script>
         <script>scripts\weaponSetAnimation.gml</script>
         <script>scripts\weaponAttackTypeInit.gml</script>
         <script>scripts\playerWeaponComboIncrease.gml</script>
         <script>scripts\weaponFleeAngleSet.gml</script>
         <script>scripts\weaponSpriteIfNoAmmo.gml</script>
-        <script>scripts\weaponSetSprite.gml</script>
       </scripts>
       <scripts name="Abilities">
         <script>scripts\abilityAdd.gml</script>
@@ -278,6 +295,8 @@
       <script>scripts\procedureAnimableApproachReset.gml</script>
       <script>scripts\procedureAnimableDrawPerson.gml</script>
       <script>scripts\procedureAnimateWeapon.gml</script>
+      <script>scripts\customAnimableProceed.gml</script>
+      <script>scripts\customAnimableSetSprite.gml</script>
     </scripts>
     <scripts name="Util">
       <script>scripts\approach.gml</script>
@@ -308,6 +327,7 @@
       <script>scripts\gameEffectCreate.gml</script>
       <script>scripts\gameEnemyGetObjectById.gml</script>
       <script>scripts\lineGetCollisionPoint.gml</script>
+      <script>scripts\pointColGrid.gml</script>
     </scripts>
     <scripts name="Bullets">
       <scripts name="Long">
@@ -336,6 +356,7 @@
       <script>scripts\enemyCanAttack.gml</script>
       <script>scripts\enemyAttack.gml</script>
       <script>scripts\enemyCreateJibs.gml</script>
+      <script>scripts\enemyMoveOutOfOther.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>
@@ -471,8 +492,12 @@
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>
+      <object>objects\oBaseEnemyWeaponed</object>
+      <object>objects\oBaseEnemyMeleeSelf</object>
       <object>objects\oEnemyWeapon</object>
       <object>objects\oPillow</object>
+      <object>objects\oJelly</object>
+      <object>objects\oOctoGuard</object>
       <object>objects\oBuddyTest</object>
       <object>objects\oEnemyBullet</object>
     </objects>

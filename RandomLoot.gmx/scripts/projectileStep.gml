@@ -3,7 +3,7 @@ projectileTimer();
 if (!active)
     exit;
 
-depth = -y-5;
+depth = -y-50;
     
 if (outsideRoom())
     instance_destroy();

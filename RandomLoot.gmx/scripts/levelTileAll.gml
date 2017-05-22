@@ -13,10 +13,26 @@ for (var i = 1; i < ww - 1; i ++)
         var tt = level[# i, j];
         if (tt & LEVEL.FLOOR)
         {
-            if (level[# i + 1, j] & LEVEL.FLOOR == 0) level[# i + 1, j] |= LEVEL.WALL;
-            if (level[# i - 1, j] & LEVEL.FLOOR == 0) level[# i - 1, j] |= LEVEL.WALL;
-            if (level[# i, j + 1] & LEVEL.FLOOR == 0) level[# i, j + 1] |= LEVEL.WALL;
-            if (level[# i, j - 1] & LEVEL.FLOOR == 0) level[# i, j - 1] |= LEVEL.WALL;
+            if (level[# i + 1, j] & LEVEL.FLOOR == 0) 
+            {
+                level[# i + 1, j] |= LEVEL.WALL;
+                mp_grid_add_cell(levelPf, i + 1, j);                
+            }
+            if (level[# i - 1, j] & LEVEL.FLOOR == 0) 
+            {
+                level[# i - 1, j] |= LEVEL.WALL;
+                mp_grid_add_cell(levelPf, i - 1, j);
+            }
+            if (level[# i, j + 1] & LEVEL.FLOOR == 0) 
+            {
+                level[# i, j + 1] |= LEVEL.WALL;
+                mp_grid_add_cell(levelPf, i, j + 1);
+            }
+            if (level[# i, j - 1] & LEVEL.FLOOR == 0) 
+            {
+                level[# i, j - 1] |= LEVEL.WALL;
+                mp_grid_add_cell(levelPf, i, j - 1);
+            }
         }
     }
 

@@ -26,24 +26,32 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+image_speed = 0;
 
-hp = 5;
-_hp = hp;
+hp = 5; // hp
+_hp = hp; // max hp
 
-target = noone;
+target = noone; // target of attack
 targetDist = 0;
 
+// === phys ===
 hspd = 0;
 vspd = 0;
 spd = 3;
 speedmod = 1;
 angle = 0;
 
+// some params
 damagable = 1;
 vecdir = 0;
 
+// movement path
+pathEnd = 0;
+path = path_add();
+
 destrTmr = -1;
 
+// custom move point 
 mX = x;
 mY = y;
 
@@ -54,37 +62,30 @@ pattern = ENEMY_PATTERN.__NONE;
 dist = 300;
 detect = 0;
 
+mindmg = 0;
+maxdmg = 0;
+
+
+ENEMY_FLAG = 0;
+
+// room to move
+rx1 = 0;
+ry1 = 0;
+rx2 = 0;
+ry2 = 0;
+
 bulletCollideWith = LEVEL.WALL;
 
-weaponObj = noone;
-weaponXoff = 0;
-weaponYoff = 0;
-weaponType = WEAPON_TYPE.__MELEE;
-weapon = ENEMY_WEAPON.__MACHINEGUN;
-weaponSprite[2] = -1;
-weaponAnimSpeed[2] = 0;
-projectile = PROJECTILE.__ENEMY_BULLET;
-
+// jibs
 psys = -1;
 pem = -1;
 
-ldirx = 0;
-ldiry = 0;
-ldirdir = 0;
-critchance = 0;
-mindmg = 0;
-maxdmg = 0;
-critmindmg = 0;
-critmaxdmg = 0;
-projectileAmount = 1;
-projectileSpeed = 0;
-sprayAngle = 0;
-shootcd = 0;
 
 enemyType = ENEMY.__PILLOW;
 
 // animations
 anims[ENEMY_ANIM.__CNT - 1] = sprite_index;
+animSpd[ENEMY_ANIM.__CNT - 1] = 0;
 
 </string>
           </argument>
@@ -111,6 +112,7 @@ anims[ENEMY_ANIM.__CNT - 1] = sprite_index;
             <string>event_inherited();
 if (pem != -1)
     part_emitter_destroy(psys, pem);
+path_delete(path);
 </string>
           </argument>
         </arguments>
@@ -158,6 +160,29 @@ if (pem != -1)
             <kind>1</kind>
             <string>///on pause
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>pathEnd = 1;
 </string>
           </argument>
         </arguments>

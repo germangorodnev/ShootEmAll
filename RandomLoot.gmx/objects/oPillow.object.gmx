@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>oBaseEnemy</parentName>
+  <parentName>oBaseEnemyWeaponed</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -165,6 +165,8 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 
 idleTmr++;
 
+enemyMoveOutOfOther();
+
 masksMove();
 
 switch (state)
@@ -179,54 +181,59 @@ case ENEMY_STATE.__IDLE:
         if (enemyCanAttack())
         {
             enemyAttack();
-            // now we follow the player
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
         }
+        // now we follow the player
+        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
     if (target != noone)
     {
-        angle = point_direction(x, y, oPlayer.x, oPlayer.y);        
+        angle = point_direction(x, y, target.x, target.y);        
         if (idleTmr &gt; 2 * room_speed)
         {
-            enemySetState(ENEMY_STATE.__WALK);
-            var try = 0,
-                dtw = dist / LEVEL.TILE_W;
-            do
-            {
-                mX = target.x + irandom_range(-(dtw - 20), dtw - 20);
-                mY = target.y + irandom_range(-(dtw - 20), dtw - 20);
-                try++;
-            } until (colPlaceFree(mX, mY, collideWith) || try &lt; 6);
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
         }
     }
     break;
     
 case ENEMY_STATE.__FOLLOW:
     procedureAnimableProceed();    
-    physicalBeginStep();
-    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+
     targetDist = distance_to_object(target);
-    if (done || targetDist &lt;= dist)
+    
+    xsc = (oPlayer.x &gt; x) * 2 - 1;
+    
+    if (targetDist &lt;= weaponAttDist)
     {
         // wow we're actually done
         enemySetState(ENEMY_STATE.__IDLE);
         exit;
     }
     detect = enemyDetectPlayer();
-    if (detect == 1)
+    // well, maybe shoot
+    if (enemyCanAttack())
     {
-        // well, maybe shoot
-        if (enemyCanAttack())
+        enemyAttack();
+        enemySetState(ENEMY_STATE.__IDLE);
+    }
+    if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
+    {
+        if (idleTmr &gt; 0.5 * room_speed)
         {
-            enemyAttack();
+            // recalc
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
         }
     }
-    else
+    if (detect == -2)
     {
-        if (detect == -1)
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);
+        exit;
     }
-    physicalMove(collideWith);
+    if (pathEnd)
+    {
+        // wow we're actually done
+        enemySetState(ENEMY_STATE.__IDLE);
+        exit;    
+    }
     break;    
     
 case ENEMY_STATE.__WALK:
@@ -247,18 +254,13 @@ case ENEMY_STATE.__WALK:
         {
             enemyAttack();
         }
-    }
-    else
-    {
-        if (detect == -1)
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
     physicalMove(collideWith);
     break;
+    
 case ENEMY_STATE.__ATTACK:
-    procedureAnimableApproachReset();
-    physicalBeginStep();
-        
+    procedureAnimableApproachReset();        
     break;
     
 case ENEMY_STATE.__CUCKED:

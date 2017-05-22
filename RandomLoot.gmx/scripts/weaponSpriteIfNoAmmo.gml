@@ -6,7 +6,7 @@ if (weaponSpriteNoammo != -1)
     {
         var ns = weaponSpriteNoammo;
         with (weaponObj)
-            weaponSetSprite(ns, 0);
+            customAnimableSetSprite(ns, 0);
     }
 }
 

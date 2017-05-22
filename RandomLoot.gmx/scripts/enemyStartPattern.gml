@@ -1,5 +1,7 @@
 ///enemyStartPattern(ENEMY_PATTERN.__)
 pattern = argument[0];
+path_end(); // warning
+
 //SWITCH ADD
 switch (pattern)
 {
@@ -13,7 +15,7 @@ case ENEMY_PATTERN.__PATROL:
 case ENEMY_PATTERN.__FOLLOW:
     target = argument[1];
     enemySetState(ENEMY_STATE.__FOLLOW);
-    mX = target.x; 
-    mY = target.y;  
+    mp_grid_path(oLevel.levelPf, path, x, y, target.x, target.y, 1);
+    path_start(path, spd, 0, 1);
     break;  
 }

@@ -83,7 +83,7 @@ radius = 75;
             <string>if (!updatable)
     exit;
 image_angle = direction;
-
+depth = -y-5;
 projectileTimer();
 if (!active)
     exit;

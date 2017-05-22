@@ -1,16 +1,27 @@
 // firstly - set the walls
 var lvl = oLevel.level;
 for (var i = x, ci = x + rw; i < ci; i++)
+{
     lvl[# i, y] |= LEVEL.SOLID;
-    
+    mp_grid_add_cell(oLevel.levelPf, i, y);
+}
 for (var i = y+1, ci = y + rh; i < ci; i++)
+{
     lvl[# x, i] |= LEVEL.SOLID;
+    mp_grid_add_cell(oLevel.levelPf, x, i);
+}
+
     
 for (var i = y+1, ci = y + rh, cx = x + rw - 1; i < ci; i++)
+{
     lvl[# cx, i] |= LEVEL.SOLID;
-    
+    mp_grid_add_cell(oLevel.levelPf, cx, i);
+}
 for (var i = x+1, ci = x + rw, cy = y + rh - 1; i < ci; i++)
+{
     lvl[# i, cy] |= LEVEL.SOLID; 
+    mp_grid_add_cell(oLevel.levelPf, i, cy);
+}
     
 // now the door
 var onleft = position_meeting(bbox_left - 1, y, oPrisonCell),

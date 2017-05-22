@@ -13,6 +13,11 @@ for (var i = xcr, ci = xcr + 3; i < ci; i++)
     tile_add(tlsPrison, tw*2, 0, tw, th, realx, ypp, -ypp-th/1.5);
 }
 tile_add(tlsPrison, 0, th, tw*3, th, xcr*tw, realy, -realy-th);
+
+mp_grid_add_cell(oLevel.levelPf, xcr, ycr);
+mp_grid_add_cell(oLevel.levelPf, xcr+1, ycr);
+mp_grid_add_cell(oLevel.levelPf, xcr+2, ycr);
+
 levelTileMark(xcr, ycr, TILES.__TABLE_LEFT);
 levelTileMark(xcr+1, ycr, TILES.__TABLE_HOR_CENT);
 levelTileMark(xcr+2, ycr, TILES.__TABLE_RIGHT);

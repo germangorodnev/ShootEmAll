@@ -424,25 +424,48 @@ case PLAYER_STATES.__DASH:
     }
     else
     {            
-        toX = x + lengthdir_x(finspd, mD);
-        toY = y + lengthdir_y(finspd, mD);
+        toX = round(x + lengthdir_x(finspd, mD));
+        toY = round(y + lengthdir_y(finspd, mD));
     }
-    var free = colPlaceFree(toX, toY, collideWith);
-    if (free)
-    {
-        x = toX;
-        y = toY;
-        // effect
-        part_emitter_region(psysfloor, abilsParams[2], x-1, x+1, y-1, y+1, ps_shape_diamond, ps_distr_invgaussian);
-        part_emitter_burst(psysfloor, abilsParams[2], global.pldash, irandom_range(2, 4)); 
-    }
-    //mD = point_direction(x, y, mX, mY);
-    if (!free)
+    if (lineGetCollisionPoint(x, y, toX, toY, collideWith, 1) != -1)// collisionLine(x, y, toX, toY, collideWith)) // cannot
     {
         // end       
         playerSetState(PLAYER_STATES.__IDLE); 
-        exit;    
+        exit;        
     }
+    // move to the point
+    var ab = abs(toX - x),
+        si = sign(toX - x);
+    // x axis
+    repeat (ab)
+    {
+        if (colPlaceFree(x + si, y, collideWith))
+            x += si;
+        else
+        {
+            // end       
+            playerSetState(PLAYER_STATES.__IDLE); 
+            exit;    
+        }
+    }
+    // y axis
+    ab = abs(toY - y);
+    si = sign(toY - y);
+    repeat (ab)
+    {
+        if (colPlaceFree(x, y + si, collideWith))
+            y += si;
+        else
+        {
+            // end       
+            playerSetState(PLAYER_STATES.__IDLE); 
+            exit;    
+        }
+    }
+    mD = point_direction(x, y, mX, mY);
+    // effect
+    part_emitter_region(psysfloor, abilsParams[2], x-1, x+1, y-1, y+1, ps_shape_diamond, ps_distr_invgaussian);
+    part_emitter_burst(psysfloor, abilsParams[2], global.pldash, irandom_range(2, 4)); 
     break;
 
 /* *********************************************** CUCKED *********************************************** */

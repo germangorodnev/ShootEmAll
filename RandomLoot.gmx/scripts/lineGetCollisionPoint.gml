@@ -1,9 +1,10 @@
-///lineGetCollisionPoint(x1, y1, x2, y2, bitmask collideWith, angle)
+///lineGetCollisionPoint(x1, y1, x2, y2, bitmask collideWith, precise)
 var x1 = round(argument[0]),
     y1 = round(argument[1]),
     x2 = round(argument[2]),
     y2 = round(argument[3]),
     col = argument[4],
+    prec = 0,
     lvl = oLevel.level,
     tw = LEVEL.TILE_W,
     th = LEVEL.TILE_H,
@@ -11,7 +12,8 @@ var x1 = round(argument[0]),
     gh = oLevel.hh-1;
     //steep = abs(y2 - y1) > abs(x2 - x1),
     //aa = argument[5];
-
+if (argument_count > 5)
+    prec = argument[5];
 var dx = x2 - x1,
     dy = y2 - y1;
 
@@ -46,15 +48,32 @@ var xt, yt;
 
 xt = xs div tw;
 yt = ys div th; 
-if (lvl[# xt, yt] & col)
+var gridval = lvl[# xt, yt];
+if (gridval & col)
 {
-    // collide
-    var _arr;
-    _arr[0] = xt;
-    _arr[1] = yt;
-    _arr[2] = xs;
-    _arr[3] = ys;
-    return _arr;
+    if (prec)
+    {
+        if (pointColGrid(xs, ys, xt, yt))
+        {
+            // collide
+            var _arr;
+            _arr[0] = xt;
+            _arr[1] = yt;
+            _arr[2] = xs;
+            _arr[3] = ys;
+            return _arr;
+        }
+    }
+    else
+    {
+        // collide
+        var _arr;
+        _arr[0] = xt;
+        _arr[1] = yt;
+        _arr[2] = xs;
+        _arr[3] = ys;
+        return _arr;        
+    }
 }     
 
 for (var t = 0; t < el; t++)
@@ -73,17 +92,35 @@ for (var t = 0; t < el; t++)
     }
     xt = xs div tw;
     yt = ys div th; 
-    if (lvl[# xt, yt] & col)
+    gridval = lvl[# xt, yt];
+    if (gridval & col)
     {
-        // collide
-        var _arr;
-        _arr[0] = xt;
-        _arr[1] = yt;
-        _arr[2] = xs;
-        _arr[3] = ys;
-        return _arr;
+        if (prec)
+        {
+            if (pointColGrid(xs, ys, xt, yt))
+            {
+                // collide
+                var _arr;
+                _arr[0] = xt;
+                _arr[1] = yt;
+                _arr[2] = xs;
+                _arr[3] = ys;
+                return _arr;
+            }
+        }
+        else
+        {
+            // collide
+            var _arr;
+            _arr[0] = xt;
+            _arr[1] = yt;
+            _arr[2] = xs;
+            _arr[3] = ys;
+            return _arr;        
+        }
     }  
 }
+return -1;
 
 // var dx = x2 - x1,
 //     dy = y2 - y1;
