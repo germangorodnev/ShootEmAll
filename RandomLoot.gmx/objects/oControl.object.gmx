@@ -97,14 +97,10 @@ part_type_blend(global.pldash, false);
 part_type_life(global.pldash, 0.1 * room_speed, 0.2 * room_speed);    
 
 
-// PURE EBUG
-debugTopReal = 0;
+with (instance_create(0, 0, oNextRoom))
+    nextRoomEffectInit(1, rRandom, 1, room_width / 3, room_height / 3, 15, global.guiW / 2, global.guiH / 2, 16);
 
-
-
-
-
-room_goto_next();
+//room_goto_next();
 </string>
           </argument>
         </arguments>
@@ -167,6 +163,8 @@ if (keyboard_check_released(ord('B')))
     instance_create(mouse_x, mouse_y, oJelly);
 if (keyboard_check_released(ord('V')))
     instance_create(mouse_x, mouse_y, oOctoGuard);
+if (keyboard_check_released(ord('C')))
+    instance_create(mouse_x, mouse_y, oOctoAttack);
 if (keyboard_check_released(vk_f4))
     window_set_fullscreen(!window_get_fullscreen());
 if (keyboard_check_released(vk_left))

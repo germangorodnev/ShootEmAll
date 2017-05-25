@@ -52,7 +52,13 @@ enum TILES
     __TABLE_HOR_CENT,
     __TABLE_RIGHT,
     __TABLE_VERT,
-    __COOLEOLA_VERT
+    __COOLEOLA_VERT,
+    // shower
+    __SHOWER_WALL_RIGHT,
+    __SHOWER_TUMB,
+    __SHOWER_STOOL,
+    __SHOWER_WET,
+    __SHOWER_BUCKET
 }
 
 enum CANNOT
@@ -88,6 +94,7 @@ enum ROOMS
     __PRISON_CANTEEN_1W,
     __PRISON_CELLS_SIZE_1,
     __PRISON_CELLS_SIZE_3,
+    __PRISON_SHOWER_1W
 }   
 
 enum GAME_STATES
@@ -279,7 +286,8 @@ enum ENEMY
 {
     __PILLOW = 0,
     __JELLY,
-    __OCTO_GUARD
+    __OCTO_GUARD,
+    __OCTO_ATTACK
 }
 
 enum ENEMY_WEAPON
@@ -287,7 +295,10 @@ enum ENEMY_WEAPON
     __SELF = 0,
     __MACHINEGUN,
     __SHIELD,
-    __TAZER
+    __TAZER,
+    __OCTO_PISTOL,
+    __OCTO_SHOTGUN,
+    __OCTO_RIFLE
 }
 
 enum ENEMY_PATTERN 

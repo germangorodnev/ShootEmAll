@@ -332,6 +332,10 @@ if (oPlayer.singleuse != SINGLEUSE.__NONE)
 {
     draw_sprite_ext(sPickupCards, oPlayer.singleusePar[0], sux, suy, 1, 1, 0, image_blend, image_alpha);
 }
+
+//////// MINIMAP
+with (oMinimap)
+    event_perform(ev_other, ev_user3);
 </string>
           </argument>
         </arguments>

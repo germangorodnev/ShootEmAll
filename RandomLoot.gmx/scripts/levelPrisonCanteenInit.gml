@@ -1,9 +1,26 @@
+// set the floor
+var lvl = oLevel.level,
+    collvl = oLevel.colLevel;
+for (var i = x, ci = x + rw; i < ci; i++)
+{
+    for (var j = y, cj = y + rh; j < cj; j++)
+    {
+        var xx = i * tw,
+            yy = j * th;
+        // fill with the floor
+        lvl[# i, j] |= LEVEL.FLOOR;
+        var tl = tile_layer_find(oLevel.floorD, xx, yy);
+        if (tl != -1)
+            tile_delete(tl);
+        tile_add(tlsCanteen, tw * choose(1,2), 0, tw, th, xx, yy, oLevel.floorD);
+        // some bue on floor
+        if (irandom(50) < 2)
+            tile_add(tlsPrisonShit, 4*tw, th*irandom(1), tw, th, xx, yy, oLevel.carpetD);
+    }
+}
 //firstly - tables
 var xs = x,
-    ys = y+2,
-    lvl = oLevel.level,
-    collvl = oLevel.colLevel;
-
+    ys = y+2;
 switch (choose(0, 1)) // vert\hor tables
 {
 case 0: // horizontal tables

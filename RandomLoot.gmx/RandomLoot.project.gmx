@@ -191,6 +191,7 @@
         <sprite>sprites\sCrateCap</sprite>
       </sprites>
       <sprite>sprites\sExplosiveCrate</sprite>
+      <sprite>sprites\sRoomDoorTopBot</sprite>
     </sprites>
     <sprites name="Prison Objects">
       <sprite>sprites\sPrisonDoorTopBot</sprite>
@@ -207,6 +208,8 @@
     <background>background\tlsPrisonCarpet</background>
     <background>background\tlsCanteen</background>
     <background>background\tlsPrisonShit</background>
+    <background>background\tlsPrisonShowerWalls</background>
+    <background>background\tlsPrisonShowerIndoor</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -327,6 +330,7 @@
       <script>scripts\gameEffectCreate.gml</script>
       <script>scripts\gameEnemyGetObjectById.gml</script>
       <script>scripts\lineGetCollisionPoint.gml</script>
+      <script>scripts\nextRoomEffectInit.gml</script>
       <script>scripts\pointColGrid.gml</script>
     </scripts>
     <scripts name="Bullets">
@@ -405,6 +409,9 @@
               </scripts>
               <script>scripts\levelPrisonCanteenInit.gml</script>
             </scripts>
+            <scripts name="Shower">
+              <script>scripts\levelPrisonShowerInit.gml</script>
+            </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>
             <script>scripts\levelPrisonSetCloset.gml</script>
             <script>scripts\levelPrisonCreate4Cells.gml</script>
@@ -461,6 +468,8 @@
       <object>objects\oLevel</object>
       <object>objects\oCamera</object>
       <object>objects\oGameGUI</object>
+      <object>objects\oNextRoom</object>
+      <object>objects\oMinimap</object>
     </objects>
     <object>objects\oControl</object>
     <objects name="Player">
@@ -498,6 +507,7 @@
       <object>objects\oPillow</object>
       <object>objects\oJelly</object>
       <object>objects\oOctoGuard</object>
+      <object>objects\oOctoAttack</object>
       <object>objects\oBuddyTest</object>
       <object>objects\oEnemyBullet</object>
     </objects>
@@ -508,6 +518,7 @@
     </objects>
     <objects name="Interactable">
       <object>objects\oExplosiveCrate</object>
+      <object>objects\object56</object>
     </objects>
     <object>objects\oWall</object>
   </objects>
