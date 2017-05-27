@@ -82,6 +82,12 @@ abGby = abH / 2;
 sux = abX + 50;
 suy = abY + abH / 3;
 
+// rechargable
+rex = abX - 120;
+rey = abY + abH / 2;
+reh = 0;
+rew = 0;
+
 //params
 phbw = sprite_get_width(sPlayerHP);
 
@@ -331,6 +337,26 @@ draw_sprite_ext(sGUIIcoBack, 1, sux, suy, 1, 1, 0, image_blend, image_alpha);
 if (oPlayer.singleuse != SINGLEUSE.__NONE)
 {
     draw_sprite_ext(sPickupCards, oPlayer.singleusePar[0], sux, suy, 1, 1, 0, image_blend, image_alpha);
+}
+
+//////// RECHARGABLE ITEM
+draw_sprite_ext(sGUIIcoBack, 2, rex, rey, 1, 1, 0, image_blend, image_alpha);
+if (oPlayer.rechargable != RECHARGABLE.__NONE)
+{
+    var maxtmr = oPlayer.rechargablePar[1],
+        tmr = oPlayer.rechargablePar[2];
+    if (tmr == -1) // ready
+    {
+        draw_sprite_ext(oPlayer.rechargablePar[0], 0, rex, rey, 1, 1, 0, image_blend, image_alpha);
+    }
+    else
+    {
+        shader_set(shdGray);
+        var percent = (maxtmr - tmr) / maxtmr,
+            rehPercent = reh - reh * percent;
+        draw_sprite_part_ext(oPlayer.rechargablePar[0], 0, 0, rehPercent, rew, (reh - rehPercent), rex - rew / 2, rey - (rehPercent ), 1, 1, image_blend, image_alpha);
+        shader_reset();
+    }
 }
 
 //////// MINIMAP

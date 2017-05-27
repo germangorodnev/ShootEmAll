@@ -303,6 +303,15 @@ case WEAPONS.__DOUBLE_BARREL:
     weaponObj.anMaxAngle = 3;
     break;
 
+case WEAPONS.__TESLA_BOOM:
+    weaponCd = 0.5 * room_speed;
+    weaponSprite[0] = sTeslaBoom;
+    weaponSprite[1] = sTeslaBoomShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -22;
+    weaponObj.anMaxAngle = 3;
+    break;
 }
 
 playerWeaponSetState(WEAPON_STATES.__MOVE);

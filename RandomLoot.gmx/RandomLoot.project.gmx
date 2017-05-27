@@ -104,6 +104,10 @@
             <sprite>sprites\sDoubleBarrel</sprite>
             <sprite>sprites\sDoubleBarrelShoot</sprite>
           </sprites>
+          <sprites name="Tesla Boom">
+            <sprite>sprites\sTeslaBoom</sprite>
+            <sprite>sprites\sTeslaBoomShoot</sprite>
+          </sprites>
         </sprites>
       </sprites>
       <sprites name="Effects">
@@ -116,6 +120,7 @@
         <sprite>sprites\sPlayerKamikaze</sprite>
       </sprites>
       <sprite>sprites\sGUIIcoBack</sprite>
+      <sprite>sprites\sprite106</sprite>
     </sprites>
     <sprites name="Masks">
       <sprite>sprites\sMask32x32</sprite>
@@ -184,6 +189,8 @@
       <sprite>sprites\sBorianBulgProjectile</sprite>
       <sprite>sprites\sGrenade</sprite>
       <sprite>sprites\sExplosion</sprite>
+      <sprite>sprites\sExplosives</sprite>
+      <sprite>sprites\sLaserMine</sprite>
     </sprites>
     <sprites name="Interactable">
       <sprites name="Crate">
@@ -210,6 +217,7 @@
     <background>background\tlsPrisonShit</background>
     <background>background\tlsPrisonShowerWalls</background>
     <background>background\tlsPrisonShowerIndoor</background>
+    <background>background\tlsPrisonShowerFloorTitles</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -257,6 +265,7 @@
         <script>scripts\playerPickupWeapon.gml</script>
         <script>scripts\playerPickupAmmo.gml</script>
         <script>scripts\playerPickupCard.gml</script>
+        <script>scripts\playerPickupRechargableExplosive.gml</script>
       </scripts>
       <scripts name="GUI">
         <script>scripts\playerRecountGUI.gml</script>
@@ -283,6 +292,11 @@
         <script>scripts\playerControlledLineAdd.gml</script>
         <script>scripts\playerControlledLineDelete.gml</script>
         <script>scripts\playerControlledLineProceedAll.gml</script>
+      </scripts>
+      <scripts name="Rechargable">
+        <script>scripts\playerRechargableUse.gml</script>
+        <script>scripts\playerRechargableInit.gml</script>
+        <script>scripts\playerRechargableCooldown.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -332,6 +346,8 @@
       <script>scripts\lineGetCollisionPoint.gml</script>
       <script>scripts\nextRoomEffectInit.gml</script>
       <script>scripts\pointColGrid.gml</script>
+      <script>scripts\drawLaser.gml</script>
+      <script>scripts\laserDoorAdd.gml</script>
     </scripts>
     <scripts name="Bullets">
       <scripts name="Long">
@@ -341,10 +357,14 @@
       <scripts name="Bouncing">
         <script>scripts\bounceBulletStep.gml</script>
       </scripts>
+      <scripts name="Zap">
+        <script>scripts\drawZap.gml</script>
+      </scripts>
       <script>scripts\projectileInited.gml</script>
       <script>scripts\projectileTimer.gml</script>
       <script>scripts\projectileStep.gml</script>
       <script>scripts\laserFindCollisionPoint.gml</script>
+      <script>scripts\laserMineInit.gml</script>
     </scripts>
     <scripts name="Enemies">
       <scripts name="Enemy Weapons">
@@ -483,11 +503,15 @@
       <object>objects\oPickupAmmo</object>
       <object>objects\oPickupMoney</object>
       <object>objects\oPickupCard</object>
+      <object>objects\oPickupRechargable</object>
       <object>objects\oPickupHP</object>
     </objects>
     <objects name="Bullets">
       <object>objects\oBulletObject</object>
       <object>objects\oLongBullet</object>
+      <objects name="Special">
+        <object>objects\oLaserMine</object>
+      </objects>
       <object>objects\oExplosion</object>
       <object>objects\oShotgunPellet</object>
       <object>objects\oBulletProjectile</object>
@@ -497,6 +521,7 @@
       <object>objects\oGreande</object>
       <object>objects\oLaser</object>
       <object>objects\oBulletLine</object>
+      <object>objects\oZap</object>
       <object>objects\oPhaserProjectile</object>
     </objects>
     <objects name="Enemies">
@@ -518,7 +543,7 @@
     </objects>
     <objects name="Interactable">
       <object>objects\oExplosiveCrate</object>
-      <object>objects\object56</object>
+      <object>objects\oLevelDoor</object>
     </objects>
     <object>objects\oWall</object>
   </objects>

@@ -111,6 +111,11 @@ case PICKUP.__WEAPON:
         ammo = argument[2];
         class = gameGetString("shotgun");    
         break;
+    case WEAPONS.__TESLA_BOOM:
+        sprite_index = sTeslaBoom; 
+        ammo = argument[2];
+        class = gameGetString("automat");    
+        break;
     }
     break;
     
@@ -207,6 +212,11 @@ case PICKUP.__SU_CARDS:
     depth = compareY;
     image_index = value;
     image_angle = -45;
+    break;
+    
+case PICKUP.__RECH_EXPLOSIVES:
+    value = argument[1]; // RECHARGABLE.__
+    depth = compareY;
     break;
 }
 

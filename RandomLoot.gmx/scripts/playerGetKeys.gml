@@ -32,6 +32,8 @@ case os_win32:
         key[KEY.ABIL] = 1;
     if (keyboard_check_released(ord('F')))
         key[KEY.SINGLEUSE_ITEM] = 1;
+    if (keyboard_check_released(ord('Q')))
+        key[KEY.RECHARGABLE_ITEM] = 1;
     break;
     
 /*case os_android:

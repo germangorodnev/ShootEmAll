@@ -114,6 +114,26 @@ case WEAPON_TYPE.__RANGE:
         playerControlledLineAdd(bb);
         break;
         
+    // zap
+    case WEAPONS.__TESLA_BOOM:
+        var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
+            xx = weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR]),
+            yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle - weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale));
+        var bb = instance_create(xx, yy, bullet);
+        // no crit
+        bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
+        bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
+        bb.parent = id;  
+        bb.dmgcd = weaponCd;
+        bb.liveTmr = lasLong;
+        with (bb)
+        {
+            laserFindCollisionPoint(LEVEL.WALL);
+            projectileInited(); 
+        }         
+        playerControlledLineAdd(bb);    
+        break;
+        
     default:
         // just by params
         var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),

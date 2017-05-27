@@ -20,6 +20,7 @@ switch (dir)
 {
 case 0: // right
     rm.door[0] = 1;
+    c2.rm.door[2] = 1;
     p1x = r1.x + r1.rw;
     p2x = r2.x;
     var ymin = min(r1.y, r2.y),
@@ -37,9 +38,13 @@ case 0: // right
     var n = instance_create(p1x, p1y, oFloor);
     n.rw = abs(ww);
     n.rh = hh;
+    // lasers
+    laserDoorAdd(p1x * tw, p1y * th - th / 2, 0);
+    laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
     break;
 case 2: // left
     rm.door[2] = 1;
+    c2.rm.door[0] = 1;
     p1x = r2.x + r2.rw;
     p2x = r1.x;
     var ymin = min(r1.y, r2.y),
@@ -57,10 +62,14 @@ case 2: // left
     var n = instance_create(p1x, p1y, oFloor);
     n.rw = abs(ww);
     n.rh = hh;
+    // lasers
+    laserDoorAdd(p1x * tw, p1y * th - th / 2, 0);
+    laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
     break;    
     
 case 1: // top
     rm.door[1] = 1;
+    c2.rm.door[3] = 1;
     p1y = r2.y + r2.rh;
     p2y = r1.y;
     var xmin = min(r1.x, r2.x),
@@ -78,9 +87,13 @@ case 1: // top
     var n = instance_create(p1x, p1y, oFloor);
     n.rw = 1;
     n.rh = abs(hh);
+    // lasers
+    laserDoorAdd(p1x * tw, p2y * th - th, 1);
+    laserDoorAdd(p1x * tw, p1y * th - th, 1);
     break;
-case 3:
+case 3: // bottom
     rm.door[3] = 1;
+    c2.rm.door[1] = 1;
     p1y = r1.y + r1.rh;
     p2y = r2.y;
     var xmin = min(r1.x, r2.x),
@@ -98,7 +111,9 @@ case 3:
     var n = instance_create(p1x, p1y, oFloor);
     n.rw = 1;
     n.rh = abs(hh);
-    //bspHallAddRect(p1x, p1y, 1, abs(hh));
+    // lasers
+    laserDoorAdd(p1x * tw, p1y * th - th, 3);
+    laserDoorAdd(p1x * tw, p2y * th - th, 3);
     break;
 }
 

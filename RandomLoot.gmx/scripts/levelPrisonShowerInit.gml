@@ -15,7 +15,15 @@ for (var i = x, ci = x + rw; i < ci; i++)
         var tl = tile_layer_find(oLevel.floorD, xx, yy);
         if (tl != -1)
             tile_delete(tl);
-        tile_add(tlsCanteen, tw * choose(1,2), 0, tw, th, xx, yy, oLevel.floorD);
+        var fltl = irandom(100);
+        if (fltl >= 3)
+        {
+            tile_add(tlsPrisonShowerFloorTitles, tw * choose(1, 2, 3), 0, tw, th, xx, yy, oLevel.floorD);        
+            if (irandom(100) < 4)
+                tile_add(tlsPrisonShowerFloorTitles, tw * choose(2, 3), th * choose(2, 3), tw, th, xx, yy, oLevel.carpetD);          
+        }
+        else
+            tile_add(tlsPrisonShowerFloorTitles, 0, 0, tw, th, xx, yy, oLevel.floorD);
     }
 }
 // now walls
@@ -187,7 +195,7 @@ for (var i = x + rw - 5, ci = x + rw-1, cy = y, ty = cy * th - 48; i < ci; i++)
         tux = (3 + irandom(1))*tw,
         tuy = irandom(1)*th;
     tile_add(tlsPrisonShowerIndoor, tux, tuy, tw, th, tx, ty, -ty-th);
-    lvl[# i, cy] |= LEVEL.WALL;    
+    lvl[# i, cy] |= LEVEL.SOLID;    
     levelTileMark(i, cy, TILES.__SHOWER_TUMB);        
 }
 var sx = x + rw - 1 - irandom(3),

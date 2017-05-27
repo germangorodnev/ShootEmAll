@@ -59,6 +59,15 @@ if (!pickupId.autopickup)
         with (pickupId)
             instance_destroy();    
         break;
+    
+    case PICKUP.__RECH_EXPLOSIVES:
+        if (!key[KEY.PICKUP])
+            exit;
+        key[KEY.RECHARGABLE_ITEM] = 0;
+        playerPickupRechargableExplosive(pickupId);  
+        with (pickupId)
+            instance_destroy();    
+        break;
     }
     //SWITCH ADD PICKUP
 }

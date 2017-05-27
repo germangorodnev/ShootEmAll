@@ -56,9 +56,11 @@
     <instance objName="oPickupWeapon" x="384" y="384" name="inst_78CE5B49" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__BLOOD_FLAG);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="512" y="448" name="inst_CD64D627" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__FOREST_MANTIS, 320);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="448" y="320" name="inst_70BE5199" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__OVERKILLINGTON, 5);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oPickupWeapon" x="384" y="448" name="inst_F4035B15" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__PHASER, 60);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="384" y="448" name="inst_F4035B15" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__PHASER, 60);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="640" y="384" name="inst_BD6D661F" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__DOUBLE_BARREL, 2);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="576" y="288" name="inst_0F3D973D" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__DESTRUCTOR, 6);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="448" y="384" name="inst_D4158EC0" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__TESLA_BOOM, 100);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupRechargable" x="320" y="288" name="inst_F0B4814E" locked="0" code="pickupableInit(PICKUP.__RECH_EXPLOSIVES, RECHARGABLE.__LASER_MINE, sLaserMine);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

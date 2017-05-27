@@ -3,7 +3,8 @@
 if (instance_exists(oLevel))
 {
     var xto = argument[0],
-        yto = argument[1];
+        yto = argument[1],
+        bmask = argument[2];
     var xo = x,
         yo = y;
         
@@ -12,39 +13,43 @@ if (instance_exists(oLevel))
     var rd = bbox_right div LEVEL.TILE_W,
         ld = bbox_left div LEVEL.TILE_W,
         td = bbox_top div LEVEL.TILE_H,
-        bd = bbox_bottom div LEVEL.TILE_H;
+        bd = bbox_bottom div LEVEL.TILE_H,
+        bbr = bbox_right,
+        bbt = bbox_top,
+        bbl = bbox_left,
+        bbb = bbox_bottom;
     
-    var rtmeet = (oLevel.level[# rd, td] & argument[2]),
-        ltmeet = (oLevel.level[# ld, td] & argument[2]);
+    var rtmeet = (oLevel.level[# rd, td] & bmask),
+        ltmeet = (oLevel.level[# ld, td] & bmask);
         
-    var rbmeet = (oLevel.level[# rd, bd] & argument[2]),
-        lbmeet = (oLevel.level[# ld, bd] & argument[2]);
+    var rbmeet = (oLevel.level[# rd, bd] & bmask),
+        lbmeet = (oLevel.level[# ld, bd] & bmask);
         
     x = xo;
     y = yo;
 
     if (rbmeet && rtmeet) // right
     {
-        if (pointColGrid(bbox_right, bbox_top, rd, td)
-            && pointColGrid(bbox_right, bbox_bottom, rd, td)) 
+        if (pointColGrid(bbr, bbt, rd, td)
+            && pointColGrid(bbr, bbb, rd, td)) 
         return 0;
     }
     if (rtmeet && ltmeet) //top
     {
-        if (pointColGrid(bbox_right, bbox_top, rd, td)
-            && pointColGrid(bbox_left, bbox_top, ld, td)) 
+        if (pointColGrid(bbr, bbt, rd, td)
+            && pointColGrid(bbl, bbt, ld, td)) 
         return 1;
     }
     if (ltmeet && lbmeet) // left
     {
-        if (pointColGrid(bbox_left, bbox_top, ld, td)
-            && pointColGrid(bbox_left, bbox_bottom, ld, bd)) 
+        if (pointColGrid(bbl, bbt, ld, td)
+            && pointColGrid(bbl, bbb, ld, bd)) 
         return 2;
     }
     if (rbmeet && lbmeet) // bottom
     {
-        if (pointColGrid(bbox_right, bbox_bottom, rd, bd)
-            && pointColGrid(bbox_left, bbox_bottom, ld, bd)) 
+        if (pointColGrid(bbr, bbb, rd, bd)
+            && pointColGrid(bbl, bbb, ld, bd)) 
         return 3;
     }
     return -1;

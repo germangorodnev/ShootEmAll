@@ -87,6 +87,12 @@ enum SINGLEUSE
     __ALLY_ROBOT
 }
 
+enum RECHARGABLE
+{
+    __NONE = -1,
+    __LASER_MINE
+}
+
 enum ROOMS
 {
     __NONE = -1,
@@ -127,7 +133,8 @@ enum PICKUP
     __MONEY,
     __HP,
     __CRATE,
-    __SU_CARDS
+    __SU_CARDS,
+    __RECH_EXPLOSIVES
 }
 
 enum WEAPONS
@@ -157,6 +164,7 @@ enum WEAPONS
     __PHASER,
     __DESTRUCTOR,
     __DOUBLE_BARREL,
+    __TESLA_BOOM,
     __CUSTOM,
     __RANGED_END
 }
@@ -231,6 +239,7 @@ enum KEY
     WEAP_CHANGE,
     ABIL,
     SINGLEUSE_ITEM,
+    RECHARGABLE_ITEM,
     CNT
 }
 
@@ -255,7 +264,8 @@ enum PROJECTILE
     __GRENADE_ONE_GL,
     __LASER,
     __BULLET_LINE,
-    __PHASER
+    __PHASER,
+    __ZAP
 }
 
 enum AMMO

@@ -119,6 +119,10 @@ singleuse = SINGLEUSE.__NONE;
 singleusePar[0] = 0;
 // 0 - image_index
 
+// rechargable
+rechargable = RECHARGABLE.__NONE;
+rechargablePar[0] = 0; // 0 - GUI image_index
+
 // SPECIAL
 infAmmoTmr = -1;
 SPECIAL_FLAGS = 0;
@@ -287,6 +291,7 @@ weaponSpriteIfNoAmmo();
 weaponRestore();
 masksMove();
 playerAbilitiesCooldown();
+playerRechargableCooldown();
 playerControlledLineProceedAll();
 
 switch (state)
@@ -327,7 +332,13 @@ case PLAYER_STATES.__IDLE:
     {
         playerSingleuseUse();
         exit;
-    }    
+    } 
+       
+    if (key[KEY.RECHARGABLE_ITEM])
+    {
+        playerRechargableUse();
+        exit;
+    }
     
     if (key[KEY.RELOAD])
         playerReload();
@@ -381,6 +392,18 @@ case PLAYER_STATES.__WALK:
         playerChangeWeapon();
         
     playerPickup();
+    
+    if (key[KEY.SINGLEUSE_ITEM])
+    {
+        playerSingleuseUse();
+        exit;
+    }    
+    
+    if (key[KEY.RECHARGABLE_ITEM])
+    {
+        playerRechargableUse();
+        exit;
+    }
     
     var abilUse = playerAbilityKeyCheck();
     if (abilUse == 1)

@@ -22,5 +22,6 @@
   <frames>
     <frame index="0">images\sGUIIcoBack_0.png</frame>
     <frame index="1">images\sGUIIcoBack_1.png</frame>
+    <frame index="2">images\sGUIIcoBack_2.png</frame>
   </frames>
 </sprite>

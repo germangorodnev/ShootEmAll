@@ -1,4 +1,4 @@
-///lineGetCollisionPoint(x1, y1, x2, y2, bitmask collideWith, precise)
+///lineGetCollisionPoint(x1, y1, x2, y2, bitmask collideWith, [ precise = 0 ])
 var x1 = round(argument[0]),
     y1 = round(argument[1]),
     x2 = round(argument[2]),
