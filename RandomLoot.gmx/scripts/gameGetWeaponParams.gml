@@ -304,11 +304,11 @@ case WEAPONS.__DOUBLE_BARREL:
 case WEAPONS.__TESLA_BOOM:
     _arr[W_PR.__BUTTON_STATE] = 1; // 0 - pressed, 1 - pressed const, 2 - released
     _arr[W_PR.__SPRAY_ANGLE] = 0;
-    _arr[W_PR.__SHOOT_CD] = 1 * room_speed;
+    _arr[W_PR.__SHOOT_CD] = 0.4 * room_speed;
     _arr[W_PR.__SCORE_SIZE] = 200;
     _arr[W_PR.__BULLETS_PER_SHOT] = 20;
     _arr[W_PR.__PROJECTILE] = PROJECTILE.__ZAP;
-    _arr[W_PR.__PROJECTILE_AMOUNT] = 5;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
     _arr[W_PR.__PROJECTILE_SPEED] = 11;
     _arr[W_PR.__RELOAD_TIME] = 3.5 * room_speed;
     _arr[W_PR.__DAMAGE_MIN] = 20;

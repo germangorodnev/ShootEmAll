@@ -47,12 +47,36 @@ case RECHARGABLE.__LASER_MINE:
     }
     if (rlside != -1)
     {
+        var idd = id;
         with (instance_create(xcr, ycr, oLaserMine))
+        {
             laserMineInit(rlside);
+            parent = idd;
+        }
         used = 1;
     }
     else
         used = 0;
+    break;
+    
+case RECHARGABLE.__DYNAMITE:
+    used = 1;
+    var cr = instance_create(x, y - 20, oDynamite);   
+    cr.parent = id;
+    break;
+    
+case RECHARGABLE.__STICKY_GRENADE:
+    used = 1;
+    var cr = instance_create(x, y - 20, oStickyGrenade);   
+    cr.parent = id;
+    cr.direction = mousedir;
+    break;
+    
+case RECHARGABLE.__BOOMERANG:
+    used = 1;
+    var cr = instance_create(x, y - 20, oBoomerang);   
+    cr.parent = id;
+    cr.direction = mousedir;
     break;
 }
 

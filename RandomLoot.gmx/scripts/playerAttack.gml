@@ -116,22 +116,36 @@ case WEAPON_TYPE.__RANGE:
         
     // zap
     case WEAPONS.__TESLA_BOOM:
-        var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
-            xx = weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR]),
-            yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle - weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale));
-        var bb = instance_create(xx, yy, bullet);
-        // no crit
-        bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
-        bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
-        bb.parent = id;  
-        bb.dmgcd = weaponCd;
-        bb.liveTmr = lasLong;
-        with (bb)
+        // get all enemies in list
+        var enls = objectsInCircle(x, y, 200, oBaseEnemy);
+        var dd = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]),
+            cc = CUCKED.__NORMAL,
+            pac = id,
+            ddcd = weaponCd,
+        repeat (min(5, ds_list_size(enls)))
         {
-            laserFindCollisionPoint(LEVEL.WALL);
-            projectileInited(); 
-        }         
-        playerControlledLineAdd(bb);    
+            var pp = irandom(ds_list_size(enls) - 1);
+            var enemy = enls[| pp];        
+            ds_list_delete(enls, pp);    
+            if (!enemy.hittable)
+                continue;
+            with (enemy.maskHit)
+            {
+                maskTryGetDmg(pac, dd, cc, ddcd);
+            }
+            var xx = weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR]),
+                yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle - weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale));
+            var bb = instance_create(xx, yy, oZap);
+            bb.eX = enemy.x + irandom_range(-10, 10);
+            bb.eY = enemy.y - irandom_range(5, enemy.sprite_height / 1.5);
+            bb.liveTmr = lasLong;
+            with (bb)
+            {
+                zapInit();
+            }         
+            playerControlledLineAdd(bb);  
+        } 
+        ds_list_destroy(enls); 
         break;
         
     default:

@@ -1,6 +1,5 @@
 depth = -eY;
 
-// add all the masks on line to the list
 var x1 = x,
     y1 = y,
     x2 = eX,

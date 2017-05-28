@@ -304,6 +304,7 @@ case WEAPONS.__DOUBLE_BARREL:
     break;
 
 case WEAPONS.__TESLA_BOOM:
+    lasLong = 0.3 * room_speed;
     weaponCd = 0.5 * room_speed;
     weaponSprite[0] = sTeslaBoom;
     weaponSprite[1] = sTeslaBoomShoot;

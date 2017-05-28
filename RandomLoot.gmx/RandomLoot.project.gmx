@@ -191,6 +191,9 @@
       <sprite>sprites\sExplosion</sprite>
       <sprite>sprites\sExplosives</sprite>
       <sprite>sprites\sLaserMine</sprite>
+      <sprite>sprites\sDynamite</sprite>
+      <sprite>sprites\sStickyGrenade</sprite>
+      <sprite>sprites\sBoomerang</sprite>
     </sprites>
     <sprites name="Interactable">
       <sprites name="Crate">
@@ -320,6 +323,7 @@
       <script>scripts\physicalOnOneLine.gml</script>
       <script>scripts\outsideRoom.gml</script>
       <script>scripts\collisionLine.gml</script>
+      <script>scripts\objectsInCircle.gml</script>
     </scripts>
     <scripts name="Pickupable">
       <script>scripts\pickupableInit.gml</script>
@@ -332,6 +336,9 @@
         <script>scripts\gamePsysCreate.gml</script>
         <script>scripts\gamePsysDelete.gml</script>
         <script>scripts\gamePsysFree.gml</script>
+      </scripts>
+      <scripts name="Sticky Objects">
+        <script>scripts\stickyMoveContact.gml</script>
       </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
@@ -358,7 +365,8 @@
         <script>scripts\bounceBulletStep.gml</script>
       </scripts>
       <scripts name="Zap">
-        <script>scripts\drawZap.gml</script>
+        <script>scripts\zapInit.gml</script>
+        <script>scripts\zapDraw.gml</script>
       </scripts>
       <script>scripts\projectileInited.gml</script>
       <script>scripts\projectileTimer.gml</script>
@@ -511,6 +519,9 @@
       <object>objects\oLongBullet</object>
       <objects name="Special">
         <object>objects\oLaserMine</object>
+        <object>objects\oDynamite</object>
+        <object>objects\oStickyGrenade</object>
+        <object>objects\oBoomerang</object>
       </objects>
       <object>objects\oExplosion</object>
       <object>objects\oShotgunPellet</object>

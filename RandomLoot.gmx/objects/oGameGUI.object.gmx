@@ -87,6 +87,8 @@ rex = abX - 120;
 rey = abY + abH / 2;
 reh = 0;
 rew = 0;
+reyoff = 0;
+rexoff = 0;
 
 //params
 phbw = sprite_get_width(sPlayerHP);
@@ -354,7 +356,7 @@ if (oPlayer.rechargable != RECHARGABLE.__NONE)
         shader_set(shdGray);
         var percent = (maxtmr - tmr) / maxtmr,
             rehPercent = reh - reh * percent;
-        draw_sprite_part_ext(oPlayer.rechargablePar[0], 0, 0, rehPercent, rew, (reh - rehPercent), rex - rew / 2, rey - (rehPercent ), 1, 1, image_blend, image_alpha);
+        draw_sprite_part_ext(oPlayer.rechargablePar[0], 0, 0, rehPercent, rew, (reh - rehPercent), round(rex - rexoff), rey - round(reyoff) + rehPercent, 1, 1, image_blend, image_alpha);
         shader_reset();
     }
 }

@@ -217,6 +217,21 @@ case PICKUP.__SU_CARDS:
 case PICKUP.__RECH_EXPLOSIVES:
     value = argument[1]; // RECHARGABLE.__
     depth = compareY;
+    switch (value)
+    {
+    case RECHARGABLE.__LASER_MINE:
+        sprite_index = sLaserMine;
+        break;
+    case RECHARGABLE.__DYNAMITE:
+        sprite_index = sDynamite;
+        break;
+    case RECHARGABLE.__STICKY_GRENADE:
+        sprite_index = sStickyGrenade;
+        break;
+    case RECHARGABLE.__BOOMERANG:
+        sprite_index = sBoomerang;
+        break;
+    }
     break;
 }
 
