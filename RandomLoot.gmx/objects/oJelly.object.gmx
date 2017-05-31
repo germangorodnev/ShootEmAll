@@ -63,8 +63,10 @@ anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sJellyMove;
 anims[ENEMY_ANIM.__ATTACK] = sJellyAttack;
 anims[ENEMY_ANIM.__CUCKED] = sprite_index;
+anims[ENEMY_ANIM.__DIE] = sJellyDead;
 
 animSpd[ENEMY_ANIM.__ATTACK] = 0.15;
+animSpd[ENEMY_ANIM.__DIE] = 0.15;
 
 enemyStartPattern(ENEMY_PATTERN.__PATROL);
 
@@ -247,6 +249,12 @@ case ENEMY_STATE.__DIE:
     if (destrTmr &amp;&amp; !--destrTmr)
     {
         instance_destroy();
+    }
+    if (animEnded)
+    {
+        anImageIndex = anImageNumber - 1;
+        anImageSpeed = 0;
+        animEnded = 0;
     }
     break;
 }

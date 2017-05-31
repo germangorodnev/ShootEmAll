@@ -10,6 +10,7 @@ if (instance_exists(oLevel))
         
     x = xto;
     y = yto;
+    
     var rd = bbox_right div LEVEL.TILE_W,
         ld = bbox_left div LEVEL.TILE_W,
         td = bbox_top div LEVEL.TILE_H,
@@ -31,25 +32,25 @@ if (instance_exists(oLevel))
     if (rbmeet && rtmeet) // right
     {
         if (pointColGrid(bbr, bbt, rd, td)
-            && pointColGrid(bbr, bbb, rd, td)) 
+            || pointColGrid(bbr, bbb, rd, bd)) 
         return 0;
     }
     if (rtmeet && ltmeet) //top
     {
         if (pointColGrid(bbr, bbt, rd, td)
-            && pointColGrid(bbl, bbt, ld, td)) 
+            || pointColGrid(bbl, bbt, ld, td)) 
         return 1;
     }
     if (ltmeet && lbmeet) // left
     {
         if (pointColGrid(bbl, bbt, ld, td)
-            && pointColGrid(bbl, bbb, ld, bd)) 
+            || pointColGrid(bbl, bbb, ld, bd)) 
         return 2;
     }
     if (rbmeet && lbmeet) // bottom
     {
         if (pointColGrid(bbr, bbb, rd, bd)
-            && pointColGrid(bbl, bbb, ld, bd)) 
+            || pointColGrid(bbl, bbb, ld, bd)) 
         return 3;
     }
     return -1;

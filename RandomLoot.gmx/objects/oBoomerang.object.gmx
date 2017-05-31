@@ -94,7 +94,7 @@ bouncetmr = -1;
             <kind>1</kind>
             <string>if (!updatable)
     exit;
-depth = -y-50;
+depth = -y-5;
 image_angle += 18;
 
 if (outsideRoom())
@@ -105,7 +105,7 @@ if (bouncetmr &amp;&amp; !--bouncetmr)
     
 if (cntgothrough &gt; 0)
 {
-    var _arr = colPlaceFreeSide(x, y, collideWith);
+    var _arr = colPlaceFreeSide(x , y , collideWith);
     if (_arr != -1 &amp;&amp; bouncetmr == -1)
     {
         cntgothrough--;
@@ -115,7 +115,7 @@ if (cntgothrough &gt; 0)
         {
         case 0: // right
             var na = 180;
-            direction = 2 * na  - 180 - direction;        
+            direction = 2 * na  - 180 - direction;   
             break;
         case 1: // top
             var na = 270;

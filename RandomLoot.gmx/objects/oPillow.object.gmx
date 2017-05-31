@@ -249,12 +249,12 @@ case ENEMY_STATE.__WALK:
     detect = enemyDetectPlayer();
     if (detect == 1)
     {
+        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
         // well, maybe shoot
-        if (enemyCanAttack())
+        /*if (enemyCanAttack())
         {
             enemyAttack();
-        }
-        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+        }*/
     }
     physicalMove(collideWith);
     break;

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-100000</depth>
+  <depth>-10000</depth>
   <persistent>0</persistent>
   <parentName>oStateObject</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -364,6 +364,12 @@ if (oPlayer.rechargable != RECHARGABLE.__NONE)
 //////// MINIMAP
 with (oMinimap)
     event_perform(ev_other, ev_user3);
+    
+if (global.gameState == GAME_STATES.__SHOP)
+{
+    with (global.activeShop)
+        event_perform(ev_other, ev_user2);
+}
 </string>
           </argument>
         </arguments>

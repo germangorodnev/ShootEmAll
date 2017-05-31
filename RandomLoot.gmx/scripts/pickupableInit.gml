@@ -16,105 +16,90 @@ case PICKUP.__WEAPON:
     -melee
     */
     value = argument[1];
+    _inf = gameGetWeaponInformation(value);
+    
+    sprite_index = _inf[3];
+    name = _inf[0];
+    class = _inf[2];
+    
     switch (value)
     {
     case WEAPONS.__BLOOD_FLAG:
-        sprite_index = sBloodFlag; 
         image_angle = 270;
-        name = gameGetString("bfname");
-        class = gameGetString("melee");
         break;
     case WEAPONS.__HALFSWORD:
         sprite_index = sHalfsword; 
         image_angle = -45;
-        class = gameGetString("melee");
         break;
     case WEAPONS.__COPPER_DEVIL:
         sprite_index = sCopperDevil; 
         image_angle = -45;
-        class = gameGetString("melee");
         break;
     case WEAPONS.__STICK:
         sprite_index = sStick; 
         image_angle = 60;
-        class = gameGetString("melee");
         break;
     case WEAPONS.__ARIA_ARTH:
         sprite_index = sAriaArthef; 
         image_angle = 45;
-        class = gameGetString("melee");
         break;
     case WEAPONS.__RAZORBLADE:
         sprite_index = sRazorblade; 
         image_angle = 65;
-        class = gameGetString("melee");
         break;
 
     
     case WEAPONS.__POMPINGTON:
         sprite_index = sPompington; 
         ammo = argument[2];
-        class = gameGetString("shotgun");
         break;
     case WEAPONS.__RXP:
         sprite_index = sRXP; 
         ammo = argument[2];
-        class = gameGetString("pistol");
         break;
     case WEAPONS.__RECT1:
         sprite_index = sRECT1; 
         ammo = argument[2];
-        class = gameGetString("pistol");
         break;
     case WEAPONS.__ROMAN_MG:
         sprite_index = sRomanMG; 
         ammo = argument[2];
-        class = gameGetString("machinegun");
         break;
     case WEAPONS.__NOVA_M:
         sprite_index = sNovaM; 
         ammo = argument[2];
-        class = gameGetString("automat");
         break;
     case WEAPONS.__BORIAN_BULG:
         sprite_index = sBorianBulg; 
         ammo = argument[2];
-        class = gameGetString("pistol");
         break;
     case WEAPONS.__GRENADE_LAUNCHER:
         sprite_index = sOneGL; 
         ammo = argument[2];
-        class = gameGetString("launcher");
         break;
     case WEAPONS.__FOREST_MANTIS:
         sprite_index = sForestMantis; 
         ammo = argument[2];
-        class = gameGetString("automat");    
         break;
     case WEAPONS.__OVERKILLINGTON:
         sprite_index = sOverkillington; 
         ammo = argument[2];
-        class = gameGetString("rifle");    
         break;
     case WEAPONS.__PHASER:
         sprite_index = sPhaserEmpty; 
         ammo = argument[2];
-        class = gameGetString("launcher");    
         break;
     case WEAPONS.__DESTRUCTOR:
         sprite_index = sDestructor; 
         ammo = argument[2];
-        class = gameGetString("pistol");    
         break;
     case WEAPONS.__DOUBLE_BARREL:
         sprite_index = sDoubleBarrel; 
         ammo = argument[2];
-        class = gameGetString("shotgun");    
         break;
     case WEAPONS.__TESLA_BOOM:
         sprite_index = sTeslaBoom; 
         ammo = argument[2];
-        class = gameGetString("automat");    
         break;
     }
     break;
@@ -217,7 +202,9 @@ case PICKUP.__SU_CARDS:
 case PICKUP.__RECH_EXPLOSIVES:
     value = argument[1]; // RECHARGABLE.__
     depth = compareY;
-    switch (value)
+    _inf = gameGetRechargableExplosiveInformation(value);
+    sprite_index = _inf[2];
+    /*switch (value)
     {
     case RECHARGABLE.__LASER_MINE:
         sprite_index = sLaserMine;
@@ -231,7 +218,7 @@ case PICKUP.__RECH_EXPLOSIVES:
     case RECHARGABLE.__BOOMERANG:
         sprite_index = sBoomerang;
         break;
-    }
+    }*/
     break;
 }
 

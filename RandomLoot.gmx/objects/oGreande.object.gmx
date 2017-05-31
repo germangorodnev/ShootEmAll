@@ -35,6 +35,8 @@ fric = 0.15;
 dtmr = 3 * room_speed;
 
 radius = 75;
+
+bouncetmr = -1;
 </string>
           </argument>
         </arguments>

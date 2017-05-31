@@ -55,6 +55,9 @@ destrTmr = -1;
 mX = x;
 mY = y;
 
+// money ondeath
+moneydead = irandom_range(3, 40);
+
 state = ENEMY_STATE.__IDLE;
 
 pattern = ENEMY_PATTERN.__NONE;

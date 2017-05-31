@@ -193,7 +193,7 @@ case CAM_STATES.__PLAYER:
           <argument>
             <kind>1</kind>
             <string>///pause on
-
+speed = 0;
 </string>
           </argument>
         </arguments>

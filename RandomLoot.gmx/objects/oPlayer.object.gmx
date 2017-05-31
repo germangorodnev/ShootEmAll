@@ -571,17 +571,20 @@ case PLAYER_STATES.__DIE:
             <kind>1</kind>
             <string>if (!drawable)
     exit;
-if (mouse_y &lt; y)
+if (updatable)
 {
-    with (weaponObj)
-        event_perform(ev_other, ev_user3);
-    procedureAnimableDrawPerson();
-}   
-else
-{
-    procedureAnimableDrawPerson();
-    with (weaponObj)
-        event_perform(ev_other, ev_user3);
+    if (mouse_y &lt; y)
+    {
+        with (weaponObj)
+            event_perform(ev_other, ev_user3);
+        procedureAnimableDrawPerson();
+    }   
+    else
+    {
+        procedureAnimableDrawPerson();
+        with (weaponObj)
+            event_perform(ev_other, ev_user3);
+    }
 }
 playerDebug();
 </string>

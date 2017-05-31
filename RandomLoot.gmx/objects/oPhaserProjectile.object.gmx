@@ -35,8 +35,7 @@ dtmr = 10 * room_speed;
 
 radius = 75;
 
-
-
+bouncetmr = -1;
 </string>
           </argument>
         </arguments>

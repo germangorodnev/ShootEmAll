@@ -52,6 +52,12 @@ weaponAttDist = 30;
 weaponObj = instance_create(x, y, oEnemyWeapon);
 weaponObj.parent = id;
 enemyWeaponInit(weapon);
+
+// shield
+shield = instance_create(x, y, oOctoGuardShield);
+shield.parent = id;
+
+
 maskHitAdd(13, 6, 48, 100, 1);
 
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
@@ -85,6 +91,8 @@ enemySetState(ENEMY_STATE.__IDLE);
             <kind>1</kind>
             <string>event_inherited();
 with(weaponObj)
+    instance_destroy();
+with (shield)
     instance_destroy();
 </string>
           </argument>

@@ -249,7 +249,7 @@ case WEAPONS.__GRENADE_LAUNCHER:
     
 case WEAPONS.__FOREST_MANTIS:
     lasLong = 3;
-    weaponCd = 1 * room_speed;
+    weaponCd = 0.05 * room_speed;
     weaponSprite[0] = sForestMantis;
     weaponSprite[1] = sForestMantisShoot;
     weaponAnimSpeed[1] = 0.15;

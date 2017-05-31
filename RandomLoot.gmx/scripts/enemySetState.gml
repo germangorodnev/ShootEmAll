@@ -31,10 +31,13 @@ case ENEMY_STATE.__CUCKED:
     break;
     
 case ENEMY_STATE.__DIE:
+    customAnimableSetSprite(anims[ENEMY_ANIM.__DIE], animSpd[ENEMY_ANIM.__DIE]);
     hittable = 0;
     path_end();
     enemyCreateJibs();
     destrTmr = 1.5 * room_speed;
     //instance_destroy();
+    // create some money
+    enemyCreateMoney();
     break;
 }

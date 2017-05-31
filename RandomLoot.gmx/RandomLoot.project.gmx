@@ -119,6 +119,11 @@
         <sprite>sprites\sPlayerCamouflage</sprite>
         <sprite>sprites\sPlayerKamikaze</sprite>
       </sprites>
+      <sprites name="Shop">
+        <sprite>sprites\sShopGUIIco</sprite>
+        <sprite>sprites\sShopBuy</sprite>
+        <sprite>sprites\sShopClose</sprite>
+      </sprites>
       <sprite>sprites\sGUIIcoBack</sprite>
       <sprite>sprites\sprite106</sprite>
     </sprites>
@@ -157,6 +162,7 @@
           <sprite>sprites\sJellyIdle</sprite>
           <sprite>sprites\sJellyMove</sprite>
           <sprite>sprites\sJellyAttack</sprite>
+          <sprite>sprites\sJellyDead</sprite>
         </sprites>
       </sprites>
       <sprites name="Weapons">
@@ -169,6 +175,7 @@
       <sprites name="Jibs">
         <sprite>sprites\sPillowJibs</sprite>
         <sprite>sprites\sMeatJibs</sprite>
+        <sprite>sprites\sJellyJibs</sprite>
       </sprites>
     </sprites>
     <sprites name="Pickupable">
@@ -202,6 +209,7 @@
       </sprites>
       <sprite>sprites\sExplosiveCrate</sprite>
       <sprite>sprites\sRoomDoorTopBot</sprite>
+      <sprite>sprites\sShop</sprite>
     </sprites>
     <sprites name="Prison Objects">
       <sprite>sprites\sPrisonDoorTopBot</sprite>
@@ -340,6 +348,14 @@
       <scripts name="Sticky Objects">
         <script>scripts\stickyMoveContact.gml</script>
       </scripts>
+      <scripts name="State Machine">
+        <script>scripts\gameSetState.gml</script>
+      </scripts>
+      <scripts name="Information">
+        <script>scripts\gameGetWeaponInformation.gml</script>
+        <script>scripts\gameGetSingleuseInformation.gml</script>
+        <script>scripts\gameGetRechargableExplosiveInformation.gml</script>
+      </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
@@ -389,6 +405,7 @@
       <script>scripts\enemyAttack.gml</script>
       <script>scripts\enemyCreateJibs.gml</script>
       <script>scripts\enemyMoveOutOfOther.gml</script>
+      <script>scripts\enemyCreateMoney.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>
@@ -461,6 +478,13 @@
       <script>scripts\levelRoomAdd.gml</script>
       <script>scripts\levelTileMark.gml</script>
     </scripts>
+    <scripts name="Shop">
+      <script>scripts\shopOpen.gml</script>
+      <script>scripts\shopClose.gml</script>
+      <script>scripts\shopInit.gml</script>
+      <script>scripts\shopBuy.gml</script>
+      <script>scripts\shopDeletePos.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shdGray.shader</shader>
@@ -469,6 +493,8 @@
     <font>fonts\fWeaponType</font>
     <font>fonts\fWeaponName</font>
     <font>fonts\fGame</font>
+    <font>fonts\fShopCaption</font>
+    <font>fonts\fShopDesc</font>
   </fonts>
   <objects name="objects">
     <objects name="Parents">
@@ -493,6 +519,9 @@
         <object>objects\oFloor</object>
         <object>objects\oRoom</object>
       </objects>
+      <objects name="GUI">
+        <object>objects\oButton</object>
+      </objects>
       <object>objects\oLevel</object>
       <object>objects\oCamera</object>
       <object>objects\oGameGUI</object>
@@ -506,7 +535,6 @@
     </objects>
     <objects name="Pickup">
       <object>objects\oPickupableObject</object>
-      <object>objects\oCrate</object>
       <object>objects\oPickupWeapon</object>
       <object>objects\oPickupAmmo</object>
       <object>objects\oPickupMoney</object>
@@ -542,8 +570,13 @@
       <object>objects\oEnemyWeapon</object>
       <object>objects\oPillow</object>
       <object>objects\oJelly</object>
-      <object>objects\oOctoGuard</object>
-      <object>objects\oOctoAttack</object>
+      <objects name="Octos">
+        <object>objects\oOctoAttack</object>
+        <objects name="Guard">
+          <object>objects\oOctoGuard</object>
+          <object>objects\oOctoGuardShield</object>
+        </objects>
+      </objects>
       <object>objects\oBuddyTest</object>
       <object>objects\oEnemyBullet</object>
     </objects>
@@ -554,7 +587,12 @@
     </objects>
     <objects name="Interactable">
       <object>objects\oExplosiveCrate</object>
+      <object>objects\oCrate</object>
       <object>objects\oLevelDoor</object>
+      <object>objects\oShop</object>
+    </objects>
+    <objects name="Shop">
+      <object>objects\oShopBuyButton</object>
     </objects>
     <object>objects\oWall</object>
   </objects>

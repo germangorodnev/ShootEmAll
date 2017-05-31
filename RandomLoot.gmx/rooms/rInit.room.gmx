@@ -84,7 +84,9 @@ enum SINGLEUSE
     __FULL_HEART,
     __40_SHOTGUN_SHELLS,
     __DMG_SINGLE_ENEMY,
-    __ALLY_ROBOT
+    __ALLY_ROBOT,
+    
+    __CARDS_END
 }
 
 enum RECHARGABLE
@@ -93,7 +95,9 @@ enum RECHARGABLE
     __LASER_MINE,
     __DYNAMITE,
     __STICKY_GRENADE,
-    __BOOMERANG
+    __BOOMERANG,
+    
+    __END
 }
 
 enum ROOMS
@@ -110,7 +114,8 @@ enum GAME_STATES
 {
     __INIT = 0,
     __GAME,
-    __PAUSE
+    __PAUSE,
+    __SHOP
 }
 
 enum PLAYER_STATES
@@ -137,7 +142,8 @@ enum PICKUP
     __HP,
     __CRATE,
     __SU_CARDS,
-    __RECH_EXPLOSIVES
+    __RECH_EXPLOSIVES,
+    __SHOP
 }
 
 enum WEAPONS
@@ -327,6 +333,7 @@ enum ENEMY_ANIM
     __WALK,
     __ATTACK,
     __CUCKED,
+    __DIE,
     __CNT
 }
 

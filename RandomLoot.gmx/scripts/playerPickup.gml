@@ -47,8 +47,14 @@ if (!pickupId.autopickup)
         }
         if (!key[KEY.PICKUP])
             exit;
-        key[KEY.SINGLEUSE_ITEM] = 0;
         crateOpen(pickupId, id);
+        break;
+        
+    case PICKUP.__SHOP:
+        if (!key[KEY.PICKUP])
+            exit;
+        with (pickupId)
+            shopOpen();    
         break;
         
     case PICKUP.__SU_CARDS:
