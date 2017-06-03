@@ -195,6 +195,43 @@ else if (mg == 1)
         return _arr;
     }
     
+    else if (gg == PICKUP.__EAT)
+    {
+        // =============================== WEAPONS ========================== //
+        var _arr;
+        _arr[1] = "Вкусно!";
+        // 0 - name
+        // 1 - desc
+        switch (key)
+        {
+        case SINGLEUSE.__CHOCO_1:
+        case SINGLEUSE.__CHOCO_2:
+        case SINGLEUSE.__CHOCO_3:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Chocolate bar";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Шоколадный батончик";
+                break;
+            }    
+            break;
+        case SINGLEUSE.__BEER_1:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Beer";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Пивас";
+                break;
+            }    
+            break;
+        }
+        return _arr;    
+    }
+    
     else if (gg == PICKUP.__WEAPON)
     {
         // =============================== WEAPONS ========================== //

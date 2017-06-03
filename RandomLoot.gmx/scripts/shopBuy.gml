@@ -5,6 +5,10 @@ if (global.money < goodsPrice[p])
     exit;
 switch (goodsClass[p])
 {
+case PICKUP.__EAT:
+    with (instance_create(giveX + irandom_range(-rangeX, rangeX), giveY + irandom(rangeY), oPickupCard))
+        pickupableInit(PICKUP.__EAT, ind);
+    break;
 case PICKUP.__SU_CARDS:
     with (instance_create(giveX + irandom_range(-rangeX, rangeX), giveY + irandom(rangeY), oPickupCard))
         pickupableInit(PICKUP.__SU_CARDS, ind);

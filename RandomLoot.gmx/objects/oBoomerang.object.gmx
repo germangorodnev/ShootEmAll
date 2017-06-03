@@ -97,6 +97,9 @@ bouncetmr = -1;
 depth = -y-5;
 image_angle += 18;
 
+x += lengthdir_x(spd, direction);
+y += lengthdir_y(spd, direction);
+
 if (outsideRoom())
     instance_destroy();
     
@@ -141,13 +144,7 @@ if (ic != noone)
         exit;
     if (!ic.par.hittable) // invulnerable
         exit;
-    var a = damage,
-        b = cuck,
-        c = parent.id,
-        cdd = dmgcd;
-    var tk = 0;
-    with (ic)
-        tk = maskTryGetDmg(c, a, b, cdd);
+    gameCreateExplosion(x, y, damage, group, cuck, dmgcd, parent, 75);
     instance_destroy();
 }
 

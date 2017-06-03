@@ -133,6 +133,9 @@ if (dtmr &amp;&amp; !--dtmr)
     instance_destroy();
 }
 
+x += lengthdir_x(spd, direction);
+y += lengthdir_y(spd, direction);
+
 if (outsideRoom())
     instance_destroy();
 
@@ -157,8 +160,8 @@ case 0:
         stickObj = ic;
         stick = 2;
         speed = 0;
-        xoff = irandom_range(-13, 13);
-        yoff = irandom_range(3, 25);
+        xoff = x+lengthdir_x(5, direction) - ic.x; //irandom_range(-13, 13);
+        yoff = y+lengthdir_y(5, direction) - ic.y; //irandom_range(3, 25);
         exit;
     }    
     break;

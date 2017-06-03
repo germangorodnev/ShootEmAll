@@ -47,8 +47,8 @@ enemyType = ENEMY.__JELLY;
 weaponXoff = 0;
 weaponYoff = 0;
 
-dist = 100;
-weaponAttDist = 30;
+dist = 250;
+weaponAttDist = 65;
 
 kx1 = 85;
 ky1 = 10;
@@ -57,7 +57,7 @@ ky2 = 88;
 
 mindmg = 1;
 maxdmg = 2;
-maskHitAdd(15, 15, 95, 84, 1);
+maskHitAdd(15, 15, 95, 92, 1);
 
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sJellyMove;
@@ -66,7 +66,7 @@ anims[ENEMY_ANIM.__CUCKED] = sprite_index;
 anims[ENEMY_ANIM.__DIE] = sJellyDead;
 
 animSpd[ENEMY_ANIM.__ATTACK] = 0.15;
-animSpd[ENEMY_ANIM.__DIE] = 0.15;
+animSpd[ENEMY_ANIM.__DIE] = 0.3;
 
 enemyStartPattern(ENEMY_PATTERN.__PATROL);
 

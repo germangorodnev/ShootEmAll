@@ -89,8 +89,10 @@ depth = -y-5;
 projectileTimer();
 if (!active)
     exit;
+x += lengthdir_x(spd, direction);
+y += lengthdir_y(spd, direction);
     
-speed = approach(speed, 0, fric);
+spd = approach(spd, 0, fric);
 
 if (dtmr &amp;&amp; !--dtmr)
 {

@@ -138,6 +138,9 @@ pwc = c_white;
 
 playerMaskCreate(0);
 
+// mouse y old
+myo = mouse_y;
+
 
 instance_create(x, y, oCamera);
 instance_create(0, 0, oGameGUI);
@@ -571,21 +574,29 @@ case PLAYER_STATES.__DIE:
             <kind>1</kind>
             <string>if (!drawable)
     exit;
+var mycmp = 0;
 if (updatable)
 {
-    if (mouse_y &lt; y)
-    {
-        with (weaponObj)
-            event_perform(ev_other, ev_user3);
-        procedureAnimableDrawPerson();
-    }   
-    else
-    {
-        procedureAnimableDrawPerson();
-        with (weaponObj)
-            event_perform(ev_other, ev_user3);
-    }
+    myo = mouse_y;
+    mycmp = mouse_y;
 }
+else
+{
+    mycmp = myo;
+}
+if (mycmp &lt; y)
+{
+    with (weaponObj)
+        event_perform(ev_other, ev_user3);
+    procedureAnimableDrawPerson();
+}   
+else
+{
+    procedureAnimableDrawPerson();
+    with (weaponObj)
+        event_perform(ev_other, ev_user3);
+}
+
 playerDebug();
 </string>
           </argument>

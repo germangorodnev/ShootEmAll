@@ -58,7 +58,10 @@ enum TILES
     __SHOWER_TUMB,
     __SHOWER_STOOL,
     __SHOWER_WET,
-    __SHOWER_BUCKET
+    __SHOWER_BUCKET,
+    
+    __CRATE_LEFT,
+    __CRATE_RIGHT
 }
 
 enum CANNOT
@@ -85,8 +88,15 @@ enum SINGLEUSE
     __40_SHOTGUN_SHELLS,
     __DMG_SINGLE_ENEMY,
     __ALLY_ROBOT,
+
+    __CARDS_END,
     
-    __CARDS_END
+    __EAT_BEGIN,
+    __CHOCO_1,
+    __CHOCO_2,
+    __CHOCO_3,
+    __BEER_1,
+    __EAT_END,
 }
 
 enum RECHARGABLE
@@ -143,7 +153,8 @@ enum PICKUP
     __CRATE,
     __SU_CARDS,
     __RECH_EXPLOSIVES,
-    __SHOP
+    __SHOP,
+    __EAT
 }
 
 enum WEAPONS

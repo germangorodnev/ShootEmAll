@@ -34,10 +34,19 @@ cmp = 1;
 //cap
 cap = 1;
 cx = x;
-cy = y - 18;
+cy = y - 15;
 ca = 1;
 
 depth = -y;
+
+// block the ground
+var mtx = (x - 15) div LEVEL.TILE_W,
+    mty = (y) div LEVEL.TILE_H;
+levelTileMark(mtx, mty, TILES.__CRATE_LEFT);
+oLevel.level[# mtx, mty] |= LEVEL.SOLID;
+levelTileMark(mtx+1, mty, TILES.__CRATE_RIGHT);
+oLevel.level[# mtx+1, mty] |= LEVEL.SOLID;
+
 </string>
           </argument>
         </arguments>

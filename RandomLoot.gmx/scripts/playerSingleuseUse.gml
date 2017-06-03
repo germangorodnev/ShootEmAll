@@ -1,4 +1,5 @@
 var used = 0;
+
 switch (singleuse)
 {
 case SINGLEUSE.__FULL_HEART:
@@ -22,7 +23,26 @@ case SINGLEUSE.__INF_AMMO:
         infAmmoTmr = 30 * room_speed;
     }
     break;
+    
+case SINGLEUSE.__CHOCO_1:
+case SINGLEUSE.__CHOCO_2:
+case SINGLEUSE.__CHOCO_3:
+    if (hp < _hp)
+    {
+        playerChangeHP(1);
+        used = 1;
+    }
+    break;
+    
+case SINGLEUSE.__BEER_1:
+    if (hp < _hp)
+    {
+        playerChangeHP(2);
+        used = 1;
+    }
+    break;
 }
+
 
 if (used)
 {

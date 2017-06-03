@@ -204,21 +204,14 @@ case PICKUP.__RECH_EXPLOSIVES:
     depth = compareY;
     _inf = gameGetRechargableExplosiveInformation(value);
     sprite_index = _inf[2];
-    /*switch (value)
-    {
-    case RECHARGABLE.__LASER_MINE:
-        sprite_index = sLaserMine;
-        break;
-    case RECHARGABLE.__DYNAMITE:
-        sprite_index = sDynamite;
-        break;
-    case RECHARGABLE.__STICKY_GRENADE:
-        sprite_index = sStickyGrenade;
-        break;
-    case RECHARGABLE.__BOOMERANG:
-        sprite_index = sBoomerang;
-        break;
-    }*/
+    break;
+    
+case PICKUP.__EAT:
+    value = argument[1]; // SINGLEUSE.__
+    depth = compareY;
+    _inf = gameGetEatableInformation(value);
+    sprite_index = _inf[2];
+    image_index = _inf[3];
     break;
 }
 

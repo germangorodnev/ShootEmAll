@@ -338,7 +338,7 @@ for (var i = 0, ic = oPlayer.abilCount; i &lt; ic; i++)
 draw_sprite_ext(sGUIIcoBack, 1, sux, suy, 1, 1, 0, image_blend, image_alpha);
 if (oPlayer.singleuse != SINGLEUSE.__NONE)
 {
-    draw_sprite_ext(sPickupCards, oPlayer.singleusePar[0], sux, suy, 1, 1, 0, image_blend, image_alpha);
+    draw_sprite_ext(oPlayer.singleusePar[1], oPlayer.singleusePar[0], sux, suy, 1, 1, 0, image_blend, image_alpha);
 }
 
 //////// RECHARGABLE ITEM

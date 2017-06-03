@@ -3,7 +3,9 @@ projectileTimer();
 if (!active)
     exit;
 
-depth = -y-50;
+depth = -y-10;
+x += lengthdir_x(spd, direction);
+y += lengthdir_y(spd, direction);
     
 if (outsideRoom())
     instance_destroy();
@@ -39,8 +41,8 @@ if (ic != noone)
 }
 
 //if (!colPlaceFree(x + lengthdir_x(speed, direction - 180), y + lengthdir_y(speed, direction - 180), 1))
-if (!colPlaceFree(x + lengthdir_x(speed / 2, direction), 
-    y + lengthdir_y(speed / 2, direction), collideWith))
+if (!colPlaceFree(x /*+ lengthdir_x(speed / 2, direction)*/, 
+    y /*+ lengthdir_y(speed / 2, direction)*/, collideWith))
 {
     instance_destroy();
 }

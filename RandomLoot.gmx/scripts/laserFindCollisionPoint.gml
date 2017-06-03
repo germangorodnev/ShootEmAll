@@ -1,7 +1,7 @@
 ///laserFindCollisionPoint(bitmask collide)
 eX = x + lengthdir_x(5000, direction);
 eY = y + lengthdir_y(5000, direction);
-var _arr = lineGetCollisionPoint(x, y, eX, eY, argument[0]);
+var _arr = lineGetCollisionPoint(x, y, eX, eY, argument[0], 1);
 if (is_array(_arr))
 {
     // get the rect 

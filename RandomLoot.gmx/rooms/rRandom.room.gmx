@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
-  <colour>12632256</colour>
+  <colour>1513239</colour>
   <showcolour>-1</showcolour>
   <code></code>
   <enableViews>0</enableViews>
@@ -66,6 +66,8 @@
     <instance objName="oPickupRechargable" x="288" y="352" name="inst_0E40BF7C" locked="0" code="pickupableInit(PICKUP.__RECH_EXPLOSIVES, RECHARGABLE.__BOOMERANG);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oShop" x="672" y="224" name="inst_87B68AD9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPickupWeapon" x="704" y="288" name="inst_7C9E55D3" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__NOVA_M, 5);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oCrate" x="512" y="224" name="inst_2A2D6471" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oPickupWeapon" x="704" y="448" name="inst_8FADEBB0" locked="0" code="pickupableInit(PICKUP.__WEAPON, WEAPONS.__ROMAN_MG, 50);&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

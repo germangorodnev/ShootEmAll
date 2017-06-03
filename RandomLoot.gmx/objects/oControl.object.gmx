@@ -31,6 +31,7 @@ randomize();
 global.guiW = 1280;
 global.guiH = 720;
 global.debug = 0;
+//window_set_size(global.guiW, global.guiH);
 display_set_gui_size(global.guiW, global.guiH);
 
 global.language = LANG.__EN;
@@ -48,8 +49,10 @@ global.money = 250000;
 
 // particles
 global.psyses = ds_list_create();
-global.pse = gamePsysCreate();
+global.pse = gamePsysCreate(1);
 part_system_depth(global.pse, 10);
+
+
 // ===================== jibs ===================
 // pillow
 global.pillowjibs = part_type_create();
@@ -168,7 +171,21 @@ gamePsysFree();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check_released(ord('O')))
+            <string>// particle systems
+for (var i = 1, ci = ds_list_size(global.psyses); i &lt; ci; i++)
+{
+    var _arr = global.psyses[| i];
+    if (_arr[@2] == global.gameState 
+        &amp;&amp; _arr[@1] == 1)
+        _arr[@3]--;
+    if (_arr[@3] &lt;= 0)
+    {
+        part_system_destroy(_arr[@0]);
+        ds_list_delete(global.psyses, i);
+    }
+}
+
+if (keyboard_check_released(ord('O')))
     game_restart();
 if (keyboard_check_released(ord('P')))
     room_restart();
@@ -199,6 +216,9 @@ if (keyboard_check_released(ord('L')))
     
 if (keyboard_check_released(ord('I')))
     oPlayer.hp--;
+    
+if (keyboard_check_released(188))
+    instance_create(mouse_x, mouse_y, oPlayer);
     
 if (keyboard_check_released(ord('M')))
     if (!instance_exists(oPlayer))

@@ -5,13 +5,12 @@ if (singleuse == SINGLEUSE.__NONE)
     // just add
     singleuse = card.value;
     singleusePar[0] = singleuse;
+    singleusePar[1] = sPickupCards;
+    singleuseGroup = PICKUP.__SU_CARDS;
 }
 else
 {
     // drop existing
-    var crd = singleuse;
-    with (instance_create(x, y, oPickupCard))
-        pickupableInit(PICKUP.__SU_CARDS, crd);
-    singleuse = SINGLEUSE.__NONE;
+    playerSingleuseDropCurrent();
     playerPickupCard(card);
 }

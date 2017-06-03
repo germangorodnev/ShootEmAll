@@ -65,7 +65,16 @@ if (!pickupId.autopickup)
         with (pickupId)
             instance_destroy();    
         break;
-    
+        
+    case PICKUP.__EAT:
+        if (!key[KEY.PICKUP])
+            exit;
+        key[KEY.SINGLEUSE_ITEM] = 0;
+            playerPickupEat(pickupId);  
+        with (pickupId)
+            instance_destroy();    
+        break;
+            
     case PICKUP.__RECH_EXPLOSIVES:
         if (!key[KEY.PICKUP])
             exit;

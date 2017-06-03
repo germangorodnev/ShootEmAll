@@ -109,6 +109,9 @@ levelCollisionHelperInit(TILES.__SHOWER_WET, 6, 31, 5, 5);
 levelCollisionHelperInit(TILES.__SHOWER_BUCKET, 30, 30, 2, 15);
 levelCollisionHelperInit(TILES.__SHOWER_STOOL, 3, 35, 3, 0);
 
+levelCollisionHelperInit(TILES.__CRATE_LEFT, 12, 28, 12, 12);
+levelCollisionHelperInit(TILES.__CRATE_RIGHT, 12, 28, 12, 12);
+
 // NEW
 cellW = 12;
 cellH = 12;

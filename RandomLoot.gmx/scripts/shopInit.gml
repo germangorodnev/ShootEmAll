@@ -11,9 +11,19 @@ goodsPrice[] - price in c.u.
 
 for (var i = 0; i < goodsCnt; i++)
 {
-    goodsClass[i] = choose(PICKUP.__SU_CARDS, PICKUP.__RECH_EXPLOSIVES, PICKUP.__WEAPON);
+    goodsClass[i] = choose(PICKUP.__EAT, PICKUP.__SU_CARDS, PICKUP.__RECH_EXPLOSIVES, PICKUP.__WEAPON);
     switch (goodsClass[i])
     {
+    case PICKUP.__EAT:
+        goodsId[i] = irandom_range(SINGLEUSE.__EAT_BEGIN + 1, SINGLEUSE.__EAT_END - 1);
+        var _arr = gameGetEatableInformation(goodsId[i]);
+        goodsName[i] = _arr[0];
+        goodsDesc[i] = _arr[1];
+        goodsSpr[i] = _arr[2];
+        goodsImg[i] = _arr[3];
+        _arr = 0;
+        break;
+
     case PICKUP.__SU_CARDS:
         goodsId[i] = irandom_range(SINGLEUSE.__NONE + 1, SINGLEUSE.__CARDS_END - 1);
         var _arr = gameGetSingleuseInformation(goodsId[i]);

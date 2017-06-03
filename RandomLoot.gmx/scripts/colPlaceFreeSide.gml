@@ -29,17 +29,17 @@ if (instance_exists(oLevel))
     x = xo;
     y = yo;
 
-    if (rbmeet && rtmeet) // right
-    {
-        if (pointColGrid(bbr, bbt, rd, td)
-            || pointColGrid(bbr, bbb, rd, bd)) 
-        return 0;
-    }
     if (rtmeet && ltmeet) //top
     {
         if (pointColGrid(bbr, bbt, rd, td)
             || pointColGrid(bbl, bbt, ld, td)) 
         return 1;
+    }
+    if (rbmeet && rtmeet) // right
+    {
+        if (pointColGrid(bbr, bbt, rd, td)
+            || pointColGrid(bbr, bbb, rd, bd)) 
+        return 0;
     }
     if (ltmeet && lbmeet) // left
     {

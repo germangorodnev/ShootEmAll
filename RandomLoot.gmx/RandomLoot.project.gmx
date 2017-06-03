@@ -124,6 +124,10 @@
         <sprite>sprites\sShopBuy</sprite>
         <sprite>sprites\sShopClose</sprite>
       </sprites>
+      <sprites name="Robot Guard">
+        <sprite>sprites\sRobotGuard</sprite>
+        <sprite>sprites\sRobotGuardShoot</sprite>
+      </sprites>
       <sprite>sprites\sGUIIcoBack</sprite>
       <sprite>sprites\sprite106</sprite>
     </sprites>
@@ -187,6 +191,7 @@
       <sprite>sprites\sHPPickup</sprite>
       <sprite>sprites\sMoneyPickup</sprite>
       <sprite>sprites\sPickupCards</sprite>
+      <sprite>sprites\sPickupEat</sprite>
     </sprites>
     <sprites name="Ammo Shot">
       <sprite>sprites\sShotgunProjectile</sprite>
@@ -276,6 +281,7 @@
         <script>scripts\playerPickupWeapon.gml</script>
         <script>scripts\playerPickupAmmo.gml</script>
         <script>scripts\playerPickupCard.gml</script>
+        <script>scripts\playerPickupEat.gml</script>
         <script>scripts\playerPickupRechargableExplosive.gml</script>
       </scripts>
       <scripts name="GUI">
@@ -297,6 +303,7 @@
         <script>scripts\playerAbilitiesCooldown.gml</script>
       </scripts>
       <scripts name="Single Use">
+        <script>scripts\playerSingleuseDropCurrent.gml</script>
         <script>scripts\playerSingleuseUse.gml</script>
       </scripts>
       <scripts name="Controllled Projectiles">
@@ -308,6 +315,9 @@
         <script>scripts\playerRechargableUse.gml</script>
         <script>scripts\playerRechargableInit.gml</script>
         <script>scripts\playerRechargableCooldown.gml</script>
+      </scripts>
+      <scripts name="Robot">
+        <script>scripts\playerAllyCreate.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -355,12 +365,12 @@
         <script>scripts\gameGetWeaponInformation.gml</script>
         <script>scripts\gameGetSingleuseInformation.gml</script>
         <script>scripts\gameGetRechargableExplosiveInformation.gml</script>
+        <script>scripts\gameGetEatableInformation.gml</script>
       </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
       <script>scripts\gamePlaySound.gml</script>
-      <script>scripts\punchEffectCreate.gml</script>
       <script>scripts\gameCreateExplosion.gml</script>
       <script>scripts\gameGetRandomWeapon.gml</script>
       <script>scripts\gameGetString.gml</script>
@@ -539,6 +549,7 @@
       <object>objects\oPickupAmmo</object>
       <object>objects\oPickupMoney</object>
       <object>objects\oPickupCard</object>
+      <object>objects\oPickupEat</object>
       <object>objects\oPickupRechargable</object>
       <object>objects\oPickupHP</object>
     </objects>
@@ -589,10 +600,9 @@
       <object>objects\oExplosiveCrate</object>
       <object>objects\oCrate</object>
       <object>objects\oLevelDoor</object>
-      <object>objects\oShop</object>
     </objects>
     <objects name="Shop">
-      <object>objects\oShopBuyButton</object>
+      <object>objects\oShop</object>
     </objects>
     <object>objects\oWall</object>
   </objects>
