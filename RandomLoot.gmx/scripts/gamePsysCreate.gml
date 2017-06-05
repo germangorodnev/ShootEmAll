@@ -5,14 +5,12 @@ with (oControl)
     var _arr;
     _arr[3] = 2;
     _arr[2] = global.gameState;
-    if (argument_count > 1)
+    _arr[1] = 1;
+    switch (argument_count)
     {
-        _arr[3] = argument[1];
-        _arr[1] = argument[0];
-    }
-    else
-    {
-        _arr[1] = 1;
+    case 1: _arr[1] = argument[0];
+    case 2: _arr[3] = argument[0]; 
+        break;    
     }
     _arr[0] = _sys;
     ds_list_add(global.psyses, _arr);

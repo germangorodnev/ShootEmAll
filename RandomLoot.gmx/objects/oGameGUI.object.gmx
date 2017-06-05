@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 
+playerId = oPlayer.id;
+
 ammoGUI = AMMO.__NONE;
 
 colx = 15;
@@ -196,7 +198,7 @@ phbh = sprite_get_height(sPlayerHP);
           <argument>
             <kind>1</kind>
             <string>//HP
-var hpperc = oPlayer.hp / oPlayer._hp;
+var hpperc = playerId.hp / playerId._hp;
 for (var i = 0; i &lt; 6; i++)
 {
     // background hpbar
@@ -212,7 +214,7 @@ for (var i = 0; i &lt; 6; i++)
     }
 }
 // red now
-var ccnt = floor(oPlayer.hp / 2);
+var ccnt = floor(playerId.hp / 2);
 for (var i = 0; i &lt; ccnt; i++)
 {
     if (i % 2 == 0)
@@ -229,7 +231,7 @@ for (var i = 0; i &lt; ccnt; i++)
 // now the percent part
 // /1/ 2       /5/ 6       /9/ 10
 //       /3/ 4       /7/ 8        /11/ 12
-if (oPlayer.hp - ccnt * 2 == 1) // one part
+if (playerId.hp - ccnt * 2 == 1) // one part
 {
     var trunc = ccnt * 2;
     if (trunc % 4 == 0) // top 
@@ -248,9 +250,9 @@ switch (ammoGUI)
 {
 case AMMO.__SHOTGUN:
     draw_sprite_ext(sAmmoGUI, 0, colx, coly, 1, 1, 0, image_blend, image_alpha);
-    draw_sprite_part_ext(sAmmoGUI, 1, 0, 0, colw * (oPlayer.ammo[AMMO.__SHOTGUN]/oPlayer.ammoMax[AMMO.__SHOTGUN]), colh, colx, coly, 1, 1, image_blend, image_alpha);
+    draw_sprite_part_ext(sAmmoGUI, 1, 0, 0, colw * (playerId.ammo[AMMO.__SHOTGUN]/playerId.ammoMax[AMMO.__SHOTGUN]), colh, colx, coly, 1, 1, image_blend, image_alpha);
 
-    for (var i = 0, cc = oPlayer.weaponAmmo; i &lt; cc; i++)
+    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
     {
         var fl = floor(i / asrow);
         draw_sprite_ext(sAmmoShotgun, 0, 
@@ -261,9 +263,9 @@ case AMMO.__SHOTGUN:
     
 case AMMO.__BULLET:
     draw_sprite_ext(sAmmoGUI, 2, colx, coly, 1, 1, 0, image_blend, image_alpha);
-    draw_sprite_part_ext(sAmmoGUI, 3, 0, 0, colw * (oPlayer.ammo[AMMO.__BULLET]/oPlayer.ammoMax[AMMO.__BULLET]), colh, colx, coly, 1, 1, image_blend, image_alpha);
+    draw_sprite_part_ext(sAmmoGUI, 3, 0, 0, colw * (playerId.ammo[AMMO.__BULLET]/playerId.ammoMax[AMMO.__BULLET]), colh, colx, coly, 1, 1, image_blend, image_alpha);
 
-    for (var i = 0, cc = oPlayer.weaponAmmo; i &lt; cc; i++)
+    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
     {
         var fl = floor(i / abrow);
         draw_sprite_ext(sAmmoBullet, 0, 
@@ -274,9 +276,9 @@ case AMMO.__BULLET:
 
 case AMMO.__GRENADES:
     draw_sprite_ext(sAmmoGUI, 4, colx, coly, 1, 1, 0, image_blend, image_alpha);
-    draw_sprite_part_ext(sAmmoGUI, 5, 0, 0, colw * (oPlayer.ammo[AMMO.__GRENADES]/oPlayer.ammoMax[AMMO.__GRENADES]), colh, colx, coly, 1, 1, image_blend, image_alpha);
+    draw_sprite_part_ext(sAmmoGUI, 5, 0, 0, colw * (playerId.ammo[AMMO.__GRENADES]/playerId.ammoMax[AMMO.__GRENADES]), colh, colx, coly, 1, 1, image_blend, image_alpha);
 
-    for (var i = 0, cc = oPlayer.weaponAmmo; i &lt; cc; i++)
+    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
     {
         var fl = floor(i / grrow);
         draw_sprite_ext(sAmmoGrenade, 0, 
@@ -287,16 +289,16 @@ case AMMO.__GRENADES:
 
 case AMMO.__ENERGY:
     draw_sprite_ext(sAmmoGUIEnergy, 0, aecolx, aecoly, 1, 1, 0, image_blend, image_alpha);
-    draw_sprite_part_ext(sAmmoGUIEnergy, 1, 0, 0, aecolw * (oPlayer.ammo[AMMO.__ENERGY]/oPlayer.ammoMax[AMMO.__ENERGY]), aecolh, aecolx, aecoly, 1, 1, image_blend, image_alpha);
+    draw_sprite_part_ext(sAmmoGUIEnergy, 1, 0, 0, aecolw * (playerId.ammo[AMMO.__ENERGY]/playerId.ammoMax[AMMO.__ENERGY]), aecolh, aecolx, aecoly, 1, 1, image_blend, image_alpha);
 
     // woltmeter
     draw_sprite_ext(sWoltmeter, 0, wmx, wmy, 1, 1, 0, image_blend, image_alpha);
     // arrow
-    draw_sprite_ext(sWoltmeterArrow, 0, wmax, wmay + (oPlayer.weaponAmmo / oPlayer.weaponInf[W_PR.__SCORE_SIZE]) * wmah, 1, 1, 0, image_blend, image_alpha);
+    draw_sprite_ext(sWoltmeterArrow, 0, wmax, wmay + (playerId.weaponAmmo / playerId.weaponInf[W_PR.__SCORE_SIZE]) * wmah, 1, 1, 0, image_blend, image_alpha);
     break;
     
 case AMMO.__BORIAN:
-    for (var i = 0, cc = oPlayer.weaponAmmo; i &lt; cc; i++)
+    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
     {
         var angle = 24 * i,
             xx = borx + lengthdir_x(35, angle),
@@ -313,15 +315,15 @@ case AMMO.__BORIAN:
 
 
 /////// ABILITIES
-for (var i = 0, ic = oPlayer.abilCount; i &lt; ic; i++)
+for (var i = 0, ic = playerId.abilCount; i &lt; ic; i++)
 {
-    var maxtmr = oPlayer.abilsTmrCnt[i],
-        tmr = oPlayer.abilsTmr[i],
+    var maxtmr = playerId.abilsTmrCnt[i],
+        tmr = playerId.abilsTmr[i],
         drawx = abX - abBX*i - abW;
     if (tmr == -1) // ready
     {
         draw_sprite_ext(sGUIIcoBack, 0, drawx+abGbx, abY+abGby, 1, 1, 0, image_blend, image_alpha); 
-        draw_sprite_ext(sAbilities, oPlayer.abilsIco[i], drawx, abY, 1, 1, 0, image_blend, image_alpha); 
+        draw_sprite_ext(sAbilities, playerId.abilsIco[i], drawx, abY, 1, 1, 0, image_blend, image_alpha); 
     }
     else
     {
@@ -329,34 +331,34 @@ for (var i = 0, ic = oPlayer.abilCount; i &lt; ic; i++)
         var percent = (maxtmr - tmr) / maxtmr,
             abHPercent = abH - abH * percent;
         draw_sprite_ext(sGUIIcoBack, 0, drawx+abGbx, abY+abGby, 1, 1, 0, image_blend, image_alpha); 
-        draw_sprite_part_ext(sAbilities, oPlayer.abilsIco[i], 0, abHPercent, abW, (abH - abHPercent), drawx, abY + abHPercent, 1, 1, image_blend, image_alpha);     
+        draw_sprite_part_ext(sAbilities, playerId.abilsIco[i], 0, abHPercent, abW, (abH - abHPercent), drawx, abY + abHPercent, 1, 1, image_blend, image_alpha);     
         shader_reset();
     }
 }
 
 //////// SINGLE USE ITEM
 draw_sprite_ext(sGUIIcoBack, 1, sux, suy, 1, 1, 0, image_blend, image_alpha);
-if (oPlayer.singleuse != SINGLEUSE.__NONE)
+if (playerId.singleuse != SINGLEUSE.__NONE)
 {
-    draw_sprite_ext(oPlayer.singleusePar[1], oPlayer.singleusePar[0], sux, suy, 1, 1, 0, image_blend, image_alpha);
+    draw_sprite_ext(playerId.singleusePar[1], playerId.singleusePar[0], sux, suy, 1, 1, 0, image_blend, image_alpha);
 }
 
 //////// RECHARGABLE ITEM
 draw_sprite_ext(sGUIIcoBack, 2, rex, rey, 1, 1, 0, image_blend, image_alpha);
-if (oPlayer.rechargable != RECHARGABLE.__NONE)
+if (playerId.rechargable != RECHARGABLE.__NONE)
 {
-    var maxtmr = oPlayer.rechargablePar[1],
-        tmr = oPlayer.rechargablePar[2];
+    var maxtmr = playerId.rechargablePar[1],
+        tmr = playerId.rechargablePar[2];
     if (tmr == -1) // ready
     {
-        draw_sprite_ext(oPlayer.rechargablePar[0], 0, rex, rey, 1, 1, 0, image_blend, image_alpha);
+        draw_sprite_ext(playerId.rechargablePar[0], 0, rex, rey, 1, 1, 0, image_blend, image_alpha);
     }
     else
     {
         shader_set(shdGray);
         var percent = (maxtmr - tmr) / maxtmr,
             rehPercent = reh - reh * percent;
-        draw_sprite_part_ext(oPlayer.rechargablePar[0], 0, 0, rehPercent, rew, (reh - rehPercent), round(rex - rexoff), rey - round(reyoff) + rehPercent, 1, 1, image_blend, image_alpha);
+        draw_sprite_part_ext(playerId.rechargablePar[0], 0, 0, rehPercent, rew, (reh - rehPercent), round(rex - rexoff), rey - round(reyoff) + rehPercent, 1, 1, image_blend, image_alpha);
         shader_reset();
     }
 }
@@ -392,7 +394,7 @@ if (global.gameState == GAME_STATES.__SHOP)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (oPlayer)
+            <string>with (playerId)
 {
     if (cannot &amp; CANNOT.WALL)
         draw_sprite_ext(sWarnings, 1, x, y - sprite_height - 3, 1, 1, 0, image_blend, image_alpha);
@@ -432,6 +434,17 @@ if (global.gameState == GAME_STATES.__SHOP)
                 yy = bbox_top - 80;
             draw_sprite_ext(sReloadPart, 0, xx, yy, 1, 1, i * 60, image_blend, image_alpha);
         }
+    }
+}
+
+// black rectangles
+/*with (oLevel)
+{
+    for (var i = 0; i &lt; rectCnt; i++)
+    {
+        draw_set_alpha(rA[i]);
+        draw_rectangle_colour(rX1[i], rY1[i], rX2[i], rY2[i], c_black, c_black, c_black, c_black, 0);
+        draw_set_alpha(1);
     }
 }
 </string>

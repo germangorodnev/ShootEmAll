@@ -70,7 +70,7 @@ weaponCd = 0;
 weaponObj = instance_create(x, y, oPlayerWeapon);
 weapon = WEAPONS.__NONE;
 weaponType = WEAPON_TYPE.__RANGE;
-weaponInf = -1;
+weaponInf = -1; // array
 weaponAmmo = 0;
 
 weaponSprite[3] = -1;
@@ -79,6 +79,7 @@ weaponSpriteNoammo = -1;
 
 weaponBack = WEAPONS.__NONE;
 weaponBackAmmo = 0;
+weaponBackInf = -1; // array
 weaponXoff = 0;
 weaponYoff = 0;
 weaponBlend = c_white;
@@ -143,7 +144,8 @@ myo = mouse_y;
 
 
 instance_create(x, y, oCamera);
-instance_create(0, 0, oGameGUI);
+var ggui = instance_create(0, 0, oGameGUI);
+ggui = oGameGUI.playerId;
 
 playerSetWeapon(weapon);
 </string>

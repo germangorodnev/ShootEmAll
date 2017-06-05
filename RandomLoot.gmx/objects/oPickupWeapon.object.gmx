@@ -34,6 +34,8 @@ depth = -y;
 
 name = "";
 class = "";
+
+params = -1; // maybe array, maybe -1
 </string>
           </argument>
         </arguments>

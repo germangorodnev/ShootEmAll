@@ -10,6 +10,7 @@ for (var i = x, ci = x + rw; i < ci; i++)
         var tl = tile_layer_find(oLevel.floorD, xx, yy);
         if (tl != -1)
             tile_delete(tl);
-        tile_add(tlsPrison, tw * 3, 0, tw, th, xx, yy, oLevel.floorD);
+        tile_add(tlsPrisonFloor128, tw * irandom(1), th * irandom(1), tw, th, xx, yy, oLevel.floorD);
+        //tile_add(tlsPrison, tw * 4, th * 1, tw, th, xx, yy, oLevel.floorD);
     }
 }

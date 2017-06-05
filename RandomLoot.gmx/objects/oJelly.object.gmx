@@ -94,8 +94,13 @@ enemyStartPattern(ENEMY_PATTERN.__PATROL);
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-with(weaponObj)
-    instance_destroy();
+//with(weaponObj)
+//    instance_destroy();
+// add some bue
+repeat(irandom_range(2, 5))
+{
+    gameBueAdd(x + irandom_range(-30, 30), y + irandom_range(-15, 15), 1);
+}
 </string>
           </argument>
         </arguments>

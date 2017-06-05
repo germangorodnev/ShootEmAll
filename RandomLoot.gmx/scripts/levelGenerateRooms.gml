@@ -5,7 +5,7 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
     with (lf)
     {
         // determine the type
-        switch (choose(0, 1, 2, 3))
+        switch (irandom(4))
         {
         case 0:
             if (par.size != 3
@@ -67,7 +67,20 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
             }
             break;
             
-        case 3: // blank
+        case 4: // empty 
+            if (par.size != 0)
+                continue;
+            type = ROOMS.__PRISON_DEFAULT_1W;
+            levelPrisonDefaultRoomInit();
+            break;
+            
+        case 5: // chest
+            if (par.size != 0)
+                continue;
+            type = ROOMS.__PRISON_CHEST_1W;
+            break;
+            
+        case 6: // blank
             break;
         }
     }

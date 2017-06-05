@@ -83,6 +83,10 @@ enemySetState(ENEMY_STATE.__IDLE);
             <string>event_inherited();
 with(weaponObj)
     instance_destroy();
+repeat(2)
+{
+    gameBueAdd(x + irandom_range(-7, 7), y + irandom_range(-3, 3), 0);
+}
 </string>
           </argument>
         </arguments>
@@ -300,6 +304,7 @@ case ENEMY_STATE.__DIE:
           <argument>
             <kind>1</kind>
             <string>///off pause
+path_speed = spd;
 </string>
           </argument>
         </arguments>
@@ -323,6 +328,7 @@ case ENEMY_STATE.__DIE:
           <argument>
             <kind>1</kind>
             <string>///on pause
+path_speed = 0;
 
 </string>
           </argument>

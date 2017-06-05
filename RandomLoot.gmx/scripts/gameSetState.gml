@@ -19,7 +19,7 @@ with (oStateObject)
     }
 }
 //deactivate particle systems
-for (var i = 1, syses = global.psyses, ci = ds_list_size(global.psyses); i < ci; i++)
+for (var i = 0, syses = global.psyses, ci = ds_list_size(global.psyses); i < ci; i++)
 {
     var _ar = syses[| i];
     part_system_automatic_update(_ar[0], 0);
@@ -27,6 +27,7 @@ for (var i = 1, syses = global.psyses, ci = ds_list_size(global.psyses); i < ci;
     { 
         if (_ar[2] != global.gameState)
         {
+            part_system_automatic_update(_ar[0], 0);
         }
         else
             part_system_automatic_update(_ar[0], 1);

@@ -47,7 +47,7 @@ for (var xx = 0; xx < ww; xx++)
         // SWITCH ADD
         if  (tt & LEVEL.FLOOR)
         {
-            tile_add(tlsFloor, 0, 0, tw, th, tx, ty, oLevel.floorD);
+            tile_add(tlsFloor, !((xx mod 4 == 0) && (yy mod 4 == 0)) * tw, 0, tw, th, tx, ty, oLevel.floorD);
             
             var left = level[# median(0, xx - 1, ww - 1), yy] & LEVEL.FLOOR == 0,
                 right = level[# median(0, xx + 1, ww - 1), yy] & LEVEL.FLOOR == 0,

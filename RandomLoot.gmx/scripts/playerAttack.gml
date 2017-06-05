@@ -9,10 +9,7 @@ switch (weaponType)
 /* ******************************************************** MELEE ***********************************************************/    
 case WEAPON_TYPE.__MELEE:
     switch (weapon)
-    {
-    case WEAPONS.__CUSTOM:
-        break;
-        
+    {        
     case WEAPONS.__BLOOD_FLAG:  
         with (weaponObj)
             weaponSetAnimation(WEAPONS.__BLOOD_FLAG, WEAPON_STATES.__MELEE_DOWN);
@@ -88,10 +85,7 @@ case WEAPON_TYPE.__MELEE:
 case WEAPON_TYPE.__RANGE:
     // create some bulleetz
     switch (weapon)
-    {
-    case WEAPONS.__CUSTOM:
-        break;
-        
+    {        
     // line projectile
     case WEAPONS.__FOREST_MANTIS:
     case WEAPONS.__OVERKILLINGTON:
@@ -192,6 +186,11 @@ case WEAPON_TYPE.__RANGE:
     // recoil if any
     if (recoilSpd != 0)
         recoilApply = 1;
+    // create shells on floor
+    repeat(weaponInf[W_PR.__BULLETS_PER_SHOT])
+        gameShellCreate(x + irandom_range(-4, 4), y + irandom_range(-3, 3), weaponInf[W_PR.__BULLET_TYPE]);
     break;
 }   
+// shake'em baby
+camShake(8, 7, 3);
 

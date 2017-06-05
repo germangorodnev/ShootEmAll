@@ -42,7 +42,10 @@ rcnt = 0;
 
 floorD = 100000;
 carpetD = 99999;
+postEffectD = 99998;
 ceilD = -99999;
+
+depth = postEffectD;
 
 toiletLeftoff = 5;
 
@@ -112,6 +115,10 @@ levelCollisionHelperInit(TILES.__SHOWER_STOOL, 3, 35, 3, 0);
 levelCollisionHelperInit(TILES.__CRATE_LEFT, 12, 28, 12, 12);
 levelCollisionHelperInit(TILES.__CRATE_RIGHT, 12, 28, 12, 12);
 
+levelCollisionHelperInit(TILES.__SCAMNUM_HOR, 0, 32, 0, 0);
+levelCollisionHelperInit(TILES.__PLANT, 2, 42, 2, 0);
+
+
 // NEW
 cellW = 12;
 cellH = 12;
@@ -123,7 +130,14 @@ prisonCellH = 4;
 cells = ds_list_create();
 cellsVis[0] = 0; //room_width div cellW * room_height div cellH
 
-
+// black rects
+rectCnt = 1;
+var rci = rectCnt - 1;
+rX1[rci] = 0;
+rY1[rci] = 0;
+rX2[rci] = 0;
+rY2[rci] = 0;
+rA[rci] = 0;
 
 levelGenerate();
 ds_list_destroy(cells);
@@ -181,6 +195,8 @@ for (var i = 0, sz = ds_map_size(colOffset); i &lt; sz; i++;)
 
      
 ds_map_destroy(colOffset);
+
+
 </string>
           </argument>
         </arguments>

@@ -42,10 +42,7 @@ movSpd = 5;
 targX = 0;
 targY = 0;
 
-shake = 0;
-shakeTimer = -1;
-shakeMax = 0;
-shakeStep = 0;
+
 
 darken = 0;
 darkenA = 0;
@@ -57,6 +54,12 @@ x = oPlayer.x;
 y = oPlayer.y;
 
 camMaxDist = 60;
+
+// shaker
+shakeTimer = -1;
+shake = 0;
+shX = 0;
+shY = 0;
 
 //visible = global.debug;
 
@@ -107,20 +110,15 @@ camMaxDist = 60;
             <kind>1</kind>
             <string>if (!updatable)
     exit;
-if (shakeTimer != -1)
-{
-    shakeTimer -= global.step;
-    if (shakeTimer &lt;= 0)
+if (shake)
+    if (shakeTimer &amp;&amp; !--shakeTimer)
     {
         shakeTimer = -1;
         shake = 0;
-        view_angle = 0;
-    }
-}   
-if (shake)
-{
-    view_angle = median(-shakeMax, view_angle + random(shakeStep) * choose(-1, 1), shakeMax);
-}
+        shX = 0;
+        shY = 0;
+    }   
+
 
 if (darken)
 {
@@ -144,6 +142,18 @@ case CAM_STATES.__PLAYER:
     }
     else
         move_towards_point(targX, targY, movSpd);
+    /*if (shake)
+    {
+        var cl = min(view_xview, shX),
+            cr = min(room_width - view_xview, shX);
+        if (cl &gt;= shX &amp;&amp; cr &gt;= shX)
+            view_xview += choose(irandom_range(1, shX) * -1, irandom_range(1, shX));
+        else if (cl &gt;= shX)
+            view_xview += irandom_range(1, shX) * -1;
+        else
+            view_xview += irandom_range(1, shX);
+        y += irandom_range(-1 * min(view_yview, shY), min(room_height - view_yview, shY)); //irandom_range(-shY, shY);
+    }*/
     break;
 }
 

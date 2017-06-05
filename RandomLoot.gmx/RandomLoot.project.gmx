@@ -109,6 +109,12 @@
             <sprite>sprites\sTeslaBoomShoot</sprite>
           </sprites>
         </sprites>
+        <sprites name="Parts For Random">
+          <sprite>sprites\sWeaponPartBody</sprite>
+          <sprite>sprites\sWeaponPartHand</sprite>
+          <sprite>sprites\sWeaponPartScore</sprite>
+          <sprite>sprites\sWeaponPartOut</sprite>
+        </sprites>
       </sprites>
       <sprites name="Effects">
         <sprite>sprites\sWzhuhMelee</sprite>
@@ -223,17 +229,23 @@
     </sprites>
   </sprites>
   <backgrounds name="background">
+    <backgrounds name="Parts">
+      <background>background\tlsBuesAndShells</background>
+    </backgrounds>
     <background>background\tlsWalls</background>
     <background>background\tlsFloor</background>
     <background>background\tlsSlats</background>
     <background>background\tlsPrison</background>
     <background>background\tlsPrisonSlats</background>
+    <background>background\tlsPrisonDefaultRoom</background>
     <background>background\tlsPrisonCarpet</background>
     <background>background\tlsCanteen</background>
     <background>background\tlsPrisonShit</background>
     <background>background\tlsPrisonShowerWalls</background>
     <background>background\tlsPrisonShowerIndoor</background>
     <background>background\tlsPrisonShowerFloorTitles</background>
+    <background>background\tlsPrisonFloor128</background>
+    <background>background\tlsPrisonDefault</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -275,10 +287,11 @@
       <script>scripts\playerChangeHP.gml</script>
       <script>scripts\playerMaskCreate.gml</script>
       <script>scripts\playerAddMoney.gml</script>
-      <script>scripts\playerMaskPickup.gml</script>
       <scripts name="Pickup">
+        <script>scripts\playerMaskPickup.gml</script>
         <script>scripts\playerPickup.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
+        <script>scripts\playerPickupWeaponCustom.gml</script>
         <script>scripts\playerPickupAmmo.gml</script>
         <script>scripts\playerPickupCard.gml</script>
         <script>scripts\playerPickupEat.gml</script>
@@ -288,6 +301,7 @@
         <script>scripts\playerRecountGUI.gml</script>
       </scripts>
       <scripts name="Weapon">
+        <script>scripts\playerWeaponDrop.gml</script>
         <script>scripts\playerWeaponSetState.gml</script>
         <script>scripts\playerWeaponSetKickCount.gml</script>
         <script>scripts\weaponSetAnimation.gml</script>
@@ -367,6 +381,21 @@
         <script>scripts\gameGetRechargableExplosiveInformation.gml</script>
         <script>scripts\gameGetEatableInformation.gml</script>
       </scripts>
+      <scripts name="Bue">
+        <script>scripts\gameBueAdd.gml</script>
+        <script>scripts\gameShellCreate.gml</script>
+      </scripts>
+      <scripts name="Camera">
+        <script>scripts\camShake.gml</script>
+      </scripts>
+      <scripts name="Custom Weapons">
+        <script>scripts\gameWeaponCustomInit.gml</script>
+        <script>scripts\gameWeaponPartGetParams.gml</script>
+      </scripts>
+      <scripts name="Custom Sprites">
+        <script>scripts\customSpriteAdd.gml</script>
+        <script>scripts\customSpriteDeleteByValue.gml</script>
+      </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
@@ -381,6 +410,7 @@
       <script>scripts\pointColGrid.gml</script>
       <script>scripts\drawLaser.gml</script>
       <script>scripts\laserDoorAdd.gml</script>
+      <script>scripts\gamePlayerCreate.gml</script>
     </scripts>
     <scripts name="Bullets">
       <scripts name="Long">
@@ -467,6 +497,11 @@
             <scripts name="Shower">
               <script>scripts\levelPrisonShowerInit.gml</script>
             </scripts>
+            <scripts name="Default">
+              <script>scripts\levelPrisonDefaultRoomInit.gml</script>
+              <script>scripts\levelPrisonCreateBench.gml</script>
+              <script>scripts\levelPrisonCreateBush.gml</script>
+            </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>
             <script>scripts\levelPrisonSetCloset.gml</script>
             <script>scripts\levelPrisonCreate4Cells.gml</script>
@@ -494,6 +529,14 @@
       <script>scripts\shopInit.gml</script>
       <script>scripts\shopBuy.gml</script>
       <script>scripts\shopDeletePos.gml</script>
+    </scripts>
+    <scripts name="Networking">
+      <scripts name="Server">
+        <script>scripts\serverInit.gml</script>
+      </scripts>
+      <scripts name="Client">
+        <script>scripts\clientInit.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <shaders name="shaders">
@@ -609,6 +652,7 @@
   <rooms name="rooms">
     <room>rooms\rInit</room>
     <room>rooms\rRandom</room>
+    <room>rooms\rArena</room>
     <room>rooms\rGame</room>
   </rooms>
   <help>

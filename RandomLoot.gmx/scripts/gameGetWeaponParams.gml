@@ -139,7 +139,7 @@ case WEAPONS.__ROMAN_MG:
     _arr[W_PR.__PROJECTILE] = PROJECTILE.__FAST_BULLET;
     _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
     _arr[W_PR.__PROJECTILE_SPEED] = 11;
-    _arr[W_PR.__RELOAD_TIME] = 8 * room_speed;
+    _arr[W_PR.__RELOAD_TIME] = 4 * room_speed;
     _arr[W_PR.__DAMAGE_MIN] = 10;
     _arr[W_PR.__DAMAGE_MAX] = 17;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;

@@ -1,6 +1,11 @@
-///playerPickupWeapon(WEAPONS new, int ammoIn)
+///playerPickupWeapon(obj* id, WEAPONS type)
 var weap = argument[1],
     oo = argument[0];
+if (weap == WEAPONS.__CUSTOM)
+{
+    playerPickupWeaponCustom(oo, weap);
+    exit;
+}
 if (weapon != WEAPONS.__NONE)
 {
     if (weaponBack == WEAPONS.__NONE)
@@ -12,13 +17,8 @@ if (weapon != WEAPONS.__NONE)
     else 
     {
         // need to drop weapon in hands
-        var wpp = weapon,
-            amm = weaponAmmo;
-        with (instance_create(x, y, oPickupWeapon))
-            pickupableInit(PICKUP.__WEAPON, wpp, amm);
-        weapon = weap;
-        weaponAmmo = oo.ammo;
-        playerSetWeapon(weapon);
+        playerWeaponDrop();
+        playerPickupWeapon(oo, argument[1]);
     }
 }   
 else

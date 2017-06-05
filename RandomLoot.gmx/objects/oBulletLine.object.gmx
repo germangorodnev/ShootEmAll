@@ -63,7 +63,7 @@ liveTmr = 0.5 * room_speed;
             <kind>1</kind>
             <string>event_inherited();
 //some effects
-gameEffectCreate(eX, eY, EFFECTS.__BULLET_WZHUH, -eY);
+gameEffectCreate(eX, eY, EFFECTS.__BULLET_WZHUH, -eY- 30);
 </string>
           </argument>
         </arguments>

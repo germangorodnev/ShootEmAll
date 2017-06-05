@@ -101,6 +101,12 @@ case PICKUP.__WEAPON:
         sprite_index = sTeslaBoom; 
         ammo = argument[2];
         break;
+        
+    /* ******************************* CUSTOM ********************************* */
+    case WEAPONS.__CUSTOM:
+        if (argument[3] == 1)
+            gameWeaponCustomInit();
+        break;
     }
     break;
     

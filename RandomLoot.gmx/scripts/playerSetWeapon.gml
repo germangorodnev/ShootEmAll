@@ -3,11 +3,19 @@ weapon = argument[0];
 weaponType = gameGetWeaponType(weapon);
 if (weapon != WEAPONS.__NONE)
 {
-    weaponInf = 0;
-    weaponInf = gameGetWeaponParams(weapon, weaponType);
-    playerRecountGUI();
+    if (weapon != WEAPONS.__CUSTOM)
+    {
+        weaponInf = 0;
+        weaponInf = gameGetWeaponParams(weapon, weaponType);
+        playerRecountGUI();
+    }
+    else
+    {
+        // weapon inf is already oo.params!!
+        //weaponInf = argument[1].params;//gameGetWeaponParams(weapon, weaponType);
+        playerRecountGUI();    
+    }
 }
-
 // resets
 weaponSpriteNoammo = -1;
 hitCount = 0;
@@ -312,6 +320,16 @@ case WEAPONS.__TESLA_BOOM:
     weaponXoff = 5;
     weaponYoff = -22;
     weaponObj.anMaxAngle = 3;
+    break;
+    
+case WEAPONS.__CUSTOM: // custom ranged weapon
+    weaponCd = weaponInf[W_PR.__RANGE_CUSTOM_DAMAGECD];
+    weaponSprite[0] = weaponInf[W_PR.__RANGE_CNT];
+    weaponSprite[1] = weaponInf[W_PR.__RANGE_CUSTOM_SPR_SHOOT];
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = weaponInf[W_PR.__RANGE_CUSTOM_XOFF];
+    weaponYoff = weaponInf[W_PR.__RANGE_CUSTOM_YOFF];
+    weaponObj.anMaxAngle = 3;    
     break;
 }
 

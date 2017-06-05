@@ -38,6 +38,7 @@ speed = 6;
 prt = 2;
 visible = 0;
 active = 0;
+spd = 0;
 
 dtmr = -1;
 
