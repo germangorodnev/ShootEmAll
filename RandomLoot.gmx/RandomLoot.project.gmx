@@ -252,8 +252,9 @@
     <scripts name="Physicals">
       <scripts name="Collision">
         <script>scripts\colPlaceFree.gml</script>
-        <script>scripts\colPositionFree.gml</script>
         <script>scripts\colPlaceFreeSide.gml</script>
+        <script>scripts\colPositionFree.gml</script>
+        <script>scripts\colPositionFreePrecise.gml</script>
         <script>scripts\rectWithRect.gml</script>
       </scripts>
       <scripts name="Masks">
@@ -426,7 +427,6 @@
       </scripts>
       <script>scripts\projectileInited.gml</script>
       <script>scripts\projectileTimer.gml</script>
-      <script>scripts\projectileStep.gml</script>
       <script>scripts\laserFindCollisionPoint.gml</script>
       <script>scripts\laserMineInit.gml</script>
     </scripts>
@@ -450,6 +450,7 @@
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>
       <script>scripts\instancePlaceList.gml</script>
+      <script>scripts\projectileStep.gml</script>
     </scripts>
     <scripts name="Level">
       <scripts name="Level Generation">
@@ -615,10 +616,10 @@
       <object>objects\oFastBullet</object>
       <object>objects\oBorianBulg</object>
       <object>objects\oGreande</object>
+      <object>objects\oPhaserProjectile</object>
       <object>objects\oLaser</object>
       <object>objects\oBulletLine</object>
       <object>objects\oZap</object>
-      <object>objects\oPhaserProjectile</object>
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>

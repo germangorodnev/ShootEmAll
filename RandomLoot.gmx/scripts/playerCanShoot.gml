@@ -6,12 +6,16 @@ if (!weaponObj.canAttack)
 cannot &= ~CANNOT.WALL;
 if (weaponType == WEAPON_TYPE.__RANGE)
 {
-    if (!colPositionFree(weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], mousedir), 
-        weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], mousedir), LEVEL.WALL))
-        {
-            cannot |= CANNOT.WALL;
-            return -4;    
-        }
+    //if (!colPositionFreePrecise(weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], mousedir), 
+    //    weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], mousedir), LEVEL.WALL))
+    if (collisionLine(weaponObj.x, weaponObj.y,
+            weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], mousedir),
+            weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], mousedir), 
+            LEVEL.WALL, 1) == 1)
+    {
+        cannot |= CANNOT.WALL;
+        return -4;    
+    }
     // checks for range
     if (weaponAmmo < weaponInf[W_PR.__BULLETS_PER_SHOT])
     {

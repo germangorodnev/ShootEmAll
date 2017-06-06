@@ -201,8 +201,8 @@ case WEAPONS.__GRENADE_LAUNCHER:
     _arr[W_PR.__DAMAGE_MAX] = 30;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__GRENADES;
     _arr[W_PR.__CRIT_CHANCE] = 0;
-    _arr[W_PR.__LDIR_X] = 55; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = 55;
+    _arr[W_PR.__LDIR_X] = 50; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 50;
     _arr[W_PR.__LDIR_DIR] = 1;
     break;
     
@@ -239,8 +239,8 @@ case WEAPONS.__OVERKILLINGTON:
     _arr[W_PR.__DAMAGE_MAX] = 55;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;
     _arr[W_PR.__CRIT_CHANCE] = 0;
-    _arr[W_PR.__LDIR_X] = 65; // 4 29 64 20
-    _arr[W_PR.__LDIR_Y] = 65;
+    _arr[W_PR.__LDIR_X] = 60; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 60;
     _arr[W_PR.__LDIR_DIR] = 1;
     break;
 

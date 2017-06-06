@@ -175,17 +175,15 @@ for (var xx = x, cx = x + rw; xx < cx; xx++)
 for (var i = y-1, ci = y + 5, cx = x + rw - 5, tx = cx * tw; i < ci; i++)
 {
     var ty = i * th;
+    levelTileMark(cx, i, TILES.__SHOWER_WALL_RIGHT);   
+    lvl[# cx, i] |= LEVEL.WALL;     
     if (i == ci - 1)
     {
         tile_add(tlsPrisonShowerWalls, tw*3, th*3, tw, th, tx, ty, -ty-th);    
-        levelTileMark(cx, i, TILES.__SHOWER_WALL_RIGHT);   
-        lvl[# cx, i] |= LEVEL.WALL;     
     }
     else
     {
         tile_add(tlsPrisonShowerWalls, tw*2, th*1, tw, th, tx, ty, -ty-th);    
-        levelTileMark(cx, i, TILES.__SHOWER_WALL_RIGHT);    
-        lvl[# cx, i] |= LEVEL.WALL;     
     }
 }
 // tumb
