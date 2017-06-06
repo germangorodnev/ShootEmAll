@@ -502,6 +502,9 @@
               <script>scripts\levelPrisonCreateBench.gml</script>
               <script>scripts\levelPrisonCreateBush.gml</script>
             </scripts>
+            <scripts name="Crate">
+              <script>scripts\levelPrisonChestRoomInit.gml</script>
+            </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>
             <script>scripts\levelPrisonSetCloset.gml</script>
             <script>scripts\levelPrisonCreate4Cells.gml</script>

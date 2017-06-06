@@ -6,8 +6,8 @@ if (!weaponObj.canAttack)
 cannot &= ~CANNOT.WALL;
 if (weaponType == WEAPON_TYPE.__RANGE)
 {
-    if (!colPositionFree(weaponObj.x + lengthdir_x(33, mousedir), 
-        weaponObj.y + lengthdir_y(33, mousedir), LEVEL.WALL))
+    if (!colPositionFree(weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], mousedir), 
+        weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], mousedir), LEVEL.WALL))
         {
             cannot |= CANNOT.WALL;
             return -4;    

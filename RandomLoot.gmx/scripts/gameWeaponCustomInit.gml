@@ -2,8 +2,8 @@
 var body = -1,
     bodyX, bodyY,
     
-    back = -1,
-    backX, backY,
+    wscore = -1,
+    wscoreX, wscoreY,
     
     hand = -1,
     handX, handY,
@@ -14,7 +14,7 @@ var body = -1,
 params[W_PR.__RANGE_CUSTOM_CNT - 1]  = 0;
 
 var bodyCnt = 3,
-    backCnt = 3,
+    wscoreCnt = 3,
     handCnt = 2,
     outCnt = 3;
 var SPRITE = -1, // out sprite
@@ -29,7 +29,7 @@ var weapX, weapY, weapW, weapH, weapXo, weapYo;
     2 - long
 */
 body = 0; //irandom(bodyCnt - 1);
-// now we pick back, hand and out
+// now we pick wscore, hand and out
 /* BACKS
     0 - big
     1 - aim
@@ -58,9 +58,9 @@ case 0: // big body
     bodyX = 40; bodyY = 40;
     bodyW = 51; bodyH = 10;
     
-    back = 0;
-    backX = bodyX; 
-    backY = bodyY - 2;
+    wscore = 0;
+    wscoreX = bodyX; 
+    wscoreY = bodyY - 2;
     
     hand = choose(irandom_range(0, 1));
     handX = bodyX + irandom_range(2, 5);
@@ -75,8 +75,8 @@ case 1:
     break;
 }
 
-weapX = backX - 32;
-weapY = backY - 5;
+weapX = wscoreX - 32;
+weapY = wscoreY - 5;
 weapW = (outX + 32) - weapX;
 weapH = 40;
 weapXo = handX + 10;
@@ -90,10 +90,10 @@ params[W_PR.__LDIR_DIR] = 0;
 
 var surf = surface_create(150, 100);
 surface_set_target(surf);
-draw_sprite_ext(sWeaponPartBody, body, bodyX, bodyY, 1, 1, 0, blend, alpha);
-draw_sprite_ext(sWeaponPartBack, back, backX, backY, 1, 1, 0, blend, alpha);
+draw_sprite_ext(sWeaponPartScore, wscore, wscoreX, wscoreY, 1, 1, 0, blend, alpha);
 draw_sprite_ext(sWeaponPartHand, hand, handX, handY, 1, 1, 0, blend, alpha);
 draw_sprite_ext(sWeaponPartOut, out, outX, outY, 1, 1, 0, blend, alpha);
+draw_sprite_ext(sWeaponPartBody, body, bodyX, bodyY, 1, 1, 0, blend, alpha);
 surface_reset_target();
 
 SPRITE = sprite_create_from_surface(surf, weapX, weapY, weapW, weapH, 1, 0, weapXo, weapYo);

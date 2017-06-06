@@ -97,9 +97,9 @@ enemyStartPattern(ENEMY_PATTERN.__PATROL);
 //with(weaponObj)
 //    instance_destroy();
 // add some bue
-repeat(irandom_range(2, 5))
+repeat(irandom_range(4, 7))
 {
-    gameBueAdd(x + irandom_range(-30, 30), y + irandom_range(-15, 15), 1);
+    gameBueAdd(x + irandom_range(-38, 38), y + irandom_range(-22, 20), 1);
 }
 </string>
           </argument>
