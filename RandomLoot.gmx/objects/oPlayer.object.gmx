@@ -61,7 +61,6 @@ ammoMax[AMMO.__SHOTGUN] = 100;
 ammoMax[AMMO.__GRENADES] = 65;
 ammoMax[AMMO.__ENERGY] = 500; // 500;
 
-
 for (var i = 0; i &lt; AMMO.__CNT; i++)
     ammo[i] = ammoMax[i];
     
@@ -89,6 +88,9 @@ lasLong = 1; // laser len time in steps
 
 state = PLAYER_STATES.__IDLE;
 
+// control
+mycmp = 0;
+controlBit = CONTROL.__KEYMOUSE | CONTROL.__GAMEPAD;
 key[KEY.CNT] = 0;
 
 
@@ -576,16 +578,10 @@ case PLAYER_STATES.__DIE:
             <kind>1</kind>
             <string>if (!drawable)
     exit;
-var mycmp = 0;
-if (updatable)
-{
-    myo = mouse_y;
-    mycmp = mouse_y;
-}
-else
-{
+if (!updatable)
     mycmp = myo;
-}
+
+
 if (mycmp &lt; y)
 {
     with (weaponObj)

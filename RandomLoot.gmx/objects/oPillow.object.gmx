@@ -182,12 +182,16 @@ case ENEMY_STATE.__IDLE:
     if (detect)
     {
         // well, maybe shoot
-        if (enemyCanAttack())
+        var ca = enemyCanAttack();
+        if (ca == 1)
         {
             enemyAttack();
+            enemySetState(ENEMY_STATE.__IDLE);
+            exit;
         }
         // now we follow the player
-        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+        else if (ca == -1)
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
     if (target != noone)
     {
@@ -214,10 +218,11 @@ case ENEMY_STATE.__FOLLOW:
     }
     detect = enemyDetectPlayer();
     // well, maybe shoot
-    if (enemyCanAttack())
+    if (enemyCanAttack() == 1)
     {
         enemyAttack();
         enemySetState(ENEMY_STATE.__IDLE);
+        exit;
     }
     if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
     {
@@ -366,6 +371,12 @@ else
     procedureAnimableDrawPerson();
     with (weaponObj)
         event_perform(ev_other, ev_user3);
+}
+switch (state)
+{
+case ENEMY_STATE.__IDLE: draw_text(bbox_right, y - 20, "Idle"); break;
+case ENEMY_STATE.__WALK: draw_text(bbox_right, y - 20, "Walk"); break;
+case ENEMY_STATE.__FOLLOW: draw_text(bbox_right, y - 20, "Follow"); break;
 }
 </string>
           </argument>

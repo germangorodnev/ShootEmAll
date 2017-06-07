@@ -195,15 +195,24 @@ case ENEMY_STATE.__IDLE:
     if (detect)
     {
         // well, maybe shoot
-        if (enemyCanAttack())
+        var ca = enemyCanAttack();
+        if (ca == 1)
         {
             enemyAttack();
+            enemySetState(ENEMY_STATE.__IDLE);
+            exit;
         }
         // now we follow the player
-        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+        else if (ca == -1)
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+    }
+    else if (detect == -2)
+    {
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);    
     }
     if (target != noone)
     {
+        dir = round(direction / 90); 
         angle = point_direction(x, y, target.x, target.y);        
         if (idleTmr &gt; 2 * room_speed)
         {
@@ -228,7 +237,7 @@ case ENEMY_STATE.__FOLLOW:
     }
     detect = enemyDetectPlayer();
     // well, maybe shoot
-    if (enemyCanAttack())
+    if (enemyCanAttack() == 1)
     {
         enemyAttack();
         enemySetState(ENEMY_STATE.__IDLE);

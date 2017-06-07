@@ -161,17 +161,28 @@ weapYo -= weapY;
 
 var surf = surface_create(150, 200);
 surface_set_target(surf);
-draw_sprite_ext(sWeaponPartScore, wscore, wscoreX, wscoreY, 1, 1, 0, blend, alpha);
-draw_sprite_ext(sWeaponPartHand, hand, handX, handY, 1, 1, 0, blend, alpha);
-draw_sprite_ext(sWeaponPartOut, out, outX, outY, 1, 1, 0, blend, alpha);
-draw_sprite_ext(sWeaponPartBody, body, bodyX, bodyY, 1, 1, 0, blend, alpha);
+draw_set_colour_write_enable(false, false, false, true);
+draw_set_blend_mode_ext(bm_zero, bm_zero);
+draw_rectangle_colour(0, 0, 150, 200, c_black, c_black, c_black, c_black, 0);
+draw_set_blend_mode(bm_normal);
+draw_set_colour_write_enable(true, true, true, true);
+
+if (wscore != -1)
+    draw_sprite_ext(sWeaponPartScore, wscore, wscoreX, wscoreY, 1, 1, 0, blend, alpha);
+if (hand != -1)
+    draw_sprite_ext(sWeaponPartHand, hand, handX, handY, 1, 1, 0, blend, alpha);
+if (out != -1)
+    draw_sprite_ext(sWeaponPartOut, out, outX, outY, 1, 1, 0, blend, alpha);
+if (body != -1)
+    draw_sprite_ext(sWeaponPartBody, body, bodyX, bodyY, 1, 1, 0, blend, alpha);
 surface_reset_target();
 
 SPRITE = sprite_create_from_surface(surf, weapX, weapY, weapW, weapH, 0, 0, weapXo, weapYo);
+surface_free(surf);
+
 sprite_set_offset(SPRITE, weapXo, weapYo); 
 customSpriteAdd(SPRITE);
 
-surface_free(surf);
 
 params[W_PR.__RANGE_CNT] = SPRITE;
 params[W_PR.__RANGE_CUSTOM_SPR_SHOOT] = SPRITE;

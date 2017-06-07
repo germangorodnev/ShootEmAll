@@ -7,6 +7,7 @@ case WEAPON_TYPE.__MELEE:
     // melee
     case ENEMY_WEAPON.__SELF:
         path_end();
+        speed = 0;
         enemySetState(ENEMY_STATE.__ATTACK);
         maskKickAdd(kx1, ky1, kx2, ky2, 1, 1);
         maskKick.dmg = irandom_range(mindmg, maxdmg); 

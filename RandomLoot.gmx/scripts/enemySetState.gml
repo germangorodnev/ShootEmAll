@@ -11,6 +11,7 @@ case ENEMY_STATE.__IDLE:
     procedureAnimableReset();
     customAnimableSetSprite(anims[ENEMY_ANIM.__IDLE], animSpd[ENEMY_ANIM.__IDLE]);
     path_end();
+    speed = 0;
     break;
     
 case ENEMY_STATE.__WALK:

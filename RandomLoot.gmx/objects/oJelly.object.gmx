@@ -48,7 +48,7 @@ weaponXoff = 0;
 weaponYoff = 0;
 
 dist = 250;
-weaponAttDist = 65;
+weaponAttDist = 35;
 
 kx1 = 85;
 ky1 = 10;
@@ -161,11 +161,13 @@ case ENEMY_STATE.__IDLE:
     if (detect == 1)
     {
         // well, maybe shoot
-        if (enemyCanAttack())
+        var ca = enemyCanAttack();
+        if (ca)
         {
             enemyAttack();
+            exit;
         }
-        else
+        else if ( ca == -1 )
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
     break;
@@ -175,14 +177,11 @@ case ENEMY_STATE.__FOLLOW:
     
     xsc = (oPlayer.x &gt; x) * 2 - 1;
     targetDist = distance_to_object(target);
-    
-    if (targetDist &lt;= weaponAttDist)
+
+    if (enemyCanAttack())
     {
-        if (enemyCanAttack())
-        {
-            enemyAttack();
-            exit;
-        }
+        enemyAttack();
+        exit;
     }
     detect = enemyDetectPlayer();
     if (detect == -2)
@@ -235,7 +234,8 @@ case ENEMY_STATE.__ATTACK:
     physicalBeginStep();
     if (animEnded)
     {
-        maskRemoveById(maskKick);
+        physicalClearMaskKick();
+        //maskRemoveById(maskKick);
         targetDist = distance_to_object(target);
         if (targetDist &lt;= weaponAttDist)
             enemySetState(ENEMY_STATE.__IDLE);

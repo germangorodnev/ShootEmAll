@@ -3,36 +3,39 @@ for (var i = 0; i < KEY.CNT; i++)
 switch (os_type)
 {
 case os_win32:
-    if (keyboard_check(ord('A')) || gamepad_axis_value(0, gp_axislh) <= -0.3)
+    var mkey = controlBit & CONTROL.__KEYMOUSE,
+        mgp = controlBit & CONTROL.__GAMEPAD;
+
+    if ((keyboard_check(ord('A')) * mkey) || (gamepad_axis_value(0, gp_axislh) <= -.4) * mgp)
         key[KEY.LEFT] = 1;
-    if (keyboard_check(ord('D')) || gamepad_axis_value(0, gp_axislh) >= 0.3)
+    if ((keyboard_check(ord('D')) * mkey) || (gamepad_axis_value(0, gp_axislh) >= .4) * mgp)
         key[KEY.RIGHT] = 1;
-    if (keyboard_check(ord('W')) || gamepad_axis_value(0, gp_axislv) <= -0.3)
+    if ((keyboard_check(ord('W')) * mkey) || (gamepad_axis_value(0, gp_axislv) <= -.4) * mgp)
         key[KEY.TOP] = 1;
-    if (keyboard_check(ord('S')) || gamepad_axis_value(0, gp_axislv) >= 0.3)
+    if ((keyboard_check(ord('S')) * mkey) || (gamepad_axis_value(0, gp_axislv) >= .4) * mgp)
         key[KEY.BOT] = 1;
         
-    if (mouse_check_button_pressed(mb_left) || gamepad_button_check_pressed(0, gp_face2))
+    if ((mouse_check_button_pressed(mb_left) * mkey) || (gamepad_button_check_pressed(0, gp_shoulderr) * mgp))
         key[KEY.KICK] = 0;
-    else if (mouse_check_button(mb_left) || gamepad_button_check(0, gp_face2))  
+    else if ((mouse_check_button(mb_left) * mkey) || (gamepad_button_check(0, gp_shoulderr) * mgp))  
         key[KEY.KICK] = 1;
-    else if (mouse_check_button_released(mb_left) || gamepad_button_check_released(0, gp_face2))  
+    else if ((mouse_check_button_released(mb_left) * mkey) || (gamepad_button_check_released(0, gp_shoulderr) * mgp))  
         key[KEY.KICK] = 2;
     else
         key[KEY.KICK] = -1;
         
         
-    if (keyboard_check_released(ord('E')))
+    if ((keyboard_check_released(ord('E')) * mkey) || (gamepad_button_check_released(0, gp_face1) * mgp) )
         key[KEY.PICKUP] = 1;
-    if (keyboard_check_released(ord('R')))
+    if ((keyboard_check_released(ord('R')) * mkey) || (gamepad_button_check_released(0, gp_face3) * mgp) )
         key[KEY.RELOAD] = 1;
-    if (keyboard_check_released(vk_space))
+    if ((keyboard_check_released(vk_space) * mkey) || (gamepad_button_check_released(0, gp_shoulderrb) * mgp) )
         key[KEY.WEAP_CHANGE] = 1;
-    if (mouse_check_button_pressed(mb_right))// || gamepad_button_check_released(0, gp_face2))
+    if ((mouse_check_button_pressed(mb_right) * mkey) || (gamepad_button_check_released(0, gp_face2) * mgp) )
         key[KEY.ABIL] = 1;
-    if (keyboard_check_released(ord('F')))
+    if ((keyboard_check_released(ord('F')) * mkey))
         key[KEY.SINGLEUSE_ITEM] = 1;
-    if (keyboard_check_released(ord('Q')))
+    if ((keyboard_check_released(ord('Q')) * mkey))
         key[KEY.RECHARGABLE_ITEM] = 1;
     break;
     
