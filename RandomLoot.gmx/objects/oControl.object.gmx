@@ -36,6 +36,8 @@ display_set_gui_size(global.guiW, global.guiH);
 
 global.language = LANG.__EN;
 
+global.char = -1;
+
 global.dispW = display_get_width();
 global.dispH = display_get_height();
 
@@ -121,10 +123,10 @@ part_type_blend(global.pldash, false);
 part_type_life(global.pldash, 0.1 * room_speed, 0.2 * room_speed);    
 
 
-with (instance_create(0, 0, oNextRoom))
-    nextRoomEffectInit(1, rRandom, 1, room_width / 3, room_height / 3, 15, global.guiW / 2, global.guiH / 2, 16);
+//with (instance_create(0, 0, oNextRoom))
+//    nextRoomEffectInit(1, rCharChoose, 1, room_width / 3, room_height / 3, 15, global.guiW / 2, global.guiH / 2, 16);
 
-//room_goto_next();
+room_goto_next();
 </string>
           </argument>
         </arguments>

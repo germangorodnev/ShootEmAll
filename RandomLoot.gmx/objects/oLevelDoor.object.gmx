@@ -40,6 +40,9 @@ x1 = x;
 y1 = y + 18;
 x2 = x + sprite_width;
 y2 = y + 46;
+
+xr = (x+32) div LEVEL.TILE_W;
+yr = (y+32) div LEVEL.TILE_H;
 </string>
           </argument>
         </arguments>

@@ -27,16 +27,18 @@ case os_win32:
         
     if ((keyboard_check_released(ord('E')) * mkey) || (gamepad_button_check_released(0, gp_face1) * mgp) )
         key[KEY.PICKUP] = 1;
-    if ((keyboard_check_released(ord('R')) * mkey) || (gamepad_button_check_released(0, gp_face3) * mgp) )
+    if ((keyboard_check_released(ord('R')) * mkey) || (gamepad_button_check_released(0, gp_shoulderlb) * mgp) )
         key[KEY.RELOAD] = 1;
     if ((keyboard_check_released(vk_space) * mkey) || (gamepad_button_check_released(0, gp_shoulderrb) * mgp) )
         key[KEY.WEAP_CHANGE] = 1;
-    if ((mouse_check_button_pressed(mb_right) * mkey) || (gamepad_button_check_released(0, gp_face2) * mgp) )
+    if ((mouse_check_button_pressed(mb_right) * mkey) || (gamepad_button_check_released(0, gp_shoulderl) * mgp) )
         key[KEY.ABIL] = 1;
-    if ((keyboard_check_released(ord('F')) * mkey))
+    if ((keyboard_check_released(ord('F')) * mkey) || (gamepad_button_check_released(0, gp_face2) * mgp) )
         key[KEY.SINGLEUSE_ITEM] = 1;
-    if ((keyboard_check_released(ord('Q')) * mkey))
+    if ((keyboard_check_released(ord('Q')) * mkey) || (gamepad_button_check_released(0, gp_face4) * mgp) )
         key[KEY.RECHARGABLE_ITEM] = 1;
+    if ((keyboard_check(ord('M')) * mkey) || (gamepad_button_check_released(0, gp_face3) * mgp) )
+        key[KEY.MAP] = 1;
     break;
     
 /*case os_android:

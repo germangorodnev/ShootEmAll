@@ -227,6 +227,12 @@
       <sprite>sprites\sPrisonDoorRight</sprite>
       <sprite>sprites\sPrisonDoorLeft</sprite>
     </sprites>
+    <sprites name="Items">
+      <sprite>sprites\sItems</sprite>
+    </sprites>
+    <sprites name="Character Choose">
+      <sprite>sprites\sCharacterIcos</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Parts">
@@ -246,6 +252,7 @@
     <background>background\tlsPrisonShowerFloorTitles</background>
     <background>background\tlsPrisonFloor128</background>
     <background>background\tlsPrisonDefault</background>
+    <background>background\tlsPrisonDefaultCarpet</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -397,6 +404,15 @@
         <script>scripts\customSpriteAdd.gml</script>
         <script>scripts\customSpriteDeleteByValue.gml</script>
       </scripts>
+      <scripts name="Doors">
+        <script>scripts\laserDoorAdd.gml</script>
+        <script>scripts\laserDoorChangeById.gml</script>
+        <script>scripts\laserDoorChangeAll.gml</script>
+      </scripts>
+      <scripts name="Menu">
+        <script>scripts\characterPreSelect.gml</script>
+        <script>scripts\characterSet.gml</script>
+      </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
@@ -410,7 +426,6 @@
       <script>scripts\nextRoomEffectInit.gml</script>
       <script>scripts\pointColGrid.gml</script>
       <script>scripts\drawLaser.gml</script>
-      <script>scripts\laserDoorAdd.gml</script>
       <script>scripts\gamePlayerCreate.gml</script>
     </scripts>
     <scripts name="Bullets">
@@ -506,6 +521,10 @@
             <scripts name="Crate">
               <script>scripts\levelPrisonChestRoomInit.gml</script>
             </scripts>
+            <scripts name="Start Room">
+              <script>scripts\levelPrisonStartRoomInit.gml</script>
+              <script>scripts\levelPrisonSmallCarpetSet.gml</script>
+            </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>
             <script>scripts\levelPrisonSetCloset.gml</script>
             <script>scripts\levelPrisonCreate4Cells.gml</script>
@@ -541,6 +560,12 @@
       <scripts name="Client">
         <script>scripts\clientInit.gml</script>
       </scripts>
+    </scripts>
+    <scripts name="Minimap">
+      <script>scripts\minimapInit.gml</script>
+      <script>scripts\minimapBigger.gml</script>
+      <script>scripts\minimapSmaller.gml</script>
+      <script>scripts\minimapUpdate.gml</script>
     </scripts>
     <script>scripts\ENUMS.gml</script>
   </scripts>
@@ -579,6 +604,9 @@
       </objects>
       <objects name="GUI">
         <object>objects\oButton</object>
+      </objects>
+      <objects name="Menu">
+        <object>objects\oCharacterChoose</object>
       </objects>
       <object>objects\oLevel</object>
       <object>objects\oCamera</object>
@@ -652,10 +680,15 @@
     <objects name="Shop">
       <object>objects\oShop</object>
     </objects>
+    <objects name="Networking">
+      <object>objects\oServer</object>
+      <object>objects\oClient</object>
+    </objects>
     <object>objects\oWall</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rInit</room>
+    <room>rooms\rCharChoose</room>
     <room>rooms\rRandom</room>
     <room>rooms\rArena</room>
     <room>rooms\rGame</room>

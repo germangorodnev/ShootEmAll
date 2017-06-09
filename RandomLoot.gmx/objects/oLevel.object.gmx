@@ -139,11 +139,22 @@ rX2[rci] = 0;
 rY2[rci] = 0;
 rA[rci] = 0;
 
+playerX = 0;
+playerY = 0;
+
 levelGenerate();
 ds_list_destroy(cells);
 cellsVis = 0;
 
+// minimap now
+with (instance_create(0, 0, oMinimap))
+    minimapInit();
 
+// player now
+gamePlayerCreate(playerX, playerY, global.char);
+
+// deactivate all doors
+laserDoorChangeAll(0);
 </string>
           </argument>
         </arguments>

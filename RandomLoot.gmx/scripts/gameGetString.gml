@@ -246,7 +246,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Blood Flag";
-                _arr[1] = "desc";
+                _arr[1] = "description";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Кровавый Штандарт";
@@ -259,7 +259,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Pompington";
-                _arr[1] = "Это ружье заставит детишек с соседнего дома перестать ходить вашего газона";
+                _arr[1] = "This rifle will make these neighborhood children stop walking on your lawn";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Помпингтон";
@@ -272,7 +272,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "RX-P";
-                _arr[1] = "Это ружье заставит детишек с соседнего дома перестать ходить вашего газона";
+                _arr[1] = "Basic equipment weapon";
                 break;
             case LANG.__RUS:
                 _arr[0] = "RX-P";
@@ -285,7 +285,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Nova-M";
-                _arr[1] = "Нет ничего запаха мёртвого врага по утрам, особенно если он был убит из этой винтовки";
+                _arr[1] = "There's nothing better than smell of dead enemy in the morning, especially when he was killed with this gun";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Nova-M";
@@ -298,7 +298,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Roman Machinegun";
-                _arr[1] = "Вам не нужно целиться, если вы стреляете во все стороны";
+                _arr[1] = "You don't need to aim when you shoot 360 degrees";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Пулемет Романа";
@@ -311,7 +311,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Phase Crusher";
-                _arr[1] = "Этот артефакт был конфискован у расхитителя гробниц на планете Азур III";
+                _arr[1] = "This artifact was confiscated by the tomb raider from planet Azur III";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Фазовый Двигатель";
@@ -324,7 +324,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Forest Mantis";
-                _arr[1] = "Эта винтовка убивает ваших врагов со скоростью света. Впрочем, боезапас тоже";
+                _arr[1] = "This rifle kills you enemies at the speed of light. However, ammo too";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Лесной Богомол";
@@ -337,7 +337,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Rect-1";
-                _arr[1] = "Это оружие было запрещено на 60 планетах альянса из-за опасности отрывания кисти во время стрельбы";
+                _arr[1] = "This weapon was forbidden on 60 Alliance planets because of the risk of bone loss during a shot";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Рект-1";
@@ -350,7 +350,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Borian Bulgavor";
-                _arr[1] = "Не забывайте, что бульгавор - это кишечный паразит. Держите на безопасном расстоянии от кишок";
+                _arr[1] = "Do not forget, that Bulgavor is an intenstinal parasite. Keep a log distance from the intensties";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Борианский Бульгавор";
@@ -363,7 +363,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Destruction Weapon";
-                _arr[1] = "У этого оружия исключительно высокая скорострельность, но, к сожалению, отсутствует автоматический режим";
+                _arr[1] = "This weapon has extremelyy high shoot speed, but sadly does not have automatic mode";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Оружие Поражения";
@@ -376,7 +376,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Double Barrel";
-                _arr[1] = "На стволе этого оружия ещё можно разглядеть остатки мозгов демонов";
+                _arr[1] = "You still can see demons' brains remnants on the barrel";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Двустволка";
@@ -389,7 +389,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Overkillington";
-                _arr[1] = "Осторожно! При использовании этого оружия существует опасность повреждения целостности станции!";
+                _arr[1] = "DANGER! There is a possibility of station damage integrity!";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Оверкиллингтон";
@@ -403,11 +403,11 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Halfsword";
-                _arr[1] = "Одна половина режет, другая нет, Впрочем, это не важно, когда враг мёртв после одного удара.";
+                _arr[1] = "One half  cuts, another does not. However, it does not matter when an enemy is dead after one hit";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Полумеч";
-                _arr[1] = "Одна половина режет, другая нет, Впрочем, это не важно, когда враг мёртв после одного удара.";            
+                _arr[1] = "Одна половина режет, другая нет, Впрочем, это не важно, когда враг мёртв после одного удара";            
                 break;
             }            
             break;
@@ -416,7 +416,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Copper Devil";
-                _arr[1] = "Обратная сторона подавления беспорядков";
+                _arr[1] = "The reverse side of riots quelling";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Бронзовый Дьявол";
@@ -429,7 +429,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Aria's Artifact";
-                _arr[1] = "Точно таким же мечом убили знаменитую актрису Роману Зомбедовну";
+                _arr[1] = "Zombida Roman was killed with exactly same weapon";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Артефакт Арии";
@@ -458,7 +458,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Dynamite";
-                _arr[1] = "Старая добрая взрывчатка";
+                _arr[1] = "Good old explosive";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Динамит";
@@ -471,7 +471,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Laser mine";
-                _arr[1] = "Старая добрая взрывчатка";
+                _arr[1] = "Place on a wall to make it work";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Лазерная мина";
@@ -484,7 +484,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "BOOMerang";
-                _arr[1] = "Старая добрая взрывчатка";
+                _arr[1] = "No one knows, who came up with the idea of combining explosive and boomerang, but out shop thanks him a lot";
                 break;
             case LANG.__RUS:
                 _arr[0] = "БУМеранг";
@@ -497,7 +497,7 @@ else if (mg == 1)
             {
             case LANG.__EN:
                 _arr[0] = "Sticky grenade";
-                _arr[1] = "Не отличается ничем от обычной гранаты кроме того что на ней куча слизи. Используйте как преимущество";
+                _arr[1] = "A lot of slime on it. Use the advantage as an advantage";
                 break;
             case LANG.__RUS:
                 _arr[0] = "Липкая граната";

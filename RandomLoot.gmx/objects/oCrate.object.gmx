@@ -40,12 +40,13 @@ ca = 1;
 depth = -y;
 
 // block the ground
-var mtx = (x - 15) div LEVEL.TILE_W,
-    mty = (y) div LEVEL.TILE_H;
-levelTileMark(mtx, mty, TILES.__CRATE_LEFT);
-oLevel.level[# mtx, mty] |= LEVEL.SOLID;
-levelTileMark(mtx+1, mty, TILES.__CRATE_RIGHT);
-oLevel.level[# mtx+1, mty] |= LEVEL.SOLID;
+gx = (x - 15) div LEVEL.TILE_W;
+gy = (y) div LEVEL.TILE_H;
+
+levelTileMark(gx, gy, TILES.__CRATE_LEFT);
+oLevel.level[# gx, gy] |= LEVEL.SOLID;
+levelTileMark(gx+1, gy, TILES.__CRATE_RIGHT);
+oLevel.level[# gx+1, gy] |= LEVEL.SOLID;
 
 </string>
           </argument>

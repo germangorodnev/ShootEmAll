@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>oStateObject</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -28,6 +28,39 @@
             <string>///made specially for displaying map
 event_inherited();
 image_speed = 0;
+
+mode = 0;
+modealpha = 0.8;
+
+pixelsize = 1;
+
+vieww = global.guiW;
+
+mode0scale = 4;
+mode1sccoeff = 3;
+mode1scale = mode0scale * mode1sccoeff;
+
+mw = oLevel.ww * pixelsize;
+mh = oLevel.hh * pixelsize;
+map = surface_create(mw, mh);
+
+xoff = 10;
+yoff = xoff;
+
+mode0width = mode0scale * mw;
+mode1width = mode0width * mode1sccoeff;
+
+// for movable
+mapmovable = surface_create(mw, mh);
+plxr[0] = 0;
+plyr[0] = 0;
+// colour
+wallcol = make_color_rgb(29, 44, 34);
+playercol[0] = make_colour_rgb(128, 21, 21);
+crateclosedcol = make_colour_rgb(255, 247, 170);
+crateopenedcol = make_colour_rgb(128, 117, 21);
+shopcol = make_colour_rgb(138, 69, 138);
+shopnoitemcol = make_colour_rgb(111, 37, 111);
 </string>
           </argument>
         </arguments>
@@ -51,6 +84,8 @@ image_speed = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+surface_free(map);
+surface_free(mapmovable);
 </string>
           </argument>
         </arguments>
@@ -74,7 +109,22 @@ image_speed = 0;
           <argument>
             <kind>1</kind>
             <string>///draw
-
+switch (mode)
+{
+case 0: // small one
+    draw_set_alpha(modealpha);
+    draw_surface_ext(map, vieww - mode0width - xoff, yoff, mode0scale, mode0scale, 0, image_blend, modealpha);
+    draw_surface_ext(mapmovable, vieww - mode0width - xoff, yoff, mode0scale, mode0scale, 0, image_blend, modealpha);
+    draw_set_alpha(1);
+    break;
+    
+case 1: // big map, more inf
+    draw_set_alpha(modealpha);
+    draw_surface_ext(map, vieww - mode1width - xoff, yoff, mode1scale, mode1scale, 0, image_blend, modealpha);
+    draw_surface_ext(mapmovable, vieww - mode1width - xoff, yoff, mode1scale, mode1scale, 0, image_blend, modealpha);
+    draw_set_alpha(1);
+    break;
+}
 </string>
           </argument>
         </arguments>

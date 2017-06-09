@@ -97,8 +97,8 @@ if (stick == 2)
         stick = -1;
         exit;
     }
-    x = stickObj.x + xoff;
-    y = stickObj.y + yoff;  
+    x = stickObj.x + xoff * sign(stickObj.image_xscale);
+    y = stickObj.y + yoff * sign(stickObj.image_yscale);  
     depth = stickObj.depth - 1;
 }
 </string>
@@ -162,6 +162,8 @@ case 0:
         speed = 0;
         xoff = x+lengthdir_x(5, direction) - ic.x; //irandom_range(-13, 13);
         yoff = y+lengthdir_y(5, direction) - ic.y; //irandom_range(3, 25);
+        xoff *= sign(stickObj.image_xscale);
+        yoff *= sign(stickObj.image_yscale);  
         exit;
     }    
     break;

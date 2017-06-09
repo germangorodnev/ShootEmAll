@@ -16,6 +16,7 @@ with (newd)
         break;
     case 1: // top
         depth = -y - LEVEL.TILE_H - 5;
+        //yr--;
         break;
     case 2: // left
         x1 = x + 54;
@@ -26,6 +27,7 @@ with (newd)
         depth = -y - LEVEL.TILE_H;
         break;
     case 3: // bottom
+        //yr+=2;
         depth = -y - LEVEL.TILE_H - 5;
         break;
     }

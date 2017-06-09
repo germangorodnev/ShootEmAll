@@ -21,7 +21,6 @@ if (mkey > 0 && mgp > 0)
         image_index = 0 + 2 * (cuckTmr != -1);
         mycmp = y + 10;   
     }
-    show_debug_message(string(mousedir));
 }
 else if (mkey)
 {

@@ -214,4 +214,6 @@ with (oFloor)
     instance_destroy();
 with (oPrisonCell)
     instance_destroy();
+    
+
 

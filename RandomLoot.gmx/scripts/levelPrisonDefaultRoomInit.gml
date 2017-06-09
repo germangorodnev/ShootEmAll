@@ -17,6 +17,27 @@ for (var i = x, ci = x + rw; i < ci; i++)
         tile_add(tlsFloor, !((i + j) mod 4 == 0) * tw, 0, tw, th, xx, yy, oLevel.floorD);
     }
 }
+// carpet now
+tile_add(tlsPrisonDefaultCarpet, 0, 0, tw, th, (x)*tw, (y)*th, oLevel.carpetD);
+for (var i = x + 1, ci = x + rw - 1; i < ci; i++)
+    tile_add(tlsPrisonDefaultCarpet, tw, 0, tw, th, i*tw, (y)*th, oLevel.carpetD);
+tile_add(tlsPrisonDefaultCarpet, tw*2, 0, tw, th, (x+rw-1)*tw, (y)*th, oLevel.carpetD);
+
+for (var i = y + 1, ci = y + rh - 2; i < ci; i++)
+    tile_add(tlsPrisonDefaultCarpet, 0, th, tw, th, x*tw, (i)*th, oLevel.carpetD);
+tile_add(tlsPrisonDefaultCarpet, 0, th*2, tw, th, x*tw, (y + rh - 2)*th, oLevel.carpetD);
+
+for (var i = x + 1, ci = x + rw - 1, cy = (y + rh - 2) * th; i < ci; i++)
+    tile_add(tlsPrisonDefaultCarpet, tw, th*2, tw, th, i*tw, cy, oLevel.carpetD);
+tile_add(tlsPrisonDefaultCarpet, tw*2, th*2, tw, th, (x + rw  - 1)* tw, (y + rh - 2)*th, oLevel.carpetD);
+
+for (var i = y + 1, ci = y + rh - 2, cx = (x + rw - 1) * th; i < ci; i++)
+    tile_add(tlsPrisonDefaultCarpet, tw*2, th, tw, th, cx, i*th, oLevel.carpetD);
+    
+for (var i = x + 1, ci = x + rw - 1; i < ci; i++)
+    for (var m = y + 1, cm = y + rh - 2; m < cm; m++)
+        tile_add(tlsPrisonDefaultCarpet, tw*3, th, tw, th, i*tw, m*th, oLevel.carpetD);
+
 // now walls
 for (var xx = x, cx = x + rw; xx < cx; xx++)
 {

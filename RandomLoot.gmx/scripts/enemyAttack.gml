@@ -46,7 +46,7 @@ case WEAPON_TYPE.__RANGE:
                 bb.damage = irandom_range(mindmg, maxdmg);   
             }
             bb.direction = angle + irandom(sprayAngle);       
-            bb.speed = projectileSpeed;  
+            bb.spd = projectileSpeed;  
             bb.parent = id; 
             with (bb)
                 projectileInited();      

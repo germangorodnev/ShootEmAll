@@ -193,6 +193,11 @@ case ENEMY_STATE.__IDLE:
         else if (ca == -1)
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
+    else if (detect == -2)
+    {
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);
+        exit;    
+    }
     if (target != noone)
     {
         angle = point_direction(x, y, target.x, target.y);        
@@ -224,6 +229,11 @@ case ENEMY_STATE.__FOLLOW:
         enemySetState(ENEMY_STATE.__IDLE);
         exit;
     }
+    if (detect == -2 || detect == -1)
+    {
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);
+        exit;
+    }
     if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
     {
         if (idleTmr &gt; 0.5 * room_speed)
@@ -231,11 +241,6 @@ case ENEMY_STATE.__FOLLOW:
             // recalc
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
         }
-    }
-    if (detect == -2)
-    {
-        enemyStartPattern(ENEMY_PATTERN.__PATROL);
-        exit;
     }
     if (pathEnd)
     {

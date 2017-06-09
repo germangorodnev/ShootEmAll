@@ -28,8 +28,6 @@
             <string>event_inherited();
 image_speed = 0;
 
-sprite_index = choose(sPlayerKamikaze, sPlayerCamouflage);
-
 // Stats
 spd = 4;
 hp = 12;
@@ -90,7 +88,7 @@ state = PLAYER_STATES.__IDLE;
 
 // control
 mycmp = 0;
-controlBit = CONTROL.__KEYMOUSE | CONTROL.__GAMEPAD;
+controlBit = CONTROL.__KEYMOUSE //| CONTROL.__GAMEPAD;
 key[KEY.CNT] = 0;
 
 
@@ -148,6 +146,7 @@ myo = mouse_y;
 instance_create(x, y, oCamera);
 var ggui = instance_create(0, 0, oGameGUI);
 ggui = oGameGUI.playerId;
+
 
 playerSetWeapon(weapon);
 </string>
@@ -301,6 +300,13 @@ playerAbilitiesCooldown();
 playerRechargableCooldown();
 playerControlledLineProceedAll();
 
+// map
+minimapUpdate();
+if (key[KEY.MAP])
+    minimapBigger();
+else
+    minimapSmaller();
+    
 switch (state)
 {
 /* *********************************************** IDLE *********************************************** */
@@ -443,7 +449,7 @@ case PLAYER_STATES.__DASH:
     
     var dSpd = abilsParams[1],
         dist = distance_to_point(mX, mY);
-    var finspd = max(dist / 4, dSpd);
+    var finspd = max(dist / 5, dSpd);
     if (dist &lt; finspd)
     {
         // end
@@ -457,7 +463,7 @@ case PLAYER_STATES.__DASH:
         toX = round(x + lengthdir_x(finspd, mD));
         toY = round(y + lengthdir_y(finspd, mD));
     }
-    if (lineGetCollisionPoint(x, y, toX, toY, collideWith, 1) != -1)// collisionLine(x, y, toX, toY, collideWith)) // cannot
+    if (is_array(lineGetCollisionPoint(x, y, toX, toY, collideWith, 1)))// collisionLine(x, y, toX, toY, collideWith)) // cannot
     {
         // end       
         playerSetState(PLAYER_STATES.__IDLE); 

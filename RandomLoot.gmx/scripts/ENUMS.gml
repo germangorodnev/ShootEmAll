@@ -15,6 +15,13 @@ enum CONTROL
     __GAMEPAD = 1 << 1
 }
 
+enum CHARS
+{
+    __CARD = 0,
+    __MILITARY,
+    __CNT
+}
+
 enum LEVEL
 {
     TILE_W = 64,
@@ -116,7 +123,8 @@ enum ROOMS
     __PRISON_CELLS_SIZE_3,
     __PRISON_SHOWER_1W,
     __PRISON_CHEST_1W,
-    __PRISON_DEFAULT_1W
+    __PRISON_DEFAULT_1W,
+    __START_ROOM
 }   
 
 enum GAME_STATES
@@ -265,6 +273,7 @@ enum KEY
     ABIL,
     SINGLEUSE_ITEM,
     RECHARGABLE_ITEM,
+    MAP,
     CNT
 }
 
