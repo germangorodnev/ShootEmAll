@@ -146,6 +146,9 @@ levelGenerate();
 ds_list_destroy(cells);
 cellsVis = 0;
 
+// shadow surf
+shd = surface_create(global.guiW, global.guiH);
+
 // minimap now
 with (instance_create(0, 0, oMinimap))
     minimapInit();
@@ -177,7 +180,8 @@ laserDoorChangeAll(0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(leafs);
+            <string>surface_free(shd);
+ds_list_destroy(leafs);
 ds_grid_destroy(level);
 ds_list_destroy(cells);
 cellsVis = 0;

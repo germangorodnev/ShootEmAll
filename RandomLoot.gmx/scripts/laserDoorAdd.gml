@@ -12,7 +12,7 @@ with (newd)
         y1 = y;
         y2 = y + sprite_height;
         x2 = x1;
-        depth = -y - LEVEL.TILE_H;
+        depth = -y - LEVEL.TILE_H / 1.5 + 9;
         break;
     case 1: // top
         depth = -y - LEVEL.TILE_H - 5;
@@ -24,7 +24,7 @@ with (newd)
         y2 = y + sprite_height;
         x2 = x1;
         image_index = 2;   
-        depth = -y - LEVEL.TILE_H;
+        depth = -y - LEVEL.TILE_H / 1.5 + 9;
         break;
     case 3: // bottom
         //yr+=2;

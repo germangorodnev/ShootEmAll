@@ -130,6 +130,7 @@ enum ROOMS
 enum GAME_STATES
 {
     __INIT = 0,
+    __CHAR_CHOOSE,
     __GAME,
     __PAUSE,
     __SHOP

@@ -253,6 +253,7 @@
     <background>background\tlsPrisonFloor128</background>
     <background>background\tlsPrisonDefault</background>
     <background>background\tlsPrisonDefaultCarpet</background>
+    <background>background\tlsPrisonCarpetRespawn</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -523,7 +524,10 @@
             </scripts>
             <scripts name="Start Room">
               <script>scripts\levelPrisonStartRoomInit.gml</script>
+            </scripts>
+            <scripts name="Carpet Set">
               <script>scripts\levelPrisonSmallCarpetSet.gml</script>
+              <script>scripts\levelPrisonCarpetSet.gml</script>
             </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>
             <script>scripts\levelPrisonSetCloset.gml</script>

@@ -18,7 +18,8 @@ for (var i = x, ci = x + rw; i < ci; i++)
     }
 }
 // carpet now
-tile_add(tlsPrisonDefaultCarpet, 0, 0, tw, th, (x)*tw, (y)*th, oLevel.carpetD);
+levelPrisonCarpetSet(x, y, rw, rh, 0);
+/*tile_add(tlsPrisonDefaultCarpet, 0, 0, tw, th, (x)*tw, (y)*th, oLevel.carpetD);
 for (var i = x + 1, ci = x + rw - 1; i < ci; i++)
     tile_add(tlsPrisonDefaultCarpet, tw, 0, tw, th, i*tw, (y)*th, oLevel.carpetD);
 tile_add(tlsPrisonDefaultCarpet, tw*2, 0, tw, th, (x+rw-1)*tw, (y)*th, oLevel.carpetD);
@@ -37,7 +38,7 @@ for (var i = y + 1, ci = y + rh - 2, cx = (x + rw - 1) * th; i < ci; i++)
 for (var i = x + 1, ci = x + rw - 1; i < ci; i++)
     for (var m = y + 1, cm = y + rh - 2; m < cm; m++)
         tile_add(tlsPrisonDefaultCarpet, tw*3, th, tw, th, i*tw, m*th, oLevel.carpetD);
-
+*/
 // now walls
 for (var xx = x, cx = x + rw; xx < cx; xx++)
 {

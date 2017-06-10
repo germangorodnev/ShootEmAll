@@ -18,12 +18,5 @@ for (var i = x, ci = x + rw; i < ci; i++)
     }
 }
 // some carpets
-levelPrisonSmallCarpetSet(x + 1, y, 0);
-levelPrisonSmallCarpetSet(x + 6, y, 1);
-
-levelPrisonSmallCarpetSet(x + 1, y+3, 1);
-levelPrisonSmallCarpetSet(x + 6, y+3, 0);
-
-levelPrisonSmallCarpetSet(x + 1, y+6, 0);
-levelPrisonSmallCarpetSet(x + 6, y+6, 1);
+levelPrisonCarpetSet(x, y, rw, rh, 2);
 
