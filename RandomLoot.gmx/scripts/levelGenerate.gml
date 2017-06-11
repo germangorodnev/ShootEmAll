@@ -178,20 +178,23 @@ with (oCell)
 
 // fill black zones
 //rectCnt = instance_number(oCellRoom) + instance_number(oFloor);
+var WALLW = 6,
+    WALLH = 6;
 with (oCellRoom)
 {
     var p = oLevel.rectCnt++;
-    oLevel.rX1[p] = x * tw;
-    oLevel.rY1[p] = y * th;
-    oLevel.rX2[p] = oLevel.rX1[p] + rw * tw;
-    oLevel.rY2[p] = oLevel.rY1[p] + rh * th;
+    ind = p;
+    oLevel.rX1[p] = x * tw - WALLW;
+    oLevel.rY1[p] = y * th - th - WALLH;
+    oLevel.rX2[p] = oLevel.rX1[p] + rw * tw + WALLW;
+    oLevel.rY2[p] = oLevel.rY1[p] + rh * th + WALLH;
     oLevel.rA[p] = 1;       
 }
 with (oFloor)
 {
     var p = oLevel.rectCnt++;
     oLevel.rX1[p] = x * tw;
-    oLevel.rY1[p] = y * th;
+    oLevel.rY1[p] = y * th - th;
     oLevel.rX2[p] = oLevel.rX1[p] + rw * tw;
     oLevel.rY2[p] = oLevel.rY1[p] + rh * th;
     oLevel.rA[p] = 1;       

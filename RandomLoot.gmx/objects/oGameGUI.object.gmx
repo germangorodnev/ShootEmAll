@@ -103,7 +103,6 @@ phbxb = phbx  + 1;
 phbyb = phby + sprite_get_height(sPlayerHP) + 7;
 phbetwxb = sprite_get_width(sPlayerHP) - 3;
 
-
 phbh = sprite_get_height(sPlayerHP);
 </string>
           </argument>
@@ -438,15 +437,23 @@ if (global.gameState == GAME_STATES.__SHOP)
 }
 
 // black rectangles
+
 /*with (oLevel)
 {
+    surface_set_target(black);
+    draw_clear_alpha(bl, 1);
+    draw_set_blend_mode(bm_subtract);
     for (var i = 0; i &lt; rectCnt; i++)
     {
-        draw_set_alpha(rA[i]);
-        draw_rectangle_colour(rX1[i], rY1[i], rX2[i], rY2[i], c_black, c_black, c_black, c_black, 0);
+        draw_set_alpha(1 - rA[i]);
+        draw_rectangle_colour(rX1[i] - view_xview, rY1[i] - view_yview, rX2[i] - view_xview, rY2[i] - view_yview, bl, bl, bl, bl, 0);
         draw_set_alpha(1);
     }
+    draw_set_blend_mode(bm_normal);
+    surface_reset_target();
+    draw_surface(black, view_xview, view_yview);
 }
+
 </string>
           </argument>
         </arguments>

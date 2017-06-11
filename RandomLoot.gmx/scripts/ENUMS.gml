@@ -19,6 +19,8 @@ enum CHARS
 {
     __CARD = 0,
     __MILITARY,
+    __JSTONE,
+    __SOLITARE,
     __CNT
 }
 
@@ -81,7 +83,8 @@ enum EFFECTS
 
 enum ABILITIES
 {
-    __DASH = 0
+    __DASH = 0,
+    __HEAL
 }
 
 enum SINGLEUSE

@@ -114,7 +114,7 @@ for (var i = 0; i &lt; CHARS.__CNT; i++)
                 }
             }
         }
-    draw_sprite_ext(sCharacterIcos, i, chixc, chiy, 1, 1, 0, image_blend, 1);
+    draw_sprite_ext(sCharacterIcos, i, chixc + 10, chiy, 1, 1, 0, image_blend, 1);
 }
 
 </string>

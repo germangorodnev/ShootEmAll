@@ -9,4 +9,9 @@ case ABILITIES.__DASH:
     abilsTmr[pos] = abilsTmrCnt[pos];
     playerSetState(PLAYER_STATES.__DASH);
     break;  
+case ABILITIES.__HEAL:
+    // set cooldown
+    abilsTmr[pos] = abilsTmrCnt[pos];
+    playerChangeHP(abilsParams[0]);
+    break;  
 }

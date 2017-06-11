@@ -20,6 +20,9 @@
         <sprites name="Abilities">
           <sprite>sprites\sAbilities</sprite>
         </sprites>
+        <sprites name="Character Choose">
+          <sprite>sprites\sCharacterIcos</sprite>
+        </sprites>
         <sprite>sprites\sPlayerHP</sprite>
         <sprite>sprites\sPickupWI</sprite>
         <sprite>sprites\sPickup</sprite>
@@ -124,6 +127,8 @@
       <sprites name="Skins">
         <sprite>sprites\sPlayerCamouflage</sprite>
         <sprite>sprites\sPlayerKamikaze</sprite>
+        <sprite>sprites\sPlayerJStone</sprite>
+        <sprite>sprites\sPlayerSolitare</sprite>
       </sprites>
       <sprites name="Shop">
         <sprite>sprites\sShopGUIIco</sprite>
@@ -229,9 +234,6 @@
     </sprites>
     <sprites name="Items">
       <sprite>sprites\sItems</sprite>
-    </sprites>
-    <sprites name="Character Choose">
-      <sprite>sprites\sCharacterIcos</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -389,6 +391,7 @@
         <script>scripts\gameGetSingleuseInformation.gml</script>
         <script>scripts\gameGetRechargableExplosiveInformation.gml</script>
         <script>scripts\gameGetEatableInformation.gml</script>
+        <script>scripts\gameGetAmmoInformation.gml</script>
       </scripts>
       <scripts name="Bue">
         <script>scripts\gameBueAdd.gml</script>
@@ -454,14 +457,17 @@
       <scripts name="Projectiles">
         <script>scripts\projectileStepEnemy.gml</script>
       </scripts>
+      <scripts name="On Die Create">
+        <script>scripts\enemyCreateJibs.gml</script>
+        <script>scripts\enemyCreateMoney.gml</script>
+        <script>scripts\enemyCreateAmmo.gml</script>
+      </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
       <script>scripts\enemyDetectPlayer.gml</script>
       <script>scripts\enemyCanAttack.gml</script>
       <script>scripts\enemyAttack.gml</script>
-      <script>scripts\enemyCreateJibs.gml</script>
       <script>scripts\enemyMoveOutOfOther.gml</script>
-      <script>scripts\enemyCreateMoney.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>

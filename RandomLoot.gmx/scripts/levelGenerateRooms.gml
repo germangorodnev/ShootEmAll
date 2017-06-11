@@ -1,18 +1,21 @@
 var lvl = level;
 // first of all - create 1x1 start room
 var ncr = noone,
-    rcnt = instance_number(oCellRoom);
+    rcnt = instance_number(oCellRoom),
+    number;
 do
 {
-    ncr = instance_find(oCellRoom, rcnt - 1);
+    number = irandom(rcnt - 1);
+    ncr = instance_find(oCellRoom, number);
 } until (ncr.par.size == 0);
 
 // set it as start room
 with (ncr)
 {
-    ncr.type = ROOMS.__START_ROOM;
+    type = ROOMS.__START_ROOM;
     oLevel.playerX = (x + rw / 2) * tw;
     oLevel.playerY = (y + rh / 2) * th;
+    oLevel.rA[ind] = 0;
     levelPrisonStartRoomInit();
 }
 

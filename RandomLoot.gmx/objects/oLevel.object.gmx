@@ -131,6 +131,7 @@ cells = ds_list_create();
 cellsVis[0] = 0; //room_width div cellW * room_height div cellH
 
 // black rects
+bl = c_black;
 rectCnt = 1;
 var rci = rectCnt - 1;
 rX1[rci] = 0;
@@ -138,6 +139,9 @@ rY1[rci] = 0;
 rX2[rci] = 0;
 rY2[rci] = 0;
 rA[rci] = 0;
+
+// blackness
+black = surface_create(global.guiW, global.guiH);
 
 playerX = 0;
 playerY = 0;
@@ -155,9 +159,11 @@ with (instance_create(0, 0, oMinimap))
 
 // player now
 gamePlayerCreate(playerX, playerY, global.char);
+with (instance_create(playerX, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__CUSTOM, 0, 1);
 
 // deactivate all doors
-laserDoorChangeAll(0);
+laserDoorChangeAll(1);
 </string>
           </argument>
         </arguments>
@@ -187,6 +193,8 @@ ds_list_destroy(cells);
 cellsVis = 0;
 ds_grid_destroy(colLevel);
 mp_grid_destroy(levelPf);
+
+surface_free(black);
 
 for (var i = 0; i &lt; ww; i++)
     for (var j = 0; j &lt; hh; j++)

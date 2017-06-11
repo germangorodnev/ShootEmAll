@@ -39,6 +39,8 @@ par = noone;
 
 door[3] = 0;
 
+ind = -1;
+
 var ccv = irandom(180);
 cc = make_colour_hsv(ccv, ccv, ccv);
 

@@ -5,12 +5,25 @@ view_enabled = 1;
 oMinimap.plxr[n] = (new.x-LEVEL.TILE_W) div LEVEL.TILE_W;
 oMinimap.plyr[n] = (new.y-LEVEL.TILE_H) div LEVEL.TILE_H;
 
-switch (argument[2])
+with (new)
 {
-case CHARS.__CARD:
-    new.sprite_index = sPlayerKamikaze;
-    break;
-case CHARS.__MILITARY:
-    new.sprite_index = sPlayerCamouflage;
-    break;
+    switch (argument[2])
+    {
+    case CHARS.__CARD:
+        sprite_index = sPlayerKamikaze;
+        abilityAdd(ABILITIES.__DASH);
+        break;
+    case CHARS.__MILITARY:
+        sprite_index = sPlayerCamouflage;
+        abilityAdd(ABILITIES.__DASH);
+        break;
+    case CHARS.__JSTONE:
+        sprite_index = sPlayerJStone;
+        abilityAdd(ABILITIES.__HEAL);
+        break;
+    case CHARS.__SOLITARE:
+        sprite_index = sPlayerSolitare;
+        break;
+    }
+    playerMaskCreate(0);
 }

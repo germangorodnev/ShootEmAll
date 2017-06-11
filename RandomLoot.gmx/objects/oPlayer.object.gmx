@@ -113,7 +113,6 @@ abilsTmr[0] = -1;
 abilsTmrCnt[0] = -1;
 abilsIco[0] = 0;
 abilsParams[0] = 0;
-abilityAdd(ABILITIES.__DASH);
 
 // single use
 singleuse = SINGLEUSE.__NONE;
@@ -137,7 +136,6 @@ pwType = "";
 pwName = "";
 pwc = c_white;
 
-playerMaskCreate(0);
 
 // mouse y old
 myo = mouse_y;
