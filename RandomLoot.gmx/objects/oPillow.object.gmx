@@ -365,6 +365,10 @@ path_speed = 0;
             <string>if (!drawable)
     exit;
 enemyDebug();
+var usesh = maskHit.expire != 0;
+if (usesh)
+    shader_set(shdWhite);
+    
 if (vecdir &lt; 0)
 {
     with (weaponObj)
@@ -378,6 +382,8 @@ else
         event_perform(ev_other, ev_user3);
 }
 
+if (usesh)
+    shader_reset();
 </string>
           </argument>
         </arguments>

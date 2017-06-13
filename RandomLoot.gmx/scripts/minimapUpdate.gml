@@ -57,7 +57,17 @@ with (oMinimap)
             continue;
         draw_rectangle_colour(xr, yr, xr+.5, yr+.5,
             wallcol, wallcol, wallcol, wallcol, 0);    
-    }    
+    }   
+    
+    // exit
+    var port = instance_find(oLevelPortal, 0);
+    if (port != noone)
+    {
+        xr = port.x div LEVEL.TILE_W;
+        yr = port.y div LEVEL.TILE_H;
+        draw_rectangle_colour(xr, yr, xr+.5, yr+.5,
+            exitcol, exitcol, exitcol, exitcol, 0);    
+    } 
     
     surface_reset_target();
 }

@@ -144,6 +144,7 @@ myo = mouse_y;
 instance_create(x, y, oCamera);
 var ggui = instance_create(0, 0, oGameGUI);
 ggui = oGameGUI.playerId;
+instance_create(0, 0, oShadower);
 
 
 playerSetWeapon(weapon);
@@ -305,6 +306,9 @@ if (key[KEY.MAP])
 else
     minimapSmaller();
     
+// going into room
+playerComeIntoRoom();
+    
 switch (state)
 {
 /* *********************************************** IDLE *********************************************** */
@@ -434,13 +438,14 @@ case PLAYER_STATES.__WALK:
 
 /* *********************************************** DASH *********************************************** */
 case PLAYER_STATES.__DASH:
-    procedureAnimableProceed();    
     playerRotateToMouse();
     
     physicalBeginStep();
     playerGetKeys();
                 
     playerPickup();
+    
+    
     
     var toX = x,
         toY = y;
@@ -453,6 +458,7 @@ case PLAYER_STATES.__DASH:
         // end
         x = mX;
         y = mY;        
+        anAngle = 0;
         playerSetState(PLAYER_STATES.__IDLE); 
         exit;    
     }
@@ -464,6 +470,7 @@ case PLAYER_STATES.__DASH:
     if (is_array(lineGetCollisionPoint(x, y, toX, toY, collideWith, 1)))// collisionLine(x, y, toX, toY, collideWith)) // cannot
     {
         // end       
+        anAngle = 0;
         playerSetState(PLAYER_STATES.__IDLE); 
         exit;        
     }
@@ -492,6 +499,7 @@ case PLAYER_STATES.__DASH:
         else
         {
             // end       
+            anAngle = 0;
             playerSetState(PLAYER_STATES.__IDLE); 
             exit;    
         }

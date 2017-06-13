@@ -424,9 +424,10 @@ if (global.gameState == GAME_STATES.__SHOP)
     }
     // reload indicator
     if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
-    {
-        
-        var cc = 6 - round((weaponObj.canAttackTmr / weaponObj.reloadTmrBegin) * 6);
+    {        
+        var cc = 6 - round((weaponObj.reloadAm / weaponObj.reloadAddFinal) * 6);
+        //show_debug_message("Can Attack: " + string(weaponObj.canAttackTmr) +
+        //    " Begin Tmr: " + string(weaponObj.reloadTmrBegin));
         for (var i = 0; i &lt; cc; i++)
         {
             var xx = x,

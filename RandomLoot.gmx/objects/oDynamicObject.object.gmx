@@ -44,6 +44,9 @@ maskKick = noone;
 
 cuckTmr = -1;
 cuckTmrCnt = 0.2 * room_speed;
+
+shrx = sprite_width / 1.5;
+shry = 13;
 </string>
           </argument>
         </arguments>

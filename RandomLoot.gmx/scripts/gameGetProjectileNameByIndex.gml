@@ -26,10 +26,19 @@ case PROJECTILE.__GRENADE_ONE_GL:
 case PROJECTILE.__LASER:
     return oLaser;
     break;
+case PROJECTILE.__LASER_RED:
+    return oLaserRed;
+    break;
 case PROJECTILE.__BULLET_LINE:
     return oBulletLine;
     break;
 case PROJECTILE.__PHASER:
     return oPhaserProjectile;
+    break;
+case PROJECTILE.__BIG_BULG:
+    return oBorianBulgBig;
+    break;
+case PROJECTILE.__PLASM:
+    return oPlasm;
     break;
 }

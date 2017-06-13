@@ -101,6 +101,18 @@ case PICKUP.__WEAPON:
         sprite_index = sTeslaBoom; 
         ammo = argument[2];
         break;
+    case WEAPONS.__LASER_BEE:
+        sprite_index = sLaserBee; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__BIG_BULG:
+        sprite_index = sBigBulg; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__ASSAULT_RIFLE:
+        sprite_index = sPushRifle; 
+        ammo = argument[2];
+        break;
         
     /* ******************************* CUSTOM ********************************* */
     case WEAPONS.__CUSTOM:

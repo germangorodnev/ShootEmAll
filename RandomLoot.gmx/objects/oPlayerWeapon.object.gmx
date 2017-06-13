@@ -46,6 +46,8 @@ reloadTmrNewbull = -1;
 reloadTmrBegin = -1;
 weaponMaxAngle = 6;
 hitCount = 0;
+reloadAdd = 0;
+reloadAddFinal = 0;
 
 animEnded = 0;
 
@@ -139,6 +141,7 @@ if (sprite_index != -1)
 
 if (canAttackTmr &amp;&amp; !--canAttackTmr)
 {
+    canAttackTmr = -1;
     // can attack again
     canAttack = 1;
 }
@@ -289,15 +292,16 @@ case WEAPON_STATES.__RANGE_RECOIL:
 case WEAPON_STATES.__RANGE_RELOAD:
     if (reloadTmrNewbull &amp;&amp; !--reloadTmrNewbull)
     {
-        reloadAm--;
+        var rla = min(reloadAdd, reloadAddFinal - oPlayer.weaponAmmo);
+        reloadAm -= rla;
         reloadTmrNewbull = reloadTmrCnt;    
         with (oPlayer)
         {
-            weaponAmmo++;
-            ammo[weaponInf[W_PR.__BULLET_TYPE]]--;
+            weaponAmmo += rla;
+            ammo[weaponInf[W_PR.__BULLET_TYPE]] -= rla;
         }
     }
-    if (reloadAm == 0)
+    if (reloadAm &lt;= 0)
     {
         with (oPlayer)
             playerWeaponSetState(WEAPON_STATES.__MOVE);

@@ -88,6 +88,7 @@ case WEAPON_TYPE.__RANGE:
     {        
     // line projectile
     case WEAPONS.__FOREST_MANTIS:
+    case WEAPONS.__LASER_BEE:
     case WEAPONS.__OVERKILLINGTON:
         // laser
         var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),

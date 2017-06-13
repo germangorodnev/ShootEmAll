@@ -23,7 +23,14 @@ with (new)
         break;
     case CHARS.__SOLITARE:
         sprite_index = sPlayerSolitare;
+        abilityAdd(ABILITIES.__DASH);
+        break;
+    case CHARS.__FOX:
+        sprite_index = sPlayerFox;
+        abilityAdd(ABILITIES.__DASH);
         break;
     }
+    shrx = sprite_width / 1.6;
+    shry = 14;
     playerMaskCreate(0);
 }

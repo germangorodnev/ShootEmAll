@@ -397,6 +397,45 @@ else if (mg == 1)
                 break;
             }            
             break;
+        case WEAPONS.__LASER_BEE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Laser Bee";
+                _arr[1] = "BUZZZZZZZZZZZZZZ!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Лазерная Оса";
+                _arr[1] = "БУЗЗЗЗЗЗЗЗЗЗЗЗЗЗ!";            
+                break;
+            }            
+            break;
+        case WEAPONS.__BIG_BULG:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Big Bulgavor";
+                _arr[1] = "BULB!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Большой Бульгавор";
+                _arr[1] = "БУЛЬБ!";            
+                break;
+            }            
+            break;
+        case WEAPONS.__ASSAULT_RIFLE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Assault Rifle";
+                _arr[1] = "BULB!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Винтовка Подавления";
+                _arr[1] = "БУЛЬБ!";            
+                break;
+            }            
+            break;
         // =============================== MELEE ========================== //            
         case WEAPONS.__HALFSWORD:
             switch (global.language)

@@ -335,7 +335,14 @@ case ENEMY_STATE.__DIE:
             <string>if (!drawable)
     exit;
 enemyDebug();
-draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
+if ( maskHit.expire != 0)
+{
+    shader_set(shdWhite);
+    draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
+    shader_reset();
+}
+else
+    draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
 
 </string>
           </argument>

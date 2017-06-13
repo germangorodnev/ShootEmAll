@@ -21,6 +21,7 @@ enum CHARS
     __MILITARY,
     __JSTONE,
     __SOLITARE,
+    __FOX,
     __CNT
 }
 
@@ -78,7 +79,8 @@ enum CANNOT
 enum EFFECTS
 {
     __BULLET_WZHUH = 0,
-    __LASER_GREEN_WZHUH
+    __LASER_GREEN_WZHUH,
+    __LASER_RED_WZHUH
 }
 
 enum ABILITIES
@@ -196,6 +198,9 @@ enum WEAPONS
     __DESTRUCTOR,
     __DOUBLE_BARREL,
     __TESLA_BOOM,
+    __LASER_BEE,
+    __BIG_BULG,
+    __ASSAULT_RIFLE,
     __CUSTOM,
     __RANGED_END
 }
@@ -303,7 +308,10 @@ enum PROJECTILE
     __LASER,
     __BULLET_LINE,
     __PHASER,
-    __ZAP
+    __LASER_RED,
+    __BIG_BULG,
+    __ZAP,
+    __PLASM
 }
 
 enum AMMO

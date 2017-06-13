@@ -39,8 +39,8 @@ case 0: // right
     n.rw = abs(ww);
     n.rh = hh;
     // lasers
-    laserDoorAdd(p1x * tw, p1y * th - th / 2, 0);
-    laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
+    laserDoorAdd(p1x * tw + ((p2x - 1 - p1x) div 2) * tw, p1y * th - th / 2, 0);
+    //laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
     break;
 case 2: // left
     rm.door[2] = 1;
@@ -63,8 +63,9 @@ case 2: // left
     n.rw = abs(ww);
     n.rh = hh;
     // lasers
-    laserDoorAdd(p1x * tw, p1y * th - th / 2, 0);
-    laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
+    laserDoorAdd(p2x * tw + ((p1x - 1 - p2x) div 2) * tw, p1y * th - th / 2, 0);
+    //laserDoorAdd(p1x * tw, p1y * th - th / 2, 0);
+    //laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
     break;    
     
 case 1: // top
@@ -88,8 +89,9 @@ case 1: // top
     n.rw = 1;
     n.rh = abs(hh);
     // lasers
-    laserDoorAdd(p1x * tw, p2y * th - th, 1);
-    laserDoorAdd(p1x * tw, p1y * th - th, 1);
+    laserDoorAdd(p1x * tw, p1y * th + ((p2y - 1 - p1y) div 2) * th, 1);
+    //laserDoorAdd(p1x * tw, p2y * th - th, 1);
+    //laserDoorAdd(p1x * tw, p1y * th - th, 1);
     break;
 case 3: // bottom
     rm.door[3] = 1;
@@ -112,8 +114,9 @@ case 3: // bottom
     n.rw = 1;
     n.rh = abs(hh);
     // lasers
-    laserDoorAdd(p1x * tw, p1y * th - th, 3);
-    laserDoorAdd(p1x * tw, p2y * th - th, 3);
+    laserDoorAdd(p1x * tw, p1y * th + ((p2y - p1y - 1) div 2) * th, 3);
+    //laserDoorAdd(p1x * tw, p1y * th - th, 3);
+    //laserDoorAdd(p1x * tw, p2y * th - th, 3);
     break;
 }
 

@@ -322,6 +322,37 @@ case WEAPONS.__TESLA_BOOM:
     weaponObj.anMaxAngle = 3;
     break;
     
+case WEAPONS.__LASER_BEE:
+    lasLong = 3;
+    weaponCd = 0.2 * room_speed;
+    weaponSprite[0] = sLaserBee;
+    weaponSprite[1] = sLaserBeeShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -22;
+    weaponObj.anMaxAngle = 3;
+    break;
+    
+case WEAPONS.__BIG_BULG:
+    restoreWeap = 1;
+    restore = weaponInf[W_PR.__RELOAD_TIME];
+    weaponSprite[0] = sBigBulg;
+    weaponSprite[1] = sBigBulgShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -17;
+    weaponObj.anMaxAngle = 3;
+    break;
+
+case WEAPONS.__ASSAULT_RIFLE:
+    weaponSprite[0] = sPushRifle;
+    weaponSprite[1] = sPushRifleShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -22;
+    weaponObj.anMaxAngle = 3;
+    break;
+    
 case WEAPONS.__CUSTOM: // custom ranged weapon
     weaponCd = weaponInf[W_PR.__RANGE_CUSTOM_DAMAGECD];
     weaponSprite[0] = weaponInf[W_PR.__RANGE_CNT];

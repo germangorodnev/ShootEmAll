@@ -50,7 +50,16 @@ else
         canAttack = 0;
         canAttackTmr = tt;
         reloadAm = ammoAdd;
-        reloadTmrCnt = round(canAttackTmr / reloadAm);
+        reloadAddFinal = reloadAm;
+        reloadTmrCnt = (canAttackTmr / reloadAm);//round(canAttackTmr / reloadAm);
+        reloadAdd = 1;
+        if (reloadTmrCnt < 1)
+        {
+            reloadTmrCnt *= 2;
+            reloadAdd++;
+        }
+        show_debug_message("CA: " + string(canAttackTmr) +
+            " Rld cnt: " + string(reloadAm) + "  TIMER: " + string(reloadTmrCnt));
         reloadTmrNewbull = reloadTmrCnt;    
         reloadTmrBegin = canAttackTmr;
     }

@@ -111,6 +111,18 @@
             <sprite>sprites\sTeslaBoom</sprite>
             <sprite>sprites\sTeslaBoomShoot</sprite>
           </sprites>
+          <sprites name="Laser Bee">
+            <sprite>sprites\sLaserBee</sprite>
+            <sprite>sprites\sLaserBeeShoot</sprite>
+          </sprites>
+          <sprites name="Big Bulgavor">
+            <sprite>sprites\sBigBulg</sprite>
+            <sprite>sprites\sBigBulgShoot</sprite>
+          </sprites>
+          <sprites name="Push Rifle">
+            <sprite>sprites\sPushRifle</sprite>
+            <sprite>sprites\sPushRifleShoot</sprite>
+          </sprites>
         </sprites>
         <sprites name="Parts For Random">
           <sprite>sprites\sWeaponPartBody</sprite>
@@ -123,12 +135,14 @@
         <sprite>sprites\sWzhuhMelee</sprite>
         <sprite>sprites\sWzhuhBullet</sprite>
         <sprite>sprites\sLaserWzhuh</sprite>
+        <sprite>sprites\sLaserRedWzhuh</sprite>
       </sprites>
       <sprites name="Skins">
         <sprite>sprites\sPlayerCamouflage</sprite>
         <sprite>sprites\sPlayerKamikaze</sprite>
         <sprite>sprites\sPlayerJStone</sprite>
         <sprite>sprites\sPlayerSolitare</sprite>
+        <sprite>sprites\sPlayerFox</sprite>
       </sprites>
       <sprites name="Shop">
         <sprite>sprites\sShopGUIIco</sprite>
@@ -208,6 +222,7 @@
       <sprite>sprites\sShotgunProjectile</sprite>
       <sprite>sprites\sBulletProjectile</sprite>
       <sprite>sprites\sEnergyProjectile</sprite>
+      <sprite>sprites\sPlasm</sprite>
       <sprite>sprites\sFastBullet</sprite>
       <sprite>sprites\sBorianBulgProjectile</sprite>
       <sprite>sprites\sGrenade</sprite>
@@ -226,6 +241,7 @@
       <sprite>sprites\sExplosiveCrate</sprite>
       <sprite>sprites\sRoomDoorTopBot</sprite>
       <sprite>sprites\sShop</sprite>
+      <sprite>sprites\sLevelPortal</sprite>
     </sprites>
     <sprites name="Prison Objects">
       <sprite>sprites\sPrisonDoorTopBot</sprite>
@@ -344,6 +360,9 @@
       <scripts name="Robot">
         <script>scripts\playerAllyCreate.gml</script>
       </scripts>
+      <scripts name="Rooms and Fog">
+        <script>scripts\playerComeIntoRoom.gml</script>
+      </scripts>
     </scripts>
     <scripts name="Debug">
       <script>scripts\debugInit.gml</script>
@@ -360,6 +379,7 @@
       <script>scripts\procedureAnimateWeapon.gml</script>
       <script>scripts\customAnimableProceed.gml</script>
       <script>scripts\customAnimableSetSprite.gml</script>
+      <script>scripts\objectDrawShadow.gml</script>
     </scripts>
     <scripts name="Util">
       <script>scripts\approach.gml</script>
@@ -431,6 +451,7 @@
       <script>scripts\pointColGrid.gml</script>
       <script>scripts\drawLaser.gml</script>
       <script>scripts\gamePlayerCreate.gml</script>
+      <script>scripts\objInView.gml</script>
     </scripts>
     <scripts name="Bullets">
       <scripts name="Long">
@@ -448,6 +469,7 @@
       <script>scripts\projectileTimer.gml</script>
       <script>scripts\laserFindCollisionPoint.gml</script>
       <script>scripts\laserMineInit.gml</script>
+      <script>scripts\bulletCreate.gml</script>
     </scripts>
     <scripts name="Enemies">
       <scripts name="Enemy Weapons">
@@ -550,6 +572,7 @@
           <script>scripts\levelCreateEnemy.gml</script>
         </scripts>
         <script>scripts\levelGridToTiles.gml</script>
+        <script>scripts\levelCollisionHelperInitAll.gml</script>
         <script>scripts\levelCollisionHelperInit.gml</script>
       </scripts>
       <script>scripts\levelFreeSolid.gml</script>
@@ -581,6 +604,7 @@
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shdGray.shader</shader>
+    <shader type="GLSLES">shaders\shdWhite.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fWeaponType</font>
@@ -623,6 +647,7 @@
       <object>objects\oGameGUI</object>
       <object>objects\oNextRoom</object>
       <object>objects\oMinimap</object>
+      <object>objects\oShadower</object>
     </objects>
     <object>objects\oControl</object>
     <objects name="Player">
@@ -650,13 +675,16 @@
       </objects>
       <object>objects\oExplosion</object>
       <object>objects\oShotgunPellet</object>
+      <object>objects\oPlasm</object>
       <object>objects\oBulletProjectile</object>
       <object>objects\oEnergyProjectile</object>
       <object>objects\oFastBullet</object>
       <object>objects\oBorianBulg</object>
+      <object>objects\oBorianBulgBig</object>
       <object>objects\oGreande</object>
       <object>objects\oPhaserProjectile</object>
       <object>objects\oLaser</object>
+      <object>objects\oLaserRed</object>
       <object>objects\oBulletLine</object>
       <object>objects\oZap</object>
     </objects>
@@ -686,6 +714,7 @@
       <object>objects\oExplosiveCrate</object>
       <object>objects\oCrate</object>
       <object>objects\oLevelDoor</object>
+      <object>objects\oLevelPortal</object>
     </objects>
     <objects name="Shop">
       <object>objects\oShop</object>

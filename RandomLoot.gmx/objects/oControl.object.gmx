@@ -113,6 +113,13 @@ part_type_orientation(global.lasergreen, 0, 360, 0, 0, 0);
 part_type_blend(global.lasergreen, false);                         
 part_type_life(global.lasergreen, 0.1 * room_speed, 0.2 * room_speed);    
 
+// red laser eff
+global.laserred = part_type_create();
+part_type_sprite(global.laserred, sLaserRedWzhuh, 1, 1, 0);            
+part_type_orientation(global.laserred, 0, 360, 0, 0, 0);           
+part_type_blend(global.laserred, false);                         
+part_type_life(global.laserred, 0.1 * room_speed, 0.2 * room_speed);    
+
 // player dash
 global.pldash = part_type_create();
 part_type_sprite(global.pldash, sWzhuhBullet, 1, 1, 0);            
@@ -266,12 +273,13 @@ draw_text(view_xview + 530, view_yview + 10, string(fps));
 draw_text(view_xview + 530, view_yview + 40, string(instance_count));
 if (!global.debug)
     exit;
+var ccol = c_red;
 for (var i = 0; i &lt;= room_width; i += LEVEL.TILE_W)
 {
-    draw_line_colour(i, 0, i, room_height, c_black, c_black);
+    draw_line_colour(i, 0, i, room_height, ccol, ccol);
     for (var j = 0; j &lt;= room_height; j += LEVEL.TILE_H)
     {
-        draw_line_colour(0, j, room_width, j, c_black, c_black);
+        draw_line_colour(0, j, room_width, j, ccol, ccol);
     }
 }
 with (oExplosiveCrate)
