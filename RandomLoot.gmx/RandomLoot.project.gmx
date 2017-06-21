@@ -4,7 +4,13 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="Sounds">
+      <sound>sound\sndPistol</sound>
+      <sound>sound\sndMachinegun</sound>
+      <sound>sound\sndOverkillington</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Player">
       <sprites name="GUI">
@@ -123,6 +129,10 @@
             <sprite>sprites\sPushRifle</sprite>
             <sprite>sprites\sPushRifleShoot</sprite>
           </sprites>
+          <sprites name="Steel Ruff">
+            <sprite>sprites\sSteelRuff</sprite>
+            <sprite>sprites\sSteelRuffShoot</sprite>
+          </sprites>
         </sprites>
         <sprites name="Parts For Random">
           <sprite>sprites\sWeaponPartBody</sprite>
@@ -219,6 +229,12 @@
       <sprite>sprites\sPickupEat</sprite>
     </sprites>
     <sprites name="Ammo Shot">
+      <sprites name="Special Rechargable">
+        <sprite>sprites\sLaserMine</sprite>
+        <sprite>sprites\sDynamite</sprite>
+        <sprite>sprites\sBoomerang</sprite>
+        <sprite>sprites\sStickyGrenade</sprite>
+      </sprites>
       <sprite>sprites\sShotgunProjectile</sprite>
       <sprite>sprites\sBulletProjectile</sprite>
       <sprite>sprites\sEnergyProjectile</sprite>
@@ -228,10 +244,7 @@
       <sprite>sprites\sGrenade</sprite>
       <sprite>sprites\sExplosion</sprite>
       <sprite>sprites\sExplosives</sprite>
-      <sprite>sprites\sLaserMine</sprite>
-      <sprite>sprites\sDynamite</sprite>
-      <sprite>sprites\sStickyGrenade</sprite>
-      <sprite>sprites\sBoomerang</sprite>
+      <sprite>sprites\sChainsaw</sprite>
     </sprites>
     <sprites name="Interactable">
       <sprites name="Crate">
@@ -437,6 +450,9 @@
         <script>scripts\characterPreSelect.gml</script>
         <script>scripts\characterSet.gml</script>
       </scripts>
+      <scripts name="Audio">
+        <script>scripts\soundPlay.gml</script>
+      </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
@@ -452,6 +468,7 @@
       <script>scripts\drawLaser.gml</script>
       <script>scripts\gamePlayerCreate.gml</script>
       <script>scripts\objInView.gml</script>
+      <script>scripts\getReflectionAngle.gml</script>
     </scripts>
     <scripts name="Bullets">
       <scripts name="Long">
@@ -470,6 +487,7 @@
       <script>scripts\laserFindCollisionPoint.gml</script>
       <script>scripts\laserMineInit.gml</script>
       <script>scripts\bulletCreate.gml</script>
+      <script>scripts\bulletPatternCreate.gml</script>
     </scripts>
     <scripts name="Enemies">
       <scripts name="Enemy Weapons">
@@ -671,7 +689,6 @@
         <object>objects\oLaserMine</object>
         <object>objects\oDynamite</object>
         <object>objects\oStickyGrenade</object>
-        <object>objects\oBoomerang</object>
       </objects>
       <object>objects\oExplosion</object>
       <object>objects\oShotgunPellet</object>
@@ -683,6 +700,8 @@
       <object>objects\oBorianBulgBig</object>
       <object>objects\oGreande</object>
       <object>objects\oPhaserProjectile</object>
+      <object>objects\oBoomerang</object>
+      <object>objects\oChainsaw</object>
       <object>objects\oLaser</object>
       <object>objects\oLaserRed</object>
       <object>objects\oBulletLine</object>

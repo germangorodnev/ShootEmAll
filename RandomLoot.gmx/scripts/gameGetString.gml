@@ -436,6 +436,19 @@ else if (mg == 1)
                 break;
             }            
             break;
+        case WEAPONS.__STEEL_RUFF:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Steel Ruff";
+                _arr[1] = "BULB!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Стальной Ерш";
+                _arr[1] = "БУЛЬБ!";            
+                break;
+            }            
+            break;
         // =============================== MELEE ========================== //            
         case WEAPONS.__HALFSWORD:
             switch (global.language)

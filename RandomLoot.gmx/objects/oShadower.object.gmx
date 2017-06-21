@@ -61,7 +61,7 @@ surface_free(surf);
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -78,8 +78,8 @@ surface_free(surf);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//if (!updatable)
-//    exit;
+            <string>if (!updatable)
+    exit;
 if (!surface_exists(surf))
     surf = surface_create(global.guiW, global.guiH);
 surface_set_target(surf);

@@ -116,6 +116,12 @@ if (!surface_exists(map))
     map = surface_create(mw, mh);
     minimapInit();
 }
+if (!surface_exists(mapmovable))
+{
+    surface_free(mapmovable);
+    mapmovable = surface_create(mw, mh);
+    minimapUpdate();
+}
 
 switch (mode)
 {

@@ -112,6 +112,10 @@ case WEAPONS.__ASSAULT_RIFLE:
     _arr[3] = sPushRifle; 
     _arr[2] = gameGetString(2, 0, "automat");
     break;
+case WEAPONS.__STEEL_RUFF:
+    _arr[3] = sSteelRuff; 
+    _arr[2] = gameGetString(2, 0, "launcher");
+    break;
 }
 
 return _arr;

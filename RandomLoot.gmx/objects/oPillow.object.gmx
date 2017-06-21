@@ -128,8 +128,11 @@ if (weapon != WEAPONS.__NONE)
         weaponObj.xsc = xsc;
         break;
     case WEAPON_TYPE.__RANGE:
-        weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
-        weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
+        if (detect)
+        {
+            weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
+            weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
+        }
         break;
     }
 }
@@ -169,7 +172,8 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 
 idleTmr++;
 
-enemyMoveOutOfOther();
+if (current_time % 4 == 0)
+    enemyMoveOutOfOther();
 
 masksMove();
 
@@ -364,7 +368,6 @@ path_speed = 0;
             <kind>1</kind>
             <string>if (!drawable)
     exit;
-enemyDebug();
 var usesh = maskHit.expire != 0;
 if (usesh)
     shader_set(shdWhite);
@@ -384,6 +387,8 @@ else
 
 if (usesh)
     shader_reset();
+enemyDebug();
+
 </string>
           </argument>
         </arguments>

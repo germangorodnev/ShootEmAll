@@ -35,6 +35,7 @@ global.debug = 0;
 display_set_gui_size(global.guiW, global.guiH);
 
 global.language = LANG.__EN;
+global.sound = 0;
 
 global.char = -1;
 

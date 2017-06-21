@@ -17,6 +17,7 @@ if (weapon != WEAPONS.__NONE)
     }
 }
 // resets
+attackSoundsCnt = 0;
 weaponSpriteNoammo = -1;
 hitCount = 0;
 lasLong = 1;
@@ -203,6 +204,9 @@ case WEAPONS.__RXP:
     weaponXoff = 3;
     weaponYoff = -22;
     weaponObj.anMaxAngle = 6;
+    
+    attackSoundsCnt = 1;
+    attackSounds[0] = sndPistol;
     break;
     
 case WEAPONS.__RECT1:
@@ -222,6 +226,9 @@ case WEAPONS.__ROMAN_MG:
     weaponYoff = -24;
     weaponObj.anMaxAngle = 3;
     recoilSpd = 4;
+    
+    attackSoundsCnt = 1;
+    attackSounds[0] = sndMachinegun;
     break;
 
 case WEAPONS.__NOVA_M:
@@ -275,6 +282,9 @@ case WEAPONS.__OVERKILLINGTON:
     weaponXoff = 5;
     weaponYoff = -22;
     weaponObj.anMaxAngle = 3;
+
+    attackSoundsCnt = 1;
+    attackSounds[0] = sndOverkillington;
     break;
 
 case WEAPONS.__PHASER:
@@ -352,7 +362,16 @@ case WEAPONS.__ASSAULT_RIFLE:
     weaponYoff = -22;
     weaponObj.anMaxAngle = 3;
     break;
-    
+
+case WEAPONS.__STEEL_RUFF:
+    weaponSprite[0] = sSteelRuff;
+    weaponSprite[1] = sSteelRuffShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -25;
+    weaponObj.anMaxAngle = 3;
+    break;
+        
 case WEAPONS.__CUSTOM: // custom ranged weapon
     weaponCd = weaponInf[W_PR.__RANGE_CUSTOM_DAMAGECD];
     weaponSprite[0] = weaponInf[W_PR.__RANGE_CNT];

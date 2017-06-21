@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weapon>
+    <name></name>
+    <desc></desc>
+    <projectiletype></projectiletype>
+    <principe></principe>
+    <dmgmin>0</dmgmin>
+    <dmgmax>0</dmgmax>
+    <critdmgmin>0</critdmgmin>
+    <critdmgmax>0</critdmgmax>
+    <projamount>1</projamount>
+    <shootcooldown>1.3</shootcooldown>
+    <reloadtime>1.5</reloadtime>
+    <clipsize>0</clipsize>
+    <ammopershot>0</ammopershot>
+    <nextdmgcooldown>0</nextdmgcooldown>
+    <maxscatter>0</maxscatter>
+    <cancrit>0</cancrit>
+    <pathpng></pathpng>
+    <pathpngShoot></pathpngShoot>
+    <pathpngProjectile></pathpngProjectile>
+    <pathpngAdd></pathpngAdd>
+    <pathpngAdd2></pathpngAdd2>
+</weapon>

@@ -50,7 +50,7 @@ weaponObj = instance_create(x, y, oEnemyWeapon);
 weaponObj.parent = id;
 var ww = weapon;
 enemyWeaponInit(ww);
-maskHitAdd(7, 6, 36, 53, 1);
+maskHitAdd(7, 6, 50, 102, 1);
 
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sprite_index;
@@ -376,6 +376,11 @@ case ENEMY_STATE.__DIE:
             <string>if (!drawable)
     exit;
 enemyDebug();
+
+var usesh = maskHit.expire != 0;
+if (usesh)
+    shader_set(shdWhite);
+    
 if (vecdir &lt; 0)
 {
     with (weaponObj)
@@ -388,6 +393,10 @@ else
     with (weaponObj)
         event_perform(ev_other, ev_user3);
 }
+
+//if (usesh)
+    shader_reset();
+
 </string>
           </argument>
         </arguments>

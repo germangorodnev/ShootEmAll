@@ -251,3 +251,15 @@ repeat(irandom_range(1, 5))
     tile_add(tlsPrisonShowerIndoor, tx, ty, tw, th, mx, my, dep);
 }
 
+// now some enemies
+repeat (irandom_range(3, 5))
+{
+    var ex, ey;
+    do
+    {
+        ex = irandom_range(x + 1, x + rw - 2);
+        ey = irandom_range(y + 1, y + rh - 2);
+    } until (lvl[# ex, ey] & LEVEL.SOLID == 0);
+    levelCreateEnemy(ex * tw + tw / 2, ey * th + th / 2, ENEMY.__PILLOW);
+}
+

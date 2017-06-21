@@ -51,7 +51,7 @@ case ENEMY_WEAPON.__OCTO_PISTOL:
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
     ldiry = 37;
-    ldirdir = 12;
+    ldirdir = 0;
     critchance = 0;
     mindmg = 1;
     maxdmg = 2;
@@ -69,11 +69,11 @@ case ENEMY_WEAPON.__OCTO_RIFLE:
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
     ldiry = 37;
-    ldirdir = 12;
+    ldirdir = 0;
     critchance = 0;
     mindmg = 1;
     maxdmg = 2;
-    projectileAmount = 3;
+    projectileAmount = 1;
     projectileSpeed = 7;
     sprayAngle = 3;
     shootcd = 2 * room_speed;
@@ -88,7 +88,7 @@ case ENEMY_WEAPON.__OCTO_SHOTGUN:
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
     ldiry = 37;
-    ldirdir = 12;
+    ldirdir = 0;
     critchance = 0;
     mindmg = 1;
     maxdmg = 2;

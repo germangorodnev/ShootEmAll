@@ -48,6 +48,9 @@ cannot = 0;
 mX = x;
 mY = y;
 mD = 0;
+
+attackSoundsCnt = 0;
+attackSounts[0] = 0;
  
 ammo[AMMO.__CNT - 1] = 0; // ammo we have right now
 ammoMax[AMMO.__CNT - 1] = 300;
@@ -456,8 +459,6 @@ case PLAYER_STATES.__DASH:
     if (dist &lt; finspd)
     {
         // end
-        x = mX;
-        y = mY;        
         anAngle = 0;
         playerSetState(PLAYER_STATES.__IDLE); 
         exit;    

@@ -37,7 +37,7 @@ case os_win32:
         key[KEY.SINGLEUSE_ITEM] = 1;
     if ((keyboard_check_released(ord('Q')) * mkey) || (gamepad_button_check_released(0, gp_face4) * mgp) )
         key[KEY.RECHARGABLE_ITEM] = 1;
-    if ((keyboard_check(ord('M')) * mkey) || (gamepad_button_check_released(0, gp_face3) * mgp) )
+    if ((keyboard_check(vk_tab) * mkey) || (gamepad_button_check_released(0, gp_face3) * mgp) )
         key[KEY.MAP] = 1;
     break;
     

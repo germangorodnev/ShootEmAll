@@ -41,4 +41,7 @@ case PROJECTILE.__BIG_BULG:
 case PROJECTILE.__PLASM:
     return oPlasm;
     break;
+case PROJECTILE.__CHAINSAW:
+    return oChainsaw;
+    break;
 }

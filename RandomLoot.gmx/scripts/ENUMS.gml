@@ -201,6 +201,7 @@ enum WEAPONS
     __LASER_BEE,
     __BIG_BULG,
     __ASSAULT_RIFLE,
+    __STEEL_RUFF,
     __CUSTOM,
     __RANGED_END
 }
@@ -311,7 +312,8 @@ enum PROJECTILE
     __LASER_RED,
     __BIG_BULG,
     __ZAP,
-    __PLASM
+    __PLASM,
+    __CHAINSAW
 }
 
 enum AMMO
@@ -326,6 +328,10 @@ enum AMMO
     __CNT
 }
 
+enum BULLET_PATTERNS
+{
+    
+}
 
 // ENEMIES
 enum ENEMY_STATE

@@ -87,7 +87,60 @@ for (var i = 0; i &lt; 360; i += 60)
             <kind>1</kind>
             <string>if (!updatable)
     exit;
-projectileStep();
+projectileTimer();
+if (!active)
+    exit;
+
+depth = -y-10;
+x += lengthdir_x(spd, direction);
+y += lengthdir_y(spd, direction);
+    
+if (outsideRoom())
+{
+    instance_destroy();
+    exit;
+}
+
+var ic = instance_place(x, y, oMaskHit);
+if (ic != noone)
+{
+    if (ic.group == group) // same teamz
+        exit;
+    if (!ic.par.hittable) // invulnerable
+        exit;
+    var a = damage,
+        b = cuck,
+        c = parent.id,
+        cdd = dmgcd;
+    var tk = 0;
+    with (ic)
+        tk = maskTryGetDmg(c, a, b, cdd);
+    if (tk)
+    {
+        cntgothrough--;
+        if (cntgothrough &lt;= 0)
+            instance_destroy();
+        if (group == 0)
+        {
+            // player on hit bonus
+        }
+        else
+        {
+            // this bullet is from enemy
+        }
+    }
+}
+
+var side = colPlaceFreeSide(x, y, collideWith);
+if (side != -1)
+{
+    if (side == 1)
+    {
+        y += 12;
+    }
+    instance_destroy();
+}
+
 </string>
           </argument>
         </arguments>

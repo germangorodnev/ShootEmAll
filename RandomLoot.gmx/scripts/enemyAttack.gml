@@ -24,7 +24,30 @@ case WEAPON_TYPE.__RANGE:
     xsc = (oPlayer.x > x) * 2 - 1;
     switch (weapon)
     {
-    case WEAPONS.__CUSTOM:
+    case ENEMY_WEAPON.__OCTO_RIFLE:
+        for (var i = 0, timer = 0.08 * room_speed; i < 5; i++)
+        {
+            var bullet = gameGetProjectileNameByIndex(projectile),
+                xx = weaponObj.x + lengthdir_x(ldirx, weaponObj.image_angle + ldirdir),
+                yy = weaponObj.y + lengthdir_y(ldiry, weaponObj.image_angle + ldirdir * sign(weaponObj.image_yscale));
+            var bb = instance_create(xx, yy, bullet);
+            if (irandom_range(0, 100) < critchance)
+            {
+                // crit
+                bb.damage = irandom_range(critmindmg, critmaxdmg);   
+            }
+            else
+            {
+                // no crit
+                bb.damage = irandom_range(mindmg, maxdmg);   
+            }
+            bb.direction = angle + irandom(sprayAngle);       
+            bb.spd = projectileSpeed;  
+            bb.parent = id; 
+            bb.prt = timer * i;
+            with (bb)
+                projectileInited();      
+        }
         break;
         
     default:

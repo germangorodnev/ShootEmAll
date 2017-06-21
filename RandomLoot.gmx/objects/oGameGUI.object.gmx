@@ -247,6 +247,20 @@ if (playerId.hp - ccnt * 2 == 1) // one part
 //SWITCH ADD AMMO
 switch (ammoGUI)
 {
+// chainsaws
+case -1:
+    draw_sprite_ext(sAmmoGUI, 4, colx, coly, 1, 1, 0, image_blend, image_alpha);
+    draw_sprite_part_ext(sAmmoGUI, 5, 0, 0, colw * (playerId.ammo[AMMO.__GRENADES]/playerId.ammoMax[AMMO.__GRENADES]), colh, colx, coly, 1, 1, image_blend, image_alpha);
+
+    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
+    {
+        var fl = floor(i / grrow);
+        draw_sprite_ext(sChainsaw, 0, 
+            grx + fl * grbx, gry + (i % grrow) * 15 + fl * 9,
+            1, 1, 0, image_blend, image_alpha);
+    }
+    break;
+    
 case AMMO.__SHOTGUN:
     draw_sprite_ext(sAmmoGUI, 0, colx, coly, 1, 1, 0, image_blend, image_alpha);
     draw_sprite_part_ext(sAmmoGUI, 1, 0, 0, colw * (playerId.ammo[AMMO.__SHOTGUN]/playerId.ammoMax[AMMO.__SHOTGUN]), colh, colx, coly, 1, 1, image_blend, image_alpha);
@@ -425,7 +439,7 @@ if (global.gameState == GAME_STATES.__SHOP)
     // reload indicator
     if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
     {        
-        var cc = 6 - round((weaponObj.reloadAm / weaponObj.reloadAddFinal) * 6);
+        var cc = 6 - floor((weaponObj.canAttackTmr / weaponObj.reloadTmrBegin) * 6);
         //show_debug_message("Can Attack: " + string(weaponObj.canAttackTmr) +
         //    " Begin Tmr: " + string(weaponObj.reloadTmrBegin));
         for (var i = 0; i &lt; cc; i++)

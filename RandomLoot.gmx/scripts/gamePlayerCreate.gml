@@ -30,7 +30,7 @@ with (new)
         abilityAdd(ABILITIES.__DASH);
         break;
     }
-    shrx = sprite_width / 1.6;
+    shrx = sprite_width / 2;
     shry = 14;
     playerMaskCreate(0);
 }

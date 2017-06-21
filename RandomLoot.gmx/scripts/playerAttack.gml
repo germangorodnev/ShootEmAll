@@ -143,6 +143,34 @@ case WEAPON_TYPE.__RANGE:
         ds_list_destroy(enls); 
         break;
         
+    // chainsawer
+    // x1 - 34
+    // x2 - 67
+    case WEAPONS.__STEEL_RUFF:
+        var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]);
+        for (var i = 0; i < weaponInf[W_PR.__PROJECTILE_AMOUNT]; i++)
+        {
+            var ld = 34, di = 0;
+            if (i % 2 != 0)
+            {
+                ld = 67;
+                di = 180;
+            }
+            var xx = weaponObj.x + lengthdir_x(34, weaponObj.image_angle + di),
+                yy = weaponObj.y + lengthdir_y(34, weaponObj.image_angle + di),
+                critch = weaponInf[W_PR.__CRIT_CHANCE];
+    
+            var bb = instance_create(xx, yy, bullet);
+            bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
+            bb.direction = mousedir + di + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
+            bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
+            bb.parent = id;  
+            bb.dmgcd = weaponCd;
+            with (bb)
+                projectileInited();      
+        }    
+        break;
+        
     default:
         // just by params
         var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
@@ -190,6 +218,9 @@ case WEAPON_TYPE.__RANGE:
     // create shells on floor
     repeat(weaponInf[W_PR.__BULLETS_PER_SHOT])
         gameShellCreate(x + irandom_range(-4, 4), y + irandom_range(-3, 3), weaponInf[W_PR.__BULLET_TYPE]);
+    // music maybe
+    if (attackSoundsCnt > 0)
+        soundPlay(attackSounds[irandom(attackSoundsCnt-1)], 100, 0);
     break;
 }   
 // shake'em baby
