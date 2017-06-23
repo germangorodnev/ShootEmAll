@@ -489,6 +489,32 @@ else if (mg == 1)
                 break;
             }            
             break;
+        case WEAPONS.__SPECIAL_PRISONER:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Special Prisoner";
+                _arr[1] = "Zombida Roman was killed with exactly same weapon";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Специальный заключенный";
+                _arr[1] = "Точно таким же мечом убили знаменитую актрису Роману Зомбедовну";            
+                break;
+            }            
+            break;
+        case WEAPONS.__CEREMONIAL_BORIAN:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Ceremonial Borian Sword";
+                _arr[1] = "Zombida Roman was killed with exactly same weapon";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Церемониальный меч борийцев";
+                _arr[1] = "Точно таким же мечом убили знаменитую актрису Роману Зомбедовну";            
+                break;
+            }            
+            break;
         default:
             _arr[0] = "FILYA";
             _arr[1] = "HUY";

@@ -61,6 +61,12 @@
           <sprites name="Razorblade">
             <sprite>sprites\sRazorblade</sprite>
           </sprites>
+          <sprites name="Special Prisoner">
+            <sprite>sprites\sSpecialPrisoner</sprite>
+          </sprites>
+          <sprites name="Ceremonial Sword">
+            <sprite>sprites\sCeremoniaBorianSword</sprite>
+          </sprites>
         </sprites>
         <sprites name="Range">
           <sprites name="Pompington">
@@ -326,6 +332,7 @@
       <script>scripts\weaponRestore.gml</script>
       <script>scripts\playerChangeHP.gml</script>
       <script>scripts\playerMaskCreate.gml</script>
+      <script>scripts\meleeWzhuhCreate.gml</script>
       <script>scripts\playerAddMoney.gml</script>
       <scripts name="Pickup">
         <script>scripts\playerMaskPickup.gml</script>
@@ -728,6 +735,7 @@
       <object>objects\oBaseMask</object>
       <object>objects\oMaskHit</object>
       <object>objects\oMaskAttack</object>
+      <object>objects\oMeleeWzhuh</object>
     </objects>
     <objects name="Interactable">
       <object>objects\oExplosiveCrate</object>

@@ -181,7 +181,8 @@ enum WEAPONS
     __STICK,
     __ARIA_ARTH,
     __RAZORBLADE,
-    
+    __SPECIAL_PRISONER,
+    __CEREMONIAL_BORIAN,
     
     __RANGED_BEGIN,
     

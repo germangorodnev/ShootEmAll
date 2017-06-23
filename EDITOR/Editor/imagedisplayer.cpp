@@ -1,5 +1,6 @@
 #include "imagedisplayer.h"
 #include <QRect>
+#include <QDebug>
 
 ImageDisplayer::ImageDisplayer(QWidget *parent) :
     QWidget(parent),
@@ -19,13 +20,18 @@ ImageDisplayer::ImageDisplayer(QWidget *parent) :
 void ImageDisplayer::resetAll()
 {
     path = "";
+    repaint();
 }
 
 void ImageDisplayer::setPNG(QString str)
 {
     path = str;
     if (path != "")
-        image.load(path);
+    {
+        if (image.load(path))
+            repaint();
+        //qDebug() << "path: " << path;
+    }
 }
 
 void ImageDisplayer::paintEvent(QPaintEvent *event)

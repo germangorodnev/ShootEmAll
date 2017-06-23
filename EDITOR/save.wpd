@@ -2,7 +2,7 @@
 <weapon>
     <name>СУМАСШЕДШАЯ БЕНЗОПИЛА</name>
     <desc>АААААААААА</desc>
-    <projectiletype></projectiletype>
+    <projectiletype>бензопилы</projectiletype>
     <principe>Застревает и дамажит каждую секунду</principe>
     <dmgmin>65</dmgmin>
     <dmgmax>75</dmgmax>

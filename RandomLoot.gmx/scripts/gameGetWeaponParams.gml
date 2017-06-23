@@ -67,7 +67,17 @@ case WEAPONS.__RAZORBLADE:
     _arr[W_PR.__ME_DAMAGE_MIN] = 17;
     _arr[W_PR.__ME_DAMAGE_MAX] = 35;
     _arr[W_PR.__ME_SHOOT_CD] = 0.7 * room_speed;
-    break;    
+    break;   
+case WEAPONS.__SPECIAL_PRISONER:
+    _arr[W_PR.__ME_DAMAGE_MIN] = 28;
+    _arr[W_PR.__ME_DAMAGE_MAX] = 40;
+    _arr[W_PR.__ME_SHOOT_CD] = 0.7 * room_speed;
+    break;   
+case WEAPONS.__CEREMONIAL_BORIAN:
+    _arr[W_PR.__ME_DAMAGE_MIN] = 28;
+    _arr[W_PR.__ME_DAMAGE_MAX] = 33;
+    _arr[W_PR.__ME_SHOOT_CD] = 1 * room_speed;
+    break;   
 /* ******************************************************** RANGE ***********************************************************/        
 case WEAPONS.__POMPINGTON:
     _arr[W_PR.__SPRAY_ANGLE] = 7;

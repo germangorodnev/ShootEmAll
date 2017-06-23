@@ -130,7 +130,8 @@ with (instance_create(playerX, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__ASSAULT_RIFLE, 0);
 with (instance_create(playerX, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__STEEL_RUFF, 2);
-    
+with (instance_create(playerX + 120, playerY - 120, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__CEREMONIAL_BORIAN);
 instance_create(playerX + tw * 3, playerY - th * 3, oLevelPortal);
 
 // deactivate all doors

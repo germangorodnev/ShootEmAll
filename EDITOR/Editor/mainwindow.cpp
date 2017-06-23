@@ -5,6 +5,13 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QDebug>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QSpinBox>
+#include <QRadioButton>
+#include <QPushButton>
+#include <QSettings>
+#include <QStringList>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     newwin(nullptr)
 {
     ui->setupUi(this);
+
     // Line Eedits
     weapName = ui->lineWeaponName;
     weapDesc = ui->lineWeaponDescription;
@@ -58,6 +66,28 @@ MainWindow::MainWindow(QWidget *parent) :
 
     idPNGAdd2 = new ImageDisplayer(this);
     ui->zonePNGAdd2->addWidget(idPNGAdd2);
+
+    menu = ui->menu;
+
+    // recent files init
+    for (int i = 0; i < MaxRecentFiles; ++i)
+    {
+        recentFiles[i] = new QAction(this);
+        recentFiles[i]->setVisible(false);
+        connect(recentFiles[i], SIGNAL(triggered()),
+                this, SLOT(openRecentFile()));
+    }
+    menuSeparator = menu->addSeparator();
+    for (int i = 0; i < MaxRecentFiles; i++)
+        menu->addAction(recentFiles[i]);
+    workfileChanged();
+    QCoreApplication::setOrganizationName("Stickman Games");
+    QCoreApplication::setOrganizationDomain("stickmangames.com");
+    QCoreApplication::setApplicationName("Coole Editor");
+    QSettings settings;
+    settings.setValue("recentFileList", QStringList());
+    settings.sync();
+    updateRecentFilesActions();
 }
 
 MainWindow::~MainWindow()
@@ -114,8 +144,6 @@ void MainWindow::on_pushButtonPNGAdditionalLoad_2_clicked()
 // SAVE
 void MainWindow::on_weapSave_triggered()
 {
-    qDebug() << "currload: " << fpath;
-    qDebug() << ((!QFileInfo(fpath).exists()) ? "noex" : "ex");
     if (fpath == "" || !QFileInfo(fpath).exists()) // no file yet
     {
         // save current params to a file
@@ -124,202 +152,21 @@ void MainWindow::on_weapSave_triggered()
                 "Сохранить оружие",
                 QDir::currentPath(),
                 "Weapon Design Files (*.wpd)");
+        if (!fpath.isNull())
+            saveFile(fpath);
+        else
+            return;
     }
-
-    if (!fpath.isNull())
-    {
-        // have something to work with
-        QFile file(fpath);
-        file.open(QIODevice::WriteOnly);
-
-        QXmlStreamWriter writer(&file);
-        writer.setAutoFormatting(true);
-        writer.writeStartDocument();
-        writer.writeStartElement("weapon");
-        writer.writeTextElement("name", weapName->text());
-        writer.writeTextElement("desc", weapDesc->text());
-        writer.writeTextElement("projectiletype", projType->text());
-        writer.writeTextElement("principe", weapPrincipe->toPlainText());
-
-        writer.writeTextElement("dmgmin", QString::number(dmgMin->value()));
-        writer.writeTextElement("dmgmax", QString::number(dmgMax->value()));
-        writer.writeTextElement("critdmgmin", QString::number(critDmgMin->value()));
-        writer.writeTextElement("critdmgmax", QString::number(critDmgMax->value()));
-        writer.writeTextElement("projamount", QString::number(projAmount->value()));
-        writer.writeTextElement("shootcooldown", QString::number(shootCooldown->value()));
-        writer.writeTextElement("reloadtime", QString::number(reloadTime->value()));
-        writer.writeTextElement("clipsize", QString::number(clipSize->value()));
-        writer.writeTextElement("ammopershot", QString::number(ammoPerShoot->value()));
-        writer.writeTextElement("nextdmgcooldown", QString::number(nextDmgCooldown->value()));
-        writer.writeTextElement("maxscatter", QString::number(maxScatter->value()));
-
-        writer.writeTextElement("cancrit", (canCrit->isChecked()) ? "1" : "0");
-
-        writer.writeTextElement("pathpng", png);
-        writer.writeTextElement("pathpngShoot", pngShoot);
-        writer.writeTextElement("pathpngProjectile", pngProj);
-        writer.writeTextElement("pathpngAdd", pngAdd);
-        writer.writeTextElement("pathpngAdd2", pngAdd2);
-
-        writer.writeEndElement();
-
-        writer.writeEndDocument();
-
-        file.close();
-    }
+    else
+        saveFile(fpath);
 }
 
 // LOAD
-void MainWindow::on_weapLoad_triggered()
+void MainWindow::on_weapLoadFromFile_triggered()
 {
-    QString loadpath = QFileDialog::getOpenFileName(
-                    this,
-                    "Загрузить оружие",
-                    QDir::currentPath(),
-                    "Weapon Design Files (*.wpd)");
-    if (!loadpath.isNull())
-    {
-        qDebug() << "currloadpath: " << loadpath;
-        // have something to work with
-        fpath = loadpath;
-        QFile file(fpath);
-        file.open(QIODevice::ReadOnly | QFile::Text);
-
-        QXmlStreamReader reader;
-        reader.setDevice(&file);
-        //reader.readNext();
-
-        while (!reader.atEnd())
-        {
-            if (reader.isStartElement())
-            {
-                auto n = reader.name();
-                // TEXT BOXES/LINES
-                if (n == "name")
-                {
-                    weapName->setText(reader.readElementText());
-                    reader.readNext();
-                }
-                else if (n == "desc")
-                {
-                    weapDesc->setText(reader.readElementText());
-                    reader.readNext();
-                }
-                else if (n == "projectiletype")
-                {
-                    projType->setText(reader.readElementText());
-                    reader.readNext();
-                }
-                else if (n == "principe")
-                {
-                    weapPrincipe->setText(reader.readElementText());
-                    reader.readNext();
-                }
-                // SPINS
-                else if (n == "dmgmin")
-                {
-                    dmgMin->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-                else if (n == "dmgmax")
-                {
-                    dmgMax->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-                else if (n == "critdmgmin")
-                {
-                    critDmgMin->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-                else if (n == "critdmgmax")
-                {
-                    critDmgMax->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-                else if (n == "projamount")
-                {
-                    projAmount->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-                else if (n == "shootcooldown")
-                {
-                    shootCooldown->setValue(reader.readElementText().toDouble());
-                    reader.readNext();
-                }
-                else if (n == "reloadtime")
-                {
-                    reloadTime->setValue(reader.readElementText().toDouble());
-                    reader.readNext();
-                }
-                else if (n == "nextdmgcooldown")
-                {
-                    nextDmgCooldown->setValue(reader.readElementText().toDouble());
-                    reader.readNext();
-                }                else if (n == "clipsize")
-                {
-                    clipSize->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-                else if (n == "ammopershot")
-                {
-                    ammoPerShoot->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-
-                else if (n == "maxscatter")
-                {
-                    maxScatter->setValue(reader.readElementText().toInt());
-                    reader.readNext();
-                }
-                // BOOLEAN RADIO BUTTONS
-                else if (n == "cancrit")
-                {
-                    canCrit->setChecked(false);
-                    if (reader.readElementText() == "1")
-                        canCrit->setChecked(true);
-                    reader.readNext();
-                }
-                // PATH STRINGS
-                else if (n == "pathpng")
-                {
-                    png = reader.readElementText();
-                    idPNG->setPNG(png);
-                    reader.readNext();
-                }
-                else if (n == "pathpngShoot")
-                {
-                    pngShoot = reader.readElementText();
-                    idPNGShoot->setPNG(pngShoot);
-                    reader.readNext();
-                }
-                else if (n == "pathpngProjectile")
-                {
-                    pngProj = reader.readElementText();
-                    idPNGProj->setPNG(pngProj);
-                    reader.readNext();
-                }
-                else if (n == "pathpngAdd")
-                {
-                    pngAdd = reader.readElementText();
-                    idPNGAdd->setPNG(pngAdd);
-                    reader.readNext();
-                }
-                else if (n == "pathpngAdd2")
-                {
-                    pngAdd2 = reader.readElementText();
-                    idPNGAdd2->setPNG(pngAdd2);
-                    reader.readNext();
-                }
-                else
-                    reader.readNext();
-            }
-            else
-                reader.readNext();
-        }
-
-        file.close();
-    }
+    loadFile("");
 }
+
 // EXPORT
 void MainWindow::on_weapExport_triggered()
 {
@@ -398,7 +245,10 @@ void MainWindow::on_weapExport_triggered()
     painter.drawText(xoff, yoff, "Параметры:");
 
     yoff += yadd;
-    painter.drawText(QRect(150, yoff, 700, 1000), Qt::TextWordWrap,
+    painter.drawText(200, yoff, "Тип прожектайла: " + projType->text());
+
+    yoff += yadd;
+    painter.drawText(QRect(200, yoff, 700, 1000), Qt::TextWordWrap,
         "Мин урон: " + QString::number(dmgMin->value()) + "   " //+ QString("\n")
         + "Макс урон: " + QString::number(dmgMax->value()) + QString("\n")
         + "Прож-лов: " + QString::number(projAmount->value()) + "   " //+ QString("\n")
@@ -419,14 +269,304 @@ void MainWindow::on_weapExport_triggered()
     image.save(imagepath, "PNG");
 }
 
-
-
 void MainWindow::on_weapNew_triggered()
 {
-    if (newwin == nullptr)
+    resetAll();
+}
+
+void MainWindow::workfileChanged()
+{
+    setWindowTitle("Coole Editor " + ((!fpath.isEmpty()) ?
+                       ("- " + fpath) :
+                       ("")));
+}
+
+void MainWindow::updateRecentFilesActions()
+{
+    QSettings settings;
+    QStringList files = settings.value("recentFileList").toStringList();
+
+    int numRecentFiles = qMin(files.size(), static_cast<int>(MaxRecentFiles));
+
+    for (int i = 0; i < numRecentFiles; i++) {
+        QString text = tr("&%1 %2").arg(i + 1).arg(strippedName(files[i]));
+        recentFiles[i]->setText(text);
+        recentFiles[i]->setData(files[i]);
+        recentFiles[i]->setVisible(true);
+    }
+    for (int j = numRecentFiles; j < MaxRecentFiles; j++)
+        recentFiles[j]->setVisible(false);
+
+    menuSeparator->setVisible(numRecentFiles > 0);
+}
+
+QString MainWindow::strippedName(const QString& path)
+{
+    return QFileInfo(path).fileName();
+}
+
+void MainWindow::setCurrentFile(const QString& newpath)
+{
+    fpath = newpath;
+    workfileChanged();
+
+    QSettings settings;
+    QStringList files = settings.value("recentFileList").toStringList();
+
+    files.removeAll(fpath);
+    files.prepend(fpath);
+    while (files.size() > static_cast<int>(MaxRecentFiles))
+        files.removeLast();
+    settings.setValue("recentFileList", files);
+    settings.sync();
+    updateRecentFilesActions();
+}
+
+void MainWindow::openRecentFile()
+{
+    QAction *action = qobject_cast<QAction*>(sender());
+    if (action)
     {
-        newwin = new MainWindow();
-        newwin->show();
-        this->close();
+        qDebug() << "path: " << action->data().toString();
+        loadFile(action->data().toString());
+    }
+}
+
+void MainWindow::loadFile(const QString& fl)
+{
+    QString loadpath;
+    if (fl == "")
+    {
+        loadpath = QFileDialog::getOpenFileName(
+                    this,
+                    "Загрузить оружие",
+                    QDir::currentPath(),
+                    "Weapon Design Files (*.wpd)");
+    }
+    else
+    {
+        loadpath = fl;
+    }
+    if (!loadpath.isNull())
+    {
+        // have something to work with
+        resetAll();
+        fpath = loadpath;
+        QFile file(fpath);
+        file.open(QIODevice::ReadOnly | QFile::Text);
+
+        QXmlStreamReader reader;
+        reader.setDevice(&file);
+        //reader.readNext();
+
+        while (!reader.atEnd())
+        {
+            if (reader.isStartElement())
+            {
+                auto n = reader.name();
+                // TEXT BOXES/LINES
+                if (n == "name")
+                {
+                    weapName->setText(reader.readElementText());
+                    reader.readNext();
+                }
+                else if (n == "desc")
+                {
+                    weapDesc->setText(reader.readElementText());
+                    reader.readNext();
+                }
+                else if (n == "projectiletype")
+                {
+                    projType->setText(reader.readElementText());
+                    reader.readNext();
+                }
+                else if (n == "principe")
+                {
+                    weapPrincipe->setText(reader.readElementText());
+                    reader.readNext();
+                }
+                // SPINS
+                else if (n == "dmgmin")
+                {
+                    dmgMin->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+                else if (n == "dmgmax")
+                {
+                    dmgMax->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+                else if (n == "critdmgmin")
+                {
+                    critDmgMin->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+                else if (n == "critdmgmax")
+                {
+                    critDmgMax->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+                else if (n == "projamount")
+                {
+                    projAmount->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+                else if (n == "shootcooldown")
+                {
+                    shootCooldown->setValue(reader.readElementText().toDouble());
+                    reader.readNext();
+                }
+                else if (n == "reloadtime")
+                {
+                    reloadTime->setValue(reader.readElementText().toDouble());
+                    reader.readNext();
+                }
+                else if (n == "nextdmgcooldown")
+                {
+                    nextDmgCooldown->setValue(reader.readElementText().toDouble());
+                    reader.readNext();
+                }
+                else if (n == "clipsize")
+                {
+                    clipSize->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+                else if (n == "ammopershot")
+                {
+                    ammoPerShoot->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+
+                else if (n == "maxscatter")
+                {
+                    maxScatter->setValue(reader.readElementText().toInt());
+                    reader.readNext();
+                }
+                // BOOLEAN RADIO BUTTONS
+                else if (n == "cancrit")
+                {
+                    canCrit->setChecked(false);
+                    if (reader.readElementText() == "1")
+                        canCrit->setChecked(true);
+                    reader.readNext();
+                }
+                // PATH STRINGS
+                else if (n == "pathpng")
+                {
+                    //qDebug() << "png: " << reader.readElementText();
+                    png = reader.readElementText();
+                    idPNG->setPNG(png);
+                    reader.readNext();
+                }
+                else if (n == "pathpngShoot")
+                {
+                    pngShoot = reader.readElementText();
+                    idPNGShoot->setPNG(pngShoot);
+                    reader.readNext();
+                }
+                else if (n == "pathpngProjectile")
+                {
+                    pngProj = reader.readElementText();
+                    idPNGProj->setPNG(pngProj);
+                    reader.readNext();
+                }
+                else if (n == "pathpngAdd")
+                {
+                    pngAdd = reader.readElementText();
+                    idPNGAdd->setPNG(pngAdd);
+                    reader.readNext();
+                }
+                else if (n == "pathpngAdd2")
+                {
+                    pngAdd2 = reader.readElementText();
+                    idPNGAdd2->setPNG(pngAdd2);
+                    reader.readNext();
+                }
+                else
+                    reader.readNext();
+            }
+            else
+                reader.readNext();
+        }
+
+        file.close();
+        setCurrentFile(fpath);
+        qDebug() << "_______________________________________________";
+    }
+}
+
+void MainWindow::saveFile(const QString& path)
+{
+    // have something to work with
+    fpath = path;
+    QFile file(fpath);
+    file.open(QIODevice::WriteOnly);
+
+    QXmlStreamWriter writer(&file);
+    writer.setAutoFormatting(true);
+    writer.writeStartDocument();
+    writer.writeStartElement("weapon");
+    writer.writeTextElement("name", weapName->text());
+    writer.writeTextElement("desc", weapDesc->text());
+    writer.writeTextElement("projectiletype", projType->text());
+    writer.writeTextElement("principe", weapPrincipe->toPlainText());
+
+    writer.writeTextElement("dmgmin", QString::number(dmgMin->value()));
+    writer.writeTextElement("dmgmax", QString::number(dmgMax->value()));
+    writer.writeTextElement("critdmgmin", QString::number(critDmgMin->value()));
+    writer.writeTextElement("critdmgmax", QString::number(critDmgMax->value()));
+    writer.writeTextElement("projamount", QString::number(projAmount->value()));
+    writer.writeTextElement("shootcooldown", QString::number(shootCooldown->value()));
+    writer.writeTextElement("reloadtime", QString::number(reloadTime->value()));
+    writer.writeTextElement("clipsize", QString::number(clipSize->value()));
+    writer.writeTextElement("ammopershot", QString::number(ammoPerShoot->value()));
+    writer.writeTextElement("nextdmgcooldown", QString::number(nextDmgCooldown->value()));
+    writer.writeTextElement("maxscatter", QString::number(maxScatter->value()));
+
+    writer.writeTextElement("cancrit", (canCrit->isChecked()) ? "1" : "0");
+
+    writer.writeTextElement("pathpng", png);
+    writer.writeTextElement("pathpngShoot", pngShoot);
+    writer.writeTextElement("pathpngProjectile", pngProj);
+    writer.writeTextElement("pathpngAdd", pngAdd);
+    writer.writeTextElement("pathpngAdd2", pngAdd2);
+
+    writer.writeEndElement();
+
+    writer.writeEndDocument();
+
+    file.close();
+
+    setCurrentFile(fpath);
+}
+
+void MainWindow::on_weapSaveAs_triggered()
+{
+    // save current params to a file
+    fpath = QFileDialog::getSaveFileName(
+            this,
+            "Сохранить оружие",
+            QDir::currentPath(),
+            "Weapon Design Files (*.wpd)");
+    if (!fpath.isNull())
+        saveFile(fpath);
+}
+
+void MainWindow::resetAll()
+{
+    foreach(QLineEdit* le, findChildren<QLineEdit*>()) {
+        le->clear();
+    }
+    foreach (QSpinBox* sb, findChildren<QSpinBox*>()) {
+        sb->clear();
+    }
+    foreach (QDoubleSpinBox* dsb, findChildren<QDoubleSpinBox*>()) {
+        dsb->clear();
+    }
+    foreach (QRadioButton* rb, findChildren<QRadioButton*>()) {
+        rb->setChecked(false);
+    }
+    foreach (ImageDisplayer* id, findChildren<ImageDisplayer*>()) {
+        id->resetAll();
     }
 }

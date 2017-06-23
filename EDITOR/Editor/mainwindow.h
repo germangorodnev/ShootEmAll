@@ -2,13 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QLineEdit>
-#include <QTextEdit>
-#include <QSpinBox>
-#include <QRadioButton>
-#include <QPushButton>
 
 class ImageDisplayer;
+class QMenu;
+class QLineEdit;
+class QTextEdit;
+class QSpinBox;
+class QRadioButton;
+class QPushButton;
+class QDoubleSpinBox;
+class QAction;
 
 namespace Ui {
     class MainWindow;
@@ -28,21 +31,35 @@ private slots:
     void on_pushButtonPNGProjectileLoad_clicked();
     void on_pushButtonPNGAdditionalLoad_clicked();
     void on_pushButtonPNGAdditionalLoad_2_clicked();
-
     void on_weapSave_triggered();
-
     void on_weapExport_triggered();
-
-    void on_weapLoad_triggered();
-
     void on_weapNew_triggered();
+    void on_weapLoadFromFile_triggered();
+    void workfileChanged();
+    void openRecentFile();
+
+    void on_weapSaveAs_triggered();
 
 private:
     // METHODS
     void PNGclick(QString& change, ImageDisplayer* displayer);
+    void updateRecentFilesActions();
+    QString strippedName(const QString& path);
+    void setCurrentFile(const QString& newpath);
+
+    void loadFile(const QString& fl);
+    void saveFile(const QString &path);
+
+    void resetAll();
 
     // FIELDS
     Ui::MainWindow *ui;
+
+    // Recent files
+    enum { MaxRecentFiles = 5 };
+    QAction* menuSeparator;
+    QAction* recentFiles[MaxRecentFiles];
+
     QString fpath;
     // Line Edits
     QLineEdit* weapName;
@@ -84,8 +101,11 @@ private:
     ImageDisplayer* idPNGAdd;
     ImageDisplayer* idPNGAdd2;
 
-    // newwin
+    // New win
     MainWindow* newwin;
+
+    // Menu
+    QMenu* menu;
 };
 
 #endif // MAINWINDOW_H

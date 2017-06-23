@@ -10,8 +10,26 @@
     <height>487</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>487</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>640</width>
+    <height>487</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Coole Editor 0.2</string>
+   <string/>
   </property>
   <property name="styleSheet">
    <string notr="true">QLabel#caption {
@@ -568,14 +586,15 @@
     </property>
     <addaction name="weapNew"/>
     <addaction name="weapSave"/>
-    <addaction name="weapLoad"/>
+    <addaction name="weapSaveAs"/>
+    <addaction name="weapLoadFromFile"/>
     <addaction name="weapExport"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <action name="weapSave">
    <property name="text">
-    <string>Сохранить оружие</string>
+    <string>&amp;Сохранить оружие</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -583,26 +602,34 @@
   </action>
   <action name="weapExport">
    <property name="text">
-    <string>Экспортировать в картинку</string>
+    <string>&amp;Экспортировать в картинку</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="weapLoad">
+  <action name="weapNew">
    <property name="text">
-    <string>Загрузить оружие</string>
+    <string>&amp;Новое оружие</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="weapLoadFromFile">
+   <property name="text">
+    <string>&amp;Загрузить оружие</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
    </property>
   </action>
-  <action name="weapNew">
+  <action name="weapSaveAs">
    <property name="text">
-    <string>Новое оружие</string>
+    <string>Сохранить &amp;как</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
  </widget>

@@ -73,10 +73,10 @@ case WEAPON_TYPE.__MELEE:
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
-        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
-        maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
-        maskKick.dmgcd = weaponCd;
-        maskKick.image_angle = mousedir;
+        var wzhuh = meleeWzhuhCreate(x, y);
+        wzhuh.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
+        wzhuh.dmgcd = weaponCd;
+        wzhuh.image_angle = mousedir;
         break;
     }
     break;

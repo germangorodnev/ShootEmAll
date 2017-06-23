@@ -46,6 +46,14 @@ case WEAPONS.__RAZORBLADE:
     _arr[3] = sRazorblade; 
     _arr[2] = gameGetString(2, 0, "melee");
     break;
+case WEAPONS.__SPECIAL_PRISONER:
+    _arr[3] = sSpecialPrisoner; 
+    _arr[2] = gameGetString(2, 0, "melee");
+    break;
+case WEAPONS.__CEREMONIAL_BORIAN:
+    _arr[3] = sCeremoniaBorianSword; 
+    _arr[2] = gameGetString(2, 0, "melee");
+    break;
 
 
 case WEAPONS.__POMPINGTON:

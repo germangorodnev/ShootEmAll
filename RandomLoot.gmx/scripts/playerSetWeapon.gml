@@ -164,7 +164,7 @@ case WEAPONS.__ARIA_ARTH:
     break;
 
 case WEAPONS.__RAZORBLADE:
-    weaponCd = 0.5 * room_speed;
+    weaponCd = 0.2 * room_speed;
     weaponSprite[0] = sRazorblade;
     weaponSprite[1] = sRazorblade;
     weaponSprite[2] = sRazorblade;
@@ -184,6 +184,47 @@ case WEAPONS.__RAZORBLADE:
     ky2 = 77;
     break;
     
+case WEAPONS.__SPECIAL_PRISONER:
+    weaponCd = 0.2 * room_speed;
+    weaponSprite[0] = sSpecialPrisoner;
+    weaponSprite[1] = sSpecialPrisoner;
+    weaponSprite[2] = sSpecialPrisoner;
+    weaponXoff = 12;
+    weaponYoff = -13;
+    weaponObj.anMaxAngle = 10;
+    
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
+    
+    with (weaponObj)
+        weaponAttackTypeInit();
+    
+    // mask
+    kx1 = 57;
+    ky1 = 15;
+    kx2 = 100;
+    ky2 = 77;
+    break;
+
+case WEAPONS.__CEREMONIAL_BORIAN:
+    weaponCd = 0.2 * room_speed;
+    weaponSprite[0] = sCeremoniaBorianSword;
+    weaponSprite[1] = sCeremoniaBorianSword;
+    weaponSprite[2] = sCeremoniaBorianSword;
+    weaponXoff = 12;
+    weaponYoff = -13;
+    weaponObj.anMaxAngle = 10;
+    
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
+    
+    with (weaponObj)
+        weaponAttackTypeInit();
+    
+    // mask
+    kx1 = 57;
+    ky1 = 15;
+    kx2 = 100;
+    ky2 = 77;
+    break;
     
             
     

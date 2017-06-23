@@ -47,6 +47,16 @@ case PICKUP.__WEAPON:
         sprite_index = sRazorblade; 
         image_angle = 65;
         break;
+    case WEAPONS.__SPECIAL_PRISONER:
+        sprite_index = sSpecialPrisoner; 
+        image_angle = 245;
+        break;
+    case WEAPONS.__CEREMONIAL_BORIAN:
+        sprite_index = sCeremoniaBorianSword; 
+        image_angle = 65;
+        break;
+        
+        
 
     
     case WEAPONS.__POMPINGTON:
