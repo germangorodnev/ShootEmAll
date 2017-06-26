@@ -515,6 +515,19 @@ else if (mg == 1)
                 break;
             }            
             break;
+        case WEAPONS.__KNIFE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Knife";
+                _arr[1] = "description";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Нож";
+                _arr[1] = "desc";            
+                break;
+            }            
+            break;
         default:
             _arr[0] = "FILYA";
             _arr[1] = "HUY";

@@ -132,7 +132,15 @@ with (instance_create(playerX, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__STEEL_RUFF, 2);
 with (instance_create(playerX + 120, playerY - 120, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__CEREMONIAL_BORIAN);
-instance_create(playerX + tw * 3, playerY - th * 3, oLevelPortal);
+with (instance_create(playerX - 120, playerY - 120, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__SPECIAL_PRISONER);
+with (instance_create(playerX - 120, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__HALFSWORD);
+with (instance_create(playerX + 120, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__RAZORBLADE);
+with (instance_create(playerX, playerY - 60, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__KNIFE);
+//instance_create(playerX + tw * 3, playerY - th * 3, oLevelPortal);
 
 // deactivate all doors
 laserDoorChangeAll(1);

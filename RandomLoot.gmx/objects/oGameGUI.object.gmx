@@ -252,7 +252,7 @@ case -1:
     draw_sprite_ext(sAmmoGUI, 4, colx, coly, 1, 1, 0, image_blend, image_alpha);
     draw_sprite_part_ext(sAmmoGUI, 5, 0, 0, colw * (playerId.ammo[AMMO.__GRENADES]/playerId.ammoMax[AMMO.__GRENADES]), colh, colx, coly, 1, 1, image_blend, image_alpha);
 
-    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
+    for (var i = 0, cc = playerId.weaponAmmo div 2; i &lt; cc; i++)
     {
         var fl = floor(i / grrow);
         draw_sprite_ext(sChainsaw, 0, 

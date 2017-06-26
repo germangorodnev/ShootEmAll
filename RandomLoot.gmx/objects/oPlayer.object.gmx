@@ -68,6 +68,7 @@ for (var i = 0; i &lt; AMMO.__CNT; i++)
 weaponCd = 0;
 
 weaponObj = instance_create(x, y, oPlayerWeapon);
+weaponObj.playerId = id;
 weapon = WEAPONS.__NONE;
 weaponType = WEAPON_TYPE.__RANGE;
 weaponInf = -1; // array
@@ -102,10 +103,7 @@ hmove = 0;
 vmove = 0;
 
 // mask
-kx1 = 0;
-ky1 = 0;
-kx2 = 0;
-ky2 = 0;
+maskScale = 3;
 
 // abilities
 psysfloor = global.pse;
@@ -232,13 +230,13 @@ if (weapon != WEAPONS.__NONE)
         default:
             weaponObj.x = x + weaponXoff * sign(xsc); //lengthdir_x(weaponXoff * sign(xsc), mousedir);
             weaponObj.y = y + weaponYoff; //lengthdir_y(weaponYoff, mousedir);
-            if (weaponObj.state == WEAPON_STATES.__MOVE)
+            /*if (weaponObj.state == WEAPON_STATES.__MOVE)
             {
                 var perc = anAngle / anMaxAngle;
                 with(weaponObj)
-                    image_angle = perc * anMaxAngle;
+                    image_angle += perc * anMaxAngle;
             }                
-            weaponObj.xsc = xsc;
+            weaponObj.xsc = xsc;*/
             break;
             
         }

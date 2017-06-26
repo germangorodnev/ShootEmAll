@@ -183,6 +183,7 @@ enum WEAPONS
     __RAZORBLADE,
     __SPECIAL_PRISONER,
     __CEREMONIAL_BORIAN,
+    __KNIFE,
     
     __RANGED_BEGIN,
     
@@ -216,7 +217,8 @@ enum WEAPON_TYPE
 enum WEAPON_ATTACK_TYPE
 {
     __DOWN_TIMER_UP = 0,
-    __DOWN_UP
+    __DOWN_UP,
+    __FORW_BACK
 }
 
 enum WEAPON_STATES
@@ -228,7 +230,9 @@ enum WEAPON_STATES
     __RANGE_RECOIL,
     __RANGE_RELOAD,
     __MELEE_DOWN,
-    __MELEE_UP
+    __MELEE_UP,
+    __MELEE_FORW,
+    __MELEE_BACKW
 }
 
 

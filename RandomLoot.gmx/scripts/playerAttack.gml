@@ -44,7 +44,7 @@ case WEAPON_TYPE.__MELEE:
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
-        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
+        var wzhuh = meleeWzhuhCreate(x + lengthdir_x(4, mousedir), y + lengthdir_y(4, mousedir), 0);
         var _min = W_PR.__ME_DAMAGE_MIN,
             _max = W_PR.__ME_DAMAGE_MAX;
         if (weaponObj.hitCount % 3 == 0) // crit
@@ -52,8 +52,13 @@ case WEAPON_TYPE.__MELEE:
             _min = W_PR.__ME_CRIT_DAMAGE_MIN;
             _max = W_PR.__ME_CRIT_DAMAGE_MAX;
         }
-        maskKick.dmg = irandom_range(weaponInf[_min], weaponInf[_max]); 
-        maskKick.dmgcd = weaponCd;
+        wzhuh.dmg = irandom_range(weaponInf[_min], weaponInf[_max]); 
+        wzhuh.dmgcd = weaponCd;
+        wzhuh.image_angle = mousedir;
+        with (wzhuh)
+        {
+            meleeWzhuhActivate(5);
+        }
         break;
         
     case WEAPONS.__HALFSWORD:
@@ -62,9 +67,14 @@ case WEAPON_TYPE.__MELEE:
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
-        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
-        maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]) * choose(-1, 1); 
-        maskKick.dmgcd = max(2, weaponCd * (maskKick.dmg != 0));
+        var wzhuh = meleeWzhuhCreate(x + lengthdir_x(4, mousedir), y + lengthdir_y(4, mousedir), 0);
+        wzhuh.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]) * choose(0, 1); 
+        wzhuh.dmgcd = weaponCd;
+        wzhuh.image_angle = mousedir;
+        with (wzhuh)
+        {
+            meleeWzhuhActivate(5);
+        }
         break;
                 
     default: // just common melee weapon
@@ -73,10 +83,14 @@ case WEAPON_TYPE.__MELEE:
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
-        var wzhuh = meleeWzhuhCreate(x, y);
+        var wzhuh = meleeWzhuhCreate(x + lengthdir_x(4, mousedir), y + lengthdir_y(4, mousedir), 0);
         wzhuh.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         wzhuh.dmgcd = weaponCd;
         wzhuh.image_angle = mousedir;
+        with (wzhuh)
+        {
+            meleeWzhuhActivate(5);
+        }
         break;
     }
     break;
@@ -148,27 +162,18 @@ case WEAPON_TYPE.__RANGE:
     // x2 - 67
     case WEAPONS.__STEEL_RUFF:
         var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]);
-        for (var i = 0; i < weaponInf[W_PR.__PROJECTILE_AMOUNT]; i++)
-        {
-            var ld = 34, di = 0;
-            if (i % 2 != 0)
-            {
-                ld = 67;
-                di = 180;
-            }
-            var xx = weaponObj.x + lengthdir_x(34, weaponObj.image_angle + di),
-                yy = weaponObj.y + lengthdir_y(34, weaponObj.image_angle + di),
-                critch = weaponInf[W_PR.__CRIT_CHANCE];
-    
-            var bb = instance_create(xx, yy, bullet);
-            bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
-            bb.direction = mousedir + di + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
-            bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
-            bb.parent = id;  
-            bb.dmgcd = weaponCd;
-            with (bb)
-                projectileInited();      
-        }    
+        var xx = weaponObj.x + lengthdir_x(34, weaponObj.image_angle),
+            yy = weaponObj.y + lengthdir_y(34, weaponObj.image_angle),
+            critch = weaponInf[W_PR.__CRIT_CHANCE];
+
+        var bb = instance_create(xx, yy, bullet);
+        bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
+        bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
+        bb.speed = weaponInf[W_PR.__PROJECTILE_SPEED]; 
+        bb.parent = id;  
+        bb.dmgcd = weaponCd;
+        with (bb)
+            projectileInited(); 
         break;
         
     default:

@@ -78,6 +78,11 @@ case WEAPONS.__CEREMONIAL_BORIAN:
     _arr[W_PR.__ME_DAMAGE_MAX] = 33;
     _arr[W_PR.__ME_SHOOT_CD] = 1 * room_speed;
     break;   
+case WEAPONS.__KNIFE:
+    _arr[W_PR.__ME_DAMAGE_MIN] = 25;
+    _arr[W_PR.__ME_DAMAGE_MAX] = 40;
+    _arr[W_PR.__ME_SHOOT_CD] = 0.5 * room_speed;
+    break; 
 /* ******************************************************** RANGE ***********************************************************/        
 case WEAPONS.__POMPINGTON:
     _arr[W_PR.__SPRAY_ANGLE] = 7;
@@ -394,7 +399,7 @@ case WEAPONS.__STEEL_RUFF:
     _arr[W_PR.__SCORE_SIZE] = 2;
     _arr[W_PR.__BULLETS_PER_SHOT] = 2;
     _arr[W_PR.__PROJECTILE] = PROJECTILE.__CHAINSAW;
-    _arr[W_PR.__PROJECTILE_AMOUNT] = 2;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
     _arr[W_PR.__PROJECTILE_SPEED] = 11;
     _arr[W_PR.__RELOAD_TIME] = 4 * room_speed;
     _arr[W_PR.__DAMAGE_MIN] = 3;

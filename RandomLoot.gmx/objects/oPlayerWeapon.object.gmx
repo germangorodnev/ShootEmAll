@@ -32,6 +32,8 @@ state = WEAPON_STATES.__MOVE;
 
 attackType = -1; 
 
+playerId = noone;
+
 ret = -1;
 returnTmrCnt = 0; 
 
@@ -162,12 +164,12 @@ case WEAPON_STATES.__RETURN_TO_TOP:
         attackCount--;
         if (attackCount &lt;= 0)
         {
-            with (oPlayer)
+            with (playerId)
                 playerWeaponSetState(WEAPON_STATES.__MOVE);       
         }
         else
         {
-            with (oPlayer)
+            with (playerId)
                 playerAttack(0); 
         }      
     }            
@@ -175,7 +177,7 @@ case WEAPON_STATES.__RETURN_TO_TOP:
     
 case WEAPON_STATES.__MOVE_NOANIM:
     if (ret &amp;&amp; !--ret)
-        with (oPlayer)
+        with (playerId)
             playerWeaponSetState(WEAPON_STATES.__RETURN_TO_TOP);    
         
     anOffX = approach(anOffX, anOffXNeed[animIndex], anOffXSpd[animIndex]);
@@ -200,7 +202,7 @@ case WEAPON_STATES.__MELEE_DOWN:
             if (attackCount == 1)
             {
                 // do not reset angle
-                with (oPlayer)
+                with (playerId)
                 {
                     physicalClearMaskKick();
                     playerWeaponSetState(WEAPON_STATES.__MOVE_NOANIM);   
@@ -211,20 +213,18 @@ case WEAPON_STATES.__MELEE_DOWN:
             else
             {
                 attackCount--;
-                with (oPlayer)
+                with (playerId)
                     playerAttack(0); 
             }      
         }            
         break;
         
     default:
-
         image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
-            animIndexNext = animIndex + 1;
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
+            with (playerId)
+                playerWeaponSetState(WEAPON_STATES.__MOVE);   
         }            
         break;   
     }
@@ -242,7 +242,7 @@ case WEAPON_STATES.__MELEE_UP:
             &amp;&amp; anOffY == anOffYNeed[animIndex])
         {
             // reset angle
-            with (oPlayer)
+            with (playerId)
                 playerWeaponSetState(WEAPON_STATES.__MOVE);   
         }            
         break;
@@ -252,10 +252,10 @@ case WEAPON_STATES.__MELEE_UP:
         {
             attackCount--;
             if (attackCount &lt;= 0)
-                with (oPlayer)
+                with (playerId)
                     playerWeaponSetState(WEAPON_STATES.__MOVE);       
             else
-                with (oPlayer)
+                with (playerId)
                     playerAttack(0);       
         }
         break;   
@@ -271,7 +271,7 @@ case WEAPON_STATES.__RANGE_SHOT:
     if (animEnded)
     {
         animEnded = 0;
-        with (oPlayer)
+        with (playerId)
         {
             if (weaponSprite[2] != -1)
                 playerWeaponSetState(WEAPON_STATES.__RANGE_RECOIL);
@@ -283,7 +283,7 @@ case WEAPON_STATES.__RANGE_SHOT:
 case WEAPON_STATES.__RANGE_RECOIL:
     if (animEnded)
     {
-        with (oPlayer)
+        with (playerId)
         {
             playerWeaponSetState(WEAPON_STATES.__MOVE);
         }
@@ -292,10 +292,10 @@ case WEAPON_STATES.__RANGE_RECOIL:
 case WEAPON_STATES.__RANGE_RELOAD:
     if (reloadTmrNewbull &amp;&amp; !--reloadTmrNewbull)
     {
-        var rla = min(reloadAdd, reloadAddFinal - oPlayer.weaponAmmo);
+        var rla = min(reloadAdd, reloadAddFinal - playerId.weaponAmmo);
         reloadAm -= rla;
         reloadTmrNewbull = reloadTmrCnt;    
-        with (oPlayer)
+        with (playerId)
         {
             weaponAmmo += rla;
             ammo[weaponInf[W_PR.__BULLET_TYPE]] -= rla;
@@ -303,7 +303,7 @@ case WEAPON_STATES.__RANGE_RELOAD:
     }
     if (reloadAm &lt;= 0)
     {
-        with (oPlayer)
+        with (playerId)
             playerWeaponSetState(WEAPON_STATES.__MOVE);
     }
     break;
@@ -334,7 +334,10 @@ case WEAPON_STATES.__RANGE_RELOAD:
 {
     // prev
     //draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * xsc, y + anOffY * image_yscale, xsc, image_yscale, anglePrev, image_blend, image_alpha / 1.5);
-    draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * xsc, y + anOffY * image_yscale, xsc, image_yscale, image_angle, image_blend, image_alpha);
+    var add = 0;
+    if (oPlayer.weaponType == WEAPON_TYPE.__MELEE)
+        add = oPlayer.mousedir;
+    draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * xsc, y + anOffY * image_yscale, xsc, image_yscale, image_angle + add, image_blend, image_alpha);
     
 }
 </string>

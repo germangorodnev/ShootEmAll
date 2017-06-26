@@ -4,19 +4,24 @@ var perc = 0,
 with (oPlayer)
 {   
     if (weaponType == WEAPON_TYPE.__MELEE)
-        gen = -1; // just random
+        gen = -2; // just random
     else
     {
         var tt = weaponInf[W_PR.__BULLET_TYPE];
         perc = (ammo[tt] / ammoMax[tt]) * 100;
     }    
 }
-if (perc > 50) // meh, random
-    gen = -1;
-else if (perc > 30) // med
-    gen = 0;
+if (gen != -2)
+{
+    if (perc > 50) // meh, random
+        gen = -1;
+    else if (perc > 30) // med
+        gen = 0;
+    else
+        gen = 1;
+}
 else
-    gen = 1;
+    gen = -1;
 switch (gen)
 {
 case -1: // random ammo

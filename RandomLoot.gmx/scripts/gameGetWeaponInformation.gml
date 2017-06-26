@@ -54,6 +54,10 @@ case WEAPONS.__CEREMONIAL_BORIAN:
     _arr[3] = sCeremoniaBorianSword; 
     _arr[2] = gameGetString(2, 0, "melee");
     break;
+case WEAPONS.__KNIFE:
+    _arr[3] = sKnife; 
+    _arr[2] = gameGetString(2, 0, "melee");
+    break;
 
 
 case WEAPONS.__POMPINGTON:

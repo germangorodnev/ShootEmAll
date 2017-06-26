@@ -17,6 +17,7 @@ if (weapon != WEAPONS.__NONE)
     }
 }
 // resets
+maskScale = 3;
 attackSoundsCnt = 0;
 weaponSpriteNoammo = -1;
 hitCount = 0;
@@ -72,12 +73,9 @@ case WEAPONS.__BLOOD_FLAG:
 
     with (weaponObj)
         weaponAttackTypeInit();
-        
-    // mask
-    kx1 = 57;
-    ky1 = 1;
-    kx2 = 120;
-    ky2 = 80;
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
+    
+    maskScale = 3;
     break;
     
 case WEAPONS.__HALFSWORD:
@@ -85,20 +83,17 @@ case WEAPONS.__HALFSWORD:
     weaponSprite[0] = sHalfsword;
     weaponSprite[1] = sHalfsword;
     weaponSprite[2] = sHalfsword;
-    weaponXoff = 15;
-    weaponYoff = -13;
+    weaponXoff = 7;
+    weaponYoff = -18;
     weaponObj.anMaxAngle = 10;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
     
     with (weaponObj)
         weaponAttackTypeInit();
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
     
-    // mask
-    kx1 = 57;
-    ky1 = 15;
-    kx2 = 95;
-    ky2 = 77;
+    maskScale = 2;
     break;
     
 case WEAPONS.__COPPER_DEVIL:
@@ -114,12 +109,9 @@ case WEAPONS.__COPPER_DEVIL:
 
     with (weaponObj)
         weaponAttackTypeInit();
-
-    // mask
-    kx1 = 57;
-    ky1 = 15;
-    kx2 = 95;
-    ky2 = 77;
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
+        
+    maskScale = 3;
     break;
         
 case WEAPONS.__STICK:
@@ -127,19 +119,16 @@ case WEAPONS.__STICK:
     weaponSprite[1] = sStick;
     weaponSprite[2] = sStick;
     weaponXoff = 17;
-    weaponYoff = -8;
+    weaponYoff = -15;
     weaponObj.anMaxAngle = 5;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
     
     with (weaponObj)
         weaponAttackTypeInit();
-
-    // mask
-    kx1 = 57;
-    ky1 = 20;
-    kx2 = 90;
-    ky2 = 70;
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
+        
+    maskScale = 1;
     break;
     
 case WEAPONS.__ARIA_ARTH:
@@ -148,44 +137,38 @@ case WEAPONS.__ARIA_ARTH:
     weaponSprite[1] = sAriaArthef;
     weaponSprite[2] = sAriaArthef;
     weaponXoff = 17;
-    weaponYoff = -8;
+    weaponYoff = -15;
     weaponObj.anMaxAngle = 5;
         
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
     
     with (weaponObj)
         weaponAttackTypeInit();
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
 
-    // mask
-    kx1 = 57;
-    ky1 = 15;
-    kx2 = 105;
-    ky2 = 77;
+    maskScale = 2;
     break;
 
 case WEAPONS.__RAZORBLADE:
-    weaponCd = 0.2 * room_speed;
+    weaponCd = 0.5 * room_speed;
     weaponSprite[0] = sRazorblade;
     weaponSprite[1] = sRazorblade;
     weaponSprite[2] = sRazorblade;
     weaponXoff = 12;
-    weaponYoff = -13;
+    weaponYoff = -15;
     weaponObj.anMaxAngle = 10;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
     
     with (weaponObj)
         weaponAttackTypeInit();
-    
-    // mask
-    kx1 = 57;
-    ky1 = 15;
-    kx2 = 100;
-    ky2 = 77;
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
+        
+    maskScale = 3;
     break;
     
 case WEAPONS.__SPECIAL_PRISONER:
-    weaponCd = 0.2 * room_speed;
+    weaponCd = 0.3 * room_speed;
     weaponSprite[0] = sSpecialPrisoner;
     weaponSprite[1] = sSpecialPrisoner;
     weaponSprite[2] = sSpecialPrisoner;
@@ -197,35 +180,44 @@ case WEAPONS.__SPECIAL_PRISONER:
     
     with (weaponObj)
         weaponAttackTypeInit();
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
     
-    // mask
-    kx1 = 57;
-    ky1 = 15;
-    kx2 = 100;
-    ky2 = 77;
+    maskScale = 3;
     break;
 
 case WEAPONS.__CEREMONIAL_BORIAN:
-    weaponCd = 0.2 * room_speed;
+    weaponCd = 0.3 * room_speed;
     weaponSprite[0] = sCeremoniaBorianSword;
     weaponSprite[1] = sCeremoniaBorianSword;
     weaponSprite[2] = sCeremoniaBorianSword;
     weaponXoff = 12;
-    weaponYoff = -13;
+    weaponYoff = -20;
     weaponObj.anMaxAngle = 10;
     
     weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
-    
     with (weaponObj)
-        weaponAttackTypeInit();
+        weaponAttackTypeInit();       
+    weaponObj.image_angle = weaponObj.angleNeedDown[0];
     
-    // mask
-    kx1 = 57;
-    ky1 = 15;
-    kx2 = 100;
-    ky2 = 77;
+    maskScale = 3;
     break;
     
+case WEAPONS.__KNIFE:
+    weaponCd = 0.3 * room_speed;
+    weaponSprite[0] = sKnife;
+    weaponSprite[1] = sKnife;
+    weaponSprite[2] = sKnife;
+    weaponXoff = 7;
+    weaponYoff = -20;
+    weaponObj.anMaxAngle = 7;
+    
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__FORW_BACK;
+    with (weaponObj)
+        weaponAttackTypeInit();       
+    weaponObj.image_angle = mousedir;
+    
+    maskScale = 1;
+    break;
             
     
     

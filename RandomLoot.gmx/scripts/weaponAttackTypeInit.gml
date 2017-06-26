@@ -3,7 +3,7 @@ animCnt = 1;
 switch (attackType)
 {
 case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-    switch (oPlayer.weapon)
+    switch (playerId.weapon)
     {
     case WEAPONS.__ARIA_ARTH:  //sAriaArthef
         animCnt = 3;  
@@ -50,44 +50,42 @@ case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
     break;
     
 case WEAPON_ATTACK_TYPE.__DOWN_UP:
-    switch (oPlayer.weapon)
+    switch (playerId.weapon)
     {
     case WEAPONS.__HALFSWORD:    
-        angleNeedDown[0] = -90;
+        angleNeedDown[0] = -110;
         angleRotDown[0] = 22;
-        
-        angleNeedUp[0] = 0;
-        angleRotUp[0] = 15;
         break;
     case WEAPONS.__COPPER_DEVIL:    
-        angleNeedDown[0] = -90;
+        angleNeedDown[0] = -110;
         angleRotDown[0] = 22;
-        
-        angleNeedUp[0] = 0;
-        angleRotUp[0] = 15;
         break;
     case WEAPONS.__STICK:    
-        angleNeedDown[0] = -120;
+        angleNeedDown[0] = -110;
         angleRotDown[0] = 22;
-        
-        angleNeedUp[0] = 0;
-        angleRotUp[0] = 18;
         break;    
     case WEAPONS.__RAZORBLADE:    
         angleNeedDown[0] = -120;
         angleRotDown[0] = 22;
-        
-        angleNeedUp[0] = 0;
-        angleRotUp[0] = 18;
         break; 
-        
-    case WEAPONS.__CEREMONIAL_BORIAN:    
-        angleNeedDown[0] = -120;
+    case WEAPONS.__SPECIAL_PRISONER:    
+        angleNeedDown[0] = -115;
         angleRotDown[0] = 22;
-        
-        angleNeedUp[0] = 0;
-        angleRotUp[0] = 18;
         break;    
+    case WEAPONS.__CEREMONIAL_BORIAN:    
+        angleNeedDown[0] = -110;
+        angleRotDown[0] = 22;
+        break;    
+    }
+    break;
+    
+case WEAPON_ATTACK_TYPE.__FORW_BACK:
+    switch (playerId.weapon)
+    {
+    case WEAPONS.__KNIFE:
+        angleNeedDown[0] = 12
+        angleRotDown[0] = 1;  
+        break;
     }
     break;
 }

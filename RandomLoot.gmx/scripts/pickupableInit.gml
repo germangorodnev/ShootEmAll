@@ -29,15 +29,12 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__HALFSWORD:
         sprite_index = sHalfsword; 
-        image_angle = -45;
         break;
     case WEAPONS.__COPPER_DEVIL:
-        sprite_index = sCopperDevil; 
-        image_angle = -45;
+        sprite_index = sCopperDevil;
         break;
     case WEAPONS.__STICK:
-        sprite_index = sStick; 
-        image_angle = 60;
+        sprite_index = sStick;
         break;
     case WEAPONS.__ARIA_ARTH:
         sprite_index = sAriaArthef; 
@@ -45,18 +42,15 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__RAZORBLADE:
         sprite_index = sRazorblade; 
-        image_angle = 65;
         break;
     case WEAPONS.__SPECIAL_PRISONER:
         sprite_index = sSpecialPrisoner; 
-        image_angle = 245;
         break;
     case WEAPONS.__CEREMONIAL_BORIAN:
         sprite_index = sCeremoniaBorianSword; 
-        image_angle = 65;
         break;
-        
-        
+    case WEAPONS.__KNIFE:
+        break;    
 
     
     case WEAPONS.__POMPINGTON:
