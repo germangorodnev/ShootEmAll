@@ -76,6 +76,10 @@ case WEAPON_TYPE.__MELEE:
             meleeWzhuhActivate(5);
         }
         break;
+        
+    case WEAPONS.__KNIFE:
+    
+        break;
                 
     default: // just common melee weapon
         with (weaponObj)
