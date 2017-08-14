@@ -1,4 +1,4 @@
-///abilityAdd(ABILITIES.__ new)
+///playerAbilityAdd(ABILITIES.__ new)
 var pos = abilCount++;
 abils[pos] = argument[0];
 abilsTmr[pos] = -1;
@@ -16,5 +16,11 @@ case ABILITIES.__HEAL:
     abilsTmrCnt[pos] = room_speed;
     abilsIco[pos] = 1;
     abilsParams[0] = 1;
+    break;
+case ABILITIES.__SPIKES:
+    abilsTmrCnt[pos] = room_speed;
+    abilsIco[pos] = 2;
+    abilsParams[0] = 1;
+    abilsParams[1] = part_emitter_create(global.pse);
     break;
 }

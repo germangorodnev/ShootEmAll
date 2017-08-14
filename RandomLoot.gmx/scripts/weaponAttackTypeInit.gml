@@ -52,6 +52,10 @@ case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
 case WEAPON_ATTACK_TYPE.__DOWN_UP:
     switch (playerId.weapon)
     {
+    case WEAPONS.__ARIA_ARTH:  //sAriaArthef
+        angleNeedDown[0] = -110;
+        angleRotDown[0] = 22;
+        break;
     case WEAPONS.__HALFSWORD:    
         angleNeedDown[0] = -110;
         angleRotDown[0] = 22;
@@ -84,7 +88,7 @@ case WEAPON_ATTACK_TYPE.__FORW_BACK:
     {
     case WEAPONS.__KNIFE:
         angleNeedDown[0] = 12
-        angleRotDown[0] = 1;  
+        angleRotDown[0] = 3;  
         break;
     }
     break;

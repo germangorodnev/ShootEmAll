@@ -68,7 +68,7 @@ case WEAPON_TYPE.__RANGE:
                 // no crit
                 bb.damage = irandom_range(mindmg, maxdmg);   
             }
-            bb.direction = angle + irandom(sprayAngle);       
+            bb.direction = angle + irandom(sprayAngle) * choose(-1, 1);       
             bb.spd = projectileSpeed;  
             bb.parent = id; 
             with (bb)

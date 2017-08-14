@@ -32,6 +32,7 @@ with (par)
         // evaded
         return 0;
     }
+    whiteTmr = global.damageTakeTmr;
     // cucked
     physicalCucked(ccuck, idd);
 

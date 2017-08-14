@@ -36,8 +36,9 @@ case WEAPON_STATES.__MELEE_FORW:
     {
     case WEAPONS.__KNIFE:
         returnTmrCnt = 0.5 * room_speed;
-        angleNeed = angleNeedDown[animIndex] * sign(xsc);
-        angleBegin = image_angle;
+        angleNeed = angleNeedDown[animIndex];
+        angleBegin = 0;
+        angleRot = angleRotDown[animIndex];
         break;
     }
     break;

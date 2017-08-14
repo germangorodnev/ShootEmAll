@@ -35,6 +35,11 @@ image_yscale = 3;
 
 depth = y;
 
+wztype = 0;
+
+recspd = 0;
+rectmr = 0;
+
 //needmove = 0;
 
 cuck = CUCKED.__NORMAL;
@@ -114,16 +119,36 @@ for (var i = 0, cnt = ds_list_size(ls); i &lt; cnt; i++)
         tk = maskTryGetDmg(c, a, b, cdd);
     if (tk)
     {
-        var recdir = (direction + 180) % 360;
-        with (obj)
-            physicalApplyRecoil(3, recdir);
+        if (recspd != 0)
+        {
+            var rdir = (direction + 180),
+                rspd = recspd,
+                rtr = rectmr;
+            with (obj.par)
+                physicalSetRecoil(rspd, rdir, 0.0, rtr);
+        }
         if (group == 0)
         {
             // player on hit bonus
         }
     }
 }
-
+// WARNING
+if (group == 0) // player only
+{
+    instancePlaceList(x, y, oBulletObject, ls, 1);
+    for (var i = 0, cnt = ds_list_size(ls); i &lt; cnt; i++)
+    {
+        var obj = ls[| i];
+        if (obj.group == group) // same teamz
+            continue;
+        with (obj)
+        {
+            group = 0;
+            spd *= -1;
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

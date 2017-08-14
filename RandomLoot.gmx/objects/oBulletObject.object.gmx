@@ -35,6 +35,8 @@ collideWith = LEVEL.WALL;
 
 speed = 6;
 
+collideId = noone;
+
 prt = 2;
 visible = 0;
 active = 0;

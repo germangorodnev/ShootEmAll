@@ -23,24 +23,27 @@ case WEAPON_TYPE.__MELEE:
         break;
         
     case WEAPONS.__ARIA_ARTH:
-        playerWeaponSetState(choose(WEAPON_STATES.__MELEE_DOWN));
         with (weaponObj)
-            weaponSetAnimation(WEAPONS.__ARIA_ARTH, WEAPON_STATES.__MELEE_DOWN);
-        //var cc = weaponObj.animIndex;
+            weaponSetAnimation(playerId.weapon, WEAPON_STATES.__MELEE_DOWN);
+        
+        playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
-        maskKickAdd(kx1, ky1, kx2, ky2, 0, 1);
-        maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
-        maskKick.dmgcd = weaponCd;
-        //maskKick.image_angle = mousedir;
-        // random double shot
-        if (argument[0])
+        var wzhuh = meleeWzhuhCreate(x + lengthdir_x(4, mousedir), y + lengthdir_y(4, mousedir), 0);
+        wzhuh.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
+        wzhuh.dmgcd = weaponCd;
+        wzhuh.image_angle = mousedir;
+        with (wzhuh)
+        {
+            meleeWzhuhActivate(5);
+        }
+        if (argument[0] == 1)
             if (irandom(100) <= 20)
-                playerWeaponSetKickCount(2);  
+                playerWeaponSetKickCount(2);
         break;
         
     case WEAPONS.__COPPER_DEVIL:
         with (weaponObj)
-            weaponSetAnimation(oPlayer.weapon, WEAPON_STATES.__MELEE_DOWN);
+            weaponSetAnimation(playerId.weapon, WEAPON_STATES.__MELEE_DOWN);
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
@@ -63,7 +66,7 @@ case WEAPON_TYPE.__MELEE:
         
     case WEAPONS.__HALFSWORD:
         with (weaponObj)
-            weaponSetAnimation(oPlayer.weapon, WEAPON_STATES.__MELEE_DOWN);
+            weaponSetAnimation(playerId.weapon, WEAPON_STATES.__MELEE_DOWN);
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
@@ -78,12 +81,25 @@ case WEAPON_TYPE.__MELEE:
         break;
         
     case WEAPONS.__KNIFE:
-    
+        with (weaponObj)
+            weaponSetAnimation(playerId.weapon, WEAPON_STATES.__MELEE_FORW);   
+                         
+        playerWeaponSetState(WEAPON_STATES.__MELEE_FORW);
+
+        var wzhuh = meleeWzhuhCreate(weaponObj.x + lengthdir_x(4, mousedir), weaponObj.y + lengthdir_y(4, mousedir), 
+            0, 1, 1, 3, 8);
+        wzhuh.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
+        wzhuh.dmgcd = weaponCd;
+        wzhuh.image_angle = mousedir;
+        with (wzhuh)
+        {
+            meleeWzhuhActivate(5);
+        }
         break;
                 
     default: // just common melee weapon
         with (weaponObj)
-            weaponSetAnimation(oPlayer.weapon, WEAPON_STATES.__MELEE_DOWN);
+            weaponSetAnimation(playerId.weapon, WEAPON_STATES.__MELEE_DOWN);
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
@@ -108,23 +124,27 @@ case WEAPON_TYPE.__RANGE:
     case WEAPONS.__FOREST_MANTIS:
     case WEAPONS.__LASER_BEE:
     case WEAPONS.__OVERKILLINGTON:
-        // laser
-        var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
-            xx = weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR]),
-            yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle - weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale));
-        var bb = instance_create(xx, yy, bullet);
-        // no crit
-        bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
-        bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
-        bb.parent = id;  
-        bb.dmgcd = weaponCd;
-        bb.liveTmr = lasLong;
-        with (bb)
+    case WEAPONS.__STALK:
+        repeat (weaponInf[W_PR.__PROJECTILE_AMOUNT])
         {
-            laserFindCollisionPoint(LEVEL.WALL);
-            projectileInited(); 
-        }         
-        playerControlledLineAdd(bb);
+            // laser
+            var bullet = gameGetProjectileNameByIndex(weaponInf[W_PR.__PROJECTILE]),
+                xx = weaponObj.x + lengthdir_x(weaponInf[W_PR.__LDIR_X], weaponObj.image_angle + weaponInf[W_PR.__LDIR_DIR]),
+                yy = weaponObj.y + lengthdir_y(weaponInf[W_PR.__LDIR_Y], weaponObj.image_angle - weaponInf[W_PR.__LDIR_DIR] * sign(weaponObj.image_yscale));
+            var bb = instance_create(xx, yy, bullet);
+            // no crit
+            bb.damage = irandom_range(weaponInf[W_PR.__DAMAGE_MIN], weaponInf[W_PR.__DAMAGE_MAX]);   
+            bb.direction = mousedir + irandom(weaponInf[W_PR.__SPRAY_ANGLE]) * choose(-1, 1);    //point_direction(weaponObj.x, weaponObj.y, weaponObjx, mouse_y)   
+            bb.parent = id;  
+            bb.dmgcd = weaponCd;
+            bb.liveTmr = lasLong;
+            with (bb)
+            {
+                laserFindCollisionPoint(LEVEL.WALL);
+                projectileInited(); 
+            }         
+            playerControlledLineAdd(bb);
+        }
         break;
         
     // zap

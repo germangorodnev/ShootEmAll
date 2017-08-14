@@ -17,6 +17,8 @@ if (weapon != WEAPONS.__NONE)
     }
 }
 // resets
+recspd = 0;
+rectmr = 0;
 maskScale = 3;
 attackSoundsCnt = 0;
 weaponSpriteNoammo = -1;
@@ -41,6 +43,7 @@ with (weaponObj)
     canShoot = 1;
     attackType = -1;
     animIndex = 0;
+    angleBegin = 0;
     angleNeedDown[0] = 0; 
     angleNeedUp[0] = 0;
     anOffXNeed[0] = 0; anOffXSpd[0] = 0;
@@ -140,7 +143,7 @@ case WEAPONS.__ARIA_ARTH:
     weaponYoff = -15;
     weaponObj.anMaxAngle = 5;
         
-    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
     
     with (weaponObj)
         weaponAttackTypeInit();
@@ -217,6 +220,8 @@ case WEAPONS.__KNIFE:
     weaponObj.image_angle = mousedir;
     
     maskScale = 1;
+    recspd = 4;
+    rectmr = 30;
     break;
             
     
@@ -378,6 +383,7 @@ case WEAPONS.__LASER_BEE:
     
 case WEAPONS.__BIG_BULG:
     restoreWeap = 1;
+    weaponCd = 0.3 * room_speed;
     restore = weaponInf[W_PR.__RELOAD_TIME];
     weaponSprite[0] = sBigBulg;
     weaponSprite[1] = sBigBulgShoot;
@@ -404,7 +410,37 @@ case WEAPONS.__STEEL_RUFF:
     weaponYoff = -25;
     weaponObj.anMaxAngle = 3;
     break;
-        
+
+case WEAPONS.__DARTS:
+    weaponSprite[0] = sDarts;
+    weaponSprite[1] = sDartsShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -25;
+    weaponObj.anMaxAngle = 3;
+    break;   
+     
+case WEAPONS.__PISTOPHONE:
+    weaponCd = .1 * room_speed;
+    weaponSprite[0] = sPistophone;
+    weaponSprite[1] = sPistophoneShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -25;
+    weaponObj.anMaxAngle = 3;
+    break;
+
+case WEAPONS.__STALK:
+    lasLong = 0.2 * room_speed;
+    weaponCd = 0.2 * room_speed;
+    weaponSprite[0] = sStalk;
+    weaponSprite[1] = sStalkShoot;
+    weaponAnimSpeed[1] = 0.15;
+    weaponXoff = 5;
+    weaponYoff = -25;
+    weaponObj.anMaxAngle = 3;
+    break;
+                    
 case WEAPONS.__CUSTOM: // custom ranged weapon
     weaponCd = weaponInf[W_PR.__RANGE_CUSTOM_DAMAGECD];
     weaponSprite[0] = weaponInf[W_PR.__RANGE_CNT];

@@ -26,6 +26,7 @@ if (ic != noone)
         tk = maskTryGetDmg(c, a, b, cdd);
     if (tk)
     {
+        collideId = ic;
         cntgothrough--;
         if (cntgothrough <= 0)
             instance_destroy();

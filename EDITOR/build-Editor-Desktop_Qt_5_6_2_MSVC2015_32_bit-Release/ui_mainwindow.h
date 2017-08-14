@@ -49,7 +49,7 @@ public:
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *zonePNGShoot;
     QPushButton *pushButtonPNGShootLoad;
-    QLabel *label_4;
+    QLabel *params;
     QSpinBox *spinDmgMin;
     QLabel *label_5;
     QLabel *label_6;
@@ -101,7 +101,7 @@ public:
         MainWindow->setSizePolicy(sizePolicy);
         MainWindow->setMinimumSize(QSize(640, 487));
         MainWindow->setMaximumSize(QSize(640, 487));
-        MainWindow->setStyleSheet(QLatin1String("QLabel#caption {\n"
+        MainWindow->setStyleSheet(QLatin1String("QLabel#caption,#params {\n"
 "	color: rgb(255, 85, 255);\n"
 "	font: 16px Comic Sans MS;\n"
 "}\n"
@@ -151,9 +151,9 @@ public:
         pushButtonPNGShootLoad = new QPushButton(centralwidget);
         pushButtonPNGShootLoad->setObjectName(QStringLiteral("pushButtonPNGShootLoad"));
         pushButtonPNGShootLoad->setGeometry(QRect(514, 160, 81, 23));
-        label_4 = new QLabel(centralwidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(10, 220, 61, 16));
+        params = new QLabel(centralwidget);
+        params->setObjectName(QStringLiteral("params"));
+        params->setGeometry(QRect(120, 210, 101, 31));
         spinDmgMin = new QSpinBox(centralwidget);
         spinDmgMin->setObjectName(QStringLiteral("spinDmgMin"));
         spinDmgMin->setGeometry(QRect(10, 260, 42, 22));
@@ -326,7 +326,7 @@ public:
         label_3->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\270\320\275\321\206\320\270\320\277 \320\264\320\265\320\271\321\201\321\202\320\262\320\270\321\217, \321\207\321\202\320\276-\321\202\320\276 \321\203\321\202\320\276\321\207\320\275\321\217\321\216\321\211\320\265\320\265", 0));
         pushButtonPNGLoad->setText(QApplication::translate("MainWindow", "PNG", 0));
         pushButtonPNGShootLoad->setText(QApplication::translate("MainWindow", "PNG \320\262\321\213\321\201\321\202\321\200\320\265\320\273", 0));
-        label_4->setText(QApplication::translate("MainWindow", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213", 0));
+        params->setText(QApplication::translate("MainWindow", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213", 0));
         label_5->setText(QApplication::translate("MainWindow", "\320\243\321\200\320\276\320\275 \320\234\320\230\320\235", 0));
         label_6->setText(QApplication::translate("MainWindow", "\320\243\321\200\320\276\320\275 \320\234\320\220\320\232\320\241", 0));
         radioCrits->setText(QApplication::translate("MainWindow", "\320\232\321\200\320\270\321\202\321\203\320\265\321\202", 0));

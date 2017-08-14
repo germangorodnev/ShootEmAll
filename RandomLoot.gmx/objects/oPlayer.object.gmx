@@ -29,6 +29,8 @@
 image_speed = 0;
 
 // Stats
+TYPE = 0;
+
 spd = 4;
 hp = 12;
 _hp = 12;
@@ -36,6 +38,7 @@ _hp = 12;
 anMaxAngle = 6;
 
 mousedir = 0;
+
 
 restoreWeap = 0;
 restore = -1;
@@ -87,6 +90,8 @@ weaponBlend = c_white;
 
 expRad = 0; // explosion radius 
 lasLong = 1; // laser len time in steps
+recspd = 0;
+rectmr = 0;
 
 state = PLAYER_STATES.__IDLE;
 
@@ -132,11 +137,29 @@ SPECIAL_FLAGS = 0;
 longbulls = ds_list_create();
 
 // gui 
+// pickup weapon
 pwId = noone;
 pwType = "";
 pwName = "";
 pwc = c_white;
 
+pwiy = 0
+
+pwilx = 0;
+pwilsw = sprite_get_width(sPickupWILeft);
+
+pwicx = 0;
+pwicsc = 1;
+pwicnw = -1;
+pwicsw = sprite_get_width(sPickupWICenter);
+
+pwirx = 0;
+pwirsw = sprite_get_width(sPickupWIRight);
+
+pwitypex = 0;
+pwitypey = 0;
+pwinamex = 0;
+pwinamey = 0;
 
 // mouse y old
 myo = mouse_y;
@@ -180,6 +203,10 @@ for (var i = 0; i &lt; abilCount; i++)
     case ABILITIES.__DASH:
         // clear the emitter
         part_emitter_destroy(global.pse, abilsParams[2]);
+        break;
+    case ABILITIES.__SPIKES:
+        // clear the emitter
+        part_emitter_destroy(global.pse, abilsParams[1]);
         break;
     }
 }
@@ -227,6 +254,11 @@ if (weapon != WEAPONS.__NONE)
     case WEAPON_TYPE.__MELEE:
         switch (weaponObj.attackType)
         {
+        case WEAPON_ATTACK_TYPE.__FORW_BACK:    
+            weaponObj.x = x + weaponXoff * sign(xsc); //lengthdir_x(weaponXoff * sign(xsc), mousedir);
+            weaponObj.y = y + weaponYoff; //lengthdir_y(weaponYoff, mousedir);
+            weaponObj.image_angle = mousedir;
+            break;
         default:
             weaponObj.x = x + weaponXoff * sign(xsc); //lengthdir_x(weaponXoff * sign(xsc), mousedir);
             weaponObj.y = y + weaponYoff; //lengthdir_y(weaponYoff, mousedir);
@@ -340,8 +372,9 @@ case PLAYER_STATES.__IDLE:
     var abilUse = playerAbilityKeyCheck();
     if (abilUse == 1)
     {
-        playerAbilityUse(0);
-        exit;
+        var epau = playerAbilityUse(0);
+        if (epau)
+            exit;
     }
     
     if (key[KEY.SINGLEUSE_ITEM])
@@ -424,8 +457,9 @@ case PLAYER_STATES.__WALK:
     var abilUse = playerAbilityKeyCheck();
     if (abilUse == 1)
     {
-        playerAbilityUse(0);
-        exit;
+        var epau = playerAbilityUse(0);
+        if (epau)
+            exit;
     }
     
     hspd += spd * speedmod * hmove;

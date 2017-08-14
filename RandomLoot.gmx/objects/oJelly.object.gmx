@@ -142,14 +142,18 @@ if (sprite_index != -1)
 
 idleTmr++;
 
+if (whiteTmr &amp;&amp; !--whiteTmr)
+{}
+
 if (canAttackTmr &amp;&amp; !--canAttackTmr)
 {
     canAttackTmr = -1;
     canAttack = 1;
 }
 
-enemyMoveOutOfOther();
-
+if (current_time % 4 == 0)
+    enemyMoveOutOfOther();
+enemyDebuffsProceed();
 masksMove();
 
 switch (state)
@@ -157,6 +161,10 @@ switch (state)
 case ENEMY_STATE.__IDLE:
     procedureAnimableApproachReset();
     physicalBeginStep();
+    
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    physicalMoveProp(collideWith, hspd, vspd);
+    
     detect = enemyDetectPlayer();
     if (detect == 1)
     {
@@ -170,13 +178,17 @@ case ENEMY_STATE.__IDLE:
         else if ( ca == -1 )
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
+    
     break;
     
 case ENEMY_STATE.__FOLLOW:
-    procedureAnimableProceed();    
+    procedureAnimableProceed();   
+     
+    physicalApplyRecoil(recoilSpd, recoilDir);
     
     xsc = (oPlayer.x &gt; x) * 2 - 1;
     targetDist = distance_to_object(target);
+    physicalMoveProp(collideWith, hspd, vspd);
 
     if (enemyCanAttack())
     {
@@ -203,11 +215,15 @@ case ENEMY_STATE.__FOLLOW:
         enemySetState(ENEMY_STATE.__IDLE);
         exit;    
     }
+    
     break;    
     
 case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
     physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    physicalMoveProp(collideWith, hspd, vspd);
+    
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
     if (done)
     {
@@ -335,7 +351,7 @@ case ENEMY_STATE.__DIE:
             <string>if (!drawable)
     exit;
 enemyDebug();
-if ( maskHit.expire != 0)
+if (whiteTmr != 0)
 {
     shader_set(shdWhite);
     draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
@@ -343,7 +359,8 @@ if ( maskHit.expire != 0)
 }
 else
     draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
-
+// debuffs
+enemyDrawDebuffs();
 </string>
           </argument>
         </arguments>

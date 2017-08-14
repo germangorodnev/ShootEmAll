@@ -172,9 +172,13 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 
 idleTmr++;
 
+if (whiteTmr &amp;&amp; !--whiteTmr)
+{}
+
 if (current_time % 4 == 0)
     enemyMoveOutOfOther();
-
+    
+enemyDebuffsProceed();
 masksMove();
 
 switch (state)
@@ -183,7 +187,7 @@ case ENEMY_STATE.__IDLE:
     procedureAnimableApproachReset();
     physicalBeginStep();
     detect = enemyDetectPlayer();
-    if (detect)
+    if (detect == 1)
     {
         // well, maybe shoot
         var ca = enemyCanAttack();
@@ -238,7 +242,9 @@ case ENEMY_STATE.__FOLLOW:
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
     }
-    if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
+    if (point_distance(path_get_point_x(path, path_get_number(path)-1), 
+        path_get_point_y(path, path_get_number(path)-1), 
+        target.x, target.y) &gt; weaponAttDist)
     {
         if (idleTmr &gt; 0.5 * room_speed)
         {
@@ -368,7 +374,7 @@ path_speed = 0;
             <kind>1</kind>
             <string>if (!drawable)
     exit;
-var usesh = maskHit.expire != 0;
+var usesh = whiteTmr != 0;
 if (usesh)
     shader_set(shdWhite);
     
@@ -387,6 +393,8 @@ else
 
 if (usesh)
     shader_reset();
+// debuffs
+enemyDrawDebuffs();
 enemyDebug();
 
 </string>

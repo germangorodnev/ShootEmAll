@@ -7,27 +7,28 @@ oMinimap.plyr[n] = (new.y-LEVEL.TILE_H) div LEVEL.TILE_H;
 
 with (new)
 {
+    TYPE = argument[2];
     switch (argument[2])
     {
     case CHARS.__CARD:
         sprite_index = sPlayerKamikaze;
-        abilityAdd(ABILITIES.__DASH);
+        playerAbilityAdd(ABILITIES.__DASH);
         break;
     case CHARS.__MILITARY:
         sprite_index = sPlayerCamouflage;
-        abilityAdd(ABILITIES.__DASH);
+        playerAbilityAdd(ABILITIES.__DASH);
         break;
-    case CHARS.__JSTONE:
-        sprite_index = sPlayerJStone;
-        abilityAdd(ABILITIES.__HEAL);
+    case CHARS.__CACTUS:
+        sprite_index = sPlayerCactus;
+        playerAbilityAdd(ABILITIES.__SPIKES);
         break;
     case CHARS.__SOLITARE:
         sprite_index = sPlayerSolitare;
-        abilityAdd(ABILITIES.__DASH);
+        playerAbilityAdd(ABILITIES.__DASH);
         break;
     case CHARS.__FOX:
         sprite_index = sPlayerFox;
-        abilityAdd(ABILITIES.__DASH);
+        playerAbilityAdd(ABILITIES.__DASH);
         break;
     }
     shrx = sprite_width / 2;

@@ -121,6 +121,18 @@ case PICKUP.__WEAPON:
         sprite_index = sSteelRuff; 
         ammo = argument[2];
         break;
+    case WEAPONS.__DARTS:
+        sprite_index = sDarts; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__PISTOPHONE:
+        sprite_index = sPistophone; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__STALK:
+        sprite_index = sStalk; 
+        ammo = argument[2];
+        break;
         
     /* ******************************* CUSTOM ********************************* */
     case WEAPONS.__CUSTOM:

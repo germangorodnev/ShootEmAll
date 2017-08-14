@@ -1,3 +1,10 @@
+enum OBJ_PAR
+{
+    UPDATABLE = 1 << 0,
+    DRAWABLE = 1 << 1,
+    INFLUENCE = 1 << 1
+}
+
 enum GAME
 {
     __LAYER_SIZE = 32
@@ -19,7 +26,7 @@ enum CHARS
 {
     __CARD = 0,
     __MILITARY,
-    __JSTONE,
+    __CACTUS,
     __SOLITARE,
     __FOX,
     __CNT
@@ -80,13 +87,15 @@ enum EFFECTS
 {
     __BULLET_WZHUH = 0,
     __LASER_GREEN_WZHUH,
-    __LASER_RED_WZHUH
+    __LASER_RED_WZHUH,
+    __LASER_BLUE_WZHUH
 }
 
 enum ABILITIES
 {
     __DASH = 0,
-    __HEAL
+    __HEAL,
+    __SPIKES
 }
 
 enum SINGLEUSE
@@ -204,6 +213,9 @@ enum WEAPONS
     __BIG_BULG,
     __ASSAULT_RIFLE,
     __STEEL_RUFF,
+    __DARTS,
+    __PISTOPHONE,
+    __STALK,
     __CUSTOM,
     __RANGED_END
 }
@@ -307,18 +319,23 @@ enum PROJECTILE
     __PELLET = 0,
     __BULLET,
     __ENERGY_LINE,
-    __ENEMY_BULLET,
     __FAST_BULLET,
     __BORIAN,
     __GRENADE_ONE_GL,
+    
     __LASER,
+    __LASER_RED,
+    __LASER_BLUE,
+    
     __BULLET_LINE,
     __PHASER,
-    __LASER_RED,
     __BIG_BULG,
     __ZAP,
     __PLASM,
-    __CHAINSAW
+    __CHAINSAW,
+    __DARTS,
+    
+    __ENEMY_BULLET,
 }
 
 enum AMMO
@@ -330,12 +347,18 @@ enum AMMO
     __GRENADES,
     __ENERGY,
     __BORIAN,
+    __DARTS,
     __CNT
 }
 
 enum BULLET_PATTERNS
 {
     
+}
+
+enum DEBUFFS
+{
+    __POISION = 0
 }
 
 // ENEMIES

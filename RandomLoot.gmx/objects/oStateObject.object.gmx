@@ -30,6 +30,13 @@ updatable = 1;
 updWas = 0;
 drawable = 1;
 influence = 1;
+
+flags = 0;
+
+flagSet(
+    OBJ_PAR.UPDATABLE
+    | OBJ_PAR.DRAWABLE
+    | OBJ_PAR.INFLUENCE, 1);
 </string>
           </argument>
         </arguments>

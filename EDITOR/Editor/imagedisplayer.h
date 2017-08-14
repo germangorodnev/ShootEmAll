@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPainter>
 
+class QEvent;
+
 class ImageDisplayer : public QWidget
 {
     Q_OBJECT
@@ -23,8 +25,18 @@ private:
     QBrush white;
     int grw;
 
+    QPoint mtg;
+    bool scr;
+    int dxoff;
+    int dyoff;
+
 protected:
     void paintEvent(QPaintEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void moveEvent(QMoveEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 signals:
 

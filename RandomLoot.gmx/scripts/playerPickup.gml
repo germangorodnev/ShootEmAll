@@ -1,6 +1,6 @@
 ///playerPickup()
 pwId = noone;
-var pickup = instance_place(x, y, oPickupableObject);
+var pickup = playerGetPickupableUnder(); 
 if (pickup != noone)
 {
     if (physicalOnOneLine(y, pickup.compareY))
@@ -51,9 +51,8 @@ else
     {
     case PICKUP.__WEAPON:
         pwId = pickupId;
+        playerPickupInformationSet(pwId, PICKUP.__WEAPON);
         pickupId = noone;
-        pwName = pwId.name;
-        pwType = pwId.class;
         if (!key[KEY.PICKUP])
             exit;
         if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)

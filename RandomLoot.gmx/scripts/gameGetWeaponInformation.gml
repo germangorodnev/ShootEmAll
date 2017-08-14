@@ -128,6 +128,18 @@ case WEAPONS.__STEEL_RUFF:
     _arr[3] = sSteelRuff; 
     _arr[2] = gameGetString(2, 0, "launcher");
     break;
+case WEAPONS.__DARTS:
+    _arr[3] = sDarts; 
+    _arr[2] = gameGetString(2, 0, "pistol");
+    break;
+case WEAPONS.__PISTOPHONE:
+    _arr[3] = sPistophone; 
+    _arr[2] = gameGetString(2, 0, "pistol");
+    break;
+case WEAPONS.__STALK:
+    _arr[3] = sStalk; 
+    _arr[2] = gameGetString(2, 0, "automat");
+    break;
 }
 
 return _arr;

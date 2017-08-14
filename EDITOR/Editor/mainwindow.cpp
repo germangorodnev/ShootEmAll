@@ -12,6 +12,7 @@
 #include <QPushButton>
 #include <QSettings>
 #include <QStringList>
+#include <QHBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -53,18 +54,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Add imagedisplayers to all zones
     idPNG = new ImageDisplayer(this);
+    idPNG->resize(ui->zonePNG->contentsRect().size());
     ui->zonePNG->addWidget(idPNG);
 
     idPNGShoot = new ImageDisplayer(this);
+    idPNGShoot->resize(ui->zonePNGShoot->contentsRect().size());
     ui->zonePNGShoot->addWidget(idPNGShoot);
 
     idPNGProj = new ImageDisplayer(this);
+    idPNGProj->resize(ui->zonePNGProj->contentsRect().size());
     ui->zonePNGProj->addWidget(idPNGProj);
 
     idPNGAdd = new ImageDisplayer(this);
+    idPNGAdd->resize(ui->zonePNGAdd->contentsRect().size());
     ui->zonePNGAdd->addWidget(idPNGAdd);
 
     idPNGAdd2 = new ImageDisplayer(this);
+    idPNGAdd2->resize(ui->zonePNGAdd2->contentsRect().size());
     ui->zonePNGAdd2->addWidget(idPNGAdd2);
 
     menu = ui->menu;

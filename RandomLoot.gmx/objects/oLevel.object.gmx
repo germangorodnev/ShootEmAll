@@ -122,20 +122,26 @@ with (instance_create(0, 0, oMinimap))
 
 // player now
 gamePlayerCreate(playerX, playerY, global.char);
+// give default weap
+with (oPlayer)
+    playerInitDeafultWeapon();
+ 
 with (instance_create(playerX, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__LASER_BEE, 240);
 with (instance_create(playerX, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__BIG_BULG, 8);
-with (instance_create(playerX, playerY, oPickupWeapon))
-    pickupableInit(PICKUP.__WEAPON, WEAPONS.__ASSAULT_RIFLE, 0);
+with (instance_create(playerX - 300, playerY - 150, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__STALK, 150);
 with (instance_create(playerX, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__STEEL_RUFF, 2);
 with (instance_create(playerX + 120, playerY - 120, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__CEREMONIAL_BORIAN);
+with (instance_create(playerX + 120, playerY - 200, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__ARIA_ARTH);
 with (instance_create(playerX - 120, playerY - 120, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__SPECIAL_PRISONER);
 with (instance_create(playerX - 120, playerY, oPickupWeapon))
-    pickupableInit(PICKUP.__WEAPON, WEAPONS.__HALFSWORD);
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__PISTOPHONE, 9);
 with (instance_create(playerX + 120, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__RAZORBLADE);
 with (instance_create(playerX, playerY - 60, oPickupWeapon))

@@ -22,6 +22,7 @@
           <sprite>sprites\sAmmoBullet</sprite>
           <sprite>sprites\sWoltmeter</sprite>
           <sprite>sprites\sWoltmeterArrow</sprite>
+          <sprite>sprites\sAmmoDarts</sprite>
         </sprites>
         <sprites name="Abilities">
           <sprite>sprites\sAbilities</sprite>
@@ -29,8 +30,15 @@
         <sprites name="Character Choose">
           <sprite>sprites\sCharacterIcos</sprite>
         </sprites>
+        <sprites name="Debuffs">
+          <sprite>sprites\sDebuffIcons</sprite>
+        </sprites>
+        <sprites name="Pickup Weapon Inf">
+          <sprite>sprites\sPickupWILeft</sprite>
+          <sprite>sprites\sPickupWICenter</sprite>
+          <sprite>sprites\sPickupWIRight</sprite>
+        </sprites>
         <sprite>sprites\sPlayerHP</sprite>
-        <sprite>sprites\sPickupWI</sprite>
         <sprite>sprites\sPickup</sprite>
         <sprite>sprites\sAmmoGUIEnergy</sprite>
         <sprite>sprites\sCursorTarget</sprite>
@@ -69,7 +77,6 @@
           </sprites>
           <sprites name="Knife">
             <sprite>sprites\sKnife</sprite>
-            <sprite>sprites\sKnifeWzhuh</sprite>
           </sprites>
         </sprites>
         <sprites name="Range">
@@ -143,6 +150,18 @@
             <sprite>sprites\sSteelRuff</sprite>
             <sprite>sprites\sSteelRuffShoot</sprite>
           </sprites>
+          <sprites name="Darts">
+            <sprite>sprites\sDarts</sprite>
+            <sprite>sprites\sDartsShoot</sprite>
+          </sprites>
+          <sprites name="Pistophone">
+            <sprite>sprites\sPistophone</sprite>
+            <sprite>sprites\sPistophoneShoot</sprite>
+          </sprites>
+          <sprites name="Stalk">
+            <sprite>sprites\sStalk</sprite>
+            <sprite>sprites\sStalkShoot</sprite>
+          </sprites>
         </sprites>
         <sprites name="Parts For Random">
           <sprite>sprites\sWeaponPartBody</sprite>
@@ -153,14 +172,16 @@
       </sprites>
       <sprites name="Effects">
         <sprite>sprites\sWzhuhMelee</sprite>
+        <sprite>sprites\sKnifeWzhuh</sprite>
         <sprite>sprites\sWzhuhBullet</sprite>
         <sprite>sprites\sLaserWzhuh</sprite>
         <sprite>sprites\sLaserRedWzhuh</sprite>
+        <sprite>sprites\sLaserBlueWzhuh</sprite>
       </sprites>
       <sprites name="Skins">
         <sprite>sprites\sPlayerCamouflage</sprite>
         <sprite>sprites\sPlayerKamikaze</sprite>
-        <sprite>sprites\sPlayerJStone</sprite>
+        <sprite>sprites\sPlayerCactus</sprite>
         <sprite>sprites\sPlayerSolitare</sprite>
         <sprite>sprites\sPlayerFox</sprite>
       </sprites>
@@ -175,10 +196,13 @@
       </sprites>
       <sprite>sprites\sGUIIcoBack</sprite>
       <sprite>sprites\sprite106</sprite>
+      <sprite>sprites\sSpikes</sprite>
+      <sprite>sprites\sSpikesEnd</sprite>
     </sprites>
     <sprites name="Masks">
       <sprite>sprites\sMask32x32</sprite>
       <sprite>sprites\sMask32x32Blue</sprite>
+      <sprite>sprites\sMaskCircle32x32</sprite>
     </sprites>
     <sprites name="Enemies">
       <sprites name="Bodys">
@@ -220,11 +244,19 @@
           <sprite>sprites\sEnemyMachinegunShoot</sprite>
         </sprites>
       </sprites>
-      <sprite>sprites\sEnemyBullet</sprite>
       <sprites name="Jibs">
         <sprite>sprites\sPillowJibs</sprite>
         <sprite>sprites\sMeatJibs</sprite>
         <sprite>sprites\sJellyJibs</sprite>
+      </sprites>
+      <sprites name="Particles">
+        <sprite>sprites\sEnemyBullet</sprite>
+      </sprites>
+      <sprites name="BOSSES">
+        <sprites name="Rocker">
+          <sprite>sprites\rockerboss</sprite>
+          <sprite>sprites\sRocker</sprite>
+        </sprites>
       </sprites>
     </sprites>
     <sprites name="Pickupable">
@@ -248,6 +280,7 @@
       <sprite>sprites\sShotgunProjectile</sprite>
       <sprite>sprites\sBulletProjectile</sprite>
       <sprite>sprites\sEnergyProjectile</sprite>
+      <sprite>sprites\sBulletDarts</sprite>
       <sprite>sprites\sPlasm</sprite>
       <sprite>sprites\sFastBullet</sprite>
       <sprite>sprites\sBorianBulgProjectile</sprite>
@@ -314,11 +347,14 @@
         <script>scripts\maskTryGetDmg.gml</script>
         <script>scripts\maskRemoveById.gml</script>
       </scripts>
+      <scripts name="Recoil">
+        <script>scripts\physicalApplyRecoil.gml</script>
+        <script>scripts\physicalSetRecoil.gml</script>
+      </scripts>
       <script>scripts\physicalBeginStep.gml</script>
       <script>scripts\physicalMove.gml</script>
       <script>scripts\physicalMoveProp.gml</script>
       <script>scripts\physicalMoveToPoint.gml</script>
-      <script>scripts\physicalApplyRecoil.gml</script>
       <script>scripts\physicalTakeDmg.gml</script>
       <script>scripts\physicalCucked.gml</script>
       <script>scripts\physicalClearMaskKick.gml</script>
@@ -336,10 +372,14 @@
       <script>scripts\weaponRestore.gml</script>
       <script>scripts\playerChangeHP.gml</script>
       <script>scripts\playerMaskCreate.gml</script>
-      <script>scripts\playerAddMoney.gml</script>
+      <script>scripts\playerInitDeafultWeapon.gml</script>
       <scripts name="Pickup">
+        <scripts name="Information windows">
+          <script>scripts\playerPickupInformationSet.gml</script>
+        </scripts>
         <script>scripts\playerMaskPickup.gml</script>
         <script>scripts\playerPickup.gml</script>
+        <script>scripts\playerGetPickupableUnder.gml</script>
         <script>scripts\playerPickupWeapon.gml</script>
         <script>scripts\playerPickupWeaponCustom.gml</script>
         <script>scripts\playerPickupAmmo.gml</script>
@@ -361,7 +401,7 @@
         <script>scripts\weaponSpriteIfNoAmmo.gml</script>
       </scripts>
       <scripts name="Abilities">
-        <script>scripts\abilityAdd.gml</script>
+        <script>scripts\playerAbilityAdd.gml</script>
         <script>scripts\playerAbilityKeyCheck.gml</script>
         <script>scripts\playerAbilityUse.gml</script>
         <script>scripts\playerAbilitiesCooldown.gml</script>
@@ -389,6 +429,9 @@
       <scripts name="Melee Wzhuh">
         <script>scripts\meleeWzhuhCreate.gml</script>
         <script>scripts\meleeWzhuhActivate.gml</script>
+      </scripts>
+      <scripts name="Money">
+        <script>scripts\playerAddMoney.gml</script>
       </scripts>
     </scripts>
     <scripts name="Debug">
@@ -467,6 +510,9 @@
       <scripts name="Audio">
         <script>scripts\soundPlay.gml</script>
       </scripts>
+      <scripts name="Spikes">
+        <script>scripts\playerSpikesCreate.gml</script>
+      </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
@@ -515,6 +561,11 @@
         <script>scripts\enemyCreateJibs.gml</script>
         <script>scripts\enemyCreateMoney.gml</script>
         <script>scripts\enemyCreateAmmo.gml</script>
+      </scripts>
+      <scripts name="Debuffs">
+        <script>scripts\enemySetPoison.gml</script>
+        <script>scripts\enemyDebuffsProceed.gml</script>
+        <script>scripts\enemyDrawDebuffs.gml</script>
       </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
@@ -632,6 +683,11 @@
       <script>scripts\minimapSmaller.gml</script>
       <script>scripts\minimapUpdate.gml</script>
     </scripts>
+    <scripts name="Flags">
+      <script>scripts\flagIsActive.gml</script>
+      <script>scripts\flagSet.gml</script>
+      <script>scripts\flagSetVar.gml</script>
+    </scripts>
     <script>scripts\ENUMS.gml</script>
   </scripts>
   <shaders name="shaders">
@@ -704,10 +760,16 @@
         <object>objects\oDynamite</object>
         <object>objects\oStickyGrenade</object>
       </objects>
+      <objects name="Lasers">
+        <object>objects\oLaser</object>
+        <object>objects\oLaserRed</object>
+        <object>objects\oLaserBlue</object>
+      </objects>
       <object>objects\oExplosion</object>
       <object>objects\oShotgunPellet</object>
       <object>objects\oPlasm</object>
       <object>objects\oBulletProjectile</object>
+      <object>objects\oDarts</object>
       <object>objects\oEnergyProjectile</object>
       <object>objects\oFastBullet</object>
       <object>objects\oBorianBulg</object>
@@ -716,11 +778,8 @@
       <object>objects\oPhaserProjectile</object>
       <object>objects\oBoomerang</object>
       <object>objects\oChainsaw</object>
-      <object>objects\oLaser</object>
-      <object>objects\oLaserRed</object>
       <object>objects\oBulletLine</object>
       <object>objects\oZap</object>
-      <object>objects\oMeleeWzhuh</object>
     </objects>
     <objects name="Enemies">
       <object>objects\oBaseEnemy</object>
@@ -743,6 +802,8 @@
       <object>objects\oBaseMask</object>
       <object>objects\oMaskHit</object>
       <object>objects\oMaskAttack</object>
+      <object>objects\oMeleeWzhuh</object>
+      <object>objects\oSpikesMask</object>
     </objects>
     <objects name="Interactable">
       <object>objects\oExplosiveCrate</object>

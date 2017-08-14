@@ -1,11 +1,16 @@
 #include "imagedisplayer.h"
 #include <QRect>
 #include <QDebug>
+#include <QWheelEvent>
+#include <QtMath>
 
 ImageDisplayer::ImageDisplayer(QWidget *parent) :
     QWidget(parent),
     grw(10),
-    path("")
+    path(""),
+    dxoff(0),
+    dyoff(0),
+    scr(false)
 {
     outlinePen.setWidth(4);
     outlinePen.setColor(QColor::fromRgb(240, 10, 10));
@@ -15,16 +20,24 @@ ImageDisplayer::ImageDisplayer(QWidget *parent) :
 
     white.setStyle(Qt::BrushStyle::SolidPattern);
     white.setColor(QColor::fromRgb(255, 255, 255));
+
+    mtg = mapToGlobal(QPoint(width() / 2, height() / 2));
+    dxoff = mtg.x();
+    dyoff = mtg.y();
+
 }
 
 void ImageDisplayer::resetAll()
 {
     path = "";
     repaint();
+    dxoff = 0;
+    dyoff = 0;
 }
 
 void ImageDisplayer::setPNG(QString str)
 {
+    resetAll();
     path = str;
     if (path != "")
     {
@@ -53,12 +66,15 @@ void ImageDisplayer::paintEvent(QPaintEvent *event)
     painter.restore();
 
     painter.save();
+    //QTransform tr;
+    //tr.scale(scf, scf);
+    //painter.setTransform(tr);
     if (path != "")
     {
         // draw actual image
-        int xoff = (width() - image.width()) / 2,
+        int xoff = (width() - image.width()) / 2 ,
             yoff = (height() - image.height()) / 2;
-        painter.drawPixmap(xoff, yoff, image.width(), image.height(), image);
+        painter.drawPixmap(xoff - dxoff, yoff - dyoff, image);
     }
     painter.restore();
 
@@ -69,6 +85,64 @@ void ImageDisplayer::paintEvent(QPaintEvent *event)
     painter.restore();
 }
 
+void ImageDisplayer::mousePressEvent(QMouseEvent *event)
+{
+    switch (event->button())
+    {
+    case Qt::MiddleButton:
+        scr = true;
+        event->accept();
+        return;
+        break;
+    }
+    event->ignore();
+}
+
+void ImageDisplayer::mouseReleaseEvent(QMouseEvent *event)
+{
+    switch (event->button())
+    {
+    case Qt::MiddleButton:
+        scr = false;
+        event->accept();
+        return;
+        break;
+    }
+    event->ignore();
+}
+
+void ImageDisplayer::mouseMoveEvent(QMouseEvent *event)
+{
+    if (scr)
+    {
+        qDebug() << "mtgx: " << mtg.x();
+        qDebug() << "evx: " << event->globalPos().x();
+        //qDebug() << "Dy: " << mtg.y() - event->globalPos().y();
+        dxoff = mtg.x() - event->globalPos().x();
+        dyoff = mtg.y() - event->globalPos().y();
+        event->accept();
+        return;
+    }
+    event->ignore();
+}
+
+void ImageDisplayer::moveEvent(QMoveEvent *event)
+{
+    mtg = mapToGlobal(QPoint(width() / 2, height() / 2));
+    qDebug() << mtg.x() << " " << mtg.y();
+    qDebug() << "------------------------------";
+    event->accept();
+}
+
+void ImageDisplayer::resizeEvent(QResizeEvent *event)
+{
+    mtg = mapToGlobal(QPoint(width() / 2, height() / 2));
+    dxoff = mtg.x();
+    dyoff = mtg.y();
+    qDebug() << mtg.x() << " " << mtg.y();
+    qDebug() << "------------------------------";
+    event->accept();
+}
 
 QPixmap& ImageDisplayer::getPNGImage()
 {

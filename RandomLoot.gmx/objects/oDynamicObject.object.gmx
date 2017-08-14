@@ -33,6 +33,11 @@ spd = 3;
 speedmod = 1;
 fric = 0;
 
+recoilApply = 0;
+recoilFric = 0.05;
+recoilSpd = 0;
+recoilDir = 0;
+
 collideWith = LEVEL.SOLID | LEVEL.WALL;
 
 hittable = 1;

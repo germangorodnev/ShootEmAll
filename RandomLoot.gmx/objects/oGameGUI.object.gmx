@@ -321,6 +321,16 @@ case AMMO.__BORIAN:
             1, 1, 0, image_blend, image_alpha);
     }
     break;
+
+case AMMO.__DARTS:
+    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
+    {
+        var fl = floor(i / abrow);
+        draw_sprite_ext(sAmmoDarts, 0, 
+            abx + fl * abbx, aby + (i % abrow) * abby + fl * 9,
+            1, 1, 0, image_blend, image_alpha);
+    }
+    break;
 }
 
 
@@ -422,18 +432,18 @@ if (global.gameState == GAME_STATES.__SHOP)
     {
         if (pwId != noone)
         {
-            var xx = pwId.x,
-                yy = pwId.y - 50;
-            draw_sprite_ext(sPickupWI, 0, xx, yy, 1, 1, 0, image_blend, image_alpha);
+            draw_sprite_ext(sPickupWILeft, 0, pwilx, pwiy, 1, 1, 0, image_blend, image_alpha);
+            draw_sprite_ext(sPickupWICenter, 0, pwicx, pwiy, pwicsc, 1, 0, image_blend, image_alpha);
+            draw_sprite_ext(sPickupWIRight, 0, pwirx, pwiy, 1, 1, 0, image_blend, image_alpha);
             // class
             draw_set_font(fWeaponType);
             draw_set_valign(fa_top);
             draw_set_halign(fa_left);
-            draw_text_colour(xx - 48, yy - 42, pwType, pwc, pwc, pwc, pwc, image_alpha);  
+            draw_text_colour(pwitypex, pwitypey, pwType, pwc, pwc, pwc, pwc, image_alpha);  
             // name
             draw_set_font(fWeaponName);
             draw_set_halign(fa_center);
-            draw_text_colour(xx + 16, yy - 29, pwName, pwc, pwc, pwc, pwc, image_alpha);  
+            draw_text_colour(pwinamex, pwinamey, pwName, pwc, pwc, pwc, pwc, image_alpha);  
         }       
     }
     // reload indicator

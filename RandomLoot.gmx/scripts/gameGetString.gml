@@ -449,6 +449,48 @@ else if (mg == 1)
                 break;
             }            
             break;
+            
+        case WEAPONS.__DARTS:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Darts";
+                _arr[1] = "WZHUH!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Дротикомет";
+                _arr[1] = "ВЖУХ!";            
+                break;
+            }            
+            break;
+            
+        case WEAPONS.__PISTOPHONE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Pistophone";
+                _arr[1] = "Gun disguised as a telephone";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Пистофон";
+                _arr[1] = "Замаскированный под телефон пистолет";            
+                break;
+            }            
+            break;
+
+        case WEAPONS.__STALK:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = 'Magneplasm A3011A1 "Stalk"';
+                _arr[1] = "3 is better than 1";
+                break;
+            case LANG.__RUS:
+                _arr[0] = 'Магнеплазм А3011А1 "Черенок"';
+                _arr[1] = "3 лучше, чем 1";            
+                break;
+            }            
+            break;
         // =============================== MELEE ========================== //            
         case WEAPONS.__HALFSWORD:
             switch (global.language)

@@ -24,6 +24,7 @@ if (weaponType == WEAPON_TYPE.__RANGE)
         case AMMO.__GRENADES: break;
         case AMMO.__ENERGY: break;
         case AMMO.__BORIAN: break;    
+        case AMMO.__DARTS: break;    
         default: // no gui for ammo
             oGameGUI.ammoGUI = AMMO.__NONE;
             break;

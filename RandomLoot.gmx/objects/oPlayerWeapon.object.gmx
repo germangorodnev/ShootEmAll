@@ -223,8 +223,25 @@ case WEAPON_STATES.__MELEE_DOWN:
         image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
-            with (playerId)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);   
+            if (attackCount == 1)
+            {
+                // do not reset angle
+                with (playerId)
+                {
+                    physicalClearMaskKick();
+                    playerWeaponSetState(WEAPON_STATES.__MOVE);   
+                }
+                image_angle = angleNeed;
+                ret = returnTmrCnt;
+            }
+            else
+            {
+                image_angle = angleNeed;
+                ret = returnTmrCnt;
+                attackCount--;
+                with (playerId)
+                    playerAttack(0); 
+            }      
         }            
         break;   
     }
@@ -262,10 +279,31 @@ case WEAPON_STATES.__MELEE_UP:
     }
     break;    
     
+    
+    
+    
+    
 case WEAPON_STATES.__MELEE_FORW:
-
+    image_angle = playerId.mousedir;
+    angleBegin = min(angleBegin + angleRot, angleNeed);
+    if (angleBegin == angleNeed)
+    {
+        with (playerId)
+            playerWeaponSetState(WEAPON_STATES.__MELEE_BACKW);
+        exit;
+    }
     break;
     
+case WEAPON_STATES.__MELEE_BACKW:
+    image_angle = playerId.mousedir;
+    angleBegin = max(angleBegin - angleRot, 0);
+    if (angleBegin == 0)
+    {
+        with (playerId)
+            playerWeaponSetState(WEAPON_STATES.__MOVE);
+        exit;
+    }
+    break;
     
     
     
@@ -334,15 +372,28 @@ case WEAPON_STATES.__RANGE_RELOAD:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index != -1)
+            <string>///Draw
+if (sprite_index != -1)
 {
     // prev
     //draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * xsc, y + anOffY * image_yscale, xsc, image_yscale, anglePrev, image_blend, image_alpha / 1.5);
     var add = 0;
-    if (oPlayer.weaponType == WEAPON_TYPE.__MELEE)
-        add = oPlayer.mousedir;
+    if (playerId.weaponType == WEAPON_TYPE.__MELEE)
+    {
+        switch (playerId.weapon)
+        {
+        case WEAPONS.__KNIFE:
+            draw_sprite_ext(sprite_index, anImageIndex, 
+                x + anOffX * xsc + lengthdir_x(angleBegin, image_angle), y + anOffY * image_yscale + lengthdir_y(angleBegin, image_angle), 
+                xsc, image_yscale, image_angle + 5 * sin(degtorad(360 * angleBegin/angleNeed)), image_blend, image_alpha);
+                exit;
+            break;
+        default:       
+            add = playerId.mousedir;
+            break;
+        }
+    }
     draw_sprite_ext(sprite_index, anImageIndex, x + anOffX * xsc, y + anOffY * image_yscale, xsc, image_yscale, image_angle + add, image_blend, image_alpha);
-    
 }
 </string>
           </argument>

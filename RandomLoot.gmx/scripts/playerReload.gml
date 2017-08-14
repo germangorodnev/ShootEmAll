@@ -13,7 +13,7 @@ if (weaponAmmo == maxAmmo)
     exit; // no need
     
 var ammoType = weaponInf[W_PR.__BULLET_TYPE];
-if (ammo[ammoType] == 0
+if ((ammo[ammoType] == 0)
     || ((ammo[ammoType] < (maxAmmo - weaponAmmo)) && (maxAmmo == weaponInf[W_PR.__BULLETS_PER_SHOT])))
     exit; // no ammo
     
@@ -47,17 +47,26 @@ else
     var tt = rldTime;
     with (weaponObj)
     {
-        canAttack = 0;
         canAttackTmr = tt;
         reloadAm = ammoAdd;
         reloadAddFinal = reloadAm;
         reloadTmrCnt = (canAttackTmr / reloadAm);//round(canAttackTmr / reloadAm);
         reloadAdd = 1;
+        // WARNING
+        var fl = 1;
+        while ((frac(reloadTmrCnt) != 0) && fl)
+        {
+            reloadTmrCnt *= 2;
+            reloadAdd *= 2;
+            fl--;
+        }
+        /*
         if (reloadTmrCnt < 1)
         {
             reloadTmrCnt *= 2;
             reloadAdd++;
         }
+        */
         show_debug_message("CA: " + string(canAttackTmr) +
             " Rld cnt: " + string(reloadAm) + "  TIMER: " + string(reloadTmrCnt));
         reloadTmrNewbull = reloadTmrCnt;    
