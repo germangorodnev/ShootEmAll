@@ -20,8 +20,6 @@ case WEAPON_TYPE.__MELEE:
 /* ******************************************************** RANGE ***********************************************************/    
 case WEAPON_TYPE.__RANGE:
     // create some bulleetz
-    angle = point_direction(x, y, oPlayer.x, oPlayer.y);
-    xsc = (oPlayer.x > x) * 2 - 1;
     switch (weapon)
     {
     case ENEMY_WEAPON.__OCTO_RIFLE:

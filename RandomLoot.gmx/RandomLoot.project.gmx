@@ -348,8 +348,9 @@
         <script>scripts\maskRemoveById.gml</script>
       </scripts>
       <scripts name="Recoil">
-        <script>scripts\physicalApplyRecoil.gml</script>
         <script>scripts\physicalSetRecoil.gml</script>
+        <script>scripts\physicalApplyRecoil.gml</script>
+        <script>scripts\physicalApplyFriction.gml</script>
       </scripts>
       <script>scripts\physicalBeginStep.gml</script>
       <script>scripts\physicalMove.gml</script>
@@ -543,6 +544,7 @@
         <script>scripts\zapDraw.gml</script>
       </scripts>
       <script>scripts\projectileInited.gml</script>
+      <script>scripts\projectileStep.gml</script>
       <script>scripts\projectileTimer.gml</script>
       <script>scripts\laserFindCollisionPoint.gml</script>
       <script>scripts\laserMineInit.gml</script>
@@ -567,6 +569,9 @@
         <script>scripts\enemyDebuffsProceed.gml</script>
         <script>scripts\enemyDrawDebuffs.gml</script>
       </scripts>
+      <scripts name="Path">
+        <script>scripts\enemyGetNextPathPoint.gml</script>
+      </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
       <script>scripts\enemyDetectPlayer.gml</script>
@@ -577,7 +582,6 @@
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>
       <script>scripts\instancePlaceList.gml</script>
-      <script>scripts\projectileStep.gml</script>
     </scripts>
     <scripts name="Level">
       <scripts name="Level Generation">

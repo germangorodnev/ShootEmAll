@@ -87,7 +87,7 @@ case WEAPON_TYPE.__MELEE:
         playerWeaponSetState(WEAPON_STATES.__MELEE_FORW);
 
         var wzhuh = meleeWzhuhCreate(weaponObj.x + lengthdir_x(4, mousedir), weaponObj.y + lengthdir_y(4, mousedir), 
-            0, 1, 1, 3, 8);
+            0, 1, 1, recspd, rectmr);
         wzhuh.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         wzhuh.dmgcd = weaponCd;
         wzhuh.image_angle = mousedir;
@@ -103,7 +103,8 @@ case WEAPON_TYPE.__MELEE:
         
         playerWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
             
-        var wzhuh = meleeWzhuhCreate(x + lengthdir_x(4, mousedir), y + lengthdir_y(4, mousedir), 0);
+        var wzhuh = meleeWzhuhCreate(x + lengthdir_x(4, mousedir), 
+            y + lengthdir_y(4, mousedir), 0, 0, maskScale, recspd, rectmr);
         wzhuh.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         wzhuh.dmgcd = weaponCd;
         wzhuh.image_angle = mousedir;

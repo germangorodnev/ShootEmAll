@@ -16,6 +16,6 @@ case ENEMY_PATTERN.__FOLLOW:
     target = argument[1];
     enemySetState(ENEMY_STATE.__FOLLOW);
     mp_grid_path(oLevel.levelPf, path, x, y, target.x, target.y, 1);
-    path_start(path, spd, 0, 1);
+    enemyGetNextPathPoint();
     break;  
 }

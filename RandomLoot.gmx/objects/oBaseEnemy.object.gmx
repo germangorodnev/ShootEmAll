@@ -41,6 +41,9 @@ spd = 3;
 speedmod = 1;
 angle = 0;
 
+idleTmr = -1;
+idleMaxTime = 0.5 * room_speed;
+
 whiteTmr = 0;
 
 // some params
@@ -50,6 +53,7 @@ vecdir = 0;
 // movement path
 pathEnd = 0;
 path = path_add();
+
 
 destrTmr = -1;
 

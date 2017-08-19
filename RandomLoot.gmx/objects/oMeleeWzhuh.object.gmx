@@ -121,7 +121,7 @@ for (var i = 0, cnt = ds_list_size(ls); i &lt; cnt; i++)
     {
         if (recspd != 0)
         {
-            var rdir = (direction + 180),
+            var rdir = (image_angle),
                 rspd = recspd,
                 rtr = rectmr;
             with (obj.par)
@@ -142,10 +142,11 @@ if (group == 0) // player only
         var obj = ls[| i];
         if (obj.group == group) // same teamz
             continue;
+        var ang = image_angle;
         with (obj)
         {
+            direction = ang;
             group = 0;
-            spd *= -1;
         }
     }
 }

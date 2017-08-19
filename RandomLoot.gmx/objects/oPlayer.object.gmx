@@ -93,6 +93,7 @@ lasLong = 1; // laser len time in steps
 recspd = 0;
 rectmr = 0;
 
+
 state = PLAYER_STATES.__IDLE;
 
 // control

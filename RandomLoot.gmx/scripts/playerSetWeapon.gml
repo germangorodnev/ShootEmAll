@@ -203,6 +203,8 @@ case WEAPONS.__CEREMONIAL_BORIAN:
     weaponObj.image_angle = weaponObj.angleNeedDown[0];
     
     maskScale = 3;
+    recspd = 6;
+    rectmr = 25;
     break;
     
 case WEAPONS.__KNIFE:
@@ -221,7 +223,7 @@ case WEAPONS.__KNIFE:
     
     maskScale = 1;
     recspd = 4;
-    rectmr = 30;
+    rectmr = 15;
     break;
             
     

@@ -42,6 +42,10 @@ visible = 0;
 active = 0;
 spd = 0;
 
+bulFlags = flagSetVar(0, 
+    BULLET_FLAGS.__INVERTABLE,
+    1);
+
 dtmr = -1;
 
 dmgcd = 0;

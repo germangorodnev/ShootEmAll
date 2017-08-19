@@ -338,6 +338,12 @@ enum PROJECTILE
     __ENEMY_BULLET,
 }
 
+enum BULLET_FLAGS
+{
+    __INVERTABLE = 1 << 0,
+    __ONHIT_DELETABLE = 1 << 1
+}
+
 enum AMMO
 {
     __NONE = 0,
@@ -369,7 +375,7 @@ enum ENEMY_STATE
     __WALK,
     __ATTACK,
     __FOLLOW,
-    __CUCKED
+    __CUCKED,
 }
 
 enum ENEMY

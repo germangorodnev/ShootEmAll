@@ -166,10 +166,12 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 
 idleTmr++;
 
-enemyMoveOutOfOther();
-
+if (current_time % 4 == 0)
+    enemyMoveOutOfOther();
+enemyDebuffsProceed();
 masksMove();
 
+// rotation image
 switch (dir)
 {
 case 0:

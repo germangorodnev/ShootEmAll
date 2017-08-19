@@ -56,7 +56,7 @@ else
         var fl = 1;
         while ((frac(reloadTmrCnt) != 0) && fl)
         {
-            reloadTmrCnt *= 2;
+            reloadTmrCnt = ceil(reloadTmrCnt);
             reloadAdd *= 2;
             fl--;
         }
