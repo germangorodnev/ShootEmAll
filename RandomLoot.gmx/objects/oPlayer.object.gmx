@@ -43,8 +43,7 @@ mousedir = 0;
 restoreWeap = 0;
 restore = -1;
 
-recoilSpd = 0;
-recoilApply = 0;
+wRecoilSpd = 0;
 
 cannot = 0;
 
@@ -353,7 +352,7 @@ case PLAYER_STATES.__IDLE:
     physicalBeginStep();
     playerGetKeys();
     
-    physicalApplyRecoil(recoilSpd, mousedir - 180);
+    physicalApplyRecoil(recoilSpd, recoilDir);
     
     if ((key[KEY.LEFT] ^^ key[KEY.RIGHT]) || (key[KEY.TOP] ^^ key[KEY.BOT]))
         playerSetState(PLAYER_STATES.__WALK);
@@ -406,7 +405,8 @@ case PLAYER_STATES.__WALK:
     physicalBeginStep();
     playerGetKeys();
     
-    physicalApplyRecoil(recoilSpd, mousedir - 180);
+    //physicalApplyRecoil(recoilSpd, mousedir - 180);
+    physicalApplyRecoil(recoilSpd, recoilDir);
     
     if (key[KEY.LEFT])
         hmove--;
@@ -546,6 +546,9 @@ case PLAYER_STATES.__DASH:
 
 /* *********************************************** CUCKED *********************************************** */
 case PLAYER_STATES.__CUCKED:
+    physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    physicalMove(collideWith);
     break;    
     
 /* *********************************************** DIE *********************************************** */

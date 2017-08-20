@@ -25,7 +25,7 @@ case PICKUP.__WEAPON:
     switch (value)
     {
     case WEAPONS.__BLOOD_FLAG:
-        image_angle = 270;
+        sprite_index = sBloodFlag;
         break;
     case WEAPONS.__HALFSWORD:
         sprite_index = sHalfsword; 

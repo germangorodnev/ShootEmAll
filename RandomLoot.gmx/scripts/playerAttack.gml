@@ -10,7 +10,7 @@ switch (weaponType)
 case WEAPON_TYPE.__MELEE:
     switch (weapon)
     {        
-    case WEAPONS.__BLOOD_FLAG:  
+    /*case WEAPONS.__BLOOD_FLAG:  
         with (weaponObj)
             weaponSetAnimation(WEAPONS.__BLOOD_FLAG, WEAPON_STATES.__MELEE_DOWN);
 
@@ -20,7 +20,7 @@ case WEAPON_TYPE.__MELEE:
         maskKick.dmg = irandom_range(weaponInf[W_PR.__ME_DAMAGE_MIN], weaponInf[W_PR.__ME_DAMAGE_MAX]); 
         maskKick.dmgcd = weaponCd;
         //maskKick.image_angle = mousedir;
-        break;
+        break;*/
         
     case WEAPONS.__ARIA_ARTH:
         with (weaponObj)
@@ -243,8 +243,8 @@ case WEAPON_TYPE.__RANGE:
         weaponAmmo -= weaponInf[W_PR.__BULLETS_PER_SHOT];
     playerWeaponSetState(WEAPON_STATES.__RANGE_SHOT);
     // recoil if any
-    if (recoilSpd != 0)
-        recoilApply = 1;
+    if (wRecoilSpd != 0)
+        physicalSetRecoil(wRecoilSpd, mousedir - 180);
     // create shells on floor
     repeat(weaponInf[W_PR.__BULLETS_PER_SHOT])
         gameShellCreate(x + irandom_range(-4, 4), y + irandom_range(-3, 3), weaponInf[W_PR.__BULLET_TYPE]);

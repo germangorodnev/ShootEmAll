@@ -1,5 +1,5 @@
-///colPlaceFreeSide(x_to, y_to, solid only)
-// additionally returns side (0 - r, 1 - t, 2 - l, 3 - b) of collision
+///colPlaceFreeSide(x_to, y_to, bitmask)
+// additionally returns side (0 - r, 1 - t, 2 - l, 3 - b OR -1) of collision
 var xto = argument[0],
     yto = argument[1],
     bmask = argument[2];

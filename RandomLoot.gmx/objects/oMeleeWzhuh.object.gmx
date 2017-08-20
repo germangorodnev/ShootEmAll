@@ -119,6 +119,7 @@ for (var i = 0, cnt = ds_list_size(ls); i &lt; cnt; i++)
         tk = maskTryGetDmg(c, a, b, cdd);
     if (tk)
     {
+        sleep(15);
         if (recspd != 0)
         {
             var rdir = (image_angle),

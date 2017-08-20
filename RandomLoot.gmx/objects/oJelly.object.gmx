@@ -177,6 +177,12 @@ case ENEMY_STATE.__IDLE:
         else if ( ca == -1 )
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
+    
+    if (idleTmr &amp;&amp; !--idleTmr)
+    {
+        enemyStartPattern(ENEMY_PATTERN.__PATROL)    
+    }   
+
     physicalMove(collideWith);
     break;
     
@@ -215,10 +221,12 @@ case ENEMY_STATE.__FOLLOW:
             path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
         {
             // recalc
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);
+            exit;        
         }
     }
     physicalMove(collideWith);
+    
     break;    
     
 case ENEMY_STATE.__WALK:
@@ -227,10 +235,10 @@ case ENEMY_STATE.__WALK:
     physicalApplyRecoil(recoilSpd, recoilDir);
     
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
-    if (done)
+    if (done || (hspd == 0 &amp;&amp; vspd == 0) || (idleTmr &amp;&amp; !--idleTmr))
     {
         // wow we're actually done
-        enemySetState(ENEMY_STATE.__IDLE);
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
     }
     detect = enemyDetectPlayer();
@@ -244,6 +252,12 @@ case ENEMY_STATE.__WALK:
         }
         enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
+    var s = colPlaceFree(x + hspd, y + vspd, collideWith);
+    if (s == 0)
+    {
+        enemySetState(ENEMY_STATE.__IDLE);
+    }
+
     physicalMove(collideWith);
     break;
     

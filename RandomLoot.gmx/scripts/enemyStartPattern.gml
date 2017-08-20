@@ -8,7 +8,10 @@ switch (pattern)
 case ENEMY_PATTERN.__PATROL:
     enemySetState(ENEMY_STATE.__WALK);
     mX = x + irandom(100) * choose(-1, 1);    
-    mY = y + irandom(100) * choose(-1, 1);    
+    mY = y + irandom(100) * choose(-1, 1); 
+    idleTmr = round(random_range(1.5, 3) * room_speed + random(30));
+    if (get_timer() % 4 == 0)
+        angle = irandom(360);
     //} until (!place_meeting(mX, mY, oSolidObject)); 
     break;
     

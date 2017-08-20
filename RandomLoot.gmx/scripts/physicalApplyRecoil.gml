@@ -6,5 +6,5 @@ var rec = argument[0],
 if (recoilTmr && !--recoilTmr)
     recoilApply = 0;
 recoilSpd = approach(recoilSpd, 0, recoilFric);
-hspd += floor(lengthdir_x(rec, dir));
-vspd += floor(lengthdir_y(rec, dir));
+hspd += (lengthdir_x(rec, dir));
+vspd += (lengthdir_y(rec, dir));

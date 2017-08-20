@@ -54,8 +54,8 @@ maskHitAdd(7, 6, 36, 53, 1);
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sprite_index;
 anims[ENEMY_ANIM.__CUCKED] = sEnemyPillowCucked;
-enemySetState(ENEMY_STATE.__IDLE);
-//enemyStartPattern(ENEMY_PATTERN.__PATROL);
+enemyStartPattern(ENEMY_PATTERN.__PATROL);
+
 
 
 </string>
@@ -128,11 +128,8 @@ if (weapon != WEAPONS.__NONE)
         weaponObj.xsc = xsc;
         break;
     case WEAPON_TYPE.__RANGE:
-        if (detect)
-        {
-            weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
-            weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
-        }
+        weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
+        weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
         break;
     }
 }
@@ -170,6 +167,7 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
     enemySetState(ENEMY_STATE.__DIE);
 }
 
+
 idleTmr++;
 
 if (whiteTmr &amp;&amp; !--whiteTmr)
@@ -190,37 +188,45 @@ case ENEMY_STATE.__IDLE:
     physicalApplyRecoil(recoilSpd, recoilDir);
     physicalMoveProp(collideWith, hspd, vspd);
     
-    detect = enemyDetectPlayer();
-    if (detect == 1)
+    enemyWeaponBaseStep();
+    
+    if (idleTmr &amp;&amp; !--idleTmr)
     {
-        //angle = point_direction(x, y, oPlayer.x, oPlayer.y);
-        xsc = (oPlayer.x &gt; x) * 2 - 1;
-        // well, maybe shoot
-        var ca = enemyCanAttack();
-        if (ca == 1)
-        {
-            enemyAttack();
-            enemySetState(ENEMY_STATE.__IDLE);
-            exit;
-        }
-        // now we follow the player
-        else if (ca == -1)
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
-    }
-    else if (detect == -2)
-    {
-        enemyStartPattern(ENEMY_PATTERN.__PATROL);
-        exit;    
-    }
-    if (target != noone)
-    {
-        angle = point_direction(x, y, target.x, target.y);        
-        if (idleTmr &gt; 2 * room_speed)
-        {
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
-        }
-    }
+        enemyStartPattern(ENEMY_PATTERN.__PATROL)    
+    }   
     break;
+    
+case ENEMY_STATE.__WALK:
+    procedureAnimableProceed();    
+    physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    
+    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    if (done || (hspd == 0 &amp;&amp; vspd == 0) || (idleTmr &amp;&amp; !--idleTmr))
+    {
+        // wow we're actually done
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);
+        exit;
+    }
+    
+    enemyWeaponBaseStep();
+
+    var s = colPlaceFree(x + hspd, y + vspd, collideWith);
+    if (s == 0)
+    {
+        enemySetState(ENEMY_STATE.__IDLE);
+    }
+    physicalMove(collideWith);
+    break;
+    
+case ENEMY_STATE.__ATTACK:
+    procedureAnimableApproachReset();        
+    physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    physicalMove(collideWith);
+    break;
+    
+    
     
 case ENEMY_STATE.__FOLLOW:
     physicalBeginStep();
@@ -252,6 +258,7 @@ case ENEMY_STATE.__FOLLOW:
     // well, maybe shoot
     if (enemyCanAttack() == 1)
     {
+        angle = point_direction(x, y, target.x, target.y) + irandom(21) - 10;
         enemyAttack();
         enemySetState(ENEMY_STATE.__IDLE);
         exit;
@@ -274,36 +281,6 @@ case ENEMY_STATE.__FOLLOW:
     physicalMove(collideWith);
     break;    
     
-case ENEMY_STATE.__WALK:
-    procedureAnimableProceed();    
-    physicalBeginStep();
-    physicalApplyRecoil(recoilSpd, recoilDir);
-    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
-    if (done || (hspd == 0 &amp;&amp; vspd == 0))
-    {
-        // wow we're actually done
-        enemySetState(ENEMY_STATE.__IDLE);
-        exit;
-    }
-    detect = enemyDetectPlayer();
-    if (detect == 1)
-    {
-        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
-        // well, maybe shoot
-        /*if (enemyCanAttack())
-        {
-            enemyAttack();
-        }*/
-    }
-    physicalMove(collideWith);
-    break;
-    
-case ENEMY_STATE.__ATTACK:
-    procedureAnimableApproachReset();        
-    physicalBeginStep();
-    physicalApplyRecoil(recoilSpd, recoilDir);
-    physicalMove(collideWith);
-    break;
     
 case ENEMY_STATE.__CUCKED:
     physicalBeginStep();

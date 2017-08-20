@@ -52,6 +52,10 @@ case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
 case WEAPON_ATTACK_TYPE.__DOWN_UP:
     switch (playerId.weapon)
     {
+    case WEAPONS.__BLOOD_FLAG:  //sAriaArthef
+        angleNeedDown[0] = -110;
+        angleRotDown[0] = 22;
+        break;
     case WEAPONS.__ARIA_ARTH:  //sAriaArthef
         angleNeedDown[0] = -110;
         angleRotDown[0] = 22;

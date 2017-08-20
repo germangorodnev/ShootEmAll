@@ -34,9 +34,10 @@ speedmod = 1;
 fric = 0;
 
 recoilApply = 0;
-recoilFric = 0.05;
+recoilFric = 0.07;
 recoilSpd = 0;
 recoilDir = 0;
+recoilTmr = -1;
 
 collideWith = LEVEL.SOLID | LEVEL.WALL;
 

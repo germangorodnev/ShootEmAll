@@ -251,11 +251,28 @@
       </sprites>
       <sprites name="Particles">
         <sprite>sprites\sEnemyBullet</sprite>
+        <sprite>sprites\sRockerUziBullet</sprite>
+        <sprite>sprites\sMolotovFire</sprite>
       </sprites>
       <sprites name="BOSSES">
         <sprites name="Rocker">
+          <sprites name="Weapons">
+            <sprite>sprites\sRockerGuitar</sprite>
+            <sprite>sprites\sRockerMolotov</sprite>
+            <sprites name="Minigun">
+              <sprite>sprites\sRockerMinigun</sprite>
+              <sprite>sprites\sRockerMinigunShoot</sprite>
+            </sprites>
+            <sprites name="UZIS">
+              <sprite>sprites\sRockerUziGreen</sprite>
+              <sprite>sprites\sRockerUziGreenShoot</sprite>
+              <sprite>sprites\sRockerUziPink</sprite>
+              <sprite>sprites\sRockerUziPinkShoot</sprite>
+            </sprites>
+          </sprites>
           <sprite>sprites\rockerboss</sprite>
-          <sprite>sprites\sRocker</sprite>
+          <sprite>sprites\sRockerNoGuitarBack</sprite>
+          <sprite>sprites\sRockerGuitarBack</sprite>
         </sprites>
       </sprites>
     </sprites>
@@ -458,6 +475,7 @@
       <script>scripts\outsideRoom.gml</script>
       <script>scripts\collisionLine.gml</script>
       <script>scripts\objectsInCircle.gml</script>
+      <script>scripts\sleep.gml</script>
     </scripts>
     <scripts name="Pickupable">
       <script>scripts\pickupableInit.gml</script>
@@ -574,10 +592,11 @@
       </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
-      <script>scripts\enemyDetectPlayer.gml</script>
       <script>scripts\enemyCanAttack.gml</script>
+      <script>scripts\enemyDetectPlayer.gml</script>
       <script>scripts\enemyAttack.gml</script>
       <script>scripts\enemyMoveOutOfOther.gml</script>
+      <script>scripts\enemyWeaponBaseStep.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>

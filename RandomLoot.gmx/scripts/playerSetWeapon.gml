@@ -27,7 +27,7 @@ lasLong = 1;
 restoreWeap = 0;
 weaponCd = 0;
 restore = -1;
-recoilSpd = 0;
+wRecoilSpd = 0;
 weaponBlend = c_white;
 for (var i = 0; i < 4; i++)
 {    
@@ -72,7 +72,7 @@ case WEAPONS.__BLOOD_FLAG:
     weaponYoff = -sprite_height / 2 + 15;
     weaponObj.anMaxAngle = 10;
     
-    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP;
+    weaponObj.attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
 
     with (weaponObj)
         weaponAttackTypeInit();
@@ -265,7 +265,7 @@ case WEAPONS.__ROMAN_MG:
     weaponXoff = 3;
     weaponYoff = -24;
     weaponObj.anMaxAngle = 3;
-    recoilSpd = 4;
+    wRecoilSpd = 2;
     
     attackSoundsCnt = 1;
     attackSounds[0] = sndMachinegun;
