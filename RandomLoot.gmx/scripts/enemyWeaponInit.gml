@@ -1,5 +1,6 @@
 ///enemyWeaponInit(ENEMY_WEAPON.__)
 //SWITCH ADD
+var bprs = 6;
 switch (argument[0])
 {
 case ENEMY_WEAPON.__SELF:
@@ -19,7 +20,7 @@ case ENEMY_WEAPON.__MACHINEGUN:
     critchance = 0;
     mindmg = 1;
     maxdmg = 1;
-    projectileSpeed = 7;
+    projectileSpeed = bprs;
     sprayAngle = 5;
     shootcd = 2 * room_speed;
     break;
@@ -37,7 +38,7 @@ case ENEMY_WEAPON.__TAZER:
     critchance = 0;
     mindmg = 1;
     maxdmg = 2;
-    projectileSpeed = 7;
+    projectileSpeed = bprs;
     sprayAngle = 5;
     shootcd = 2 * room_speed;
     break;
@@ -55,7 +56,7 @@ case ENEMY_WEAPON.__OCTO_PISTOL:
     critchance = 0;
     mindmg = 1;
     maxdmg = 2;
-    projectileSpeed = 7;
+    projectileSpeed = bprs;
     sprayAngle = 5;
     shootcd = 2 * room_speed;
     break;
@@ -74,7 +75,7 @@ case ENEMY_WEAPON.__OCTO_RIFLE:
     mindmg = 1;
     maxdmg = 2;
     projectileAmount = 1;
-    projectileSpeed = 7;
+    projectileSpeed = bprs;
     sprayAngle = 3;
     shootcd = 2 * room_speed;
     break;
@@ -93,7 +94,7 @@ case ENEMY_WEAPON.__OCTO_SHOTGUN:
     mindmg = 1;
     maxdmg = 2;
     projectileAmount = 4;
-    projectileSpeed = 7;
+    projectileSpeed = bprs;
     sprayAngle = 5;
     shootcd = 2 * room_speed;
     break;

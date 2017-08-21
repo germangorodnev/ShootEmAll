@@ -590,6 +590,9 @@
       <scripts name="Path">
         <script>scripts\enemyGetNextPathPoint.gml</script>
       </scripts>
+      <scripts name="Draw">
+        <script>scripts\enemyDrawBase.gml</script>
+      </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
       <script>scripts\enemyCanAttack.gml</script>
@@ -597,6 +600,9 @@
       <script>scripts\enemyAttack.gml</script>
       <script>scripts\enemyMoveOutOfOther.gml</script>
       <script>scripts\enemyWeaponBaseStep.gml</script>
+      <script>scripts\enemyRetreatStep.gml</script>
+      <script>scripts\enemyFullRotateAndAttack.gml</script>
+      <script>scripts\enemyMoveToPointDone.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>

@@ -146,8 +146,16 @@ if (group == 0) // player only
         var ang = image_angle;
         with (obj)
         {
-            direction = ang;
-            group = 0;
+            if (bulFlags &amp; BULLET_FLAGS.__ONHIT_DELETABLE)
+            {
+                instance_destroy();
+                continue;
+            }
+            else if (bulFlags &amp; BULLET_FLAGS.__INVERTABLE)
+            {
+                direction = ang;
+                group = 0;
+            }
         }
     }
 }

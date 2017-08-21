@@ -172,6 +172,8 @@ instance_create(0, 0, oShadower);
 
 
 playerSetWeapon(weapon);
+
+++global.playersCount;
 </string>
           </argument>
         </arguments>

@@ -69,7 +69,7 @@ case WEAPON_TYPE.__RANGE:
             bb.direction = angle + irandom(sprayAngle) * choose(-1, 1);       
             bb.spd = projectileSpeed;  
             bb.parent = id; 
-            bb.prt = 1;
+            //bb.prt = 1;
             with (bb)
                 projectileInited();      
         }

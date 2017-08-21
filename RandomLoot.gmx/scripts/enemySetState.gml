@@ -2,6 +2,7 @@
 state = argument[0];
 hittable = 1;
 idleTmr = 0;
+patrolTmr = 0;
 animEnded = 0;
 pathEnd = 0;
 
@@ -30,6 +31,10 @@ case ENEMY_STATE.__CUCKED:
     cuckTmr = cuckTmrCnt;
     physicalBeginStep();
     break;
+    
+case ENEMY_STATE.__RETREAT:
+    customAnimableSetSprite(anims[ENEMY_ANIM.__WALK], animSpd[ENEMY_ANIM.__WALK]);
+    break;  
     
 case ENEMY_STATE.__DIE:
     customAnimableSetSprite(anims[ENEMY_ANIM.__DIE], animSpd[ENEMY_ANIM.__DIE]);

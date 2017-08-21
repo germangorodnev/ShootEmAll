@@ -33,6 +33,7 @@ if (rldTime < 0) // relative
         canAttack = 0;
         canAttackTmr = (ammoAdd/maxAmmo) * tt;
         reloadAm = ammoAdd;
+        reloadAddFinal = reloadAm;
         reloadTmrCnt = round(canAttackTmr / reloadAm);
         reloadTmrNewbull = reloadTmrCnt;   
         reloadTmrBegin = canAttackTmr;

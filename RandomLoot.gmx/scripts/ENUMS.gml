@@ -367,6 +367,12 @@ enum DEBUFFS
     __POISION = 0
 }
 
+
+
+
+
+
+
 // ENEMIES
 enum ENEMY_STATE
 {
@@ -376,6 +382,7 @@ enum ENEMY_STATE
     __ATTACK,
     __FOLLOW,
     __CUCKED,
+    __RETREAT
 }
 
 enum ENEMY
@@ -401,7 +408,8 @@ enum ENEMY_PATTERN
 {
     __NONE = 0,
     __PATROL,
-    __FOLLOW
+    __FOLLOW,
+    __RETREAT
 }
 
 enum ENEMY_ANIM

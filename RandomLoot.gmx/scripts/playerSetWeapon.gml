@@ -52,7 +52,7 @@ with (weaponObj)
     angleRotUp[0] = 0;
 }
 if (weaponType == WEAPON_TYPE.__MELEE)
-    weaponCd = 0.5;
+    weaponCd = 0.15;
     
     
 //SWITCH ADD WEAPONS
@@ -66,8 +66,8 @@ case WEAPONS.__NONE:
     
 case WEAPONS.__BLOOD_FLAG:
     weaponSprite[0] = sBloodFlag;
-    weaponSprite[1] = sBloodFlagAttackDown;
-    weaponSprite[2] = sBloodFlagAttackUp;
+    weaponSprite[1] = sBloodFlag;
+    weaponSprite[2] = sBloodFlag;
     weaponXoff = 15;
     weaponYoff = -sprite_height / 2 + 15;
     weaponObj.anMaxAngle = 10;
@@ -135,7 +135,7 @@ case WEAPONS.__STICK:
     break;
     
 case WEAPONS.__ARIA_ARTH:
-    weaponCd = 1 * room_speed;
+    weaponCd = round(.15 * room_speed);
     weaponSprite[0] = sAriaArthef;
     weaponSprite[1] = sAriaArthef;
     weaponSprite[2] = sAriaArthef;

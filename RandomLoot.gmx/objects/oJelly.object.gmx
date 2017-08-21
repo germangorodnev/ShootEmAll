@@ -178,7 +178,7 @@ case ENEMY_STATE.__IDLE:
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
     
-    if (idleTmr &amp;&amp; !--idleTmr)
+    if (patrolTmr &amp;&amp; !--patrolTmr)
     {
         enemyStartPattern(ENEMY_PATTERN.__PATROL)    
     }   
@@ -210,7 +210,7 @@ case ENEMY_STATE.__FOLLOW:
         exit;
     }
     detect = enemyDetectPlayer();
-    if (detect == -2)
+    if (detect != 1)
     {
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
@@ -235,7 +235,7 @@ case ENEMY_STATE.__WALK:
     physicalApplyRecoil(recoilSpd, recoilDir);
     
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
-    if (done || (hspd == 0 &amp;&amp; vspd == 0) || (idleTmr &amp;&amp; !--idleTmr))
+    if (enemyMoveToPointDone(done))
     {
         // wow we're actually done
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
@@ -381,7 +381,8 @@ if (whiteTmr != 0)
 else
     draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
 // debuffs
-enemyDrawDebuffs();
+enemyDrawBase();
+
 </string>
           </argument>
         </arguments>

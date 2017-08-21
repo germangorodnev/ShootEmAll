@@ -54,6 +54,8 @@ state = ENEMY_STATE.__IDLE;
 pattern = ENEMY_PATTERN.__NONE;
 
 dist = 300;
+retreatDist = 250;
+
 detect = 0;
 
 bulletCollideWith = LEVEL.WALL;

@@ -32,6 +32,7 @@ vecdir = 1;
 anMaxAngle = 3;
 anSinStep = 6;
 anMaxH = 2;
+patrolTmr = -1;
 
 hp = 20;
 _hp = 20;
@@ -190,9 +191,9 @@ case ENEMY_STATE.__IDLE:
     
     enemyWeaponBaseStep();
     
-    if (idleTmr &amp;&amp; !--idleTmr)
+    if (patrolTmr &amp;&amp; !--patrolTmr)
     {
-        enemyStartPattern(ENEMY_PATTERN.__PATROL)    
+        enemyStartPattern(ENEMY_PATTERN.__PATROL); 
     }   
     break;
     
@@ -202,7 +203,7 @@ case ENEMY_STATE.__WALK:
     physicalApplyRecoil(recoilSpd, recoilDir);
     
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
-    if (done || (hspd == 0 &amp;&amp; vspd == 0) || (idleTmr &amp;&amp; !--idleTmr))
+    if (enemyMoveToPointDone(done))
     {
         // wow we're actually done
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
@@ -215,6 +216,7 @@ case ENEMY_STATE.__WALK:
     if (s == 0)
     {
         enemySetState(ENEMY_STATE.__IDLE);
+        patrolTmr = irandom_range(2, 35);
     }
     physicalMove(collideWith);
     break;
@@ -258,12 +260,11 @@ case ENEMY_STATE.__FOLLOW:
     // well, maybe shoot
     if (enemyCanAttack() == 1)
     {
-        angle = point_direction(x, y, target.x, target.y) + irandom(21) - 10;
-        enemyAttack();
+        enemyFullRotateAndAttack();
         enemySetState(ENEMY_STATE.__IDLE);
         exit;
     }
-    if (detect == -2 || detect == -1)
+    if (detect != 1)
     {
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
@@ -373,6 +374,7 @@ path_speed = 0;
             <kind>1</kind>
             <string>if (!drawable)
     exit;
+enemyDebug();
 var usesh = whiteTmr != 0;
 if (usesh)
     shader_set(shdWhite);
@@ -393,8 +395,7 @@ else
 if (usesh)
     shader_reset();
 // debuffs
-enemyDrawDebuffs();
-enemyDebug();
+enemyDrawBase();
 
 </string>
           </argument>
