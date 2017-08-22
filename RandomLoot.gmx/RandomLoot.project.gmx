@@ -210,6 +210,10 @@
           <sprite>sprites\sCondom</sprite>
         </sprites>
         <sprites name="Pillow">
+          <sprites name="Machinegun">
+            <sprite>sprites\sEnemyMachinegun</sprite>
+            <sprite>sprites\sEnemyMachinegunShoot</sprite>
+          </sprites>
           <sprite>sprites\sEnemyPillow</sprite>
           <sprite>sprites\sEnemyPillowCucked</sprite>
         </sprites>
@@ -230,18 +234,16 @@
             <sprite>sprites\sOctoAttackW2</sprite>
             <sprite>sprites\sOctoAttackW3</sprite>
           </sprites>
+          <sprites name="Healer">
+            <sprite>sprites\sOctoHealerWeapon</sprite>
+            <sprite>sprites\sOctoHeal</sprite>
+          </sprites>
         </sprites>
         <sprites name="Jelly">
           <sprite>sprites\sJellyIdle</sprite>
           <sprite>sprites\sJellyMove</sprite>
           <sprite>sprites\sJellyAttack</sprite>
           <sprite>sprites\sJellyDead</sprite>
-        </sprites>
-      </sprites>
-      <sprites name="Weapons">
-        <sprites name="Machinegun">
-          <sprite>sprites\sEnemyMachinegun</sprite>
-          <sprite>sprites\sEnemyMachinegunShoot</sprite>
         </sprites>
       </sprites>
       <sprites name="Jibs">
@@ -476,6 +478,7 @@
       <script>scripts\collisionLine.gml</script>
       <script>scripts\objectsInCircle.gml</script>
       <script>scripts\sleep.gml</script>
+      <script>scripts\setSprIfNotSet.gml</script>
     </scripts>
     <scripts name="Pickupable">
       <script>scripts\pickupableInit.gml</script>
@@ -593,6 +596,12 @@
       <scripts name="Draw">
         <script>scripts\enemyDrawBase.gml</script>
       </scripts>
+      <scripts name="CUSTOM">
+        <scripts name="Octopus Shield">
+          <script>scripts\enemyOctopusShieldAttack.gml</script>
+          <script>scripts\enemyOctopusShieldChangeWeapon.gml</script>
+        </scripts>
+      </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
       <script>scripts\enemyCanAttack.gml</script>
@@ -603,6 +612,7 @@
       <script>scripts\enemyRetreatStep.gml</script>
       <script>scripts\enemyFullRotateAndAttack.gml</script>
       <script>scripts\enemyMoveToPointDone.gml</script>
+      <script>scripts\enemySetDirByMoving.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>

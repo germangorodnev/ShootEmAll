@@ -209,7 +209,7 @@ case ENEMY_STATE.__IDLE:
     if (detect)
     {
         // well, maybe shoot
-        angle = point_direction(x, y, oPlayer.x, oPlayer.y);
+        angle = point_direction(x, y, target.x, target.y);
         dir = round(angle / 90); 
         targetDist = distance_to_object(target);
         
@@ -239,20 +239,9 @@ case ENEMY_STATE.__IDLE:
 case ENEMY_STATE.__FOLLOW:
     procedureAnimableProceed();   
     physicalBeginStep();
-    physicalApplyRecoil(recoilSpd, recoilDir); 
-
-    targetDist = distance_to_object(target);
-    
-    dir = round(angle / 90); 
-    
-    if (targetDist &lt;= weaponAttDist)
-    {
-        // wow we're actually done
-        enemySetState(ENEMY_STATE.__IDLE);
-        exit;
-    }
     
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    //enemySetDirByMoving();
     if (done)
     {
         // wow we're actually done
@@ -261,7 +250,20 @@ case ENEMY_STATE.__FOLLOW:
         else
             enemyGetNextPathPoint();
     }
+    
+    physicalApplyRecoil(recoilSpd, recoilDir); 
 
+    angle = point_direction(x, y, target.x, target.y);
+    dir = round(angle / 90); 
+    targetDist = distance_to_object(target);
+    
+    if (targetDist &lt;= weaponAttDist)
+    {
+        // wow we're actually done
+        enemySetState(ENEMY_STATE.__IDLE);
+        exit;
+    }
+    
     detect = enemyDetectPlayer();
     if (detect != 1)
     {
@@ -283,7 +285,6 @@ case ENEMY_STATE.__FOLLOW:
         {
             // recalc
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
-            exit;        
         }
     }
     physicalMove(collideWith);
@@ -321,15 +322,17 @@ case ENEMY_STATE.__RETREAT:
 case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
     physicalBeginStep();
-    physicalApplyRecoil(recoilSpd, recoilDir);
     
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    enemySetDirByMoving();
     if (enemyMoveToPointDone(done))
     {
         // wow we're actually done
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
     }
+    
+    physicalApplyRecoil(recoilSpd, recoilDir);
     
     detect = enemyDetectPlayer();
     if (detect == 1)
@@ -346,6 +349,8 @@ case ENEMY_STATE.__WALK:
     if (s == 0)
     {
         enemySetState(ENEMY_STATE.__IDLE);
+        patrolTmr = irandom_range(1, 3) * room_speed;
+        exit;
     }
 
     physicalMove(collideWith);

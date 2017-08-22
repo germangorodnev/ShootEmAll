@@ -27,7 +27,7 @@ case WEAPON_TYPE.__RANGE:
         {
             var bullet = gameGetProjectileNameByIndex(projectile),
                 xx = weaponObj.x + lengthdir_x(ldirx, weaponObj.image_angle + ldirdir),
-                yy = weaponObj.y + lengthdir_y(ldiry, weaponObj.image_angle + ldirdir * sign(weaponObj.image_yscale));
+                yy = weaponObj.y + lengthdir_y(ldirx, weaponObj.image_angle + ldirdir * sign(weaponObj.image_yscale));
             var bb = instance_create(xx, yy, bullet);
             if (irandom_range(0, 100) < critchance)
             {
@@ -42,6 +42,7 @@ case WEAPON_TYPE.__RANGE:
             bb.direction = angle + irandom(sprayAngle);       
             bb.spd = projectileSpeed;  
             bb.parent = id; 
+            bb.group = maskHit.group;
             bb.prt = timer * i;
             with (bb)
                 projectileInited();      
@@ -52,7 +53,7 @@ case WEAPON_TYPE.__RANGE:
         // just by params
         var bullet = gameGetProjectileNameByIndex(projectile),
             xx = weaponObj.x + lengthdir_x(ldirx, weaponObj.image_angle + ldirdir),
-            yy = weaponObj.y + lengthdir_y(ldiry, weaponObj.image_angle + ldirdir * sign(weaponObj.image_yscale));
+            yy = weaponObj.y + lengthdir_y(ldirx, weaponObj.image_angle + ldirdir * sign(weaponObj.image_yscale));
         repeat (projectileAmount)
         {
             var bb = instance_create(xx, yy, bullet);
@@ -69,6 +70,7 @@ case WEAPON_TYPE.__RANGE:
             bb.direction = angle + irandom(sprayAngle) * choose(-1, 1);       
             bb.spd = projectileSpeed;  
             bb.parent = id; 
+            bb.group = maskHit.group;
             //bb.prt = 1;
             with (bb)
                 projectileInited();      

@@ -341,7 +341,8 @@ enum PROJECTILE
 enum BULLET_FLAGS
 {
     __INVERTABLE = 1 << 0,
-    __ONHIT_DELETABLE = 1 << 1
+    __ONHIT_DELETABLE = 1 << 1,
+    __SHIELD_DELETABLE = 1 << 2
 }
 
 enum AMMO

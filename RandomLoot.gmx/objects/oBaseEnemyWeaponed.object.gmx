@@ -71,7 +71,6 @@ weaponAttDist = dist;
 projectile = PROJECTILE.__ENEMY_BULLET;
 
 ldirx = 0;
-ldiry = 0;
 ldirdir = 0;
 critchance = 0;
 critmindmg = 0;

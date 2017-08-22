@@ -168,7 +168,6 @@ myo = mouse_y;
 instance_create(x, y, oCamera);
 var ggui = instance_create(0, 0, oGameGUI);
 ggui = oGameGUI.playerId;
-instance_create(0, 0, oShadower);
 
 
 playerSetWeapon(weapon);

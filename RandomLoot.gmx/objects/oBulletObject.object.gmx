@@ -43,8 +43,10 @@ active = 0;
 spd = 0;
 
 bulFlags = flagSetVar(0, 
-    BULLET_FLAGS.__INVERTABLE,
+    BULLET_FLAGS.__INVERTABLE
+    | BULLET_FLAGS.__SHIELD_DELETABLE,
     1);
+
 
 dtmr = -1;
 

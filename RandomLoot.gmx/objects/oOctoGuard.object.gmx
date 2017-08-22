@@ -39,23 +39,21 @@ hp = 35;
 _hp = 35;
 
 // weapon
-weapon = ENEMY_WEAPON.__TAZER;
+weapon = ENEMY_WEAPON.__SHIELD;
 weaponType = WEAPON_TYPE.__RANGE;
-projectile = PROJECTILE.__ENEMY_BULLET;
+projectile = PROJECTILE.__PLASM;
 enemyType = ENEMY.__OCTO_GUARD;
 weaponXoff = 0;
 weaponYoff = 0;
 
 dist = 300;
-weaponAttDist = 30;
+weaponAttDist = 60;
+retreatDist = 0; // no mercy
 
-weaponObj = instance_create(x, y, oEnemyWeapon);
+weaponObj = instance_create(x, y, oOctoGuardShield);
 weaponObj.parent = id;
 enemyWeaponInit(weapon);
 
-// shield
-shield = instance_create(x, y, oOctoGuardShield);
-shield.parent = id;
 
 
 maskHitAdd(13, 6, 48, 100, 1);
@@ -91,8 +89,7 @@ enemyStartPattern(ENEMY_PATTERN.__PATROL);
             <string>event_inherited();
 with(weaponObj)
     instance_destroy();
-with (shield)
-    instance_destroy();
+
 </string>
           </argument>
         </arguments>
@@ -120,24 +117,16 @@ if (!updatable)
     exit;
 weaponObj.x = x + weaponXoff * sign(xsc);
 weaponObj.y = y + weaponYoff;
-if (weapon != WEAPONS.__NONE)
+switch (weapon)
 {
-    switch (weaponType)
-    {
-    case WEAPON_TYPE.__MELEE:
-        if (weaponObj.state == WEAPON_STATES.__MOVE)
-        {
-            var perc = anAngle / anMaxAngle;
-            with(weaponObj)
-                image_angle = perc * anMaxAngle;
-        }
-        weaponObj.xsc = xsc;
-        break;
-    case WEAPON_TYPE.__RANGE:
-        weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
-        weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
-        break;
-    }
+case ENEMY_WEAPON.__SHIELD:
+    weaponObj.image_angle = sin(anSinRad) * weaponObj.anMaxAngle;
+    //weaponObj.xsc = xsc;
+    break;
+case ENEMY_WEAPON.__TAZER:
+    weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
+    weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
+    break;
 }
 
 </string>
@@ -184,23 +173,49 @@ masksMove();
 switch (weapon)
 {
 case ENEMY_WEAPON.__SHIELD:
-    xsc = 1;
+    //xsc = 1;
     vecdir = 1;
     anims[ENEMY_ANIM.__IDLE] = sOctoGuardShielded;
+    // x\y off 0
+    weaponXoff = 0;
+    weaponYoff = 23;
+    setSprIfNotSet(anims[ENEMY_ANIM.__IDLE], 0);
     switch (dir)
     {
     case 0:
         image_index = 0;
+        weaponXoff = 22;
+        weaponYoff = 0;
+        with (weaponObj)
+        {
+            sprite_index = sOctoGuardShieldR;
+        }
         break;    
     case 1:
         image_index = 2;
+        vecdir = -1;
+        weaponYoff = -5;
+        with (weaponObj)
+        {
+            sprite_index = sOctoGuardShieldT;
+        }
         break;    
     case 2:
         image_index = 0;
-        xsc = -1;
+        weaponXoff = 22;
+        weaponYoff = 0;
+        //xsc = -1;
+        with (weaponObj)
+        {
+            sprite_index = sOctoGuardShieldR;
+        }
         break;    
     case 3:
         image_index = 1;
+        with (weaponObj)
+        {
+            sprite_index = sOctoGuardShieldT;
+        }
         break;    
     }
     break;
@@ -208,6 +223,8 @@ case ENEMY_WEAPON.__TAZER:
     xsc = 1;
     vecdir = 1;
     anims[ENEMY_ANIM.__IDLE] = sOctoGuardNoshield;
+    weaponObj.sprite_index = sOctoGuardTazer;
+    setSprIfNotSet(anims[ENEMY_ANIM.__IDLE], 0);
     switch (dir)
     {
     case 0:
@@ -230,6 +247,7 @@ case ENEMY_WEAPON.__TAZER:
 anims[ENEMY_ANIM.__WALK] = anims[ENEMY_ANIM.__IDLE];
 
 
+
 switch (state)
 {
 case ENEMY_STATE.__IDLE:
@@ -238,21 +256,31 @@ case ENEMY_STATE.__IDLE:
     
     physicalApplyRecoil(recoilSpd, recoilDir); 
     
-    sprite_index = anims[ENEMY_ANIM.__IDLE];
+    //sprite_index = anims[ENEMY_ANIM.__IDLE];
     
+    if (weapon == ENEMY_WEAPON.__TAZER)
+    {
+        angle = point_direction(x, y, target.x, target.y);        
+        dir = round(angle / 90);
+    }
     detect = enemyDetectPlayer();
     if (detect == 1)
     {
-        angle = point_direction(x, y, oPlayer.x, oPlayer.y);        
         // well, maybe shoot
-        if (enemyCanAttack() == 1)
-        {
-            enemyAttack();
-        }
-        if (idleTmr &gt; 2 * room_speed)
-        {
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
-        }
+        var ca = enemyCanAttack();
+        switch (ca)
+        {         
+        case 1:
+            enemyOctopusShieldAttack();
+            break;
+        case -1:
+            if (idleTmr &gt; .2 * room_speed)
+            {
+                enemyOctopusShieldChangeWeapon(ENEMY_WEAPON.__SHIELD);
+                enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);
+            }
+            break;
+        } 
     }
     else
     {
@@ -261,32 +289,20 @@ case ENEMY_STATE.__IDLE:
             enemyStartPattern(ENEMY_PATTERN.__PATROL);   
         } 
     }
+    physicalMove(collideWith);
     break;
+    
+    
+    
     
 case ENEMY_STATE.__FOLLOW:
     procedureAnimableProceed(); 
     physicalBeginStep();
-    physicalApplyRecoil(recoilSpd, recoilDir); 
        
-    if (sprite_index != anims[ENEMY_ANIM.__WALK])
-        sprite_index = anims[ENEMY_ANIM.__WALK];
-    
-    targetDist = distance_to_object(target);
-    xsc = ((angle + 90) % 360 &lt; 180) * 2 - 1;
-    dir = round(angle / 90); 
-
-    if (targetDist &lt;= weaponAttDist)
-    {
-        // wow we're actually done
-        if (enemyCanAttack())
-        {
-            enemyAttack();
-            enemySetState(ENEMY_STATE.__IDLE);
-            exit;
-        }
-    }
+    //setSprIfNotSet(anims[ENEMY_ANIM.__WALK], 0);
     
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    enemySetDirByMoving();
     if (done)
     {
         // wow we're actually done
@@ -294,14 +310,37 @@ case ENEMY_STATE.__FOLLOW:
             enemySetState(ENEMY_STATE.__IDLE);
         else
             enemyGetNextPathPoint();
-    }
+        //exit;
+    } 
+    
+    targetDist = distance_to_object(target);
 
+    physicalApplyRecoil(recoilSpd, recoilDir); 
+
+    if (targetDist &lt;= weaponAttDist)
+    {
+        // wow we're actually done
+        if (enemyCanAttack())
+        {
+            enemyOctopusShieldAttack();
+            enemySetState(ENEMY_STATE.__IDLE);
+            exit;
+        }
+    }
+    
     detect = enemyDetectPlayer();
     if (detect != 1)
     {
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
     }
+    
+    /*if (enemyCanAttack() == 1)
+    {
+        enemyFullRotateAndAttack();
+        enemySetState(ENEMY_STATE.__IDLE);
+    }*/
+    
     if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
     {
         if (idleTmr &gt; 1 * room_speed)
@@ -310,16 +349,21 @@ case ENEMY_STATE.__FOLLOW:
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
         }
     }
+    
     physicalMove(collideWith);
     break;    
+    
+    
+    
+    
     
 case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
     physicalBeginStep();
-    physicalApplyRecoil(recoilSpd, recoilDir);
     
-    sprite_index = anims[ENEMY_ANIM.__WALK];
+    //setSprIfNotSet(anims[ENEMY_ANIM.__WALK], 0);
     
+    enemySetDirByMoving();
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
     if (enemyMoveToPointDone(done))
     {
@@ -327,13 +371,15 @@ case ENEMY_STATE.__WALK:
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
     }
+    
+    physicalApplyRecoil(recoilSpd, recoilDir);
     detect = enemyDetectPlayer();
     if (detect == 1)
     {
         // well, maybe shoot
         if (enemyCanAttack())
         {
-            enemyAttack();
+            enemyOctopusShieldAttack();
             exit;
         }
         enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);

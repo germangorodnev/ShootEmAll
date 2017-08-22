@@ -93,24 +93,27 @@ for (var i = 0; i &lt; CHARS.__CNT; i++)
     if (pir)
         if (mouse_check_button_pressed(mb_left))
         {
-            if (dbl == -1)
+            if (!instance_exists(oNextRoom))
             {
-                characterPreSelect(i);
-                dbl = 35;
-            }
-            else
-            {
-                if (preChar == i)
+                if (dbl == -1)
                 {
-                    // select this and go to game
-                    characterSet(i);
-                    with (instance_create(0, 0, oNextRoom))
-                        nextRoomEffectInit(1, rRandom, 1, mouse_x, mouse_y, 15, global.guiW / 2, global.guiH / 2, 16);
+                    characterPreSelect(i);
+                    dbl = 35;
                 }
                 else
                 {
-                    characterPreSelect(i);
-                    dbl = 35;                
+                    if (preChar == i)
+                    {
+                        // select this and go to game
+                        characterSet(i);
+                        with (instance_create(0, 0, oNextRoom))
+                            nextRoomEffectInit(1, rRandom, 1, mouse_x, mouse_y, 15, global.guiW / 2, global.guiH / 2, 16);
+                    }
+                    else
+                    {
+                        characterPreSelect(i);
+                        dbl = 35;                
+                    }
                 }
             }
         }

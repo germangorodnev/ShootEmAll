@@ -150,6 +150,9 @@ with (instance_create(playerX, playerY - 60, oPickupWeapon))
 
 // deactivate all doors
 laserDoorChangeAll(1);
+
+instance_create(0, 0, oShadower);
+
 </string>
           </argument>
         </arguments>

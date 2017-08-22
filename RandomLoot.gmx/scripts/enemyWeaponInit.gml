@@ -15,7 +15,6 @@ case ENEMY_WEAPON.__MACHINEGUN:
     weaponAnimSpeed[1] = 0.3;
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
-    ldiry = 37;
     ldirdir = 12;
     critchance = 0;
     mindmg = 1;
@@ -25,6 +24,7 @@ case ENEMY_WEAPON.__MACHINEGUN:
     shootcd = 2 * room_speed;
     break;
     
+/* OCTO SHIELDER */
 case ENEMY_WEAPON.__TAZER:
     weaponSprite[0] = sOctoGuardTazer;
     weaponSprite[1] = sOctoGuardTazer;
@@ -32,8 +32,7 @@ case ENEMY_WEAPON.__TAZER:
     weaponYoff = -25;
     weaponAnimSpeed[1] = 0.3;
     weaponObj.anMaxAngle = 4;
-    ldirx = 37;
-    ldiry = 37;
+    ldirx = 24;
     ldirdir = 12;
     critchance = 0;
     mindmg = 1;
@@ -43,6 +42,22 @@ case ENEMY_WEAPON.__TAZER:
     shootcd = 2 * room_speed;
     break;
     
+case ENEMY_WEAPON.__SHIELD:
+    weaponXoff = 18;
+    weaponYoff = 0;
+    weaponObj.anMaxAngle = 5;
+    weaponObj.image_yscale = 1;
+    break;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 case ENEMY_WEAPON.__OCTO_PISTOL:
     weaponSprite[0] = sOctoAttackW1;
     weaponSprite[1] = sOctoAttackW1;
@@ -51,7 +66,6 @@ case ENEMY_WEAPON.__OCTO_PISTOL:
     weaponAnimSpeed[1] = 0.3;
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
-    ldiry = 37;
     ldirdir = 0;
     critchance = 0;
     mindmg = 1;
@@ -69,7 +83,6 @@ case ENEMY_WEAPON.__OCTO_RIFLE:
     weaponAnimSpeed[1] = 0.3;
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
-    ldiry = 37;
     ldirdir = 0;
     critchance = 0;
     mindmg = 1;
@@ -88,7 +101,6 @@ case ENEMY_WEAPON.__OCTO_SHOTGUN:
     weaponAnimSpeed[1] = 0.3;
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
-    ldiry = 37;
     ldirdir = 0;
     critchance = 0;
     mindmg = 1;
