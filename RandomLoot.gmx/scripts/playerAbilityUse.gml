@@ -14,7 +14,7 @@ case ABILITIES.__DASH:
 case ABILITIES.__HEAL:
     // set cooldown
     abilsTmr[pos] = abilsTmrCnt[pos];
-    playerChangeHP(abilsParams[0]);
+    playerChangeHP(id, abilsParams[0]);
     break;  
 case ABILITIES.__SPIKES:
     // set cooldown

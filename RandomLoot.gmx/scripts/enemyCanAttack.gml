@@ -4,8 +4,16 @@ switch (weaponType)
 case WEAPON_TYPE.__MELEE:
     if (distance_to_object(target) > weaponAttDist)
         return -1;
-    if (!canAttack)
-        return 0;
+    if (weaponObj == noone)
+    {
+        if (!canAttack)
+            return 0;
+    }
+    else
+    {
+        if (!weaponObj.canAttack)
+            return 0;        
+    }
     return 1;    
     break;
     

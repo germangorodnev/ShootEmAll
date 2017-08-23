@@ -227,6 +227,7 @@
             <sprite>sprites\sOctoGuardShieldR</sprite>
             <sprite>sprites\sOctoGuardShieldT</sprite>
             <sprite>sprites\sOctoGuardTazer</sprite>
+            <sprite>sprites\sOctoGuardClub</sprite>
           </sprites>
           <sprites name="Attacker">
             <sprite>sprites\sOctoAttack</sprite>
@@ -393,6 +394,19 @@
       <script>scripts\playerChangeHP.gml</script>
       <script>scripts\playerMaskCreate.gml</script>
       <script>scripts\playerInitDeafultWeapon.gml</script>
+      <scripts name="GUI">
+        <script>scripts\playerRecountGUI.gml</script>
+      </scripts>
+      <scripts name="Weapon">
+        <script>scripts\playerWeaponDrop.gml</script>
+        <script>scripts\playerWeaponSetState.gml</script>
+        <script>scripts\playerWeaponSetKickCount.gml</script>
+        <script>scripts\weaponSetAnimation.gml</script>
+        <script>scripts\weaponAttackTypeInit.gml</script>
+        <script>scripts\playerWeaponComboIncrease.gml</script>
+        <script>scripts\weaponFleeAngleSet.gml</script>
+        <script>scripts\weaponSpriteIfNoAmmo.gml</script>
+      </scripts>
       <scripts name="Pickup">
         <scripts name="Information windows">
           <script>scripts\playerPickupInformationSet.gml</script>
@@ -406,19 +420,6 @@
         <script>scripts\playerPickupCard.gml</script>
         <script>scripts\playerPickupEat.gml</script>
         <script>scripts\playerPickupRechargableExplosive.gml</script>
-      </scripts>
-      <scripts name="GUI">
-        <script>scripts\playerRecountGUI.gml</script>
-      </scripts>
-      <scripts name="Weapon">
-        <script>scripts\playerWeaponDrop.gml</script>
-        <script>scripts\playerWeaponSetState.gml</script>
-        <script>scripts\playerWeaponSetKickCount.gml</script>
-        <script>scripts\weaponSetAnimation.gml</script>
-        <script>scripts\weaponAttackTypeInit.gml</script>
-        <script>scripts\playerWeaponComboIncrease.gml</script>
-        <script>scripts\weaponFleeAngleSet.gml</script>
-        <script>scripts\weaponSpriteIfNoAmmo.gml</script>
       </scripts>
       <scripts name="Abilities">
         <script>scripts\playerAbilityAdd.gml</script>
@@ -576,6 +577,7 @@
       <scripts name="Enemy Weapons">
         <script>scripts\enemyWeaponInit.gml</script>
         <script>scripts\enemyWeaponSetState.gml</script>
+        <script>scripts\enemyWeaponSetAnimation.gml</script>
       </scripts>
       <scripts name="Projectiles">
         <script>scripts\projectileStepEnemy.gml</script>
@@ -604,8 +606,8 @@
       </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
-      <script>scripts\enemyCanAttack.gml</script>
       <script>scripts\enemyDetectPlayer.gml</script>
+      <script>scripts\enemyCanAttack.gml</script>
       <script>scripts\enemyAttack.gml</script>
       <script>scripts\enemyMoveOutOfOther.gml</script>
       <script>scripts\enemyWeaponBaseStep.gml</script>
@@ -829,9 +831,11 @@
       <object>objects\oJelly</object>
       <objects name="Octos">
         <object>objects\oOctoAttack</object>
+        <object>objects\oOctoHealer</object>
         <objects name="Guard">
           <object>objects\oOctoGuard</object>
           <object>objects\oOctoGuardShield</object>
+          <object>objects\oOctoClub</object>
         </objects>
       </objects>
       <object>objects\oBuddyTest</object>

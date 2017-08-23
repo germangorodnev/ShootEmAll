@@ -143,7 +143,7 @@ if (sprite_index != -1)
 
 if (canAttackTmr &amp;&amp; !--canAttackTmr)
 {
-    canAttackTmr = -1;
+    canAttackTmr = 0;
     // can attack again
     canAttack = 1;
 }
@@ -189,7 +189,6 @@ case WEAPON_STATES.__MELEE_DOWN:
     switch (attackType)
     {
     case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-
         image_angle = approach(image_angle, angleNeed, angleRot);
         anOffX = approach(anOffX, anOffXNeed[animIndex], anOffXSpd[animIndex]);
         anOffY = approach(anOffY, anOffYNeed[animIndex], anOffYSpd[animIndex]);

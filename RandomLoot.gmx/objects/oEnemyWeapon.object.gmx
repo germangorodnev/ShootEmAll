@@ -47,8 +47,10 @@ reloadTmr = 0;
 animEnded = 0;
 
 angleNeed = 0;
+// melee
 angleNeedDown = 0;
 angleNeedUp = 0;
+maskScale = 1;
 
 angleBegin = 0;
 
@@ -125,39 +127,26 @@ case WEAPON_STATES.__MOVE:
     break;
     
 case WEAPON_STATES.__MELEE_DOWN:
-    image_angle = approach(image_angle, angleNeed, angleRot);
     //SWITCH ADD
     switch (attackType)
     {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
-        }            
-        break;
     default:
+        image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
+            image_angle = angleNeed;
+            with (parent)
+                enemyWeaponSetState(WEAPON_STATES.__MOVE);   
         }            
         break;   
     }
     break;
         
 case WEAPON_STATES.__MELEE_UP:
-    image_angle = approach(image_angle, angleNeed, angleRot);
     switch (attackType)
     {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (parent)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);    
-        }            
-        break;
     default:
+        image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
             with (parent)
@@ -214,6 +203,7 @@ case WEAPON_STATES.__RANGE_RECOIL:
             <kind>1</kind>
             <string>if (sprite_index != -1)
     draw_sprite_ext(sprite_index, anImageIndex, x, y, xsc, image_yscale, image_angle, image_blend, image_alpha);
+
 </string>
           </argument>
         </arguments>

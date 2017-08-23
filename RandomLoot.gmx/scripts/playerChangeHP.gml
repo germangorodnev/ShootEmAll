@@ -1,2 +1,9 @@
-///playerChangeHP(int rel)
-oPlayer.hp = clamp(oPlayer.hp + argument[0], 0, oPlayer._hp);
+///playerChangeHP(player, int rel)
+with (argument[0])
+{
+    hp = clamp(hp + argument[1], 0, _hp);
+    // WARNING
+    if (hp <= 0)
+        room_restart();
+}
+

@@ -17,9 +17,9 @@ with (weaponObj)
         sprite_index = parent.weaponSprite[0];
         anImageSpeed = parent.weaponAnimSpeed[0];
         break;
-    case WEAPON_STATES.__RANGE_SHOT:
+    case WEAPON_STATES.__RANGE_SHOT:        
         canAttack = 0;
-        canAttackTmr = parent.shootcd; //parent.weaponInf[W_PR.__SHOOT_CD];
+        canAttackTmr = parent.shootcd; 
         
         sprite_index = parent.weaponSprite[1];
         anImageSpeed = parent.weaponAnimSpeed[1];
@@ -33,19 +33,19 @@ with (weaponObj)
         break;
         
     case WEAPON_STATES.__MELEE_DOWN:
-        angleNeed = angleNeedDown + 180 * (xsc < 0) + angleNeedDown * -1 * (xsc < 0);
-        angleRot = angleRotDown;
+        angleNeed = -image_angle;
+        angleRot = angleRotDown[0];
         angleBegin = image_angle;
-
-        canAttack = 0;
-        canAttackTmr = parent.weaponInf[W_PR.__ME_SHOOT_CD];
         
+        canAttack = 0;
+        canAttackTmr = parent.shootcd; 
+                
         sprite_index = parent.weaponSprite[1];
         anImageSpeed = parent.weaponAnimSpeed[0];
         break;
         
     case WEAPON_STATES.__MELEE_UP:
-        angleNeed = angleNeedUp;;// + 180 * (xsc < 0) + angleNeedUp * -1 * (xsc < 0);
+        angleNeed = angleNeedUp;
         angleRot = angleRotUp;
         
         sprite_index = parent.weaponSprite[2];

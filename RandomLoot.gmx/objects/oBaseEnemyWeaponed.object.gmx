@@ -79,6 +79,7 @@ projectileAmount = 1;
 projectileSpeed = 0;
 sprayAngle = 0;
 shootcd = 0;
+dmgcd = 1;
 
 enemyType = -1;
 </string>

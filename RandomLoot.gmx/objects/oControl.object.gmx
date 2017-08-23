@@ -259,6 +259,10 @@ if (keyboard_check_released(ord('V')))
     instance_create(mouse_x, mouse_y, oOctoGuard);
 if (keyboard_check_released(ord('C')))
     instance_create(mouse_x, mouse_y, oOctoAttack);
+if (keyboard_check_released(ord('X')))
+    instance_create(mouse_x, mouse_y, oOctoClub);
+if (keyboard_check_released(ord('Z')))
+    instance_create(mouse_x, mouse_y, oOctoHealer);
 if (keyboard_check_released(vk_f4))
     window_set_fullscreen(!window_get_fullscreen());
 if (keyboard_check_released(vk_left))

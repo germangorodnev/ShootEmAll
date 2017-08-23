@@ -131,51 +131,6 @@ if (bo != noone)
 // SWITCH ADD
 switch (state)
 {
-case WEAPON_STATES.__MOVE:
-    break;
-    
-case WEAPON_STATES.__MELEE_DOWN:
-    image_angle = approach(image_angle, angleNeed, angleRot);
-    //SWITCH ADD
-    switch (attackType)
-    {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
-        }            
-        break;
-    default:
-        if (image_angle == angleNeed)
-        {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
-        }            
-        break;   
-    }
-    break;
-        
-case WEAPON_STATES.__MELEE_UP:
-    image_angle = approach(image_angle, angleNeed, angleRot);
-    switch (attackType)
-    {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (parent)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);    
-        }            
-        break;
-    default:
-        if (image_angle == angleNeed)
-        {
-            with (parent)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);       
-        }
-        break;   
-    }
-    break;    
     
 case WEAPON_STATES.__RANGE_SHOT:
     if (animEnded)

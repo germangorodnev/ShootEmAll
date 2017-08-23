@@ -14,6 +14,21 @@ case WEAPON_TYPE.__MELEE:
         canAttack = 0;
         canAttackTmr = canAttackCd;
         break;
+    default:
+    //case ENEMY_WEAPON.__OCTO_CLUB:
+        var ww = weapon;
+        //with (weaponObj)
+        //    enemyWeaponSetAnimation(ww, WEAPON_STATES.__MELEE_DOWN);
+        enemyWeaponSetState(WEAPON_STATES.__MELEE_DOWN);
+        var wzhuh = meleeWzhuhCreate(x + lengthdir_x(4, angle), y + lengthdir_y(4, angle), 1, 0, maskScale);
+        wzhuh.dmg = irandom_range(mindmg, maxdmg); 
+        wzhuh.dmgcd = dmgcd;
+        wzhuh.image_angle = angle;
+        with (wzhuh)
+        {
+            meleeWzhuhActivate(5);
+        }
+        break;
     }
     break;
     
@@ -44,6 +59,7 @@ case WEAPON_TYPE.__RANGE:
             bb.parent = id; 
             bb.group = maskHit.group;
             bb.prt = timer * i;
+            bb.dmgcd = dmgcd;
             with (bb)
                 projectileInited();      
         }
@@ -71,6 +87,7 @@ case WEAPON_TYPE.__RANGE:
             bb.spd = projectileSpeed;  
             bb.parent = id; 
             bb.group = maskHit.group;
+            bb.dmgcd = dmgcd;
             //bb.prt = 1;
             with (bb)
                 projectileInited();      

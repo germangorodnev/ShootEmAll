@@ -32,7 +32,7 @@ if (pickupId.autopickup)
     case PICKUP.__HP:
         if (hp != _hp)
         {
-            playerChangeHP(pickupId.value);
+            playerChangeHP(id, pickupId.value);
             with (pickupId)
                 instance_destroy();
         }

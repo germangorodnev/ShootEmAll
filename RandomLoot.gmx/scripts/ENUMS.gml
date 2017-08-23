@@ -391,7 +391,9 @@ enum ENEMY
     __PILLOW = 0,
     __JELLY,
     __OCTO_GUARD,
-    __OCTO_ATTACK
+    __OCTO_ATTACK,
+    __OCTO_HEALER,
+    __OCTO_GUARD_MACE
 }
 
 enum ENEMY_WEAPON
@@ -402,7 +404,9 @@ enum ENEMY_WEAPON
     __TAZER,
     __OCTO_PISTOL,
     __OCTO_SHOTGUN,
-    __OCTO_RIFLE
+    __OCTO_RIFLE,
+    __OCTO_CLUB,
+    __OCTO_HEAL
 }
 
 enum ENEMY_PATTERN 

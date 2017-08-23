@@ -54,7 +54,29 @@ case ENEMY_WEAPON.__SHIELD:
     
     
     
+case ENEMY_WEAPON.__OCTO_CLUB:
+    weaponSprite[0] = sOctoGuardClub;
+    weaponSprite[1] = sOctoGuardClub;
+    weaponSprite[2] = sOctoGuardClub;
+    weaponXoff = 6;
+    weaponYoff = -25;
+        
+    with (weaponObj)
+    {
+        attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
+        angleNeedDown[0] = -110;
+        angleRotDown[0] = 22;
+        image_angle = angleNeedDown[0];
+        anMaxAngle = 6;
+    }  
     
+    maskScale = 2;
+    critchance = 0;
+    mindmg = 1;
+    maxdmg = 1;
+    shootcd = 1.5 * room_speed;
+    dmgcd = .5 * room_speed;
+    break;  
     
     
     
@@ -106,6 +128,23 @@ case ENEMY_WEAPON.__OCTO_SHOTGUN:
     mindmg = 1;
     maxdmg = 2;
     projectileAmount = 4;
+    projectileSpeed = bprs;
+    sprayAngle = 5;
+    shootcd = 2 * room_speed;
+    break;
+    
+case ENEMY_WEAPON.__OCTO_HEAL:
+    weaponSprite[0] = sOctoHealerWeapon;
+    weaponSprite[1] = sOctoHealerWeapon;
+    weaponXoff = 4;
+    weaponYoff = -25;
+    weaponAnimSpeed[1] = 0.3;
+    weaponObj.anMaxAngle = 4;
+    ldirx = 37;
+    ldirdir = 0;
+    critchance = 0;
+    mindmg = 1;
+    maxdmg = 1;
     projectileSpeed = bprs;
     sprayAngle = 5;
     shootcd = 2 * room_speed;

@@ -58,7 +58,7 @@ maskHitAdd(7, 6, 45, 102, 1);
 
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sprite_index;
-anims[ENEMY_ANIM.__CUCKED] = sEnemyPillowCucked;
+anims[ENEMY_ANIM.__CUCKED] = sprite_index;
 enemyStartPattern(ENEMY_PATTERN.__PATROL);
 
 
@@ -176,7 +176,6 @@ enemyDebuffsProceed();
 masksMove();
 
 // rotation image
-xsc = 1;
 vecdir = 1;
 switch (dir)
 {
@@ -189,7 +188,6 @@ case 1:
     vecdir = -1;
     break;    
 case 2:
-    xsc = -1;
     image_index = 0;
     break;    
 case 3:

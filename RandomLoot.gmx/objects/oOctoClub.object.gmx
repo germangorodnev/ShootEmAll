@@ -26,42 +26,41 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-image_speed = 0;
 
 spd = 1;
 vecdir = 1;
 anMaxAngle = 3;
 anSinStep = 6;
 anMaxH = 2;
-dir = 0; // 0 - right
 
-hp = 35;
-_hp = 35;
+hp = 20;
+_hp = 20;
 
 // weapon
-weapon = ENEMY_WEAPON.__SHIELD;
-weaponType = WEAPON_TYPE.__RANGE;
-projectile = PROJECTILE.__PLASM;
-enemyType = ENEMY.__OCTO_GUARD;
+weapon = ENEMY_WEAPON.__OCTO_CLUB;
+weaponType = WEAPON_TYPE.__MELEE;
+projectile = -4;
+enemyType = ENEMY.__OCTO_GUARD_MACE;
 weaponXoff = 0;
 weaponYoff = 0;
 
-dist = 300;
-weaponAttDist = 60;
-retreatDist = 0; // no mercy
+dir = 0;
 
-weaponObj = instance_create(x, y, oOctoGuardShield);
+dist = 500;
+weaponAttDist = 55;
+retreatDist = -1; // no mercy
+
+weaponObj = instance_create(x, y, oEnemyWeapon);
 weaponObj.parent = id;
-enemyWeaponInit(weapon);
-
-
-
-maskHitAdd(13, 6, 48, 100, 1);
+var ww = weapon;
+enemyWeaponInit(ww);
+maskHitAdd(7, 6, 45, 102, 1);
 
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sprite_index;
 anims[ENEMY_ANIM.__CUCKED] = sprite_index;
 enemyStartPattern(ENEMY_PATTERN.__PATROL);
+
 
 
 </string>
@@ -89,7 +88,6 @@ enemyStartPattern(ENEMY_PATTERN.__PATROL);
             <string>event_inherited();
 with(weaponObj)
     instance_destroy();
-
 </string>
           </argument>
         </arguments>
@@ -117,16 +115,24 @@ if (!updatable)
     exit;
 weaponObj.x = x + weaponXoff * sign(xsc);
 weaponObj.y = y + weaponYoff;
-switch (weapon)
+if (weapon != WEAPONS.__NONE)
 {
-case ENEMY_WEAPON.__SHIELD:
-    weaponObj.image_angle = sin(anSinRad) * weaponObj.anMaxAngle;
-    //weaponObj.xsc = xsc;
-    break;
-case ENEMY_WEAPON.__TAZER:
-    weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
-    weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
-    break;
+    switch (weaponType)
+    {
+    case WEAPON_TYPE.__MELEE:
+        /*if (weaponObj.state == WEAPON_STATES.__MOVE)
+        {
+            var perc = anAngle / anMaxAngle;
+            with(weaponObj)
+                image_angle = perc * anMaxAngle;
+        }*/
+        //weaponObj.xsc = xsc;
+        break;
+    case WEAPON_TYPE.__RANGE:
+        weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
+        weaponObj.image_angle = angle + sin(anSinRad) * weaponObj.anMaxAngle;
+        break;
+    }
 }
 
 </string>
@@ -169,85 +175,25 @@ if (current_time % 4 == 0)
 enemyDebuffsProceed();
 masksMove();
 
-// 4 dirs anim
-switch (weapon)
+// rotation image
+vecdir = 1;
+switch (dir)
 {
-case ENEMY_WEAPON.__SHIELD:
-    //xsc = 1;
-    vecdir = 1;
-    anims[ENEMY_ANIM.__IDLE] = sOctoGuardShielded;
-    // x\y off 0
-    weaponXoff = 0;
-    weaponYoff = 23;
-    setSprIfNotSet(anims[ENEMY_ANIM.__IDLE], 0);
-    switch (dir)
-    {
-    case 0:
-        image_index = 0;
-        weaponXoff = 22;
-        weaponYoff = 0;
-        with (weaponObj)
-        {
-            customAnimableSetSprite(sOctoGuardShieldR, 0);
-        }
-        break;    
-    case 1:
-        image_index = 2;
-        vecdir = -1;
-        weaponYoff = -5;
-        with (weaponObj)
-        {
-            customAnimableSetSprite(sOctoGuardShieldT, 0);
-        }
-        break;    
-    case 2:
-        image_index = 0;
-        weaponXoff = 22;
-        weaponYoff = 0;
-        //xsc = -1;
-        with (weaponObj)
-        {
-            customAnimableSetSprite(sOctoGuardShieldR, 0);
-        }
-        break;    
-    case 3:
-        image_index = 1;
-        with (weaponObj)
-        {
-            customAnimableSetSprite(sOctoGuardShieldT, 0);
-            anImageIndex = 1;
-        }
-        break;    
-    }
-    break;
-case ENEMY_WEAPON.__TAZER:
-    xsc = 1;
-    vecdir = 1;
-    anims[ENEMY_ANIM.__IDLE] = sOctoGuardNoshield;
-    weaponObj.sprite_index = sOctoGuardTazer;
-    setSprIfNotSet(anims[ENEMY_ANIM.__IDLE], 0);
-    switch (dir)
-    {
-    case 0:
-        image_index = 0;
-        break;    
-    case 1:
-        image_index = 2;
-        vecdir = -1;
-        break;    
-    case 2:
-        image_index = 0;
-        xsc = -1;
-        break;    
-    case 3:
-        image_index = 1;
-        break;    
-    }
-    break;
+case 0:
+    //xsc = (target.x &gt; x) * 2 - 1;
+    image_index = 0;
+    break;    
+case 1:
+    image_index = 2;
+    vecdir = -1;
+    break;    
+case 2:
+    image_index = 0;
+    break;    
+case 3:
+    image_index = 1;
+    break;    
 }
-anims[ENEMY_ANIM.__WALK] = anims[ENEMY_ANIM.__IDLE];
-
-
 
 switch (state)
 {
@@ -256,32 +202,26 @@ case ENEMY_STATE.__IDLE:
     physicalBeginStep();
     
     physicalApplyRecoil(recoilSpd, recoilDir); 
-    
-    //sprite_index = anims[ENEMY_ANIM.__IDLE];
-    
-    if (weapon == ENEMY_WEAPON.__TAZER)
-    {
-        angle = point_direction(x, y, target.x, target.y);        
-        dir = round(angle / 90);
-    }
+        
     detect = enemyDetectPlayer();
-    if (detect == 1)
+    if (detect)
     {
         // well, maybe shoot
+        angle = point_direction(x, y, target.x, target.y);
+        dir = round(angle / 90); 
+        targetDist = distance_to_object(target);
+        
+        enemyRetreatStep();
+        
         var ca = enemyCanAttack();
-        switch (ca)
-        {         
-        case 1:
-            enemyOctopusShieldAttack();
-            break;
-        case -1:
-            if (idleTmr &gt; .2 * room_speed)
-            {
-                enemyOctopusShieldChangeWeapon(ENEMY_WEAPON.__SHIELD);
-                enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);
-            }
-            break;
-        } 
+        if (ca == 1)
+        {
+            enemyAttack();
+            exit;
+        }
+        // now we follow the player
+        else if (ca == -1)
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
     else
     {
@@ -289,18 +229,14 @@ case ENEMY_STATE.__IDLE:
         {
             enemyStartPattern(ENEMY_PATTERN.__PATROL);   
         } 
-    }
+    }    
+    
     physicalMove(collideWith);
     break;
     
-    
-    
-    
 case ENEMY_STATE.__FOLLOW:
-    procedureAnimableProceed(); 
+    procedureAnimableProceed();   
     physicalBeginStep();
-       
-    //setSprIfNotSet(anims[ENEMY_ANIM.__WALK], 0);
     
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
     enemySetDirByMoving();
@@ -311,22 +247,19 @@ case ENEMY_STATE.__FOLLOW:
             enemySetState(ENEMY_STATE.__IDLE);
         else
             enemyGetNextPathPoint();
-        //exit;
-    } 
+    }
     
-    targetDist = distance_to_object(target);
-
     physicalApplyRecoil(recoilSpd, recoilDir); 
 
+    angle = point_direction(x, y, target.x, target.y);
+    dir = round(angle / 90); 
+    targetDist = distance_to_object(target);
+    
     if (targetDist &lt;= weaponAttDist)
     {
         // wow we're actually done
-        if (enemyCanAttack())
-        {
-            enemyOctopusShieldAttack();
-            enemySetState(ENEMY_STATE.__IDLE);
-            exit;
-        }
+        enemySetState(ENEMY_STATE.__IDLE);
+        exit;
     }
     
     detect = enemyDetectPlayer();
@@ -336,36 +269,60 @@ case ENEMY_STATE.__FOLLOW:
         exit;
     }
     
-    /*if (enemyCanAttack() == 1)
-    {
-        enemyFullRotateAndAttack();
-        enemySetState(ENEMY_STATE.__IDLE);
-    }*/
+    enemyRetreatStep();
     
+    // well, maybe shoot
+    if (enemyCanAttack() == 1)
+    {
+        enemyAttack();
+        enemySetState(ENEMY_STATE.__IDLE);
+    }
     if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
     {
-        if (idleTmr &gt; 1 * room_speed)
+        if (idleTmr &gt; 0.5 * room_speed)
         {
             // recalc
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
         }
     }
+    physicalMove(collideWith);
+    break;   
+    
+case ENEMY_STATE.__RETREAT:
+    procedureAnimableProceed();    
+    physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    
+    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    if (done)
+    {
+        // wow we're actually done
+        if (path_get_number(path) == 0)
+            enemySetState(ENEMY_STATE.__IDLE);
+        else
+            enemyGetNextPathPoint();
+    }
+    detect = enemyDetectPlayer();
+    if (detect != 1)
+    {
+        enemySetState(ENEMY_STATE.__IDLE);
+        exit;
+    }
+    if (enemyCanAttack() == 1)
+    {
+        dir = round(angle / 90); 
+        enemyFullRotateAndAttack();
+    }
     
     physicalMove(collideWith);
-    break;    
-    
-    
-    
-    
+    break; 
     
 case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
     physicalBeginStep();
     
-    //setSprIfNotSet(anims[ENEMY_ANIM.__WALK], 0);
-    
-    enemySetDirByMoving();
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    enemySetDirByMoving();
     if (enemyMoveToPointDone(done))
     {
         // wow we're actually done
@@ -374,24 +331,26 @@ case ENEMY_STATE.__WALK:
     }
     
     physicalApplyRecoil(recoilSpd, recoilDir);
+    
     detect = enemyDetectPlayer();
     if (detect == 1)
     {
         // well, maybe shoot
         if (enemyCanAttack())
         {
-            enemyOctopusShieldAttack();
+            enemyAttack();
             exit;
         }
         enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
-    
-    if (!colPlaceFree(x + hspd, y + vspd, collideWith))
+    var s = colPlaceFree(x + hspd, y + vspd, collideWith);
+    if (s == 0)
     {
-        enemyStartPattern(ENEMY_PATTERN.__PATROL);
+        enemySetState(ENEMY_STATE.__IDLE);
+        patrolTmr = irandom_range(1, 3) * room_speed;
         exit;
     }
-    
+
     physicalMove(collideWith);
     break;
     
@@ -403,7 +362,6 @@ case ENEMY_STATE.__ATTACK:
     break;
     
 case ENEMY_STATE.__CUCKED:
-    procedureAnimableApproachReset();        
     physicalBeginStep();
     physicalApplyRecoil(recoilSpd, recoilDir);
     if (cuckTmr &amp;&amp; !--cuckTmr)
@@ -496,7 +454,7 @@ enemyDebug();
 var usesh = maskHit.expire != 0;
 if (usesh)
     shader_set(shdWhite);
-
+    
 if (vecdir &lt; 0)
 {
     with (weaponObj)
@@ -510,7 +468,9 @@ else
         event_perform(ev_other, ev_user3);
 }
 
-shader_reset();
+
+//if (usesh)
+    shader_reset();
 
 enemyDrawBase();
 
