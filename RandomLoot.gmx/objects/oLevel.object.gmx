@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>oStateObject</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>///Level controller
+event_inherited();
+
 image_speed = 0;
 
 tw = LEVEL.TILE_W;
@@ -98,6 +100,10 @@ rY1[rci] = 0;
 rX2[rci] = 0;
 rY2[rci] = 0;
 rA[rci] = 0;
+rState[rci] = -1;
+// params
+blChTo0 = .05;
+blChTo1 = .05;
 
 levelRoom = ds_list_create();
 // index - room index
@@ -109,6 +115,7 @@ black = surface_create(global.guiW, global.guiH);
 playerX = 0;
 playerY = 0;
 
+/* ********************** G E N E R A T I O N *********************** */
 levelGenerate();
 ds_list_destroy(cells);
 cellsVis = 0;
@@ -146,10 +153,11 @@ with (instance_create(playerX + 120, playerY, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__RAZORBLADE);
 with (instance_create(playerX, playerY - 60, oPickupWeapon))
     pickupableInit(PICKUP.__WEAPON, WEAPONS.__KNIFE);
-//instance_create(playerX + tw * 3, playerY - th * 3, oLevelPortal);
-
+//with (instance_position(playerX, playerY, oRoomComein))
+//    instance_destroy();
+    
 // deactivate all doors
-laserDoorChangeAll(1);
+laserDoorChangeAll(0);
 
 instance_create(0, 0, oShadower);
 
@@ -212,6 +220,62 @@ for (var i = 0, ci = ds_list_size(levelRoom); i &lt; ci; i++)
 }
      
 ds_map_destroy(colOffset);
+
+event_inherited();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!updatable)
+    exit;
+    
+// black zones
+for (var i = 0; i &lt; rectCnt; ++i)
+{
+    var rst = rState[i];
+    switch (rst)
+    {
+    case -1: // to 0 alpha
+        continue;
+    case 0: // to 0 alpha
+        rA[i] = approach(rA[i], 0, blChTo0);
+        if (rA[i] == 0)
+            rState[i] = -1;
+        break;
+    case 1: // to full alpha
+        rA[i] = approach(rA[i], 0, blChTo1);
+        if (rA[i] == 1)
+            rState[i] = -1;
+        break;
+    }
+}
+
+// de\activation
+instance_deactivate_object(oPickupableObject);
+instance_deactivate_object(oExplosiveCrate);
+instance_deactivate_object(oPrisonDoor);
+
+instance_activate_region(view_xview, view_yview, view_xview + view_wview, view_yview + view_hview, 1);
+
 
 
 </string>

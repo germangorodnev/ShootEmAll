@@ -463,8 +463,10 @@ if (global.gameState == GAME_STATES.__SHOP)
 
 // black rectangles
 
-/*with (oLevel)
+with (oLevel)
 {
+    if (!surface_exists(black))
+        black = surface_create(global.guiW, global.guiH);
     surface_set_target(black);
     draw_clear_alpha(bl, 1);
     draw_set_blend_mode(bm_subtract);

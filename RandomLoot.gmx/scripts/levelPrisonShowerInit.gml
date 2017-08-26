@@ -260,6 +260,7 @@ repeat (irandom_range(3, 5))
         ex = irandom_range(x + 1, x + rw - 2);
         ey = irandom_range(y + 1, y + rh - 2);
     } until (lvl[# ex, ey] & LEVEL.SOLID == 0);
-    levelCreateEnemy(ex * tw + tw / 2, ey * th + th / 2, ENEMY.__PILLOW);
+    levelCreateEnemy(ex * tw + tw / 2, ey * th + th / 2, 
+        choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD));
 }
 

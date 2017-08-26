@@ -7,6 +7,8 @@ with (oMaskHit)
     visible = global.debug;
 with (oMaskAttack)
     visible = global.debug;
+with (oRoomComein)
+    visible = global.debug;
 with (oCamera)
     if (global.debug)
     {

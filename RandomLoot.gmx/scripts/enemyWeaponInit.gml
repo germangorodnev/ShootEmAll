@@ -15,7 +15,7 @@ case ENEMY_WEAPON.__MACHINEGUN:
     weaponAnimSpeed[1] = 0.3;
     weaponObj.anMaxAngle = 4;
     ldirx = 37;
-    ldirdir = 12;
+    ldirdir = 0;
     critchance = 0;
     mindmg = 1;
     maxdmg = 1;
@@ -148,6 +148,33 @@ case ENEMY_WEAPON.__OCTO_HEAL:
     projectileSpeed = bprs;
     sprayAngle = 5;
     shootcd = 2 * room_speed;
+    break;
+    
+/* ******************** B O S S R O C K E R *********************** */
+case ENEMY_WEAPON.__ROCKER_MINIGUN:
+    weaponSprite[0] = sRockerMinigun;
+    weaponSprite[1] = sRockerMinigunShoot;
+    weaponXoff = 4;
+    weaponYoff = -16;
+    weaponAnimSpeed[1] = 0.3;
+    weaponObj.anMaxAngle = 7;
+    ldirx = 85;
+    ldirdir = 0;
+    critchance = 0;
+    mindmg = 1;
+    maxdmg = 1;
+    projectileSpeed = bprs;
+    sprayAngle = 8;
+    shootcd = round(.05 * room_speed);
+    dmgcd = max(1, round(.08 * room_speed));
+    break;
+    
+case ENEMY_WEAPON.__ROCKER_UZI:
+
+    break;
+    
+case ENEMY_WEAPON.__ROCKER_GUITAR:
+
     break;
 }
 enemyWeaponSetState(WEAPON_STATES.__MOVE);

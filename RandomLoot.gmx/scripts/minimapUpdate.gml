@@ -56,7 +56,7 @@ with (oMinimap)
         if (!obj.block)
             continue;
         draw_rectangle_colour(xr, yr, xr+.5, yr+.5,
-            wallcol, wallcol, wallcol, wallcol, 0);    
+            lasercol, lasercol, lasercol, lasercol, 0);    
     }   
     
     // exit

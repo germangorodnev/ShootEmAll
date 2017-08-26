@@ -62,6 +62,7 @@ crateopenedcol = make_colour_rgb(128, 117, 21);
 shopcol = make_colour_rgb(138, 69, 138);
 shopnoitemcol = make_colour_rgb(111, 37, 111);
 exitcol = make_colour_rgb(39, 36, 110);
+lasercol = make_colour_rgb(200, 30, 30);
 </string>
           </argument>
         </arguments>

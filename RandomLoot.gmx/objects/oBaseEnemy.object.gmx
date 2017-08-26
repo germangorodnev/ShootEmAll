@@ -131,6 +131,10 @@ for (var i = 0, ci = ds_list_size(debuffs); i &lt; ci; i++)
     debuffs[| i] = 0;
 }
 ds_list_destroy(debuffs);
+
+// check the room end
+levelCheckEnemyDie();
+
 </string>
           </argument>
         </arguments>

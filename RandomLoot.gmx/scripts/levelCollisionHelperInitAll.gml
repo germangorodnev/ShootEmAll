@@ -42,3 +42,10 @@ levelCollisionHelperInit(TILES.__CRATE_RIGHT, 12, 28, 12, 12);
 
 levelCollisionHelperInit(TILES.__SCAMNUM_HOR, 0, 32, 0, 0);
 levelCollisionHelperInit(TILES.__PLANT, 2, 42, 2, 0);
+
+
+/// GAME
+// laser doors
+levelCollisionHelperInit(TILES.__LASER_DOOR_VERT, 0, 0, 0, 0);
+levelCollisionHelperInit(TILES.__LASER_DOOR_HOR, 0, 0, 0, 0);
+

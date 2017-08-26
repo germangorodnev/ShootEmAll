@@ -51,7 +51,7 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
                 break;
                 
             case 2: // shower
-                if (door[1] == 1)
+                if (door[1] != noone)
                     continue;
                 type = ROOMS.__PRISON_SHOWER_1W;
                 levelPrisonShowerInit();
@@ -70,7 +70,7 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
             break;
             
         case 1:
-            switch (choose(0, 1))
+            switch (choose(0))
             {
             case 0:
                 type = ROOMS.__PRISON_CANTEEN_2W;

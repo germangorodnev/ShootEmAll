@@ -19,8 +19,6 @@ var r1 = c1.rm,
 switch (dir)
 {
 case 0: // right
-    rm.door[0] = 1;
-    c2.rm.door[2] = 1;
     p1x = r1.x + r1.rw;
     p2x = r2.x;
     var ymin = min(r1.y, r2.y),
@@ -39,12 +37,14 @@ case 0: // right
     n.rw = abs(ww);
     n.rh = hh;
     // lasers
-    laserDoorAdd(p1x * tw + ((p2x - 1 - p1x) div 2) * tw, p1y * th - th / 2, 0);
+    var dr = laserDoorAdd(p1x * tw + ((p2x - 1 - p1x) div 2) * tw, p1y * th - th / 2, 0,
+        c1, c2);
+    dr.floorId = n;
+    rm.door[0] = dr;
+    c2.rm.door[2] = dr;
     //laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
     break;
 case 2: // left
-    rm.door[2] = 1;
-    c2.rm.door[0] = 1;
     p1x = r2.x + r2.rw;
     p2x = r1.x;
     var ymin = min(r1.y, r2.y),
@@ -63,14 +63,17 @@ case 2: // left
     n.rw = abs(ww);
     n.rh = hh;
     // lasers
-    laserDoorAdd(p2x * tw + ((p1x - 1 - p2x) div 2) * tw, p1y * th - th / 2, 0);
+    var dr = laserDoorAdd(p2x * tw + ((p1x - 1 - p2x) div 2) * tw, p1y * th - th / 2, 0,
+        c1, c2);
+    dr.floorId = n;
+    rm.door[2] = dr;
+    c2.rm.door[0] = dr;
+
     //laserDoorAdd(p1x * tw, p1y * th - th / 2, 0);
     //laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
     break;    
     
 case 1: // top
-    rm.door[1] = 1;
-    c2.rm.door[3] = 1;
     p1y = r2.y + r2.rh;
     p2y = r1.y;
     var xmin = min(r1.x, r2.x),
@@ -89,13 +92,13 @@ case 1: // top
     n.rw = 1;
     n.rh = abs(hh);
     // lasers
-    laserDoorAdd(p1x * tw, p1y * th + ((p2y - 1 - p1y) div 2) * th, 1);
-    //laserDoorAdd(p1x * tw, p2y * th - th, 1);
-    //laserDoorAdd(p1x * tw, p1y * th - th, 1);
+    var dr = laserDoorAdd(p1x * tw, p1y * th + ((p2y - 1 - p1y) div 2) * th, 1,
+        c1, c2);
+    dr.floorId = n;
+    rm.door[1] = dr;
+    c2.rm.door[3] = dr;
     break;
 case 3: // bottom
-    rm.door[3] = 1;
-    c2.rm.door[1] = 1;
     p1y = r1.y + r1.rh;
     p2y = r2.y;
     var xmin = min(r1.x, r2.x),
@@ -114,9 +117,11 @@ case 3: // bottom
     n.rw = 1;
     n.rh = abs(hh);
     // lasers
-    laserDoorAdd(p1x * tw, p1y * th + ((p2y - p1y - 1) div 2) * th, 3);
-    //laserDoorAdd(p1x * tw, p1y * th - th, 3);
-    //laserDoorAdd(p1x * tw, p2y * th - th, 3);
+    var dr = laserDoorAdd(p1x * tw, p1y * th + ((p2y - p1y - 1) div 2) * th, 3,
+        c1, c2);
+    dr.floorId = n;
+    rm.door[3] = dr;
+    c2.rm.door[1] = dr;
     break;
 }
 

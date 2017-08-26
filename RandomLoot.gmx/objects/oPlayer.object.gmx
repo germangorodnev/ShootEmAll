@@ -39,6 +39,11 @@ anMaxAngle = 6;
 
 mousedir = 0;
 
+// CURRENT ROOM
+roomCtrl = noone;
+playerInRoom = 0;
+roomEndTmr = 0;
+
 
 restoreWeap = 0;
 restore = -1;
@@ -339,10 +344,14 @@ if (key[KEY.MAP])
     minimapBigger();
 else
     minimapSmaller();
-    
-// going into room
-playerComeIntoRoom();
-    
+
+// going out of room
+if (roomEndTmr &amp;&amp; !--roomEndTmr)
+{
+    with (roomCtrl)
+        event_user(4);
+}
+
 switch (state)
 {
 /* *********************************************** IDLE *********************************************** */
@@ -394,6 +403,8 @@ case PLAYER_STATES.__IDLE:
         playerReload();
     if (key[KEY.WEAP_CHANGE])
         playerChangeWeapon();
+        
+    playerCollideRoomComein();
         
     physicalMove(collideWith);
     break;
@@ -463,6 +474,8 @@ case PLAYER_STATES.__WALK:
         if (epau)
             exit;
     }
+    
+    playerCollideRoomComein();
     
     hspd += spd * speedmod * hmove;
     vspd += spd * speedmod * vmove;
@@ -543,6 +556,8 @@ case PLAYER_STATES.__DASH:
     // effect
     part_emitter_region(psysfloor, abilsParams[2], x-1, x+1, y-1, y+1, ps_shape_diamond, ps_distr_invgaussian);
     part_emitter_burst(psysfloor, abilsParams[2], global.pldash, irandom_range(2, 4)); 
+    
+    playerCollideRoomComein();
     break;
 
 /* *********************************************** CUCKED *********************************************** */

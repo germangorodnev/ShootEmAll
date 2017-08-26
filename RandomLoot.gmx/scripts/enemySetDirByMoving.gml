@@ -25,8 +25,4 @@ case ENEMY_STATE.__FOLLOW:
 case ENEMY_STATE.__IDLE:
     sn = "idle"; break;
 }
-if (dir != dd)
-{
-    show_debug_message("hspd: " + string(hspd) + " v: " + string(vspd));
-    show_debug_message("state " + sn + ": from " + string(dd) + " to " + string(dir));
-}
+

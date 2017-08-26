@@ -45,6 +45,6 @@ case ENEMY_STATE.__DIE:
     //instance_destroy();
     // create some money
     enemyCreateMoney();
-    enemyCreateAmmo();
+    enemyCreateAmmo();    
     break;
 }

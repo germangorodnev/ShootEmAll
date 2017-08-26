@@ -70,6 +70,9 @@ enum TILES
     __SHOWER_STOOL,
     __SHOWER_WET,
     __SHOWER_BUCKET,
+    // doors
+    __LASER_DOOR_VERT,
+    __LASER_DOOR_HOR,
     
     __CRATE_LEFT,
     __CRATE_RIGHT,
@@ -393,7 +396,10 @@ enum ENEMY
     __OCTO_GUARD,
     __OCTO_ATTACK,
     __OCTO_HEALER,
-    __OCTO_GUARD_MACE
+    __OCTO_GUARD_MACE,
+    
+    // BOSSES
+    __BOSS_ROCKER
 }
 
 enum ENEMY_WEAPON
@@ -406,7 +412,12 @@ enum ENEMY_WEAPON
     __OCTO_SHOTGUN,
     __OCTO_RIFLE,
     __OCTO_CLUB,
-    __OCTO_HEAL
+    __OCTO_HEAL,
+    
+    // BOSS ROCKER
+    __ROCKER_MINIGUN,
+    __ROCKER_UZI,
+    __ROCKER_GUITAR
 }
 
 enum ENEMY_PATTERN 
