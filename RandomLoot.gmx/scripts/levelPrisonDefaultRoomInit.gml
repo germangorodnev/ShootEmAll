@@ -18,7 +18,8 @@ for (var i = x, ci = x + rw; i < ci; i++)
     }
 }
 // carpet now
-tile_add(tlsPrisonDefaultCarpet, 0, 0, tw, th, (x)*tw, (y)*th, oLevel.carpetD);
+levelPrisonCarpetSet(x, y, rw, rh, 0);
+/*tile_add(tlsPrisonDefaultCarpet, 0, 0, tw, th, (x)*tw, (y)*th, oLevel.carpetD);
 for (var i = x + 1, ci = x + rw - 1; i < ci; i++)
     tile_add(tlsPrisonDefaultCarpet, tw, 0, tw, th, i*tw, (y)*th, oLevel.carpetD);
 tile_add(tlsPrisonDefaultCarpet, tw*2, 0, tw, th, (x+rw-1)*tw, (y)*th, oLevel.carpetD);
@@ -37,7 +38,7 @@ for (var i = y + 1, ci = y + rh - 2, cx = (x + rw - 1) * th; i < ci; i++)
 for (var i = x + 1, ci = x + rw - 1; i < ci; i++)
     for (var m = y + 1, cm = y + rh - 2; m < cm; m++)
         tile_add(tlsPrisonDefaultCarpet, tw*3, th, tw, th, i*tw, m*th, oLevel.carpetD);
-
+*/
 // now walls
 for (var xx = x, cx = x + rw; xx < cx; xx++)
 {
@@ -219,5 +220,6 @@ repeat (irandom_range(3, 5))
         ex = irandom_range(x + 1, x + rw - 2);
         ey = irandom_range(y + 1, y + rh - 2);
     } until (lvl[# ex, ey] & LEVEL.SOLID == 0);
-    levelCreateEnemy(ex * tw + tw / 2, ey * th + th / 2, ENEMY.__PILLOW);
+    levelCreateEnemy(ex * tw + tw / 2, ey * th + th / 2, 
+        choose(ENEMY.__JELLY, ENEMY.__OCTO_HEALER, ENEMY.__OCTO_GUARD));
 }

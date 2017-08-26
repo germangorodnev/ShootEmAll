@@ -41,6 +41,12 @@ spd = 3;
 speedmod = 1;
 angle = 0;
 
+idleTmr = 0;
+idleMaxTime = 0.5 * room_speed;
+patrolTmr = 0;
+
+whiteTmr = 0;
+
 // some params
 damagable = 1;
 vecdir = 0;
@@ -49,11 +55,15 @@ vecdir = 0;
 pathEnd = 0;
 path = path_add();
 
+
 destrTmr = -1;
 
 // custom move point 
 mX = x;
 mY = y;
+
+// debuffs
+debuffs = ds_list_create();
 
 // money ondeath
 moneydead = irandom_range(3, 40);
@@ -116,6 +126,15 @@ animSpd[ENEMY_ANIM.__CNT - 1] = 0;
 if (pem != -1)
     part_emitter_destroy(psys, pem);
 path_delete(path);
+for (var i = 0, ci = ds_list_size(debuffs); i &lt; ci; i++)
+{
+    debuffs[| i] = 0;
+}
+ds_list_destroy(debuffs);
+
+// check the room end
+levelCheckEnemyDie();
+
 </string>
           </argument>
         </arguments>

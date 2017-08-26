@@ -1,4 +1,4 @@
-///colPlaceFree(x_to, y_to, solid only)
+///colPlaceFree(x_to, y_to, bitmask)
 var xto = argument[0],
     yto = argument[1],
     xo = x,

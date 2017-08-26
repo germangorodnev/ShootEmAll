@@ -47,8 +47,10 @@ reloadTmr = 0;
 animEnded = 0;
 
 angleNeed = 0;
+// melee
 angleNeedDown = 0;
 angleNeedUp = 0;
+maskScale = 1;
 
 angleBegin = 0;
 
@@ -125,39 +127,26 @@ case WEAPON_STATES.__MOVE:
     break;
     
 case WEAPON_STATES.__MELEE_DOWN:
-    image_angle = approach(image_angle, angleNeed, angleRot);
     //SWITCH ADD
     switch (attackType)
     {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
-        }            
-        break;
     default:
+        image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
+            image_angle = angleNeed;
+            with (parent)
+                enemyWeaponSetState(WEAPON_STATES.__MOVE);   
         }            
         break;   
     }
     break;
         
 case WEAPON_STATES.__MELEE_UP:
-    image_angle = approach(image_angle, angleNeed, angleRot);
     switch (attackType)
     {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (parent)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);    
-        }            
-        break;
     default:
+        image_angle = approach(image_angle, angleNeed, angleRot);
         if (image_angle == angleNeed)
         {
             with (parent)
@@ -212,8 +201,15 @@ case WEAPON_STATES.__RANGE_RECOIL:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index != -1)
-    draw_sprite_ext(sprite_index, anImageIndex, x, y, xsc, image_yscale, image_angle, image_blend, image_alpha);
+            <string>var add = 0;
+switch (parent.weapon)
+{
+case ENEMY_WEAPON.__OCTO_CLUB:
+    add = parent.angle;
+    break;
+}
+draw_sprite_ext(sprite_index, anImageIndex, x, y, xsc, image_yscale, image_angle + add, image_blend, image_alpha);
+
 </string>
           </argument>
         </arguments>
@@ -261,6 +257,29 @@ case WEAPON_STATES.__RANGE_RECOIL:
             <kind>1</kind>
             <string>///on pause
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// do not draw
 </string>
           </argument>
         </arguments>

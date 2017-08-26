@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>oStateObject</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>///Level controller
+event_inherited();
+
 image_speed = 0;
 
 tw = LEVEL.TILE_W;
@@ -73,50 +75,7 @@ levelPf = mp_grid_create(0, 0, ww, hh, LEVEL.TILE_W, LEVEL.TILE_H);
 // collision helper
 ////////////////////////////////////////////////// r  t   l  b
 colOffset = ds_map_create();
-levelCollisionHelperInit(TILES.__WALL, 0, 0, 0, 0);
-// prison cells
-levelCollisionHelperInit(TILES.__PS_LEFT,          45, 0, 0, 0);
-levelCollisionHelperInit(TILES.__PS_RIGHT,         0, 0, 45, 0);
-levelCollisionHelperInit(TILES.__PS_TOP,           0, 50, 0, 0);
-levelCollisionHelperInit(TILES.__PS_BOTTOM,        0, 50, 0, 0);
-
-levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 50, 0, 0);
-levelCollisionHelperInit(TILES.__PS_BOTTOM_RIGHT,  0, 0, 45, 0);
-
-levelCollisionHelperInit(TILES.__PS_BOTTOM_LEFT,  0, 50, 0, 0);
-levelCollisionHelperInit(TILES.__PS_BOTTOM_LEFT,  45, 0, 0, 0);
-
-levelCollisionHelperInit(TILES.__BED_HL,           0, 25, 9, 0);
-levelCollisionHelperInit(TILES.__BED_HR,           13, 25, 0, 0);
-
-levelCollisionHelperInit(TILES.__BED_VT,           6, 18, 5, 0);
-levelCollisionHelperInit(TILES.__BED_VB,           6, 0, 5, 13);
-
-levelCollisionHelperInit(TILES.__CURBSTONE,        2, 40, 2, 0);
-
-//
-
-// canteen
-levelCollisionHelperInit(TILES.__TABLE_LEFT, 0, 20, 10, 0);
-levelCollisionHelperInit(TILES.__TABLE_HOR_CENT, 0, 20, 0, 0);
-levelCollisionHelperInit(TILES.__TABLE_RIGHT, 12, 20, 0, 0);
-
-levelCollisionHelperInit(TILES.__TABLE_VERT, 8, 0, 8, 0);
-
-levelCollisionHelperInit(TILES.__COOLEOLA_VERT, 10, 0, 10, 22);
-
-// shower
-levelCollisionHelperInit(TILES.__SHOWER_WALL_RIGHT, 45, 0, 0, 0);
-levelCollisionHelperInit(TILES.__SHOWER_TUMB, 0, 0, 0, 48);
-levelCollisionHelperInit(TILES.__SHOWER_WET, 6, 31, 5, 5);
-levelCollisionHelperInit(TILES.__SHOWER_BUCKET, 30, 30, 2, 15);
-levelCollisionHelperInit(TILES.__SHOWER_STOOL, 3, 35, 3, 0);
-
-levelCollisionHelperInit(TILES.__CRATE_LEFT, 12, 28, 12, 12);
-levelCollisionHelperInit(TILES.__CRATE_RIGHT, 12, 28, 12, 12);
-
-levelCollisionHelperInit(TILES.__SCAMNUM_HOR, 0, 32, 0, 0);
-levelCollisionHelperInit(TILES.__PLANT, 2, 42, 2, 0);
+levelCollisionHelperInitAll();
 
 
 // NEW
@@ -130,7 +89,10 @@ prisonCellH = 4;
 cells = ds_list_create();
 cellsVis[0] = 0; //room_width div cellW * room_height div cellH
 
+
+
 // black rects
+bl = c_black;
 rectCnt = 1;
 var rci = rectCnt - 1;
 rX1[rci] = 0;
@@ -138,13 +100,28 @@ rY1[rci] = 0;
 rX2[rci] = 0;
 rY2[rci] = 0;
 rA[rci] = 0;
+rState[rci] = -1;
+// params
+blChTo0 = .05;
+blChTo1 = .05;
+
+levelRoom = ds_list_create();
+// index - room index
+// 0 -
+// blackness
+black = surface_create(global.guiW, global.guiH);
+
 
 playerX = 0;
 playerY = 0;
 
+/* ********************** G E N E R A T I O N *********************** */
 levelGenerate();
 ds_list_destroy(cells);
 cellsVis = 0;
+
+// shadow surf
+//shd = surface_create(global.guiW, global.guiH);
 
 // minimap now
 with (instance_create(0, 0, oMinimap))
@@ -152,9 +129,38 @@ with (instance_create(0, 0, oMinimap))
 
 // player now
 gamePlayerCreate(playerX, playerY, global.char);
-
+// give default weap
+with (oPlayer)
+    playerInitDeafultWeapon();
+ 
+with (instance_create(playerX, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__LASER_BEE, 240);
+with (instance_create(playerX, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__BIG_BULG, 8);
+with (instance_create(playerX - 300, playerY - 150, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__STALK, 150);
+with (instance_create(playerX, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__STEEL_RUFF, 2);
+with (instance_create(playerX + 120, playerY - 120, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__CEREMONIAL_BORIAN);
+with (instance_create(playerX + 120, playerY - 200, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__ARIA_ARTH);
+with (instance_create(playerX - 120, playerY - 120, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__SPECIAL_PRISONER);
+with (instance_create(playerX - 120, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__PISTOPHONE, 9);
+with (instance_create(playerX + 120, playerY, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__RAZORBLADE);
+with (instance_create(playerX, playerY - 60, oPickupWeapon))
+    pickupableInit(PICKUP.__WEAPON, WEAPONS.__KNIFE);
+//with (instance_position(playerX, playerY, oRoomComein))
+//    instance_destroy();
+    
 // deactivate all doors
 laserDoorChangeAll(0);
+
+instance_create(0, 0, oShadower);
+
 </string>
           </argument>
         </arguments>
@@ -177,12 +183,15 @@ laserDoorChangeAll(0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(leafs);
+            <string>//surface_free(shd);
+ds_list_destroy(leafs);
 ds_grid_destroy(level);
 ds_list_destroy(cells);
 cellsVis = 0;
 ds_grid_destroy(colLevel);
 mp_grid_destroy(levelPf);
+
+surface_free(black);
 
 for (var i = 0; i &lt; ww; i++)
     for (var j = 0; j &lt; hh; j++)
@@ -204,8 +213,69 @@ for (var i = 0, sz = ds_map_size(colOffset); i &lt; sz; i++;)
     first = ds_map_find_next(colOffset, first);
 }
 
+for (var i = 0, ci = ds_list_size(levelRoom); i &lt; ci; i++)
+{
+    var _arr = levelRoom[| i];
+    //_arr[@
+}
      
 ds_map_destroy(colOffset);
+
+event_inherited();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!updatable)
+    exit;
+    
+// black zones
+for (var i = 0; i &lt; rectCnt; ++i)
+{
+    var rst = rState[i];
+    switch (rst)
+    {
+    case -1: // to 0 alpha
+        continue;
+    case 0: // to 0 alpha
+        rA[i] = approach(rA[i], 0, blChTo0);
+        if (rA[i] == 0)
+            rState[i] = -1;
+        break;
+    case 1: // to full alpha
+        rA[i] = approach(rA[i], 0, blChTo1);
+        if (rA[i] == 1)
+            rState[i] = -1;
+        break;
+    }
+}
+
+// de\activation
+instance_deactivate_object(oPickupableObject);
+instance_deactivate_object(oExplosiveCrate);
+instance_deactivate_object(oPrisonDoor);
+
+instance_activate_region(view_xview, view_yview, view_xview + view_wview, view_yview + view_hview, 1);
+
 
 
 </string>

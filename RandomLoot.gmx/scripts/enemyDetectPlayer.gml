@@ -1,14 +1,23 @@
 if (!instance_exists(oPlayer))  
     return 0;
-if (distance_to_object(oPlayer) <= dist)
+var pl = noone,
+    reason = 0;
+for (var i = 0, ci = global.playersCount; i < ci; i++)
 {
-    if (!collisionLine(x, y, oPlayer.x, oPlayer.y, bulletCollideWith, 1))
+    pl = instance_find(oPlayer, i);
+    if (distance_to_object(pl) <= dist)
     {
-        return 1;
+        if (!collisionLine(x, y, pl.x, pl.y, bulletCollideWith, 1))
+        {
+            target = pl;
+            return 1;
+        }
+        else
+            reason = -2;
     }
     else
-        return -2;
+        rreason = -1;
 }
-else
-    return -1;
-return 0;
+target = noone;
+return reason;
+

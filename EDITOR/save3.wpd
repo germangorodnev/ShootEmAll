@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weapon>
+    <name>Плазменный давитель</name>
+    <desc>Описание</desc>
+    <projectiletype>Плазма</projectiletype>
+    <principe>Действует как обычный автомат</principe>
+    <dmgmin>35</dmgmin>
+    <dmgmax>45</dmgmax>
+    <critdmgmin>0</critdmgmin>
+    <critdmgmax>0</critdmgmax>
+    <projamount>1</projamount>
+    <shootcooldown>1.5</shootcooldown>
+    <reloadtime>1</reloadtime>
+    <clipsize>15</clipsize>
+    <ammopershot>1</ammopershot>
+    <nextdmgcooldown>0.1</nextdmgcooldown>
+    <maxscatter>3</maxscatter>
+    <cancrit>0</cancrit>
+    <pathpng>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sPushRifle_0.png</pathpng>
+    <pathpngShoot>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sPushRifleShoot_0.png</pathpngShoot>
+    <pathpngProjectile>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sPlasm_0.png</pathpngProjectile>
+    <pathpngAdd></pathpngAdd>
+    <pathpngAdd2></pathpngAdd2>
+</weapon>

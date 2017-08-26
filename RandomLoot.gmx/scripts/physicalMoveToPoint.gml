@@ -5,11 +5,11 @@ var xx = argument[0],
     ssmod = argument[3],
     chX = 0;
   
-if (x != median(xx - ss, x, xx + ss))
+if (x != median(xx - ss * 2, x, xx + ss * 2))
     chX = 1;
 else
     x = xx;
-if (y == median(yy - ss, y, yy + ss))
+if (y == median(yy - ss * 2, y, yy + ss * 2))
     y = yy;
 if (x < xx)
 {   
@@ -21,6 +21,7 @@ else if (x > xx)
     xsc = -1 * chX + (xsc * !chX);
     hspd -= ss * speedmod;
 }
+
 if (y < yy)
     vspd += ss * speedmod;
 else if (y > yy)

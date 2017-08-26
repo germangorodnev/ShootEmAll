@@ -1,3 +1,10 @@
+enum OBJ_PAR
+{
+    UPDATABLE = 1 << 0,
+    DRAWABLE = 1 << 1,
+    INFLUENCE = 1 << 1
+}
+
 enum GAME
 {
     __LAYER_SIZE = 32
@@ -19,6 +26,9 @@ enum CHARS
 {
     __CARD = 0,
     __MILITARY,
+    __CACTUS,
+    __SOLITARE,
+    __FOX,
     __CNT
 }
 
@@ -60,6 +70,9 @@ enum TILES
     __SHOWER_STOOL,
     __SHOWER_WET,
     __SHOWER_BUCKET,
+    // doors
+    __LASER_DOOR_VERT,
+    __LASER_DOOR_HOR,
     
     __CRATE_LEFT,
     __CRATE_RIGHT,
@@ -76,12 +89,16 @@ enum CANNOT
 enum EFFECTS
 {
     __BULLET_WZHUH = 0,
-    __LASER_GREEN_WZHUH
+    __LASER_GREEN_WZHUH,
+    __LASER_RED_WZHUH,
+    __LASER_BLUE_WZHUH
 }
 
 enum ABILITIES
 {
-    __DASH = 0
+    __DASH = 0,
+    __HEAL,
+    __SPIKES
 }
 
 enum SINGLEUSE
@@ -130,6 +147,7 @@ enum ROOMS
 enum GAME_STATES
 {
     __INIT = 0,
+    __CHAR_CHOOSE,
     __GAME,
     __PAUSE,
     __SHOP
@@ -175,7 +193,9 @@ enum WEAPONS
     __STICK,
     __ARIA_ARTH,
     __RAZORBLADE,
-    
+    __SPECIAL_PRISONER,
+    __CEREMONIAL_BORIAN,
+    __KNIFE,
     
     __RANGED_BEGIN,
     
@@ -192,6 +212,13 @@ enum WEAPONS
     __DESTRUCTOR,
     __DOUBLE_BARREL,
     __TESLA_BOOM,
+    __LASER_BEE,
+    __BIG_BULG,
+    __ASSAULT_RIFLE,
+    __STEEL_RUFF,
+    __DARTS,
+    __PISTOPHONE,
+    __STALK,
     __CUSTOM,
     __RANGED_END
 }
@@ -205,7 +232,8 @@ enum WEAPON_TYPE
 enum WEAPON_ATTACK_TYPE
 {
     __DOWN_TIMER_UP = 0,
-    __DOWN_UP
+    __DOWN_UP,
+    __FORW_BACK
 }
 
 enum WEAPON_STATES
@@ -217,7 +245,9 @@ enum WEAPON_STATES
     __RANGE_RECOIL,
     __RANGE_RELOAD,
     __MELEE_DOWN,
-    __MELEE_UP
+    __MELEE_UP,
+    __MELEE_FORW,
+    __MELEE_BACKW
 }
 
 
@@ -292,14 +322,30 @@ enum PROJECTILE
     __PELLET = 0,
     __BULLET,
     __ENERGY_LINE,
-    __ENEMY_BULLET,
     __FAST_BULLET,
     __BORIAN,
     __GRENADE_ONE_GL,
+    
     __LASER,
+    __LASER_RED,
+    __LASER_BLUE,
+    
     __BULLET_LINE,
     __PHASER,
-    __ZAP
+    __BIG_BULG,
+    __ZAP,
+    __PLASM,
+    __CHAINSAW,
+    __DARTS,
+    
+    __ENEMY_BULLET,
+}
+
+enum BULLET_FLAGS
+{
+    __INVERTABLE = 1 << 0,
+    __ONHIT_DELETABLE = 1 << 1,
+    __SHIELD_DELETABLE = 1 << 2
 }
 
 enum AMMO
@@ -311,8 +357,24 @@ enum AMMO
     __GRENADES,
     __ENERGY,
     __BORIAN,
+    __DARTS,
     __CNT
 }
+
+enum BULLET_PATTERNS
+{
+    
+}
+
+enum DEBUFFS
+{
+    __POISION = 0
+}
+
+
+
+
+
 
 
 // ENEMIES
@@ -323,7 +385,8 @@ enum ENEMY_STATE
     __WALK,
     __ATTACK,
     __FOLLOW,
-    __CUCKED
+    __CUCKED,
+    __RETREAT
 }
 
 enum ENEMY
@@ -331,7 +394,12 @@ enum ENEMY
     __PILLOW = 0,
     __JELLY,
     __OCTO_GUARD,
-    __OCTO_ATTACK
+    __OCTO_ATTACK,
+    __OCTO_HEALER,
+    __OCTO_GUARD_MACE,
+    
+    // BOSSES
+    __BOSS_ROCKER
 }
 
 enum ENEMY_WEAPON
@@ -342,14 +410,22 @@ enum ENEMY_WEAPON
     __TAZER,
     __OCTO_PISTOL,
     __OCTO_SHOTGUN,
-    __OCTO_RIFLE
+    __OCTO_RIFLE,
+    __OCTO_CLUB,
+    __OCTO_HEAL,
+    
+    // BOSS ROCKER
+    __ROCKER_MINIGUN,
+    __ROCKER_UZI,
+    __ROCKER_GUITAR
 }
 
 enum ENEMY_PATTERN 
 {
     __NONE = 0,
     __PATROL,
-    __FOLLOW
+    __FOLLOW,
+    __RETREAT
 }
 
 enum ENEMY_ANIM

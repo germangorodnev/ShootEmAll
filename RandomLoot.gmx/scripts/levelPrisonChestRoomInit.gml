@@ -162,6 +162,8 @@ for (var xx = x, cx = x + rw; xx < cx; xx++)
         }        
     }    
 }
+// carpet
+levelPrisonSmallCarpetSet((x + 3.5), (y + 3), 1);
 
 // CHEST
 instance_create((x + 5) * tw, (y + 4.5) * th, oCrate);

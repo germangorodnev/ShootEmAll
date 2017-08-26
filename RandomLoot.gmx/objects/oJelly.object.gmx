@@ -33,8 +33,8 @@ anMaxAngle = 3;
 anSinStep = 6;
 anMaxH = 2;
 
-hp = 20;
-_hp = 20;
+hp = 200;
+_hp = hp;
 
 // weapon
 weapon = ENEMY_WEAPON.__SELF;
@@ -142,14 +142,18 @@ if (sprite_index != -1)
 
 idleTmr++;
 
+if (whiteTmr &amp;&amp; !--whiteTmr)
+{}
+
 if (canAttackTmr &amp;&amp; !--canAttackTmr)
 {
     canAttackTmr = -1;
     canAttack = 1;
 }
 
-enemyMoveOutOfOther();
-
+if (current_time % 4 == 0)
+    enemyMoveOutOfOther();
+enemyDebuffsProceed();
 masksMove();
 
 switch (state)
@@ -157,6 +161,9 @@ switch (state)
 case ENEMY_STATE.__IDLE:
     procedureAnimableApproachReset();
     physicalBeginStep();
+    
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    
     detect = enemyDetectPlayer();
     if (detect == 1)
     {
@@ -170,10 +177,29 @@ case ENEMY_STATE.__IDLE:
         else if ( ca == -1 )
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
+    
+    if (patrolTmr &amp;&amp; !--patrolTmr)
+    {
+        enemyStartPattern(ENEMY_PATTERN.__PATROL)    
+    }   
+
+    physicalMove(collideWith);
     break;
     
 case ENEMY_STATE.__FOLLOW:
-    procedureAnimableProceed();    
+    procedureAnimableProceed();   
+    physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    
+    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    if (done)
+    {
+        // wow we're actually done
+        if (path_get_number(path) == 0)
+            enemySetState(ENEMY_STATE.__IDLE);
+        else
+            enemyGetNextPathPoint();
+    }
     
     xsc = (oPlayer.x &gt; x) * 2 - 1;
     targetDist = distance_to_object(target);
@@ -184,35 +210,35 @@ case ENEMY_STATE.__FOLLOW:
         exit;
     }
     detect = enemyDetectPlayer();
-    if (detect == -2)
+    if (detect != 1)
     {
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
     }
-    if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
+    if (idleTmr &gt; idleMaxTime)
     {
-        if (idleTmr &gt; 0.5 * room_speed)
+        if (point_distance(path_get_point_x(path, path_get_number(path)-1), 
+            path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
         {
             // recalc
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);
+            exit;        
         }
     }
-    if (pathEnd)
-    {
-        // wow we're actually done
-        enemySetState(ENEMY_STATE.__IDLE);
-        exit;    
-    }
+    physicalMove(collideWith);
+    
     break;    
     
 case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
     physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
-    if (done)
+    if (enemyMoveToPointDone(done))
     {
         // wow we're actually done
-        enemySetState(ENEMY_STATE.__IDLE);
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);
         exit;
     }
     detect = enemyDetectPlayer();
@@ -226,12 +252,19 @@ case ENEMY_STATE.__WALK:
         }
         enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
+    var s = colPlaceFree(x + hspd, y + vspd, collideWith);
+    if (s == 0)
+    {
+        enemySetState(ENEMY_STATE.__IDLE);
+    }
+
     physicalMove(collideWith);
     break;
     
 case ENEMY_STATE.__ATTACK:
     procedureAnimableApproachReset();
     physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
     if (animEnded)
     {
         physicalClearMaskKick();
@@ -242,11 +275,15 @@ case ENEMY_STATE.__ATTACK:
         else
             enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
     }
+    physicalMove(collideWith);
     break;
     
 case ENEMY_STATE.__CUCKED:
+    physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
     if (cuckTmr &amp;&amp; !--cuckTmr)
         enemyStartPattern(ENEMY_PATTERN.__PATROL);
+    physicalMove(collideWith);
     break;
     
 case ENEMY_STATE.__DIE:
@@ -335,7 +372,16 @@ case ENEMY_STATE.__DIE:
             <string>if (!drawable)
     exit;
 enemyDebug();
-draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
+if (whiteTmr != 0)
+{
+    shader_set(shdWhite);
+    draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
+    shader_reset();
+}
+else
+    draw_sprite_ext(sprite_index, anImageIndex, x, y + anH, xsc, image_yscale, anAngle, image_blend, image_alpha);
+// debuffs
+enemyDrawBase();
 
 </string>
           </argument>

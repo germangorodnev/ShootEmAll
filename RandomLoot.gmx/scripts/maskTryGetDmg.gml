@@ -32,6 +32,7 @@ with (par)
         // evaded
         return 0;
     }
+    whiteTmr = global.damageTakeTmr;
     // cucked
     physicalCucked(ccuck, idd);
 
@@ -40,4 +41,6 @@ with (par)
 //                    y + irandom_range(sprite_height / 3, sprite_height / 1.5),
 //                    0,
 //                    -(par.y + 5));
+if (par.hp <= 0)
+    return 2;
 return 1;

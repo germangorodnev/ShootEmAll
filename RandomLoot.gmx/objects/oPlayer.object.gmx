@@ -29,6 +29,8 @@
 image_speed = 0;
 
 // Stats
+TYPE = 0;
+
 spd = 4;
 hp = 12;
 _hp = 12;
@@ -37,17 +39,25 @@ anMaxAngle = 6;
 
 mousedir = 0;
 
+// CURRENT ROOM
+roomCtrl = noone;
+playerInRoom = 0;
+roomEndTmr = 0;
+
+
 restoreWeap = 0;
 restore = -1;
 
-recoilSpd = 0;
-recoilApply = 0;
+wRecoilSpd = 0;
 
 cannot = 0;
 
 mX = x;
 mY = y;
 mD = 0;
+
+attackSoundsCnt = 0;
+attackSounts[0] = 0;
  
 ammo[AMMO.__CNT - 1] = 0; // ammo we have right now
 ammoMax[AMMO.__CNT - 1] = 300;
@@ -65,6 +75,7 @@ for (var i = 0; i &lt; AMMO.__CNT; i++)
 weaponCd = 0;
 
 weaponObj = instance_create(x, y, oPlayerWeapon);
+weaponObj.playerId = id;
 weapon = WEAPONS.__NONE;
 weaponType = WEAPON_TYPE.__RANGE;
 weaponInf = -1; // array
@@ -83,6 +94,9 @@ weaponBlend = c_white;
 
 expRad = 0; // explosion radius 
 lasLong = 1; // laser len time in steps
+recspd = 0;
+rectmr = 0;
+
 
 state = PLAYER_STATES.__IDLE;
 
@@ -99,10 +113,7 @@ hmove = 0;
 vmove = 0;
 
 // mask
-kx1 = 0;
-ky1 = 0;
-kx2 = 0;
-ky2 = 0;
+maskScale = 3;
 
 // abilities
 psysfloor = global.pse;
@@ -113,7 +124,6 @@ abilsTmr[0] = -1;
 abilsTmrCnt[0] = -1;
 abilsIco[0] = 0;
 abilsParams[0] = 0;
-abilityAdd(ABILITIES.__DASH);
 
 // single use
 singleuse = SINGLEUSE.__NONE;
@@ -132,12 +142,29 @@ SPECIAL_FLAGS = 0;
 longbulls = ds_list_create();
 
 // gui 
+// pickup weapon
 pwId = noone;
 pwType = "";
 pwName = "";
 pwc = c_white;
 
-playerMaskCreate(0);
+pwiy = 0
+
+pwilx = 0;
+pwilsw = sprite_get_width(sPickupWILeft);
+
+pwicx = 0;
+pwicsc = 1;
+pwicnw = -1;
+pwicsw = sprite_get_width(sPickupWICenter);
+
+pwirx = 0;
+pwirsw = sprite_get_width(sPickupWIRight);
+
+pwitypex = 0;
+pwitypey = 0;
+pwinamex = 0;
+pwinamey = 0;
 
 // mouse y old
 myo = mouse_y;
@@ -149,6 +176,8 @@ ggui = oGameGUI.playerId;
 
 
 playerSetWeapon(weapon);
+
+++global.playersCount;
 </string>
           </argument>
         </arguments>
@@ -180,6 +209,10 @@ for (var i = 0; i &lt; abilCount; i++)
     case ABILITIES.__DASH:
         // clear the emitter
         part_emitter_destroy(global.pse, abilsParams[2]);
+        break;
+    case ABILITIES.__SPIKES:
+        // clear the emitter
+        part_emitter_destroy(global.pse, abilsParams[1]);
         break;
     }
 }
@@ -227,16 +260,21 @@ if (weapon != WEAPONS.__NONE)
     case WEAPON_TYPE.__MELEE:
         switch (weaponObj.attackType)
         {
+        case WEAPON_ATTACK_TYPE.__FORW_BACK:    
+            weaponObj.x = x + weaponXoff * sign(xsc); //lengthdir_x(weaponXoff * sign(xsc), mousedir);
+            weaponObj.y = y + weaponYoff; //lengthdir_y(weaponYoff, mousedir);
+            weaponObj.image_angle = mousedir;
+            break;
         default:
             weaponObj.x = x + weaponXoff * sign(xsc); //lengthdir_x(weaponXoff * sign(xsc), mousedir);
             weaponObj.y = y + weaponYoff; //lengthdir_y(weaponYoff, mousedir);
-            if (weaponObj.state == WEAPON_STATES.__MOVE)
+            /*if (weaponObj.state == WEAPON_STATES.__MOVE)
             {
                 var perc = anAngle / anMaxAngle;
                 with(weaponObj)
-                    image_angle = perc * anMaxAngle;
+                    image_angle += perc * anMaxAngle;
             }                
-            weaponObj.xsc = xsc;
+            weaponObj.xsc = xsc;*/
             break;
             
         }
@@ -306,7 +344,14 @@ if (key[KEY.MAP])
     minimapBigger();
 else
     minimapSmaller();
-    
+
+// going out of room
+if (roomEndTmr &amp;&amp; !--roomEndTmr)
+{
+    with (roomCtrl)
+        event_user(4);
+}
+
 switch (state)
 {
 /* *********************************************** IDLE *********************************************** */
@@ -317,7 +362,7 @@ case PLAYER_STATES.__IDLE:
     physicalBeginStep();
     playerGetKeys();
     
-    physicalApplyRecoil(recoilSpd, mousedir - 180);
+    physicalApplyRecoil(recoilSpd, recoilDir);
     
     if ((key[KEY.LEFT] ^^ key[KEY.RIGHT]) || (key[KEY.TOP] ^^ key[KEY.BOT]))
         playerSetState(PLAYER_STATES.__WALK);
@@ -337,8 +382,9 @@ case PLAYER_STATES.__IDLE:
     var abilUse = playerAbilityKeyCheck();
     if (abilUse == 1)
     {
-        playerAbilityUse(0);
-        exit;
+        var epau = playerAbilityUse(0);
+        if (epau)
+            exit;
     }
     
     if (key[KEY.SINGLEUSE_ITEM])
@@ -358,6 +404,8 @@ case PLAYER_STATES.__IDLE:
     if (key[KEY.WEAP_CHANGE])
         playerChangeWeapon();
         
+    playerCollideRoomComein();
+        
     physicalMove(collideWith);
     break;
     
@@ -369,7 +417,8 @@ case PLAYER_STATES.__WALK:
     physicalBeginStep();
     playerGetKeys();
     
-    physicalApplyRecoil(recoilSpd, mousedir - 180);
+    //physicalApplyRecoil(recoilSpd, mousedir - 180);
+    physicalApplyRecoil(recoilSpd, recoilDir);
     
     if (key[KEY.LEFT])
         hmove--;
@@ -421,9 +470,12 @@ case PLAYER_STATES.__WALK:
     var abilUse = playerAbilityKeyCheck();
     if (abilUse == 1)
     {
-        playerAbilityUse(0);
-        exit;
+        var epau = playerAbilityUse(0);
+        if (epau)
+            exit;
     }
+    
+    playerCollideRoomComein();
     
     hspd += spd * speedmod * hmove;
     vspd += spd * speedmod * vmove;
@@ -436,13 +488,14 @@ case PLAYER_STATES.__WALK:
 
 /* *********************************************** DASH *********************************************** */
 case PLAYER_STATES.__DASH:
-    procedureAnimableProceed();    
     playerRotateToMouse();
     
     physicalBeginStep();
     playerGetKeys();
                 
     playerPickup();
+    
+    
     
     var toX = x,
         toY = y;
@@ -453,8 +506,7 @@ case PLAYER_STATES.__DASH:
     if (dist &lt; finspd)
     {
         // end
-        x = mX;
-        y = mY;        
+        anAngle = 0;
         playerSetState(PLAYER_STATES.__IDLE); 
         exit;    
     }
@@ -466,6 +518,7 @@ case PLAYER_STATES.__DASH:
     if (is_array(lineGetCollisionPoint(x, y, toX, toY, collideWith, 1)))// collisionLine(x, y, toX, toY, collideWith)) // cannot
     {
         // end       
+        anAngle = 0;
         playerSetState(PLAYER_STATES.__IDLE); 
         exit;        
     }
@@ -494,6 +547,7 @@ case PLAYER_STATES.__DASH:
         else
         {
             // end       
+            anAngle = 0;
             playerSetState(PLAYER_STATES.__IDLE); 
             exit;    
         }
@@ -502,10 +556,15 @@ case PLAYER_STATES.__DASH:
     // effect
     part_emitter_region(psysfloor, abilsParams[2], x-1, x+1, y-1, y+1, ps_shape_diamond, ps_distr_invgaussian);
     part_emitter_burst(psysfloor, abilsParams[2], global.pldash, irandom_range(2, 4)); 
+    
+    playerCollideRoomComein();
     break;
 
 /* *********************************************** CUCKED *********************************************** */
 case PLAYER_STATES.__CUCKED:
+    physicalBeginStep();
+    physicalApplyRecoil(recoilSpd, recoilDir);
+    physicalMove(collideWith);
     break;    
     
 /* *********************************************** DIE *********************************************** */

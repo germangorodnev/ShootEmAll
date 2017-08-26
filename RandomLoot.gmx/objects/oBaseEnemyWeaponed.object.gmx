@@ -54,6 +54,8 @@ state = ENEMY_STATE.__IDLE;
 pattern = ENEMY_PATTERN.__NONE;
 
 dist = 300;
+retreatDist = 250;
+
 detect = 0;
 
 bulletCollideWith = LEVEL.WALL;
@@ -69,7 +71,6 @@ weaponAttDist = dist;
 projectile = PROJECTILE.__ENEMY_BULLET;
 
 ldirx = 0;
-ldiry = 0;
 ldirdir = 0;
 critchance = 0;
 critmindmg = 0;
@@ -78,6 +79,7 @@ projectileAmount = 1;
 projectileSpeed = 0;
 sprayAngle = 0;
 shootcd = 0;
+dmgcd = 1;
 
 enemyType = -1;
 </string>

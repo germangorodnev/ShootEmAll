@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weapon>
+    <name>СУМАСШЕДШАЯ БЕНЗОПИЛА</name>
+    <desc>АААААААААА</desc>
+    <projectiletype>бензопилы</projectiletype>
+    <principe>Застревает и дамажит каждую секунду</principe>
+    <dmgmin>65</dmgmin>
+    <dmgmax>75</dmgmax>
+    <critdmgmin>0</critdmgmin>
+    <critdmgmax>0</critdmgmax>
+    <projamount>2</projamount>
+    <shootcooldown>2</shootcooldown>
+    <reloadtime>4</reloadtime>
+    <clipsize>1</clipsize>
+    <ammopershot>1</ammopershot>
+    <nextdmgcooldown>0.2</nextdmgcooldown>
+    <maxscatter>3</maxscatter>
+    <cancrit>0</cancrit>
+    <pathpng>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sSteelRuff_0.png</pathpng>
+    <pathpngShoot>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sSteelRuffShoot_0.png</pathpngShoot>
+    <pathpngProjectile>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sChainsaw_0.png</pathpngProjectile>
+    <pathpngAdd>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sChainsaw_1.png</pathpngAdd>
+    <pathpngAdd2>D:/Gamedeveloping/RandomLoot/RandomLoot.gmx/sprites/images/sExplosion_6.png</pathpngAdd2>
+</weapon>

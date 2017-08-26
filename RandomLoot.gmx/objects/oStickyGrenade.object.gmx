@@ -97,7 +97,7 @@ if (stick == 2)
         stick = -1;
         exit;
     }
-    x = stickObj.x + xoff * sign(stickObj.image_xscale);
+    x = stickObj.x + xoff * sign(stickObj.xsc);
     y = stickObj.y + yoff * sign(stickObj.image_yscale);  
     depth = stickObj.depth - 1;
 }

@@ -397,6 +397,100 @@ else if (mg == 1)
                 break;
             }            
             break;
+        case WEAPONS.__LASER_BEE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Laser Bee";
+                _arr[1] = "BUZZZZZZZZZZZZZZ!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Лазерная Оса";
+                _arr[1] = "БУЗЗЗЗЗЗЗЗЗЗЗЗЗЗ!";            
+                break;
+            }            
+            break;
+        case WEAPONS.__BIG_BULG:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Big Bulgavor";
+                _arr[1] = "BULB!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Большой Бульгавор";
+                _arr[1] = "БУЛЬБ!";            
+                break;
+            }            
+            break;
+        case WEAPONS.__ASSAULT_RIFLE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Assault Rifle";
+                _arr[1] = "BULB!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Винтовка Подавления";
+                _arr[1] = "БУЛЬБ!";            
+                break;
+            }            
+            break;
+        case WEAPONS.__STEEL_RUFF:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Steel Ruff";
+                _arr[1] = "BULB!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Стальной Ерш";
+                _arr[1] = "БУЛЬБ!";            
+                break;
+            }            
+            break;
+            
+        case WEAPONS.__DARTS:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Darts";
+                _arr[1] = "WZHUH!";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Дротикомет";
+                _arr[1] = "ВЖУХ!";            
+                break;
+            }            
+            break;
+            
+        case WEAPONS.__PISTOPHONE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Pistophone";
+                _arr[1] = "Gun disguised as a telephone";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Пистофон";
+                _arr[1] = "Замаскированный под телефон пистолет";            
+                break;
+            }            
+            break;
+
+        case WEAPONS.__STALK:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = 'Magneplasm A3011A1 "Stalk"';
+                _arr[1] = "3 is better than 1";
+                break;
+            case LANG.__RUS:
+                _arr[0] = 'Магнеплазм А3011А1 "Черенок"';
+                _arr[1] = "3 лучше, чем 1";            
+                break;
+            }            
+            break;
         // =============================== MELEE ========================== //            
         case WEAPONS.__HALFSWORD:
             switch (global.language)
@@ -434,6 +528,45 @@ else if (mg == 1)
             case LANG.__RUS:
                 _arr[0] = "Артефакт Арии";
                 _arr[1] = "Точно таким же мечом убили знаменитую актрису Роману Зомбедовну";            
+                break;
+            }            
+            break;
+        case WEAPONS.__SPECIAL_PRISONER:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Special Prisoner";
+                _arr[1] = "Zombida Roman was killed with exactly same weapon";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Специальный заключенный";
+                _arr[1] = "Точно таким же мечом убили знаменитую актрису Роману Зомбедовну";            
+                break;
+            }            
+            break;
+        case WEAPONS.__CEREMONIAL_BORIAN:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Ceremonial Borian Sword";
+                _arr[1] = "Zombida Roman was killed with exactly same weapon";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Церемониальный меч борийцев";
+                _arr[1] = "Точно таким же мечом убили знаменитую актрису Роману Зомбедовну";            
+                break;
+            }            
+            break;
+        case WEAPONS.__KNIFE:
+            switch (global.language)
+            {
+            case LANG.__EN:
+                _arr[0] = "Knife";
+                _arr[1] = "description";
+                break;
+            case LANG.__RUS:
+                _arr[0] = "Нож";
+                _arr[1] = "desc";            
                 break;
             }            
             break;

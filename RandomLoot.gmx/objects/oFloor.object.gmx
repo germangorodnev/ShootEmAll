@@ -32,6 +32,8 @@ tw = oLevel.tw;
 th = oLevel.th;
 
 cc = make_colour_hsv(10, 215, 100);
+
+blIndex = -1;
 </string>
           </argument>
         </arguments>

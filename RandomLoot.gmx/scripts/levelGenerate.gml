@@ -178,24 +178,70 @@ with (oCell)
 
 // fill black zones
 //rectCnt = instance_number(oCellRoom) + instance_number(oFloor);
-with (oCellRoom)
-{
-    var p = oLevel.rectCnt++;
-    oLevel.rX1[p] = x * tw;
-    oLevel.rY1[p] = y * th;
-    oLevel.rX2[p] = oLevel.rX1[p] + rw * tw;
-    oLevel.rY2[p] = oLevel.rY1[p] + rh * th;
-    oLevel.rA[p] = 1;       
-}
+var WALLW = 8,
+    WALLH = 6,
+    TRIGGER_XOFF = 5,
+    TRIGGER_YOFF = 5;
 with (oFloor)
 {
     var p = oLevel.rectCnt++;
-    oLevel.rX1[p] = x * tw;
-    oLevel.rY1[p] = y * th;
-    oLevel.rX2[p] = oLevel.rX1[p] + rw * tw;
-    oLevel.rY2[p] = oLevel.rY1[p] + rh * th;
+    blIndex = p;
+    var xadd = 0, yadd = 0;
+    if (rw > rh) // horizontal
+        yadd = WALLH;
+    else // vertical
+        xadd = WALLW;
+    oLevel.rX1[p] = x * tw - xadd;
+    oLevel.rY1[p] = y * th - th;
+    oLevel.rX2[p] = oLevel.rX1[p] + rw * tw + xadd * 2;
+    oLevel.rY2[p] = oLevel.rY1[p] + rh * th + yadd;
     oLevel.rA[p] = 1;       
+    oLevel.rState[p] = -1;
 }
+
+with (oCellRoom)
+{
+    var p = oLevel.rectCnt++;
+    ind = p;
+    var _id = id;
+    with (oLevelDoor)
+    {
+        if (room1 == _id)
+            room1 = p;
+        else if (room2 == _id)
+            room2 = p;
+    }
+    var realx = x * tw,
+        realy = y * th;
+    oLevel.rX1[p] = realx - WALLW;
+    oLevel.rY1[p] = realy - th;// - WALLH;
+    oLevel.rX2[p] = oLevel.rX1[p] + rw * tw + WALLW * 2;
+    oLevel.rY2[p] = oLevel.rY1[p] + rh * th + WALLH;
+    oLevel.rA[p] = 1;
+    oLevel.rState[p] = -1;
+    
+    // create the trigger
+    var cmi = instance_create(realx + TRIGGER_XOFF, realy + TRIGGER_YOFF, oRoomComein);
+    cmi.image_xscale = (rw * tw - TRIGGER_XOFF * 2) / 32;
+    cmi.image_yscale = (rh * th - TRIGGER_YOFF * 2) / 32;
+    // set black zones
+    // main room
+    roomComeinBlackZoneAdd(cmi, p);
+    // halls now
+    for (var i = 0; i < 4; i++)
+    {
+        if (door[i] == noone)
+            continue;
+        var fl = door[i].floorId;
+        roomComeinBlackZoneAdd(cmi, fl.blIndex);
+    }
+    // set room field
+    cmi.roomX1 = realx// - tw;
+    cmi.roomY1 = realy// - th;
+    cmi.roomX2 = cmi.roomX1 + (rw * tw)// + tw;
+    cmi.roomY2 = cmi.roomY1 + (rh * th)// + th;
+}
+
 
 
 // Phase 5 - all tiled

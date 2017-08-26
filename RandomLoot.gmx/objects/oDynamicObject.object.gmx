@@ -33,6 +33,12 @@ spd = 3;
 speedmod = 1;
 fric = 0;
 
+recoilApply = 0;
+recoilFric = 0.07;
+recoilSpd = 0;
+recoilDir = 0;
+recoilTmr = -1;
+
 collideWith = LEVEL.SOLID | LEVEL.WALL;
 
 hittable = 1;
@@ -44,6 +50,9 @@ maskKick = noone;
 
 cuckTmr = -1;
 cuckTmrCnt = 0.2 * room_speed;
+
+shrx = sprite_width / 2;
+shry = 13;
 </string>
           </argument>
         </arguments>

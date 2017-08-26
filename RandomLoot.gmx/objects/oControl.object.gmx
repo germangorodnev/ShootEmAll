@@ -30,11 +30,13 @@ image_speed = 0;
 randomize();
 global.guiW = 1280;
 global.guiH = 720;
+
 global.debug = 0;
 //window_set_size(global.guiW, global.guiH);
 display_set_gui_size(global.guiW, global.guiH);
 
 global.language = LANG.__EN;
+global.sound = 0;
 
 global.char = -1;
 
@@ -51,6 +53,8 @@ global.money = 250000;
 
 // game
 global.playersCount = 0;
+
+global.damageTakeTmr = 4;
 
 // custom sprites e.g. weapons 
 customSprs = ds_list_create();
@@ -106,12 +110,33 @@ part_type_orientation(global.bwzhuh, 0, 360, 0, 0, 0);
 part_type_blend(global.bwzhuh, false);                         
 part_type_life(global.bwzhuh, 0.1 * room_speed, 0.2 * room_speed);    
 
+
+
+
 // green laser eff
 global.lasergreen = part_type_create();
 part_type_sprite(global.lasergreen, sLaserWzhuh, 1, 1, 0);            
 part_type_orientation(global.lasergreen, 0, 360, 0, 0, 0);           
 part_type_blend(global.lasergreen, false);                         
 part_type_life(global.lasergreen, 0.1 * room_speed, 0.2 * room_speed);    
+
+// red laser eff
+global.laserred = part_type_create();
+part_type_sprite(global.laserred, sLaserRedWzhuh, 1, 1, 0);            
+part_type_orientation(global.laserred, 0, 360, 0, 0, 0);           
+part_type_blend(global.laserred, false);                         
+part_type_life(global.laserred, 0.1 * room_speed, 0.2 * room_speed);    
+
+// blue laser eff
+global.laserblue = part_type_create();
+part_type_sprite(global.laserblue, sLaserBlueWzhuh, 1, 1, 0);            
+part_type_orientation(global.laserblue, 0, 360, 0, 0, 0);           
+part_type_blend(global.laserblue, false);                         
+part_type_life(global.laserblue, 0.1 * room_speed, 0.2 * room_speed);    
+
+
+
+
 
 // player dash
 global.pldash = part_type_create();
@@ -122,6 +147,22 @@ part_type_orientation(global.pldash, 0, 360, 0, 0, 0);
 part_type_blend(global.pldash, false);                         
 part_type_life(global.pldash, 0.1 * room_speed, 0.2 * room_speed);    
 
+
+
+// player cactus spikes
+global.spikeMaskLife = 2.3 * room_speed;
+global.spikesEnd = part_type_create();
+part_type_sprite(global.spikesEnd, sSpikesEnd, 0, 0, 0);            
+part_type_blend(global.spikesEnd, false);                         
+part_type_life(global.spikesEnd, 2 * room_speed, 2 * room_speed);    
+part_type_alpha2(global.spikesEnd, 1, .05);
+
+global.spikes = part_type_create();
+part_type_sprite(global.spikes, sSpikes, 1, 1, 0);            
+part_type_size(global.spikes, 1, 1, 0, 0);                    
+part_type_blend(global.spikes, false);                         
+part_type_life(global.spikes, .3 * room_speed, .3 * room_speed); 
+part_type_death(global.spikes, 1, global.spikesEnd);
 
 //with (instance_create(0, 0, oNextRoom))
 //    nextRoomEffectInit(1, rCharChoose, 1, room_width / 3, room_height / 3, 15, global.guiW / 2, global.guiH / 2, 16);
@@ -154,7 +195,13 @@ part_type_destroy(global.meatjibs);
 part_type_destroy(global.jellyjibs);
 part_type_destroy(global.bwzhuh);
 part_type_destroy(global.pldash);
+
 part_type_destroy(global.lasergreen);
+part_type_destroy(global.laserred);
+part_type_destroy(global.laserblue);
+
+part_type_destroy(global.spikes);
+part_type_destroy(global.spikesEnd);
 //part_system_destroy(global.pse);
 gamePsysFree();
 for (var i = 0, ci = ds_list_size(customSprs); i &lt; ci; i++)
@@ -212,6 +259,13 @@ if (keyboard_check_released(ord('V')))
     instance_create(mouse_x, mouse_y, oOctoGuard);
 if (keyboard_check_released(ord('C')))
     instance_create(mouse_x, mouse_y, oOctoAttack);
+if (keyboard_check_released(ord('X')))
+    instance_create(mouse_x, mouse_y, oOctoClub);
+if (keyboard_check_released(ord('Z')))
+    instance_create(mouse_x, mouse_y, oOctoHealer);
+if (keyboard_check_released(ord('L')))
+    instance_create(mouse_x, mouse_y, oRocker);
+
 if (keyboard_check_released(vk_f4))
     window_set_fullscreen(!window_get_fullscreen());
 if (keyboard_check_released(vk_left))
@@ -219,13 +273,7 @@ if (keyboard_check_released(vk_left))
 if (keyboard_check_released(vk_right))
     room_goto_next();
     
-if (keyboard_check_released(ord('L')))
-    if (instance_exists(oLevel))
-    {
-        var oldd = oLevel.floorD;
-        oLevel.floorD = 100000 * (oLevel.floorD &lt; 0) - 100000 * (oLevel.floorD &gt; 0);
-        tile_layer_depth(oldd, oLevel.floorD);
-    }
+
     
 if (keyboard_check_released(ord('I')))
     oPlayer.hp--;
@@ -266,12 +314,13 @@ draw_text(view_xview + 530, view_yview + 10, string(fps));
 draw_text(view_xview + 530, view_yview + 40, string(instance_count));
 if (!global.debug)
     exit;
+var ccol = c_red;
 for (var i = 0; i &lt;= room_width; i += LEVEL.TILE_W)
 {
-    draw_line_colour(i, 0, i, room_height, c_black, c_black);
+    draw_line_colour(i, 0, i, room_height, ccol, ccol);
     for (var j = 0; j &lt;= room_height; j += LEVEL.TILE_H)
     {
-        draw_line_colour(0, j, room_width, j, c_black, c_black);
+        draw_line_colour(0, j, room_width, j, ccol, ccol);
     }
 }
 with (oExplosiveCrate)

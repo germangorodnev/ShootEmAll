@@ -6,7 +6,7 @@ switch (object_index)
 case oPlayer:
     if (cuckTmr != -1)
         return 0;
-    playerChangeHP(-argument[0]);
+    playerChangeHP(id, -argument[0]);
     return 1;
     break;
     

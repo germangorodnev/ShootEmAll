@@ -1,6 +1,6 @@
 ///playerPickup()
 pwId = noone;
-var pickup = instance_place(x, y, oPickupableObject);
+var pickup = playerGetPickupableUnder(); 
 if (pickup != noone)
 {
     if (physicalOnOneLine(y, pickup.compareY))
@@ -19,15 +19,40 @@ else
 if (pickupId == noone)
     exit;
     
-if (!pickupId.autopickup)
+if (pickupId.autopickup)
+{
+    switch (pickupId.type)
+    {
+    case PICKUP.__AMMO:
+        playerPickupAmmo(pickupId.value, pickupId.ammo);
+        with (pickupId)
+            instance_destroy();    
+        break;
+        
+    case PICKUP.__HP:
+        if (hp != _hp)
+        {
+            playerChangeHP(id, pickupId.value);
+            with (pickupId)
+                instance_destroy();
+        }
+        break;
+        
+    case PICKUP.__MONEY:
+        playerAddMoney(pickupId.value);
+        with (pickupId)
+            instance_destroy();    
+        break;
+    }
+}
+else
 {
     switch (pickupId.type)
     {
     case PICKUP.__WEAPON:
         pwId = pickupId;
+        playerPickupInformationSet(pwId, PICKUP.__WEAPON);
         pickupId = noone;
-        pwName = pwId.name;
-        pwType = pwId.class;
         if (!key[KEY.PICKUP])
             exit;
         if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
@@ -80,33 +105,6 @@ if (!pickupId.autopickup)
             exit;
         key[KEY.RECHARGABLE_ITEM] = 0;
         playerPickupRechargableExplosive(pickupId);  
-        with (pickupId)
-            instance_destroy();    
-        break;
-    }
-    //SWITCH ADD PICKUP
-}
-else
-{
-    switch (pickupId.type)
-    {
-    case PICKUP.__AMMO:
-        playerPickupAmmo(pickupId.value, pickupId.ammo);
-        with (pickupId)
-            instance_destroy();    
-        break;
-        
-    case PICKUP.__HP:
-        if (hp != _hp)
-        {
-            playerChangeHP(pickupId.value);
-            with (pickupId)
-                instance_destroy();
-        }
-        break;
-        
-    case PICKUP.__MONEY:
-        playerAddMoney(pickupId.value);
         with (pickupId)
             instance_destroy();    
         break;

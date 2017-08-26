@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>oStateObject</parentName>
+  <parentName>oEnemyWeapon</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,6 +30,19 @@ image_speed = 0;
 
 state = WEAPON_STATES.__MOVE;
 parent = noone;
+attackType = -1; 
+
+canAttack = 1;
+canAttackTmr = -1;
+
+xsc = 1;
+
+anImageIndex = 0;
+anImageSpeed = 0;
+anImageNumber = 0;
+
+reloadAm = 0;
+reloadTmr = 0;
 
 animEnded = 0;
 
@@ -104,55 +117,20 @@ if (canAttackTmr &amp;&amp; !--canAttackTmr)
     // can attack again
     canAttack = 1;
 }
+
+// delete some bulletz
+var bo = instance_place(x, y, oBulletObject)
+if (bo != noone)
+{   
+    if (bo.group != parent.maskHit.group)
+        if (bo.bulFlags &amp; BULLET_FLAGS.__SHIELD_DELETABLE)
+            with (bo)
+                instance_destroy();
+}
         
 // SWITCH ADD
 switch (state)
 {
-case WEAPON_STATES.__MOVE:
-    break;
-    
-case WEAPON_STATES.__MELEE_DOWN:
-    image_angle = approach(image_angle, angleNeed, angleRot);
-    //SWITCH ADD
-    switch (attackType)
-    {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
-        }            
-        break;
-    default:
-        if (image_angle == angleNeed)
-        {
-            with (oPlayer)
-                playerWeaponSetState(WEAPON_STATES.__MELEE_UP);    
-        }            
-        break;   
-    }
-    break;
-        
-case WEAPON_STATES.__MELEE_UP:
-    image_angle = approach(image_angle, angleNeed, angleRot);
-    switch (attackType)
-    {
-    case WEAPON_ATTACK_TYPE.__DOWN_TIMER_UP:
-        if (image_angle == angleNeed)
-        {
-            with (parent)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);    
-        }            
-        break;
-    default:
-        if (image_angle == angleNeed)
-        {
-            with (parent)
-                playerWeaponSetState(WEAPON_STATES.__MOVE);       
-        }
-        break;   
-    }
-    break;    
     
 case WEAPON_STATES.__RANGE_SHOT:
     if (animEnded)
@@ -199,8 +177,10 @@ case WEAPON_STATES.__RANGE_RECOIL:
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index != -1)
-    draw_sprite_ext(sprite_index, anImageIndex, x, y, xsc, image_yscale, image_angle, image_blend, image_alpha);
+            <string>draw_sprite_ext(sprite_index, anImageIndex, x, y, xsc, image_yscale, image_angle, image_blend, image_alpha);
+if (global.debug)
+    draw_sprite_ext(sMask32x32, 0, bbox_left, bbox_top, (bbox_right - bbox_left) / 32,
+        (bbox_bottom - bbox_top) / 32, 0, c_red, 1);
 </string>
           </argument>
         </arguments>
@@ -248,6 +228,29 @@ case WEAPON_STATES.__RANGE_RECOIL:
             <kind>1</kind>
             <string>///on pause
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// do not draw
 </string>
           </argument>
         </arguments>

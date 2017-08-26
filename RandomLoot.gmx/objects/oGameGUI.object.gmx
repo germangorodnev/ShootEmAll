@@ -103,7 +103,6 @@ phbxb = phbx  + 1;
 phbyb = phby + sprite_get_height(sPlayerHP) + 7;
 phbetwxb = sprite_get_width(sPlayerHP) - 3;
 
-
 phbh = sprite_get_height(sPlayerHP);
 </string>
           </argument>
@@ -248,6 +247,20 @@ if (playerId.hp - ccnt * 2 == 1) // one part
 //SWITCH ADD AMMO
 switch (ammoGUI)
 {
+// chainsaws
+case -1:
+    draw_sprite_ext(sAmmoGUI, 4, colx, coly, 1, 1, 0, image_blend, image_alpha);
+    draw_sprite_part_ext(sAmmoGUI, 5, 0, 0, colw * (playerId.ammo[AMMO.__GRENADES]/playerId.ammoMax[AMMO.__GRENADES]), colh, colx, coly, 1, 1, image_blend, image_alpha);
+
+    for (var i = 0, cc = playerId.weaponAmmo div 2; i &lt; cc; i++)
+    {
+        var fl = floor(i / grrow);
+        draw_sprite_ext(sChainsaw, 0, 
+            grx + fl * grbx, gry + (i % grrow) * 15 + fl * 9,
+            1, 1, 0, image_blend, image_alpha);
+    }
+    break;
+    
 case AMMO.__SHOTGUN:
     draw_sprite_ext(sAmmoGUI, 0, colx, coly, 1, 1, 0, image_blend, image_alpha);
     draw_sprite_part_ext(sAmmoGUI, 1, 0, 0, colw * (playerId.ammo[AMMO.__SHOTGUN]/playerId.ammoMax[AMMO.__SHOTGUN]), colh, colx, coly, 1, 1, image_blend, image_alpha);
@@ -305,6 +318,16 @@ case AMMO.__BORIAN:
             yy = bory + lengthdir_y(35, angle);
         draw_sprite_ext(sBorianBulgProjectile, 0, 
             xx, yy,
+            1, 1, 0, image_blend, image_alpha);
+    }
+    break;
+
+case AMMO.__DARTS:
+    for (var i = 0, cc = playerId.weaponAmmo; i &lt; cc; i++)
+    {
+        var fl = floor(i / abrow);
+        draw_sprite_ext(sAmmoDarts, 0, 
+            abx + fl * abbx, aby + (i % abrow) * abby + fl * 9,
             1, 1, 0, image_blend, image_alpha);
     }
     break;
@@ -409,25 +432,26 @@ if (global.gameState == GAME_STATES.__SHOP)
     {
         if (pwId != noone)
         {
-            var xx = pwId.x,
-                yy = pwId.y - 50;
-            draw_sprite_ext(sPickupWI, 0, xx, yy, 1, 1, 0, image_blend, image_alpha);
+            draw_sprite_ext(sPickupWILeft, 0, pwilx, pwiy, 1, 1, 0, image_blend, image_alpha);
+            draw_sprite_ext(sPickupWICenter, 0, pwicx, pwiy, pwicsc, 1, 0, image_blend, image_alpha);
+            draw_sprite_ext(sPickupWIRight, 0, pwirx, pwiy, 1, 1, 0, image_blend, image_alpha);
             // class
             draw_set_font(fWeaponType);
             draw_set_valign(fa_top);
             draw_set_halign(fa_left);
-            draw_text_colour(xx - 48, yy - 42, pwType, pwc, pwc, pwc, pwc, image_alpha);  
+            draw_text_colour(pwitypex, pwitypey, pwType, pwc, pwc, pwc, pwc, image_alpha);  
             // name
             draw_set_font(fWeaponName);
             draw_set_halign(fa_center);
-            draw_text_colour(xx + 16, yy - 29, pwName, pwc, pwc, pwc, pwc, image_alpha);  
+            draw_text_colour(pwinamex, pwinamey, pwName, pwc, pwc, pwc, pwc, image_alpha);  
         }       
     }
     // reload indicator
     if (weaponObj.state == WEAPON_STATES.__RANGE_RELOAD)
-    {
-        
-        var cc = 6 - round((weaponObj.canAttackTmr / weaponObj.reloadTmrBegin) * 6);
+    {        
+        var cc = 6 - floor((weaponObj.canAttackTmr / weaponObj.reloadTmrBegin) * 6);
+        //show_debug_message("Can Attack: " + string(weaponObj.canAttackTmr) +
+        //    " Begin Tmr: " + string(weaponObj.reloadTmrBegin));
         for (var i = 0; i &lt; cc; i++)
         {
             var xx = x,
@@ -438,15 +462,25 @@ if (global.gameState == GAME_STATES.__SHOP)
 }
 
 // black rectangles
-/*with (oLevel)
+
+with (oLevel)
 {
+    if (!surface_exists(black))
+        black = surface_create(global.guiW, global.guiH);
+    surface_set_target(black);
+    draw_clear_alpha(bl, 1);
+    draw_set_blend_mode(bm_subtract);
     for (var i = 0; i &lt; rectCnt; i++)
     {
-        draw_set_alpha(rA[i]);
-        draw_rectangle_colour(rX1[i], rY1[i], rX2[i], rY2[i], c_black, c_black, c_black, c_black, 0);
+        draw_set_alpha(1 - rA[i]);
+        draw_rectangle_colour(rX1[i] - view_xview, rY1[i] - view_yview, rX2[i] - view_xview, rY2[i] - view_yview, bl, bl, bl, bl, 0);
         draw_set_alpha(1);
     }
+    draw_set_blend_mode(bm_normal);
+    surface_reset_target();
+    draw_surface(black, view_xview, view_yview);
 }
+
 </string>
           </argument>
         </arguments>

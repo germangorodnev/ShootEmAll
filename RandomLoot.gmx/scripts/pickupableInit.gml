@@ -25,19 +25,16 @@ case PICKUP.__WEAPON:
     switch (value)
     {
     case WEAPONS.__BLOOD_FLAG:
-        image_angle = 270;
+        sprite_index = sBloodFlag;
         break;
     case WEAPONS.__HALFSWORD:
         sprite_index = sHalfsword; 
-        image_angle = -45;
         break;
     case WEAPONS.__COPPER_DEVIL:
-        sprite_index = sCopperDevil; 
-        image_angle = -45;
+        sprite_index = sCopperDevil;
         break;
     case WEAPONS.__STICK:
-        sprite_index = sStick; 
-        image_angle = 60;
+        sprite_index = sStick;
         break;
     case WEAPONS.__ARIA_ARTH:
         sprite_index = sAriaArthef; 
@@ -45,8 +42,15 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__RAZORBLADE:
         sprite_index = sRazorblade; 
-        image_angle = 65;
         break;
+    case WEAPONS.__SPECIAL_PRISONER:
+        sprite_index = sSpecialPrisoner; 
+        break;
+    case WEAPONS.__CEREMONIAL_BORIAN:
+        sprite_index = sCeremoniaBorianSword; 
+        break;
+    case WEAPONS.__KNIFE:
+        break;    
 
     
     case WEAPONS.__POMPINGTON:
@@ -99,6 +103,34 @@ case PICKUP.__WEAPON:
         break;
     case WEAPONS.__TESLA_BOOM:
         sprite_index = sTeslaBoom; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__LASER_BEE:
+        sprite_index = sLaserBee; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__BIG_BULG:
+        sprite_index = sBigBulg; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__ASSAULT_RIFLE:
+        sprite_index = sPushRifle; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__STEEL_RUFF:
+        sprite_index = sSteelRuff; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__DARTS:
+        sprite_index = sDarts; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__PISTOPHONE:
+        sprite_index = sPistophone; 
+        ammo = argument[2];
+        break;
+    case WEAPONS.__STALK:
+        sprite_index = sStalk; 
         ammo = argument[2];
         break;
         

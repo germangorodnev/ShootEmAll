@@ -1,4 +1,4 @@
-///physicalMove(collideWith bitmask, hsp, vsp)
+///physicalMoveProp(collideWith bitmask, hsp, vsp)
 var clw = argument[0],
     chspd = argument[1],
     cvspd = argument[2];

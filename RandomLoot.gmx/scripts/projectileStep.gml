@@ -26,6 +26,7 @@ if (ic != noone)
         tk = maskTryGetDmg(c, a, b, cdd);
     if (tk)
     {
+        collideId = ic;
         cntgothrough--;
         if (cntgothrough <= 0)
             instance_destroy();
@@ -41,8 +42,7 @@ if (ic != noone)
 }
 
 //if (!colPlaceFree(x + lengthdir_x(speed, direction - 180), y + lengthdir_y(speed, direction - 180), 1))
-if (!colPlaceFree(x /*+ lengthdir_x(speed / 2, direction)*/, 
-    y /*+ lengthdir_y(speed / 2, direction)*/, collideWith))
+if (!colPlaceFree(x, y, collideWith))
 {
     instance_destroy();
 }

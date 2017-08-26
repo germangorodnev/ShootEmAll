@@ -4,7 +4,13 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="Sounds">
+      <sound>sound\sndPistol</sound>
+      <sound>sound\sndMachinegun</sound>
+      <sound>sound\sndOverkillington</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Player">
       <sprites name="GUI">
@@ -16,12 +22,23 @@
           <sprite>sprites\sAmmoBullet</sprite>
           <sprite>sprites\sWoltmeter</sprite>
           <sprite>sprites\sWoltmeterArrow</sprite>
+          <sprite>sprites\sAmmoDarts</sprite>
         </sprites>
         <sprites name="Abilities">
           <sprite>sprites\sAbilities</sprite>
         </sprites>
+        <sprites name="Character Choose">
+          <sprite>sprites\sCharacterIcos</sprite>
+        </sprites>
+        <sprites name="Debuffs">
+          <sprite>sprites\sDebuffIcons</sprite>
+        </sprites>
+        <sprites name="Pickup Weapon Inf">
+          <sprite>sprites\sPickupWILeft</sprite>
+          <sprite>sprites\sPickupWICenter</sprite>
+          <sprite>sprites\sPickupWIRight</sprite>
+        </sprites>
         <sprite>sprites\sPlayerHP</sprite>
-        <sprite>sprites\sPickupWI</sprite>
         <sprite>sprites\sPickup</sprite>
         <sprite>sprites\sAmmoGUIEnergy</sprite>
         <sprite>sprites\sCursorTarget</sprite>
@@ -51,6 +68,15 @@
           </sprites>
           <sprites name="Razorblade">
             <sprite>sprites\sRazorblade</sprite>
+          </sprites>
+          <sprites name="Special Prisoner">
+            <sprite>sprites\sSpecialPrisoner</sprite>
+          </sprites>
+          <sprites name="Ceremonial Sword">
+            <sprite>sprites\sCeremoniaBorianSword</sprite>
+          </sprites>
+          <sprites name="Knife">
+            <sprite>sprites\sKnife</sprite>
           </sprites>
         </sprites>
         <sprites name="Range">
@@ -108,6 +134,34 @@
             <sprite>sprites\sTeslaBoom</sprite>
             <sprite>sprites\sTeslaBoomShoot</sprite>
           </sprites>
+          <sprites name="Laser Bee">
+            <sprite>sprites\sLaserBee</sprite>
+            <sprite>sprites\sLaserBeeShoot</sprite>
+          </sprites>
+          <sprites name="Big Bulgavor">
+            <sprite>sprites\sBigBulg</sprite>
+            <sprite>sprites\sBigBulgShoot</sprite>
+          </sprites>
+          <sprites name="Push Rifle">
+            <sprite>sprites\sPushRifle</sprite>
+            <sprite>sprites\sPushRifleShoot</sprite>
+          </sprites>
+          <sprites name="Steel Ruff">
+            <sprite>sprites\sSteelRuff</sprite>
+            <sprite>sprites\sSteelRuffShoot</sprite>
+          </sprites>
+          <sprites name="Darts">
+            <sprite>sprites\sDarts</sprite>
+            <sprite>sprites\sDartsShoot</sprite>
+          </sprites>
+          <sprites name="Pistophone">
+            <sprite>sprites\sPistophone</sprite>
+            <sprite>sprites\sPistophoneShoot</sprite>
+          </sprites>
+          <sprites name="Stalk">
+            <sprite>sprites\sStalk</sprite>
+            <sprite>sprites\sStalkShoot</sprite>
+          </sprites>
         </sprites>
         <sprites name="Parts For Random">
           <sprite>sprites\sWeaponPartBody</sprite>
@@ -118,12 +172,18 @@
       </sprites>
       <sprites name="Effects">
         <sprite>sprites\sWzhuhMelee</sprite>
+        <sprite>sprites\sKnifeWzhuh</sprite>
         <sprite>sprites\sWzhuhBullet</sprite>
         <sprite>sprites\sLaserWzhuh</sprite>
+        <sprite>sprites\sLaserRedWzhuh</sprite>
+        <sprite>sprites\sLaserBlueWzhuh</sprite>
       </sprites>
       <sprites name="Skins">
         <sprite>sprites\sPlayerCamouflage</sprite>
         <sprite>sprites\sPlayerKamikaze</sprite>
+        <sprite>sprites\sPlayerCactus</sprite>
+        <sprite>sprites\sPlayerSolitare</sprite>
+        <sprite>sprites\sPlayerFox</sprite>
       </sprites>
       <sprites name="Shop">
         <sprite>sprites\sShopGUIIco</sprite>
@@ -136,10 +196,13 @@
       </sprites>
       <sprite>sprites\sGUIIcoBack</sprite>
       <sprite>sprites\sprite106</sprite>
+      <sprite>sprites\sSpikes</sprite>
+      <sprite>sprites\sSpikesEnd</sprite>
     </sprites>
     <sprites name="Masks">
       <sprite>sprites\sMask32x32</sprite>
       <sprite>sprites\sMask32x32Blue</sprite>
+      <sprite>sprites\sMaskCircle32x32</sprite>
     </sprites>
     <sprites name="Enemies">
       <sprites name="Bodys">
@@ -147,6 +210,10 @@
           <sprite>sprites\sCondom</sprite>
         </sprites>
         <sprites name="Pillow">
+          <sprites name="Machinegun">
+            <sprite>sprites\sEnemyMachinegun</sprite>
+            <sprite>sprites\sEnemyMachinegunShoot</sprite>
+          </sprites>
           <sprite>sprites\sEnemyPillow</sprite>
           <sprite>sprites\sEnemyPillowCucked</sprite>
         </sprites>
@@ -160,12 +227,17 @@
             <sprite>sprites\sOctoGuardShieldR</sprite>
             <sprite>sprites\sOctoGuardShieldT</sprite>
             <sprite>sprites\sOctoGuardTazer</sprite>
+            <sprite>sprites\sOctoGuardClub</sprite>
           </sprites>
           <sprites name="Attacker">
             <sprite>sprites\sOctoAttack</sprite>
             <sprite>sprites\sOctoAttackW1</sprite>
             <sprite>sprites\sOctoAttackW2</sprite>
             <sprite>sprites\sOctoAttackW3</sprite>
+          </sprites>
+          <sprites name="Healer">
+            <sprite>sprites\sOctoHealerWeapon</sprite>
+            <sprite>sprites\sOctoHeal</sprite>
           </sprites>
         </sprites>
         <sprites name="Jelly">
@@ -175,17 +247,35 @@
           <sprite>sprites\sJellyDead</sprite>
         </sprites>
       </sprites>
-      <sprites name="Weapons">
-        <sprites name="Machinegun">
-          <sprite>sprites\sEnemyMachinegun</sprite>
-          <sprite>sprites\sEnemyMachinegunShoot</sprite>
-        </sprites>
-      </sprites>
-      <sprite>sprites\sEnemyBullet</sprite>
       <sprites name="Jibs">
         <sprite>sprites\sPillowJibs</sprite>
         <sprite>sprites\sMeatJibs</sprite>
         <sprite>sprites\sJellyJibs</sprite>
+      </sprites>
+      <sprites name="Particles">
+        <sprite>sprites\sEnemyBullet</sprite>
+        <sprite>sprites\sRockerUziBullet</sprite>
+        <sprite>sprites\sMolotovFire</sprite>
+      </sprites>
+      <sprites name="BOSSES">
+        <sprites name="Rocker">
+          <sprites name="Weapons">
+            <sprite>sprites\sRockerGuitar</sprite>
+            <sprite>sprites\sRockerMolotov</sprite>
+            <sprites name="Minigun">
+              <sprite>sprites\sRockerMinigun</sprite>
+              <sprite>sprites\sRockerMinigunShoot</sprite>
+            </sprites>
+            <sprites name="UZIS">
+              <sprite>sprites\sRockerUziGreen</sprite>
+              <sprite>sprites\sRockerUziGreenShoot</sprite>
+              <sprite>sprites\sRockerUziPink</sprite>
+              <sprite>sprites\sRockerUziPinkShoot</sprite>
+            </sprites>
+          </sprites>
+          <sprite>sprites\sRockerNoGuitarBack</sprite>
+          <sprite>sprites\sRockerGuitarBack</sprite>
+        </sprites>
       </sprites>
     </sprites>
     <sprites name="Pickupable">
@@ -200,18 +290,23 @@
       <sprite>sprites\sPickupEat</sprite>
     </sprites>
     <sprites name="Ammo Shot">
+      <sprites name="Special Rechargable">
+        <sprite>sprites\sLaserMine</sprite>
+        <sprite>sprites\sDynamite</sprite>
+        <sprite>sprites\sBoomerang</sprite>
+        <sprite>sprites\sStickyGrenade</sprite>
+      </sprites>
       <sprite>sprites\sShotgunProjectile</sprite>
       <sprite>sprites\sBulletProjectile</sprite>
       <sprite>sprites\sEnergyProjectile</sprite>
+      <sprite>sprites\sBulletDarts</sprite>
+      <sprite>sprites\sPlasm</sprite>
       <sprite>sprites\sFastBullet</sprite>
       <sprite>sprites\sBorianBulgProjectile</sprite>
       <sprite>sprites\sGrenade</sprite>
       <sprite>sprites\sExplosion</sprite>
       <sprite>sprites\sExplosives</sprite>
-      <sprite>sprites\sLaserMine</sprite>
-      <sprite>sprites\sDynamite</sprite>
-      <sprite>sprites\sStickyGrenade</sprite>
-      <sprite>sprites\sBoomerang</sprite>
+      <sprite>sprites\sChainsaw</sprite>
     </sprites>
     <sprites name="Interactable">
       <sprites name="Crate">
@@ -221,6 +316,7 @@
       <sprite>sprites\sExplosiveCrate</sprite>
       <sprite>sprites\sRoomDoorTopBot</sprite>
       <sprite>sprites\sShop</sprite>
+      <sprite>sprites\sLevelPortal</sprite>
     </sprites>
     <sprites name="Prison Objects">
       <sprite>sprites\sPrisonDoorTopBot</sprite>
@@ -229,9 +325,6 @@
     </sprites>
     <sprites name="Items">
       <sprite>sprites\sItems</sprite>
-    </sprites>
-    <sprites name="Character Choose">
-      <sprite>sprites\sCharacterIcos</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -253,6 +346,7 @@
     <background>background\tlsPrisonFloor128</background>
     <background>background\tlsPrisonDefault</background>
     <background>background\tlsPrisonDefaultCarpet</background>
+    <background>background\tlsPrisonCarpetRespawn</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -272,11 +366,15 @@
         <script>scripts\maskTryGetDmg.gml</script>
         <script>scripts\maskRemoveById.gml</script>
       </scripts>
+      <scripts name="Recoil">
+        <script>scripts\physicalSetRecoil.gml</script>
+        <script>scripts\physicalApplyRecoil.gml</script>
+        <script>scripts\physicalApplyFriction.gml</script>
+      </scripts>
       <script>scripts\physicalBeginStep.gml</script>
       <script>scripts\physicalMove.gml</script>
       <script>scripts\physicalMoveProp.gml</script>
       <script>scripts\physicalMoveToPoint.gml</script>
-      <script>scripts\physicalApplyRecoil.gml</script>
       <script>scripts\physicalTakeDmg.gml</script>
       <script>scripts\physicalCucked.gml</script>
       <script>scripts\physicalClearMaskKick.gml</script>
@@ -294,21 +392,12 @@
       <script>scripts\weaponRestore.gml</script>
       <script>scripts\playerChangeHP.gml</script>
       <script>scripts\playerMaskCreate.gml</script>
-      <script>scripts\playerAddMoney.gml</script>
-      <scripts name="Pickup">
-        <script>scripts\playerMaskPickup.gml</script>
-        <script>scripts\playerPickup.gml</script>
-        <script>scripts\playerPickupWeapon.gml</script>
-        <script>scripts\playerPickupWeaponCustom.gml</script>
-        <script>scripts\playerPickupAmmo.gml</script>
-        <script>scripts\playerPickupCard.gml</script>
-        <script>scripts\playerPickupEat.gml</script>
-        <script>scripts\playerPickupRechargableExplosive.gml</script>
-      </scripts>
+      <script>scripts\playerCollideRoomComein.gml</script>
       <scripts name="GUI">
         <script>scripts\playerRecountGUI.gml</script>
       </scripts>
       <scripts name="Weapon">
+        <script>scripts\playerInitDeafultWeapon.gml</script>
         <script>scripts\playerWeaponDrop.gml</script>
         <script>scripts\playerWeaponSetState.gml</script>
         <script>scripts\playerWeaponSetKickCount.gml</script>
@@ -318,8 +407,22 @@
         <script>scripts\weaponFleeAngleSet.gml</script>
         <script>scripts\weaponSpriteIfNoAmmo.gml</script>
       </scripts>
+      <scripts name="Pickup">
+        <scripts name="Information windows">
+          <script>scripts\playerPickupInformationSet.gml</script>
+        </scripts>
+        <script>scripts\playerMaskPickup.gml</script>
+        <script>scripts\playerPickup.gml</script>
+        <script>scripts\playerGetPickupableUnder.gml</script>
+        <script>scripts\playerPickupWeapon.gml</script>
+        <script>scripts\playerPickupWeaponCustom.gml</script>
+        <script>scripts\playerPickupAmmo.gml</script>
+        <script>scripts\playerPickupCard.gml</script>
+        <script>scripts\playerPickupEat.gml</script>
+        <script>scripts\playerPickupRechargableExplosive.gml</script>
+      </scripts>
       <scripts name="Abilities">
-        <script>scripts\abilityAdd.gml</script>
+        <script>scripts\playerAbilityAdd.gml</script>
         <script>scripts\playerAbilityKeyCheck.gml</script>
         <script>scripts\playerAbilityUse.gml</script>
         <script>scripts\playerAbilitiesCooldown.gml</script>
@@ -341,6 +444,16 @@
       <scripts name="Robot">
         <script>scripts\playerAllyCreate.gml</script>
       </scripts>
+      <scripts name="Rooms and Fog">
+        <script>scripts\playerComeIntoRoom.gml</script>
+      </scripts>
+      <scripts name="Melee Wzhuh">
+        <script>scripts\meleeWzhuhCreate.gml</script>
+        <script>scripts\meleeWzhuhActivate.gml</script>
+      </scripts>
+      <scripts name="Money">
+        <script>scripts\playerAddMoney.gml</script>
+      </scripts>
     </scripts>
     <scripts name="Debug">
       <script>scripts\debugInit.gml</script>
@@ -357,6 +470,7 @@
       <script>scripts\procedureAnimateWeapon.gml</script>
       <script>scripts\customAnimableProceed.gml</script>
       <script>scripts\customAnimableSetSprite.gml</script>
+      <script>scripts\objectDrawShadow.gml</script>
     </scripts>
     <scripts name="Util">
       <script>scripts\approach.gml</script>
@@ -364,6 +478,9 @@
       <script>scripts\outsideRoom.gml</script>
       <script>scripts\collisionLine.gml</script>
       <script>scripts\objectsInCircle.gml</script>
+      <script>scripts\objectsInRectangle.gml</script>
+      <script>scripts\sleep.gml</script>
+      <script>scripts\setSprIfNotSet.gml</script>
     </scripts>
     <scripts name="Pickupable">
       <script>scripts\pickupableInit.gml</script>
@@ -388,6 +505,7 @@
         <script>scripts\gameGetSingleuseInformation.gml</script>
         <script>scripts\gameGetRechargableExplosiveInformation.gml</script>
         <script>scripts\gameGetEatableInformation.gml</script>
+        <script>scripts\gameGetAmmoInformation.gml</script>
       </scripts>
       <scripts name="Bue">
         <script>scripts\gameBueAdd.gml</script>
@@ -404,14 +522,15 @@
         <script>scripts\customSpriteAdd.gml</script>
         <script>scripts\customSpriteDeleteByValue.gml</script>
       </scripts>
-      <scripts name="Doors">
-        <script>scripts\laserDoorAdd.gml</script>
-        <script>scripts\laserDoorChangeById.gml</script>
-        <script>scripts\laserDoorChangeAll.gml</script>
-      </scripts>
       <scripts name="Menu">
         <script>scripts\characterPreSelect.gml</script>
         <script>scripts\characterSet.gml</script>
+      </scripts>
+      <scripts name="Audio">
+        <script>scripts\soundPlay.gml</script>
+      </scripts>
+      <scripts name="Spikes">
+        <script>scripts\playerSpikesCreate.gml</script>
       </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
@@ -427,6 +546,8 @@
       <script>scripts\pointColGrid.gml</script>
       <script>scripts\drawLaser.gml</script>
       <script>scripts\gamePlayerCreate.gml</script>
+      <script>scripts\objInView.gml</script>
+      <script>scripts\getReflectionAngle.gml</script>
     </scripts>
     <scripts name="Bullets">
       <scripts name="Long">
@@ -441,31 +562,59 @@
         <script>scripts\zapDraw.gml</script>
       </scripts>
       <script>scripts\projectileInited.gml</script>
+      <script>scripts\projectileStep.gml</script>
       <script>scripts\projectileTimer.gml</script>
       <script>scripts\laserFindCollisionPoint.gml</script>
       <script>scripts\laserMineInit.gml</script>
+      <script>scripts\bulletCreate.gml</script>
+      <script>scripts\bulletPatternCreate.gml</script>
     </scripts>
     <scripts name="Enemies">
       <scripts name="Enemy Weapons">
         <script>scripts\enemyWeaponInit.gml</script>
         <script>scripts\enemyWeaponSetState.gml</script>
+        <script>scripts\enemyWeaponSetAnimation.gml</script>
       </scripts>
       <scripts name="Projectiles">
         <script>scripts\projectileStepEnemy.gml</script>
+      </scripts>
+      <scripts name="On Die Create">
+        <script>scripts\enemyCreateJibs.gml</script>
+        <script>scripts\enemyCreateMoney.gml</script>
+        <script>scripts\enemyCreateAmmo.gml</script>
+      </scripts>
+      <scripts name="Debuffs">
+        <script>scripts\enemySetPoison.gml</script>
+        <script>scripts\enemyDebuffsProceed.gml</script>
+        <script>scripts\enemyDrawDebuffs.gml</script>
+      </scripts>
+      <scripts name="Path">
+        <script>scripts\enemyGetNextPathPoint.gml</script>
+      </scripts>
+      <scripts name="Draw">
+        <script>scripts\enemyDrawBase.gml</script>
+      </scripts>
+      <scripts name="CUSTOM">
+        <scripts name="Octopus Shield">
+          <script>scripts\enemyOctopusShieldAttack.gml</script>
+          <script>scripts\enemyOctopusShieldChangeWeapon.gml</script>
+        </scripts>
       </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
       <script>scripts\enemyDetectPlayer.gml</script>
       <script>scripts\enemyCanAttack.gml</script>
       <script>scripts\enemyAttack.gml</script>
-      <script>scripts\enemyCreateJibs.gml</script>
       <script>scripts\enemyMoveOutOfOther.gml</script>
-      <script>scripts\enemyCreateMoney.gml</script>
+      <script>scripts\enemyWeaponBaseStep.gml</script>
+      <script>scripts\enemyRetreatStep.gml</script>
+      <script>scripts\enemyFullRotateAndAttack.gml</script>
+      <script>scripts\enemyMoveToPointDone.gml</script>
+      <script>scripts\enemySetDirByMoving.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>
       <script>scripts\instancePlaceList.gml</script>
-      <script>scripts\projectileStep.gml</script>
     </scripts>
     <scripts name="Level">
       <scripts name="Level Generation">
@@ -523,7 +672,10 @@
             </scripts>
             <scripts name="Start Room">
               <script>scripts\levelPrisonStartRoomInit.gml</script>
+            </scripts>
+            <scripts name="Carpet Set">
               <script>scripts\levelPrisonSmallCarpetSet.gml</script>
+              <script>scripts\levelPrisonCarpetSet.gml</script>
             </scripts>
             <script>scripts\levelPrisonSplitByCells.gml</script>
             <script>scripts\levelPrisonSetCloset.gml</script>
@@ -540,11 +692,26 @@
           <script>scripts\levelCreateEnemy.gml</script>
         </scripts>
         <script>scripts\levelGridToTiles.gml</script>
+        <script>scripts\levelCollisionHelperInitAll.gml</script>
         <script>scripts\levelCollisionHelperInit.gml</script>
+      </scripts>
+      <scripts name="Blackness">
+        <script>scripts\levelBlacknessSetState.gml</script>
+        <script>scripts\levelBlacknessSetAlpha.gml</script>
+      </scripts>
+      <scripts name="Doors">
+        <script>scripts\laserDoorAdd.gml</script>
+        <script>scripts\laserDoorChangeById.gml</script>
+        <script>scripts\laserDoorChangeAll.gml</script>
+      </scripts>
+      <scripts name="Room Comeins">
+        <script>scripts\roomComeinBlackZoneAdd.gml</script>
       </scripts>
       <script>scripts\levelFreeSolid.gml</script>
       <script>scripts\levelRoomAdd.gml</script>
       <script>scripts\levelTileMark.gml</script>
+      <script>scripts\levelCheckEnemyDie.gml</script>
+      <script>scripts\enemiesInRoom.gml</script>
     </scripts>
     <scripts name="Shop">
       <script>scripts\shopOpen.gml</script>
@@ -567,10 +734,16 @@
       <script>scripts\minimapSmaller.gml</script>
       <script>scripts\minimapUpdate.gml</script>
     </scripts>
+    <scripts name="Flags">
+      <script>scripts\flagIsActive.gml</script>
+      <script>scripts\flagSet.gml</script>
+      <script>scripts\flagSetVar.gml</script>
+    </scripts>
     <script>scripts\ENUMS.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shdGray.shader</shader>
+    <shader type="GLSLES">shaders\shdWhite.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fWeaponType</font>
@@ -596,7 +769,6 @@
         </objects>
         <objects name="Prison">
           <object>objects\oPrisonCell</object>
-          <object>objects\oPrisonDoor</object>
         </objects>
         <object>objects\oLeaf</object>
         <object>objects\oFloor</object>
@@ -613,6 +785,8 @@
       <object>objects\oGameGUI</object>
       <object>objects\oNextRoom</object>
       <object>objects\oMinimap</object>
+      <object>objects\oShadower</object>
+      <object>objects\oRoomComein</object>
     </objects>
     <object>objects\oControl</object>
     <objects name="Player">
@@ -636,17 +810,25 @@
         <object>objects\oLaserMine</object>
         <object>objects\oDynamite</object>
         <object>objects\oStickyGrenade</object>
-        <object>objects\oBoomerang</object>
+      </objects>
+      <objects name="Lasers">
+        <object>objects\oLaser</object>
+        <object>objects\oLaserRed</object>
+        <object>objects\oLaserBlue</object>
       </objects>
       <object>objects\oExplosion</object>
       <object>objects\oShotgunPellet</object>
+      <object>objects\oPlasm</object>
       <object>objects\oBulletProjectile</object>
+      <object>objects\oDarts</object>
       <object>objects\oEnergyProjectile</object>
       <object>objects\oFastBullet</object>
       <object>objects\oBorianBulg</object>
+      <object>objects\oBorianBulgBig</object>
       <object>objects\oGreande</object>
       <object>objects\oPhaserProjectile</object>
-      <object>objects\oLaser</object>
+      <object>objects\oBoomerang</object>
+      <object>objects\oChainsaw</object>
       <object>objects\oBulletLine</object>
       <object>objects\oZap</object>
     </objects>
@@ -659,9 +841,17 @@
       <object>objects\oJelly</object>
       <objects name="Octos">
         <object>objects\oOctoAttack</object>
+        <object>objects\oOctoHealer</object>
+        <object>objects\oOctoClub</object>
         <objects name="Guard">
           <object>objects\oOctoGuard</object>
           <object>objects\oOctoGuardShield</object>
+        </objects>
+      </objects>
+      <objects name="BOSSES">
+        <objects name="Rocker">
+          <object>objects\oRocker</object>
+          <object>objects\oRockerWeapon</object>
         </objects>
       </objects>
       <object>objects\oBuddyTest</object>
@@ -671,11 +861,15 @@
       <object>objects\oBaseMask</object>
       <object>objects\oMaskHit</object>
       <object>objects\oMaskAttack</object>
+      <object>objects\oMeleeWzhuh</object>
+      <object>objects\oSpikesMask</object>
     </objects>
     <objects name="Interactable">
       <object>objects\oExplosiveCrate</object>
       <object>objects\oCrate</object>
       <object>objects\oLevelDoor</object>
+      <object>objects\oPrisonDoor</object>
+      <object>objects\oLevelPortal</object>
     </objects>
     <objects name="Shop">
       <object>objects\oShop</object>

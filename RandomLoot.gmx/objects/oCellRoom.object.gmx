@@ -38,6 +38,10 @@ type = ROOMS.__NONE;
 par = noone;
 
 door[3] = 0;
+for (var i = 0; i &lt; 4; ++i)
+    door[i] = noone;
+    
+ind = -1;
 
 var ccv = irandom(180);
 cc = make_colour_hsv(ccv, ccv, ccv);

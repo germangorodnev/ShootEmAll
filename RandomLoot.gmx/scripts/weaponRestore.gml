@@ -1,6 +1,7 @@
 switch (weapon)
 {
 case WEAPONS.__BORIAN_BULG:
+case WEAPONS.__BIG_BULG:
     // restore some bullets
     if (restore && !--restore)
     {

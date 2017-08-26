@@ -5,7 +5,7 @@ var lvl = oLevel.level,
     hh = oLevel.hh;
 var floorcol = make_colour_rgb(82, 110, 92),
     solidcol = make_colour_rgb(33, 28, 91),
-    voidcol = c_black;
+    voidcol = wallcol;
 for (var i = 0; i < ww; i++)
 {
     for (var j = 0; j < hh; j++)
@@ -13,7 +13,7 @@ for (var i = 0; i < ww; i++)
         var xr = i * pixelsize,
             yr = j * pixelsize;
         draw_rectangle_colour(xr, yr, xr + pixelsize, yr + pixelsize, 
-            wallcol, wallcol, wallcol, wallcol, 0);
+            voidcol, voidcol, voidcol, voidcol, 0);
         var val = (lvl[# i, j]);
         if (val & LEVEL.FLOOR)
             draw_rectangle_colour(xr, yr, xr + pixelsize, yr + pixelsize, 

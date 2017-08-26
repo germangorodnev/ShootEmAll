@@ -1,4 +1,4 @@
-///levelPrisonSmallCarpetSet(x in tiles, y in tiles)
+///levelPrisonSmallCarpetSet(x in tiles, y in tiles, 0-blue\1-orange)
 var xt = argument[0],
     yt = argument[1],
     cpt = argument[2],

@@ -67,7 +67,22 @@ case WEAPONS.__RAZORBLADE:
     _arr[W_PR.__ME_DAMAGE_MIN] = 17;
     _arr[W_PR.__ME_DAMAGE_MAX] = 35;
     _arr[W_PR.__ME_SHOOT_CD] = 0.7 * room_speed;
-    break;    
+    break;   
+case WEAPONS.__SPECIAL_PRISONER:
+    _arr[W_PR.__ME_DAMAGE_MIN] = 28;
+    _arr[W_PR.__ME_DAMAGE_MAX] = 40;
+    _arr[W_PR.__ME_SHOOT_CD] = 0.7 * room_speed;
+    break;   
+case WEAPONS.__CEREMONIAL_BORIAN:
+    _arr[W_PR.__ME_DAMAGE_MIN] = 28;
+    _arr[W_PR.__ME_DAMAGE_MAX] = 33;
+    _arr[W_PR.__ME_SHOOT_CD] = 1 * room_speed;
+    break;   
+case WEAPONS.__KNIFE:
+    _arr[W_PR.__ME_DAMAGE_MIN] = 5;
+    _arr[W_PR.__ME_DAMAGE_MAX] = 7;
+    _arr[W_PR.__ME_SHOOT_CD] = 0.5 * room_speed;
+    break; 
 /* ******************************************************** RANGE ***********************************************************/        
 case WEAPONS.__POMPINGTON:
     _arr[W_PR.__SPRAY_ANGLE] = 7;
@@ -320,6 +335,138 @@ case WEAPONS.__TESLA_BOOM:
     _arr[W_PR.__LDIR_DIR] = 1;
     break;
 
+case WEAPONS.__LASER_BEE:
+    _arr[W_PR.__BUTTON_STATE] = 0; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 3;
+    _arr[W_PR.__SHOOT_CD] = 0.3 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 240;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 15;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__LASER_RED;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 0;
+    _arr[W_PR.__RELOAD_TIME] = 3 * room_speed;
+    _arr[W_PR.__DAMAGE_MIN] = 8;
+    _arr[W_PR.__DAMAGE_MAX] = 13;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__ENERGY;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = 27; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 27;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;
+
+case WEAPONS.__BIG_BULG:
+    _arr[W_PR.__BUTTON_STATE] = 0; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 4;
+    _arr[W_PR.__SHOOT_CD] = 2 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 8;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 2;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__BIG_BULG;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = 3 * room_speed;
+    _arr[W_PR.__DAMAGE_MIN] = 25;
+    _arr[W_PR.__DAMAGE_MAX] = 45;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__BORIAN;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = 60; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 60;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;
+ 
+case WEAPONS.__ASSAULT_RIFLE:
+    _arr[W_PR.__BUTTON_STATE] = 1; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 4;
+    _arr[W_PR.__SHOOT_CD] = 0.2 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 320;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 8;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__PLASM;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = round(3 * room_speed);
+    _arr[W_PR.__DAMAGE_MIN] = 10;
+    _arr[W_PR.__DAMAGE_MAX] = 11;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__ENERGY;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = 60; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 60;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;
+
+case WEAPONS.__STEEL_RUFF:
+    _arr[W_PR.__BUTTON_STATE] = 0; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 5;
+    _arr[W_PR.__SHOOT_CD] = 1.5 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 2;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 2;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__CHAINSAW;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = 4 * room_speed;
+    _arr[W_PR.__DAMAGE_MIN] = 3;
+    _arr[W_PR.__DAMAGE_MAX] = 3;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__GRENADES;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = -1; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = -1;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;
+    
+case WEAPONS.__DARTS:
+    _arr[W_PR.__BUTTON_STATE] = 0; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 3;
+    _arr[W_PR.__SHOOT_CD] = 1 * room_speed;
+    _arr[W_PR.__SCORE_SIZE] = 1;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 1;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__DARTS;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = round(1.4 * room_speed);
+    _arr[W_PR.__DAMAGE_MIN] = 5;
+    _arr[W_PR.__DAMAGE_MAX] = 5;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__DARTS;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = 58; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 58;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;
+
+case WEAPONS.__PISTOPHONE:
+    _arr[W_PR.__BUTTON_STATE] = 0; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 3;
+    _arr[W_PR.__SHOOT_CD] = ceil(.1 * room_speed);
+    _arr[W_PR.__SCORE_SIZE] = 9;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 1;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__BULLET;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
+    _arr[W_PR.__PROJECTILE_SPEED] = 11;
+    _arr[W_PR.__RELOAD_TIME] = round(2.5 * room_speed);
+    _arr[W_PR.__DAMAGE_MIN] = 30;
+    _arr[W_PR.__DAMAGE_MAX] = 50;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = 35; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 35;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;
+    
+case WEAPONS.__STALK:
+    _arr[W_PR.__BUTTON_STATE] = 1; // 0 - pressed, 1 - pressed const, 2 - released
+    _arr[W_PR.__SPRAY_ANGLE] = 3;
+    _arr[W_PR.__SHOOT_CD] = ceil(.3 * room_speed);
+    _arr[W_PR.__SCORE_SIZE] = 200;
+    _arr[W_PR.__BULLETS_PER_SHOT] = 50;
+    _arr[W_PR.__PROJECTILE] = PROJECTILE.__LASER_BLUE;
+    _arr[W_PR.__PROJECTILE_AMOUNT] = 3;
+    _arr[W_PR.__PROJECTILE_SPEED] = 0;
+    _arr[W_PR.__RELOAD_TIME] = 2.5 * room_speed;
+    _arr[W_PR.__DAMAGE_MIN] = 40;
+    _arr[W_PR.__DAMAGE_MAX] = 60;
+    _arr[W_PR.__BULLET_TYPE] = AMMO.__ENERGY;
+    _arr[W_PR.__CRIT_CHANCE] = 0;
+    _arr[W_PR.__LDIR_X] = 36; // 4 29 64 20
+    _arr[W_PR.__LDIR_Y] = 36;
+    _arr[W_PR.__LDIR_DIR] = 1;
+    break;   
 }
 
 return _arr;

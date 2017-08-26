@@ -8,10 +8,6 @@ case WEAPON_STATES.__MELEE_DOWN:
     switch (argument[0])
     {
     case WEAPONS.__ARIA_ARTH:
-        returnTmrCnt = 0.5 * room_speed;
-        angleNeed = angleNeedDown[animIndex] * sign(xsc);
-        angleBegin = image_angle;
-        break;
     case WEAPONS.__BLOOD_FLAG:
         returnTmrCnt = 0.5 * room_speed;
         angleNeed = angleNeedDown[animIndex] * sign(xsc);
@@ -31,6 +27,18 @@ case WEAPON_STATES.__MELEE_UP:
     switch (argument[0])
     {
     default: 
+        break;
+    }
+    break;
+    
+case WEAPON_STATES.__MELEE_FORW:
+    switch (argument[0])
+    {
+    case WEAPONS.__KNIFE:
+        returnTmrCnt = 0.5 * room_speed;
+        angleNeed = angleNeedDown[animIndex];
+        angleBegin = 0;
+        angleRot = angleRotDown[animIndex];
         break;
     }
     break;

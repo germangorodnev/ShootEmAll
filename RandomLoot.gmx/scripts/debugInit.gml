@@ -1,4 +1,4 @@
-global.debug = argument0;
+global.debug = argument[0];
 with (oMaskHit)
     visible = global.debug;
 with (oWall)
@@ -6,6 +6,8 @@ with (oWall)
 with (oMaskHit)
     visible = global.debug;
 with (oMaskAttack)
+    visible = global.debug;
+with (oRoomComein)
     visible = global.debug;
 with (oCamera)
     if (global.debug)
@@ -15,4 +17,5 @@ with (oCamera)
     }
     else
         sprite_index = -1;
-    
+        
+show_debug_overlay(global.debug);

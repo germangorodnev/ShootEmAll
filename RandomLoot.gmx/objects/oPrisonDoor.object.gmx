@@ -27,6 +27,11 @@
             <kind>1</kind>
             <string>event_inherited();
 image_speed = 0;
+
+type = PICKUP.__CRATE;
+compareY = y;
+autopickup = 0;
+cmp = 1;
 </string>
           </argument>
         </arguments>

@@ -5,7 +5,7 @@ switch (singleuse)
 case SINGLEUSE.__FULL_HEART:
     if (hp < _hp)
     {
-        playerChangeHP(2);
+        playerChangeHP(id, 2);
         used = 1;
     }
     break;
@@ -29,7 +29,7 @@ case SINGLEUSE.__CHOCO_2:
 case SINGLEUSE.__CHOCO_3:
     if (hp < _hp)
     {
-        playerChangeHP(1);
+        playerChangeHP(id, 1);
         used = 1;
     }
     break;
@@ -37,7 +37,7 @@ case SINGLEUSE.__CHOCO_3:
 case SINGLEUSE.__BEER_1:
     if (hp < _hp)
     {
-        playerChangeHP(2);
+        playerChangeHP(id, 2);
         used = 1;
     }
     break;
