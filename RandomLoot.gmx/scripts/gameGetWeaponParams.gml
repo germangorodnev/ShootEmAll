@@ -287,7 +287,7 @@ case WEAPONS.__DESTRUCTOR:
     _arr[W_PR.__PROJECTILE] = PROJECTILE.__BULLET;
     _arr[W_PR.__PROJECTILE_AMOUNT] = 1;
     _arr[W_PR.__PROJECTILE_SPEED] = 11;
-    _arr[W_PR.__RELOAD_TIME] = 5 * room_speed;
+    _arr[W_PR.__RELOAD_TIME] = 3 * room_speed;
     _arr[W_PR.__DAMAGE_MIN] = 25;
     _arr[W_PR.__DAMAGE_MAX] = 30;
     _arr[W_PR.__BULLET_TYPE] = AMMO.__BULLET;

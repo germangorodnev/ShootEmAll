@@ -157,8 +157,9 @@ if (weapon != WEAPONS.__NONE)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!updatable)
+            <string>if (!enemyActive())
     exit;
+cacheUpdate();  
     
 depth = -y;
 
@@ -167,6 +168,8 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 {
     enemySetState(ENEMY_STATE.__DIE);
 }
+if (whiteTmr &amp;&amp; !--whiteTmr)
+{}
 
 idleTmr++;
 
@@ -451,7 +454,7 @@ case ENEMY_STATE.__DIE:
     exit;
 enemyDebug();
 
-var usesh = maskHit.expire != 0;
+var usesh = whiteTmr != 0;
 if (usesh)
     shader_set(shdWhite);
     

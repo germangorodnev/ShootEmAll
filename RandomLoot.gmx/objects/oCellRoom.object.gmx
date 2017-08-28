@@ -34,10 +34,13 @@ rh = 0;
 tw = oLevel.tw;
 th = oLevel.th;
 
+bossRoom = 0;
+
 type = ROOMS.__NONE;
 par = noone;
 
 door[3] = 0;
+doorsCount = 0;
 for (var i = 0; i &lt; 4; ++i)
     door[i] = noone;
     

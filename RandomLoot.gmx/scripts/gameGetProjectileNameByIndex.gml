@@ -56,5 +56,8 @@ case PROJECTILE.__DARTS:
 case PROJECTILE.__ENEMY_BULLET:   
     return oEnemyBullet;
     break;
+case PROJECTILE.__ENEMY_BULLET_UZI:   
+    return oEnemyBulletUzi;
+    break;
 }
 

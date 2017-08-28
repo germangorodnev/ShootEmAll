@@ -204,7 +204,7 @@ case WEAPON_STATES.__RANGE_RECOIL:
             <string>var add = 0;
 switch (parent.weapon)
 {
-case ENEMY_WEAPON.__OCTO_CLUB:
+case ENEMY_WEAPON.__ROCKER_GUITAR:
     add = parent.angle;
     break;
 }

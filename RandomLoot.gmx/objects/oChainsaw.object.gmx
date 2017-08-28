@@ -162,6 +162,8 @@ image_angle = direction;
 projectileTimer();
 if (!active)
     exit;
+    
+cacheUpdate();     
 
 depth = -y-10;
 x += lengthdir_x(spd, direction);
@@ -184,9 +186,7 @@ case 0:
     var ic = instance_place(x, y, oMaskHit);
     if (ic != noone)
     {
-        if (ic.group == group) // same teamz
-            exit;
-        if (!ic.par.hittable) // invulnerable
+        if (bulletCannotHitHim(ic, id))
             exit;
         var a = damage,
             b = cuck,

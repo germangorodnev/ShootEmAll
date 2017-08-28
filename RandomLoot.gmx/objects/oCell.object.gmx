@@ -32,6 +32,9 @@ rm = noone;
 rw = 0;
 rh = 0;
 
+
+bossRoom = 0;
+
 tw = oLevel.tw;
 th = oLevel.th;
 

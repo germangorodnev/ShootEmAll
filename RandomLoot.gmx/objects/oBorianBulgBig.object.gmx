@@ -90,6 +90,7 @@ for (var i = 0; i &lt; 360; i += 60)
 projectileTimer();
 if (!active)
     exit;
+cacheUpdate();     
 
 depth = -y-10;
 x += lengthdir_x(spd, direction);
@@ -104,9 +105,7 @@ if (outsideRoom())
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)
 {
-    if (ic.group == group) // same teamz
-        exit;
-    if (!ic.par.hittable) // invulnerable
+    if (bulletCannotHitHim(ic, id))
         exit;
     var a = damage,
         b = cuck,

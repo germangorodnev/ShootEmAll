@@ -38,6 +38,8 @@ dir = 0; // 0 - right
 hp = 35;
 _hp = 35;
 
+STATE_CHANGE_TMR = 3 * room_speed;
+
 // weapon
 weapon = ENEMY_WEAPON.__ROCKER_MINIGUN;
 weaponType = WEAPON_TYPE.__RANGE;
@@ -45,6 +47,13 @@ projectile = PROJECTILE.__ENEMY_BULLET;
 enemyType = ENEMY.__BOSS_ROCKER;
 weaponXoff = 0;
 weaponYoff = 0;
+
+// SECOND WEAPON
+weapon2 = ENEMY_WEAPON.__ROCKER_MINIGUN;
+weapon2Type = WEAPON_TYPE.__RANGE;
+projectile2 = PROJECTILE.__ENEMY_BULLET_UZI;
+weapon2Xoff = 0;
+weapon2Yoff = 0;
 
 dist = 800;
 weaponAttDist = 600;
@@ -54,15 +63,19 @@ weaponObj = instance_create(x, y, oRockerWeapon);
 weaponObj.parent = id;
 enemyWeaponInit(weapon);
 
+weaponObj2 = noone;
 
+moneydead = 400;
 
-maskHitAdd(13, 6, 48, 100, 1);
+maskHitAdd(23, 34, 61, 107, 1);
 
 anims[ENEMY_ANIM.__IDLE] = sprite_index;
 anims[ENEMY_ANIM.__WALK] = sprite_index;
 anims[ENEMY_ANIM.__CUCKED] = sprite_index;
-enemyStartPattern(ENEMY_PATTERN.__PATROL);
 
+target = instance_nearest(x, y, oPlayer);
+
+updatable = 0;
 
 </string>
           </argument>
@@ -88,6 +101,8 @@ enemyStartPattern(ENEMY_PATTERN.__PATROL);
             <kind>1</kind>
             <string>event_inherited();
 with(weaponObj)
+    instance_destroy();
+with(weaponObj2)
     instance_destroy();
 
 </string>
@@ -122,13 +137,13 @@ if (weapon != WEAPONS.__NONE)
     switch (weaponType)
     {
     case WEAPON_TYPE.__MELEE:
-        if (weaponObj.state == WEAPON_STATES.__MOVE)
+        /*if (weaponObj.state == WEAPON_STATES.__MOVE)
         {
             var perc = anAngle / anMaxAngle;
             with(weaponObj)
                 image_angle = perc * anMaxAngle;
         }
-        weaponObj.xsc = xsc;
+        weaponObj.xsc = xsc;*/
         break;
     case WEAPON_TYPE.__RANGE:
         weaponObj.image_yscale = -(angle == median(90, angle, 270)) + (angle &lt; 90 || angle &gt; 270);
@@ -162,13 +177,17 @@ if (weapon != WEAPONS.__NONE)
             <string>if (!updatable)
     exit;
     
+cacheUpdate();  
+
 depth = -y;
 
 hp = clamp(hp, 0, _hp);
 if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 {
-    enemySetState(ENEMY_STATE.__DIE);
+    rockerSetState(ENEMY_STATE.__DIE);
 }
+if (whiteTmr &amp;&amp; !--whiteTmr)
+{}
 
 idleTmr++;
 
@@ -177,157 +196,54 @@ if (current_time % 4 == 0)
 enemyDebuffsProceed();
 masksMove();
 
-// 4 dirs anim
-switch (weapon)
-{
-case ENEMY_WEAPON.__ROCKER_MINIGUN:
-    //xsc = 1;
-    vecdir = 1;
-    anims[ENEMY_ANIM.__IDLE] = sRockerGuitarBack;
-    // x\y off 0
-    weaponXoff = 22;
-    weaponYoff = -30;
-    setSprIfNotSet(anims[ENEMY_ANIM.__IDLE], 0);
-    switch (dir)
-    {
-    case 0:
-        image_index = 0;
-        with (weaponObj)
-        {
-        }
-        break;    
-    case 1:
-        image_index = 2;
-        vecdir = -1;
-        with (weaponObj)
-        {
-        }
-        break;    
-    case 2:
-        image_index = 0;
-        //xsc = -1;
-        with (weaponObj)
-        {
-        }
-        break;    
-    case 3:
-        image_index = 1;
-        with (weaponObj)
-        {
 
-        }
-        break;    
-    }
-    break;
-    
-case ENEMY_WEAPON.__ROCKER_GUITAR:
-    vecdir = 1;
-    anims[ENEMY_ANIM.__IDLE] = sRockerNoGuitarBack;
-    setSprIfNotSet(anims[ENEMY_ANIM.__IDLE], 0);
-    weaponXoff = 22;
-    weaponYoff = -30;
-    switch (dir)
-    {
-    case 0:
-        image_index = 0;
-        break;    
-    case 1:
-        image_index = 2;
-        vecdir = -1;
-        break;    
-    case 2:
-        image_index = 0;
-        break;    
-    case 3:
-        image_index = 1;
-        break;    
-    }
-    break;
-    
-case ENEMY_WEAPON.__ROCKER_UZI:
-    //xsc = 1;
-    vecdir = 1;
-    anims[ENEMY_ANIM.__IDLE] = sRockerGuitarBack;
-    // x\y off 0
-    weaponXoff = 22;
-    weaponYoff = -30;
-    setSprIfNotSet(anims[ENEMY_ANIM.__IDLE], 0);
-    switch (dir)
-    {
-    case 0:
-        image_index = 0;
-        with (weaponObj)
-        {
-        }
-        break;    
-    case 1:
-        image_index = 2;
-        vecdir = -1;
-        with (weaponObj)
-        {
-        }
-        break;    
-    case 2:
-        image_index = 0;
-        //xsc = -1;
-        with (weaponObj)
-        {
-        }
-        break;    
-    case 3:
-        image_index = 1;
-        with (weaponObj)
-        {
-
-        }
-        break;    
-    }
-    break;
-}
-anims[ENEMY_ANIM.__WALK] = anims[ENEMY_ANIM.__IDLE];
+rockerAnimsControl();
 
 
+/* ******************** S T A T E *********************** */
 switch (state)
 {
+case ENEMY_STATE.__ROCKER_MINIGUN_1:
+    procedureAnimableApproachReset();
+
+    if (STATE_CHANGE_TMR &amp;&amp; !--STATE_CHANGE_TMR)
+    {
+        // set new state
+        rockerStartNewPattern();
+        exit;
+    }
+
+    angle = (angle + 2) % 360;
+    dir = round(angle / 90);
+    // well, maybe shoot
+    if (enemyCanAttack())
+        enemyAttack();
+    break;
+    
 case ENEMY_STATE.__IDLE:
     procedureAnimableApproachReset();
     physicalBeginStep();
     
     physicalApplyRecoil(recoilSpd, recoilDir); 
-    
-    //sprite_index = anims[ENEMY_ANIM.__IDLE];
-    
-    detect = enemyDetectPlayer();
-    if (detect == 1)
+        
+    if (STATE_CHANGE_TMR &amp;&amp; !--STATE_CHANGE_TMR)
     {
-        if (weapon == ENEMY_WEAPON.__ROCKER_MINIGUN
-            || weapon == ENEMY_WEAPON.__ROCKER_UZI)
-        {
-            angle = point_direction(x, y, target.x, target.y);        
-            dir = round(angle / 90);
-        }
-        // well, maybe shoot
-        var ca = enemyCanAttack();
-        switch (ca)
-        {         
-        case 1:
-            enemyFullRotateAndAttack();
-            break;
-        case -1:
-            if (idleTmr &gt; .2 * room_speed)
-            {
-                enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);
-            }
-            break;
-        } 
+        // set new state
+        rockerStartNewPattern();
+        exit;
     }
-    else
+
+    if (weapon == ENEMY_WEAPON.__ROCKER_MINIGUN
+        || weapon == ENEMY_WEAPON.__ROCKER_UZI)
     {
-        if (patrolTmr &amp;&amp; !--patrolTmr)
-        {
-            enemyStartPattern(ENEMY_PATTERN.__PATROL);   
-        } 
+        xsc = (target.x &gt; x) * 2 - 1;
+        angle = point_direction(x, y, target.x, target.y);        
+        dir = round(angle / 90);
     }
+    // well, maybe shoot
+    if (enemyCanAttack())
+        enemyFullRotateAndAttack();
+
     physicalMove(collideWith);
     break;
     
@@ -338,15 +254,20 @@ case ENEMY_STATE.__FOLLOW:
     procedureAnimableProceed(); 
     physicalBeginStep();
        
-    //setSprIfNotSet(anims[ENEMY_ANIM.__WALK], 0);
-    
+    if (STATE_CHANGE_TMR &amp;&amp; !--STATE_CHANGE_TMR)
+    {
+        // set new state
+        rockerStartNewPattern();
+        exit;
+    }
+        
     var done = physicalMoveToPoint(mX, mY, spd, speedmod);
     enemySetDirByMoving();
     if (done)
     {
         // wow we're actually done
         if (path_get_number(path) == 0)
-            enemySetState(ENEMY_STATE.__IDLE);
+            rockerSetState(ENEMY_STATE.__IDLE);
         else
             enemyGetNextPathPoint();
         //exit;
@@ -362,31 +283,16 @@ case ENEMY_STATE.__FOLLOW:
         if (enemyCanAttack())
         {
             enemyFullRotateAndAttack();
-            enemySetState(ENEMY_STATE.__IDLE);
+            switch (weapon)
+            {
+            case ENEMY_WEAPON.__ROCKER_GUITAR:
+                rockerSetState(ENEMY_STATE.__IDLE);
+            }
             exit;
         }
     }
     
-    if (weapon == ENEMY_WEAPON.__ROCKER_MINIGUN
-        || weapon == ENEMY_WEAPON.__ROCKER_UZI)
-    {
-        angle = point_direction(x, y, target.x, target.y);        
-        dir = round(angle / 90);
-    }
-    
-    detect = enemyDetectPlayer();
-
-    if (detect != 1)
-    {
-        enemyStartPattern(ENEMY_PATTERN.__PATROL);
-        exit;
-    }
-    
-    if (enemyCanAttack() == 1)
-    {
-        enemyFullRotateAndAttack();
-        enemySetState(ENEMY_STATE.__IDLE);
-    }
+    angle = point_direction(x, y, target.x, target.y);        
     
     if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
     {
@@ -399,7 +305,6 @@ case ENEMY_STATE.__FOLLOW:
     
     physicalMove(collideWith);
     break;    
-    
     
     
     
@@ -466,6 +371,31 @@ case ENEMY_STATE.__DIE:
     }
     break;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// fight start
+target = instance_nearest(x, y, oPlayer);
+rockerStartNewPattern();
 </string>
           </argument>
         </arguments>
@@ -539,7 +469,7 @@ case ENEMY_STATE.__DIE:
     exit;
 enemyDebug();
 
-var usesh = maskHit.expire != 0;
+var usesh = whiteTmr != 0;
 if (usesh)
     shader_set(shdWhite);
 

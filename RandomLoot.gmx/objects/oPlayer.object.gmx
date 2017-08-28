@@ -58,6 +58,8 @@ mD = 0;
 
 attackSoundsCnt = 0;
 attackSounts[0] = 0;
+
+whiteTmr = 0;
  
 ammo[AMMO.__CNT - 1] = 0; // ammo we have right now
 ammoMax[AMMO.__CNT - 1] = 300;
@@ -321,6 +323,8 @@ if (cuckTmr &amp;&amp; !--cuckTmr)
 {
     cuckTmr = -1;
 }
+if (whiteTmr &amp;&amp; !--whiteTmr)
+{}
 
 // infinite ammo
 if (infAmmoTmr &amp;&amp; !--infAmmoTmr)
@@ -646,7 +650,10 @@ case PLAYER_STATES.__DIE:
 if (!updatable)
     mycmp = myo;
 
-
+var usesh = whiteTmr != 0;
+if (usesh)
+    shader_set(shdWhite);
+    
 if (mycmp &lt; y)
 {
     with (weaponObj)
@@ -659,6 +666,8 @@ else
     with (weaponObj)
         event_perform(ev_other, ev_user3);
 }
+
+shader_reset();
 
 playerDebug();
 </string>

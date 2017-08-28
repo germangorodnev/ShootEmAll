@@ -55,8 +55,26 @@ vecdir = 0;
 pathEnd = 0;
 path = path_add();
 
-
+// GRID CACHE
+useCache = 1;
+cacheX = x div LEVEL.TILE_W - 1;
+cacheY = y div LEVEL.TILE_H - 1;
+cacheW = 3;
+cacheH = 3;
+cacheRW = cacheW - 1;
+cacheRH = cacheH - 1;
+lvlGridCache[2, 2] = 0;
+collvlGridCache[2, 2] = 0;
+for (var i = 0; i &lt; cacheW; ++i)
+    for(var j = 0; j &lt; cacheH; j++)
+    {        
+        lvlGridCache[i, j] = 0;
+        collvlGridCache[i, j] = 0;
+    }
+        
 destrTmr = -1;
+
+ENEMY_FLAG = 0;
 
 // custom move point 
 mX = x;
@@ -79,13 +97,13 @@ mindmg = 0;
 maxdmg = 0;
 
 
-ENEMY_FLAG = 0;
 
 // room to move
-rx1 = 0;
+/*rx1 = 0;
 ry1 = 0;
 rx2 = 0;
 ry2 = 0;
+*/
 
 bulletCollideWith = LEVEL.WALL;
 
@@ -99,6 +117,11 @@ enemyType = ENEMY.__PILLOW;
 // animations
 anims[ENEMY_ANIM.__CNT - 1] = sprite_index;
 animSpd[ENEMY_ANIM.__CNT - 1] = 0;
+
+
+
+flagSet(OBJ_PAR.UPDATABLE, 0);
+
 
 </string>
           </argument>
@@ -182,29 +205,6 @@ levelCheckEnemyDie();
             <kind>1</kind>
             <string>///on pause
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="8">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>pathEnd = 1;
 </string>
           </argument>
         </arguments>

@@ -16,13 +16,4 @@ else if (vspd > 0 && (abs(y - mY) > spd))
     dir = 3;
 else if (vspd < 0 && (abs(y - mY) > spd))
     dir = 1;
-var sn = "";
-switch (state)
-{
-case ENEMY_STATE.__FOLLOW:
-    sn = "follow";
-    break;
-case ENEMY_STATE.__IDLE:
-    sn = "idle"; break;
-}
 

@@ -16,13 +16,32 @@ var rd = bbox_right div LEVEL.TILE_W,
     bbr = bbox_right,
     bbt = bbox_top,
     bbl = bbox_left,
-    bbb = bbox_bottom;
-
-var rtmeet = (oLevel.level[# rd, td] & bmask),
-    ltmeet = (oLevel.level[# ld, td] & bmask);
+    bbb = bbox_bottom,
+    lvl = oLevel.level,
+    collvl = oLevel.colLevel;
     
-var rbmeet = (oLevel.level[# rd, bd] & bmask),
-    lbmeet = (oLevel.level[# ld, bd] & bmask);
+var canCache = 0;
+if (useCache)
+    canCache = rectangle_in_rectangle(ld, td, rd, bd,
+        cacheX, cacheY, cacheX + cacheRW, cacheY + cacheRH) == 1;
+
+var rtmeet, ltmeet, rbmeet, lbmeet;
+if (canCache)
+{
+    rtmeet = (lvlGridCache[rd - cacheX, td - cacheY] & bmask);
+    ltmeet = (lvlGridCache[ld - cacheX, td - cacheY] & bmask);
+        
+    rbmeet = (lvlGridCache[rd - cacheX, bd - cacheY] & bmask);
+    lbmeet = (lvlGridCache[ld - cacheX, bd - cacheY] & bmask);    
+}
+else
+{
+    rtmeet = (lvl[# rd, td] & bmask);
+    ltmeet = (lvl[# ld, td] & bmask);
+        
+    rbmeet = (lvl[# rd, bd] & bmask);
+    lbmeet = (lvl[# ld, bd] & bmask);
+}
     
 x = xo;
 y = yo;

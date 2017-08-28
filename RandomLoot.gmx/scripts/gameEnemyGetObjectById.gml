@@ -19,4 +19,7 @@ case ENEMY.__OCTO_ATTACK:
 case ENEMY.__OCTO_GUARD:
     return oOctoGuard;
     break;
+case ENEMY.__BOSS_ROCKER:
+    return oRocker;
+    break;
 }

@@ -40,7 +40,7 @@ case 0: // right
     var dr = laserDoorAdd(p1x * tw + ((p2x - 1 - p1x) div 2) * tw, p1y * th - th / 2, 0,
         c1, c2);
     dr.floorId = n;
-    rm.door[0] = dr;
+    c1.rm.door[0] = dr;
     c2.rm.door[2] = dr;
     //laserDoorAdd(p2x * tw - tw, p1y * th - th / 2, 2);
     break;
@@ -66,7 +66,7 @@ case 2: // left
     var dr = laserDoorAdd(p2x * tw + ((p1x - 1 - p2x) div 2) * tw, p1y * th - th / 2, 0,
         c1, c2);
     dr.floorId = n;
-    rm.door[2] = dr;
+    c1.rm.door[2] = dr;
     c2.rm.door[0] = dr;
 
     //laserDoorAdd(p1x * tw, p1y * th - th / 2, 0);
@@ -95,7 +95,7 @@ case 1: // top
     var dr = laserDoorAdd(p1x * tw, p1y * th + ((p2y - 1 - p1y) div 2) * th, 1,
         c1, c2);
     dr.floorId = n;
-    rm.door[1] = dr;
+    c1.rm.door[1] = dr;
     c2.rm.door[3] = dr;
     break;
 case 3: // bottom
@@ -120,7 +120,7 @@ case 3: // bottom
     var dr = laserDoorAdd(p1x * tw, p1y * th + ((p2y - p1y - 1) div 2) * th, 3,
         c1, c2);
     dr.floorId = n;
-    rm.door[3] = dr;
+    c1.rm.door[3] = dr;
     c2.rm.door[1] = dr;
     break;
 }

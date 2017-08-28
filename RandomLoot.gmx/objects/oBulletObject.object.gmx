@@ -46,6 +46,23 @@ bulFlags = flagSetVar(0,
     BULLET_FLAGS.__INVERTABLE
     | BULLET_FLAGS.__SHIELD_DELETABLE,
     1);
+    
+// GRID CACHE
+useCache = 1;
+cacheX = x div LEVEL.TILE_W - 1;
+cacheY = y div LEVEL.TILE_H - 1;
+cacheW = 3;
+cacheH = 3;
+cacheRW = cacheW - 1;
+cacheRH = cacheH - 1;
+lvlGridCache[2, 2] = 0;
+collvlGridCache[2, 2] = 0;
+for (var i = 0; i &lt; cacheW; ++i)
+    for(var j = 0; j &lt; cacheH; j++)
+    {        
+        lvlGridCache[i, j] = 0;
+        collvlGridCache[i, j] = 0;
+    }
 
 
 dtmr = -1;
