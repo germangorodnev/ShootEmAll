@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>///P L A Y E R 
+event_inherited();
 image_speed = 0;
 
 // Stats
