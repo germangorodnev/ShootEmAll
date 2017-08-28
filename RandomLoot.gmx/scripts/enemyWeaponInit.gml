@@ -199,5 +199,24 @@ case ENEMY_WEAPON.__ROCKER_GUITAR:
     shootcd = 1 * room_speed;
     dmgcd = .5 * room_speed;
     break;
+    
+case ENEMY_WEAPON.__ROCKER_MOLOTOV:
+    weaponAttDist = 900;
+    weaponSprite[0] = sRockerMolotov;
+    weaponSprite[1] = sRockerMolotov;
+    weaponXoff = 22;
+    weaponYoff = -16;
+    weaponAnimSpeed[1] = 0.3;
+    weaponObj.anMaxAngle = 7;
+    ldirx = 0;
+    ldirdir = 0;
+    critchance = 0;
+    mindmg = 1;
+    maxdmg = 1;
+    projectileSpeed = bprs;
+    sprayAngle = 9;
+    shootcd = round(2 * room_speed);
+    dmgcd = max(1, round(.08 * room_speed));
+    break;
 }
 enemyWeaponSetState(WEAPON_STATES.__MOVE);

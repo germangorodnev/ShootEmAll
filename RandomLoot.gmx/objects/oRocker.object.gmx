@@ -38,6 +38,7 @@ dir = 0; // 0 - right
 hp = 35;
 _hp = 35;
 
+_angle = 0;
 STATE_CHANGE_TMR = 3 * room_speed;
 
 // weapon
@@ -213,11 +214,42 @@ case ENEMY_STATE.__ROCKER_MINIGUN_1:
         exit;
     }
 
-    angle = (angle + 2) % 360;
+    angle = (angle + 1.3) % 360;
     dir = round(angle / 90);
     // well, maybe shoot
     if (enemyCanAttack())
         enemyAttack();
+    break;
+    
+case ENEMY_STATE.__ROCKER_MINIGUN_2:
+    procedureAnimableApproachReset();
+
+    if (STATE_CHANGE_TMR &amp;&amp; !--STATE_CHANGE_TMR)
+    {
+        // set new state
+        rockerStartNewPattern();
+        exit;
+    }
+
+    angle = _angle + sin(round(get_timer() / 1000) / 300) * 25;
+    dir = round(angle / 90);
+    // well, maybe shoot
+    if (enemyCanAttack())
+        enemyAttack();
+    break;
+        
+case ENEMY_STATE.__ROCKER_MOLOTOV_1:
+    procedureAnimableApproachReset();
+    xsc = (target.x &gt; x) * 2 - 1;
+    var pdir = point_direction(x, y, target.x, target.y);
+    angle = pdir + sin(get_timer() / 300) * 25;        
+    dir = round(pdir / 90);
+    STATE_CHANGE_TMR--;
+    if (STATE_CHANGE_TMR &lt; 25) // throw
+    {
+        enemyAttack();
+        rockerStartNewPattern();
+    }        
     break;
     
 case ENEMY_STATE.__IDLE:
@@ -241,9 +273,11 @@ case ENEMY_STATE.__IDLE:
         dir = round(angle / 90);
     }
     // well, maybe shoot
-    if (enemyCanAttack())
+    var ca = enemyCanAttack();
+    if (ca == 1)
         enemyFullRotateAndAttack();
-
+    else if (ca == -1)    
+        rockerStartPattern(ENEMY_PATTERN.__FOLLOW, target);
     physicalMove(collideWith);
     break;
     

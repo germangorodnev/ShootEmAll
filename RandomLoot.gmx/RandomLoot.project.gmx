@@ -609,6 +609,7 @@
           <script>scripts\rockerStartPattern.gml</script>
           <script>scripts\rockerStartNewPattern.gml</script>
           <script>scripts\rockerAnimsControl.gml</script>
+          <script>scripts\rockerFlameCreate.gml</script>
         </scripts>
       </scripts>
       <script>scripts\enemySetState.gml</script>
@@ -864,6 +865,7 @@
         <objects name="Rocker">
           <object>objects\oRocker</object>
           <object>objects\oRockerWeapon</object>
+          <object>objects\oRockerMolotov</object>
         </objects>
       </objects>
       <object>objects\oBuddyTest</object>
@@ -874,7 +876,7 @@
       <object>objects\oMaskHit</object>
       <object>objects\oMaskAttack</object>
       <object>objects\oMeleeWzhuh</object>
-      <object>objects\oSpikesMask</object>
+      <object>objects\oFloorDamageMask</object>
     </objects>
     <objects name="Interactable">
       <object>objects\oExplosiveCrate</object>

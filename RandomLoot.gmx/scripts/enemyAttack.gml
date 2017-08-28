@@ -36,6 +36,22 @@ case WEAPON_TYPE.__RANGE:
     // create some bulleetz
     switch (weapon)
     {
+    /* ******************* R O C K E R ******************* */
+    case ENEMY_WEAPON.__ROCKER_MOLOTOV:
+        var xx = weaponObj.x + lengthdir_x(ldirx, weaponObj.image_angle + ldirdir),
+            yy = weaponObj.y + lengthdir_y(ldirx, weaponObj.image_angle + ldirdir * sign(weaponObj.image_yscale));
+        var bb = instance_create(xx, yy, oRockerMolotov);
+        bb.xx = target.x + irandom(30) * choose(-1, 1);
+        bb.yy = target.y + irandom(10) * choose(-1, 1);
+        bb.damage = irandom_range(mindmg, maxdmg);   
+        bb.direction = point_direction(bb.x, bb.y, bb.xx, bb.yy);       
+        bb.parent = id; 
+        bb.group = maskHit.group;
+        bb.dmgcd = dmgcd;
+        with (bb)
+            projectileInited();      
+        break;
+    /* ******************** O C T O P U S ******************* */
     case ENEMY_WEAPON.__OCTO_RIFLE:
         for (var i = 0, timer = 0.08 * room_speed; i < 5; i++)
         {
