@@ -1,5 +1,6 @@
 ///playerPickup()
 pwId = noone;
+pickupId = noone;
 var pickup = playerGetPickupableUnder(); 
 if (pickup != noone)
 {
@@ -17,6 +18,7 @@ else
         pickupId = noone;
 }
 if (pickupId == noone)
+    //|| !object_is_ancestor(pickupId, oPickupableObject))
     exit;
     
 if (pickupId.autopickup)

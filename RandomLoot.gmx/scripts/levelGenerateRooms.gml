@@ -31,20 +31,7 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
         {
         case 0: 
             switch (irandom(4))
-            {
-            /*case 0: // prison 1W
-                type = ROOMS.__PRISON_CELLS_SIZE_1;
-                // set the floor
-                levelPrisonSetFloor();             
-                //split free space on cells
-                // all other cells are actual cells
-                levelPrisonSplitByCells();
-                // fill up the cells with doors\beds\etc
-                for (var cuc = 0, cuc_c = ds_list_size(children); cuc < cuc_c; cuc++)   
-                    with (children[| cuc])
-                        levelPrisonCellInit();                        
-                break;*/
-                
+            {               
             case 1: // canteen
                 type = ROOMS.__PRISON_CANTEEN_1W;
                 levelPrisonCanteenInit();
@@ -80,20 +67,31 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
             break;
             
         case 3:
-            switch (irandom(0))
+            if (!bossRoom)
             {
-            case 0:
-                type = ROOMS.__PRISON_CELLS_SIZE_3;
+                switch (irandom(0))
+                {
+                case 0:
+                    type = ROOMS.__PRISON_CELLS_SIZE_3;
+                    // set the floor
+                    levelPrisonSetFloor();             
+                    //split free space on cells
+                    // all other cells are actual cells
+                    levelPrisonSplitByCells();
+                    // fill up the cells with doors\beds\etc
+                    for (var cuc = 0, cuc_c = ds_list_size(children); cuc < cuc_c; cuc++)   
+                        with (children[| cuc])
+                            levelPrisonCellInit();
+                    break;
+                }
+            }
+            else
+            {
+                type = ROOMS.__PRISON_BOSS_2X2;
                 // set the floor
-                levelPrisonSetFloor();             
-                //split free space on cells
-                // all other cells are actual cells
-                levelPrisonSplitByCells();
-                // fill up the cells with doors\beds\etc
-                for (var cuc = 0, cuc_c = ds_list_size(children); cuc < cuc_c; cuc++)   
-                    with (children[| cuc])
-                        levelPrisonCellInit();
-                break;
+                levelPrisonSetFloor(); 
+                oLevel.bossObj = levelCreateEnemy((x + rw div 2) * tw, (y + rh div 2) * th, 
+                    choose(ENEMY.__BOSS_ROCKER));                                        
             }
             break;
         }

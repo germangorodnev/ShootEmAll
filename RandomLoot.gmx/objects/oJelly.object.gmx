@@ -123,8 +123,10 @@ repeat(irandom_range(4, 7))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!updatable)
+            <string>if (!enemyActive())
     exit;
+    
+cacheUpdate();      
     
 depth = -y;
 
@@ -201,7 +203,7 @@ case ENEMY_STATE.__FOLLOW:
             enemyGetNextPathPoint();
     }
     
-    xsc = (oPlayer.x &gt; x) * 2 - 1;
+    xsc = (target.x &gt; x) * 2 - 1;
     targetDist = distance_to_object(target);
 
     if (enemyCanAttack())

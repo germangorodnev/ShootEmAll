@@ -152,6 +152,7 @@ case ENEMY_WEAPON.__OCTO_HEAL:
     
 /* ******************** B O S S R O C K E R *********************** */
 case ENEMY_WEAPON.__ROCKER_MINIGUN:
+    weaponAttDist = 900;
     weaponSprite[0] = sRockerMinigun;
     weaponSprite[1] = sRockerMinigunShoot;
     weaponXoff = 4;
@@ -165,16 +166,38 @@ case ENEMY_WEAPON.__ROCKER_MINIGUN:
     maxdmg = 1;
     projectileSpeed = bprs;
     sprayAngle = 8;
-    shootcd = round(.05 * room_speed);
+    shootcd = round(.10 * room_speed);
     dmgcd = max(1, round(.08 * room_speed));
     break;
     
 case ENEMY_WEAPON.__ROCKER_UZI:
+    weaponAttDist = 900;
 
     break;
     
 case ENEMY_WEAPON.__ROCKER_GUITAR:
-
+    weaponAttDist = 70;
+    weaponSprite[0] = sRockerGuitar;
+    weaponSprite[1] = sRockerGuitar;
+    weaponSprite[2] = sRockerGuitar;
+    weaponXoff = 0;
+    weaponYoff = -25;
+        
+    with (weaponObj)
+    {
+        attackType = WEAPON_ATTACK_TYPE.__DOWN_UP;
+        angleNeedDown[0] = -110;
+        angleRotDown[0] = 22;
+        image_angle = angleNeedDown[0];
+        anMaxAngle = 6;
+    }  
+    
+    maskScale = 2;
+    critchance = 0;
+    mindmg = 1;
+    maxdmg = 2;
+    shootcd = 1 * room_speed;
+    dmgcd = .5 * room_speed;
     break;
 }
 enemyWeaponSetState(WEAPON_STATES.__MOVE);

@@ -141,7 +141,8 @@ enum ROOMS
     __PRISON_SHOWER_1W,
     __PRISON_CHEST_1W,
     __PRISON_DEFAULT_1W,
-    __START_ROOM
+    __START_ROOM,
+    __PRISON_BOSS_2X2
 }   
 
 enum GAME_STATES
@@ -339,6 +340,7 @@ enum PROJECTILE
     __DARTS,
     
     __ENEMY_BULLET,
+    __ENEMY_BULLET_UZI
 }
 
 enum BULLET_FLAGS
@@ -386,7 +388,12 @@ enum ENEMY_STATE
     __ATTACK,
     __FOLLOW,
     __CUCKED,
-    __RETREAT
+    __RETREAT,
+
+    // BOSS STATES
+    __ROCKER_MINIGUN_1,
+    __ROCKER_UZIS_1,
+    __ROCKER_GUITAR_1,
 }
 
 enum ENEMY
@@ -417,6 +424,7 @@ enum ENEMY_WEAPON
     // BOSS ROCKER
     __ROCKER_MINIGUN,
     __ROCKER_UZI,
+    __ROCKER_UZI_SECOND,
     __ROCKER_GUITAR
 }
 
@@ -440,5 +448,6 @@ enum ENEMY_ANIM
 
 enum ENEMY_F
 {
-    __IN_PRISON = 1 << 0
+    __IN_PRISON = 1 << 0,
+    __ACTIVE = 1 << 1,
 }

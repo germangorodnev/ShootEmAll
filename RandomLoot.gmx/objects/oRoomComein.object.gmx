@@ -31,6 +31,8 @@ image_speed = 0;
 blacks[0] = 0;
 blacksCount = 0;
 
+boss = 0;
+
 roomX1 = 0;
 roomY1 = 0;
 roomX2 = 0;
@@ -66,6 +68,84 @@ blacks = 0;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// activated all
+/* DEACTIVATION */
+var _x1 = roomX1,
+    _y1 = roomY1,
+    _x2 = roomX2,
+    _y2 = roomY2;
+var cnt = 0;
+with (oBaseEnemy)
+{
+    //if (collision_rectangle(_x1, _y1, _x2, _y2, id, 0, 0) == id)
+    if (rectangle_in_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom,
+        _x1, _y1, _x2, _y2) &gt; 0)
+    {
+        cnt++;
+        flagSet(OBJ_PAR.UPDATABLE, 1);
+        updatable = 1;
+        instance_activate_object(maskHit);
+        instance_activate_object(weaponObj);
+    }
+    else
+    {
+        flagSet(OBJ_PAR.UPDATABLE, 0);
+        updatable = 0;
+        instance_deactivate_object(weaponObj);
+        instance_deactivate_object(maskHit);
+        instance_deactivate_object(id);
+    }
+}
+//var _arr = objectsInRectangle(roomX1, roomY1, roomX2, roomY2, oBaseEnemy);
+
+// open current room
+
+levelBlacknessSetState(blacks[0], 0);
+if (cnt &gt; 0)
+{
+    oPlayer.roomCtrl = id;
+    oPlayer.playerInRoom = 1;
+    laserDoorChangeAll(1);
+    //ds_list_destroy(_arr);
+    
+    if (boss)
+    {
+        with (oLevel.bossObj)
+        {
+            event_user(3);
+        }
+    }   
+}
+else
+{
+    oPlayer.roomCtrl = noone;
+    oPlayer.playerInRoom = 0;
+    //ds_list_destroy(_arr);
+    event_user(4);
+}
+instance_activate_object(object_index);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="14">
       <action>
         <libid>1</libid>
@@ -91,6 +171,8 @@ with (oPlayer)
     playerInRoom = 0;
 }
 laserDoorChangeAll(0);
+//instance_deactivate_object(oBaseEnemy);
+//instance_deactivate_object(oMaskHit);
 // free adjacent
 for (var i = 0; i &lt; blacksCount; ++i)
 {
@@ -121,25 +203,14 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>/// player came in
-var _arr = objectsInRectangle(roomX1, roomY1, roomX2, roomY2, oBaseEnemy);
-// open current room
-levelBlacknessSetState(blacks[0], 0);
-if (!ds_list_empty(_arr))
-{
-    oPlayer.roomCtrl = id;
-    oPlayer.playerInRoom = 1;
-    laserDoorChangeAll(1);
-    instance_deactivate_object(oBaseEnemy);
-    instance_activate_region(roomX1, roomY1, roomX2, roomY2, 1);        
-    ds_list_destroy(_arr);
-}
-else
-{
-    oPlayer.roomCtrl = noone;
-    oPlayer.playerInRoom = 0;
-    ds_list_destroy(_arr);
-    event_user(4);
-}
+//instance_activate_object(oBaseEnemy);
+//instance_activate_object(oMaskHit);
+instance_activate_region(roomX1, roomY1, roomX2, roomY2, 1); 
+alarm[0] = 1;
+
+
+
+
 </string>
           </argument>
         </arguments>

@@ -2,20 +2,23 @@ image_angle = direction;
 projectileTimer();
 if (!active)
     exit;
+    
+cacheUpdate();     
 
 depth = -y-10;
 x += lengthdir_x(spd, direction);
 y += lengthdir_y(spd, direction);
     
 if (outsideRoom())
+{
     instance_destroy();
+    exit;
+}
 
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)
 {
-    if (ic.group == group) // same teamz
-        exit;
-    if (!ic.par.hittable) // invulnerable
+    if (bulletCannotHitHim(ic, id))
         exit;
     var a = damage,
         b = cuck,
@@ -41,7 +44,8 @@ if (ic != noone)
     }
 }
 
-//if (!colPlaceFree(x + lengthdir_x(speed, direction - 180), y + lengthdir_y(speed, direction - 180), 1))
+if (!(lvlGridCache[1, 1] & collideWith))
+    exit;
 if (!colPlaceFree(x, y, collideWith))
 {
     instance_destroy();

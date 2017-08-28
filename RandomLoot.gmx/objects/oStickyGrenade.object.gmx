@@ -125,6 +125,9 @@ if (stick == 2)
             <kind>1</kind>
             <string>if (!updatable)
     exit;
+   
+cacheUpdate();     
+    
 depth = -y-50;
     
 if (dtmr &amp;&amp; !--dtmr)

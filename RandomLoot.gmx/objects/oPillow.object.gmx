@@ -37,6 +37,8 @@ patrolTmr = -1;
 hp = 20;
 _hp = 20;
 
+useCache = 1;
+
 // weapon
 weapon = ENEMY_WEAPON.__MACHINEGUN;
 weaponType = WEAPON_TYPE.__RANGE;
@@ -157,9 +159,11 @@ if (weapon != WEAPONS.__NONE)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!updatable)
+            <string>if (!enemyActive())
     exit;
-    
+
+cacheUpdate();     
+  
 depth = -y;
 
 hp = clamp(hp, 0, _hp);
@@ -301,6 +305,8 @@ case ENEMY_STATE.__DIE:
     }
     break;
 }
+
+
 </string>
           </argument>
         </arguments>

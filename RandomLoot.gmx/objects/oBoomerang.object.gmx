@@ -94,6 +94,9 @@ bouncetmr = -1;
             <kind>1</kind>
             <string>if (!updatable)
     exit;
+    
+cacheUpdate();  
+   
 depth = -y-5;
 image_angle += 18;
 
@@ -140,9 +143,7 @@ if (cntgothrough &gt; 0)
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)
 {
-    if (ic.group == group) // same teamz
-        exit;
-    if (!ic.par.hittable) // invulnerable
+    if (bulletCannotHitHim(ic, id))
         exit;
     gameCreateExplosion(x, y, damage, group, cuck, dmgcd, parent, 75);
     instance_destroy();

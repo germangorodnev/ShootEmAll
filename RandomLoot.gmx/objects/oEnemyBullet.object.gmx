@@ -29,6 +29,7 @@
 image_speed = 0;
 group = 1; // 0 - player, 1 - enemy
 
+useCache = 0;
 </string>
           </argument>
         </arguments>

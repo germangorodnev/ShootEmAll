@@ -89,6 +89,7 @@ depth = -y-5;
 projectileTimer();
 if (!active)
     exit;
+cacheUpdate();     
 x += lengthdir_x(spd, direction);
 y += lengthdir_y(spd, direction);
     
@@ -108,9 +109,7 @@ bounceBulletStep();
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)
 {
-    if (ic.group == group) // same teamz
-        exit;
-    if (!ic.par.hittable) // invulnerable
+    if (bulletCannotHitHim(ic, id))
         exit;
     dtmr = 1;
 }

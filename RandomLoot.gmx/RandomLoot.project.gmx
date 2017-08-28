@@ -378,6 +378,7 @@
       <script>scripts\physicalTakeDmg.gml</script>
       <script>scripts\physicalCucked.gml</script>
       <script>scripts\physicalClearMaskKick.gml</script>
+      <script>scripts\cacheUpdate.gml</script>
     </scripts>
     <scripts name="Player">
       <script>scripts\playerSetState.gml</script>
@@ -568,6 +569,7 @@
       <script>scripts\laserMineInit.gml</script>
       <script>scripts\bulletCreate.gml</script>
       <script>scripts\bulletPatternCreate.gml</script>
+      <script>scripts\bulletCannotHitHim.gml</script>
     </scripts>
     <scripts name="Enemies">
       <scripts name="Enemy Weapons">
@@ -600,10 +602,19 @@
           <script>scripts\enemyOctopusShieldChangeWeapon.gml</script>
         </scripts>
       </scripts>
+      <scripts name="BOSSES">
+        <scripts name="ROCKER">
+          <script>scripts\rockerSetState.gml</script>
+          <script>scripts\rockerChangeWeapon.gml</script>
+          <script>scripts\rockerStartPattern.gml</script>
+          <script>scripts\rockerStartNewPattern.gml</script>
+          <script>scripts\rockerAnimsControl.gml</script>
+        </scripts>
+      </scripts>
       <script>scripts\enemySetState.gml</script>
       <script>scripts\enemyStartPattern.gml</script>
-      <script>scripts\enemyDetectPlayer.gml</script>
       <script>scripts\enemyCanAttack.gml</script>
+      <script>scripts\enemyDetectPlayer.gml</script>
       <script>scripts\enemyAttack.gml</script>
       <script>scripts\enemyMoveOutOfOther.gml</script>
       <script>scripts\enemyWeaponBaseStep.gml</script>
@@ -611,6 +622,7 @@
       <script>scripts\enemyFullRotateAndAttack.gml</script>
       <script>scripts\enemyMoveToPointDone.gml</script>
       <script>scripts\enemySetDirByMoving.gml</script>
+      <script>scripts\enemyActive.gml</script>
     </scripts>
     <scripts name="Damage Things">
       <script>scripts\damagingCollisionDetect.gml</script>
@@ -686,8 +698,8 @@
             <script>scripts\bfs.gml</script>
           </scripts>
           <script>scripts\levelGenerate.gml</script>
-          <script>scripts\levelTileAll.gml</script>
           <script>scripts\levelGenerateRooms.gml</script>
+          <script>scripts\levelTileAll.gml</script>
           <script>scripts\levelTileRooms.gml</script>
           <script>scripts\levelCreateEnemy.gml</script>
         </scripts>

@@ -58,8 +58,6 @@ pattern = ENEMY_PATTERN.__NONE;
 dist = 300;
 detect = 0;
 
-ENEMY_FLAG = 0;
-
 canAttackCd = 2 * room_speed;
 
 bulletCollideWith = LEVEL.WALL;

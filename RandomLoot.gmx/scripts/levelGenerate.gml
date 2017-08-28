@@ -1,3 +1,4 @@
+///levelGenerate(make 2x2 boss room)
 /*
 APPROACH:
 1. split room into blocks 
@@ -9,6 +10,8 @@ APPROACH:
 7. tile new rooms
 */
 
+var BOSS_ROOM = argument[0];
+
 // Phase 1 - splitting
 var cw = cellW,
     ch = cellH;
@@ -17,11 +20,6 @@ for (var i = 0; i < ww; i += cw)
 {
     for (var j = 0; j < hh; j += ch)
     {
-        //var _cw = cw,
-        //    _ch = ch;
-        //if (i + _cw >= rw
-        //    || j + _ch >= rh)
-        //        continue;
         var _cw = min(abs(ww-i), cw),
             _ch = min(abs(hh-j), ch);
         var rr = levelCellCreate(i, j, _cw, _ch);
@@ -29,11 +27,39 @@ for (var i = 0; i < ww; i += cw)
 }
 
 // Phase 3 - merging rooms
+// but first -- make 100% 2x2 boss room
+var xoff = irandom(2),
+    yoff = irandom(2);
+var mcell = instance_position(xoff * cw + 3, yoff * ch + 3, oCell);
+with (mcell)
+{
+    var right = instance_position(bbox_right + 1, y, oCell),
+        bottom = instance_position(x, bbox_bottom + 1, oCell),
+        bottomright = instance_position(bbox_right + 1, bbox_bottom + 1, oCell);   
+    if (right != noone && right.size == 0
+        && bottom != noone && bottom.size == 0
+        && bottomright != noone && bottomright.size == 0)
+    {
+        var new = levelCellCreate(x, y, rw + right.rw, rh + bottom.rh, 3);
+        var ccv = irandom(200);
+        new.cc = make_colour_rgb(ccv, ccv, ccv);
+        new.bossRoom = 1;
+        
+        with (right)
+            instance_destroy();
+        with (bottom)
+            instance_destroy();
+        with (bottomright)
+            instance_destroy();  
+        instance_destroy();     
+    }  
+}
+
 for (var i = 0; i < instance_number(oCell); i++)
 {
     with (instance_find(oCell, i))
     {
-    if (size != 0)
+    if (size != 0 || bossRoom)
         continue;
     var mergevar = choose(0, 1, 2);
     
@@ -137,6 +163,7 @@ for (var i = 0; i < instance_number(oCell); i++)
     }
 }
 
+
 // Phase 3 - create rooms
 with (oCell)
 {
@@ -224,6 +251,7 @@ with (oCellRoom)
     var cmi = instance_create(realx + TRIGGER_XOFF, realy + TRIGGER_YOFF, oRoomComein);
     cmi.image_xscale = (rw * tw - TRIGGER_XOFF * 2) / 32;
     cmi.image_yscale = (rh * th - TRIGGER_YOFF * 2) / 32;
+    cmi.boss = bossRoom;
     // set black zones
     // main room
     roomComeinBlackZoneAdd(cmi, p);
@@ -241,8 +269,6 @@ with (oCellRoom)
     cmi.roomX2 = cmi.roomX1 + (rw * tw)// + tw;
     cmi.roomY2 = cmi.roomY1 + (rh * th)// + th;
 }
-
-
 
 // Phase 5 - all tiled
 levelTileAll();

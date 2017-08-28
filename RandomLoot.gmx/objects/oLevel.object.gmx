@@ -28,6 +28,8 @@
             <string>///Level controller
 event_inherited();
 
+show_debug_message("======================");
+
 image_speed = 0;
 
 tw = LEVEL.TILE_W;
@@ -89,12 +91,12 @@ prisonCellH = 4;
 cells = ds_list_create();
 cellsVis[0] = 0; //room_width div cellW * room_height div cellH
 
-
+bossObj = noone;
 
 // black rects
 bl = c_black;
-rectCnt = 1;
-var rci = rectCnt - 1;
+rectCnt = 0;
+var rci = rectCnt;
 rX1[rci] = 0;
 rY1[rci] = 0;
 rX2[rci] = 0;
@@ -116,7 +118,7 @@ playerX = 0;
 playerY = 0;
 
 /* ********************** G E N E R A T I O N *********************** */
-levelGenerate();
+levelGenerate(1);
 ds_list_destroy(cells);
 cellsVis = 0;
 
@@ -160,6 +162,7 @@ with (instance_create(playerX, playerY - 60, oPickupWeapon))
 laserDoorChangeAll(0);
 
 instance_create(0, 0, oShadower);
+
 
 </string>
           </argument>
@@ -270,12 +273,20 @@ for (var i = 0; i &lt; rectCnt; ++i)
 }
 
 // de\activation
-instance_deactivate_object(oPickupableObject);
-instance_deactivate_object(oExplosiveCrate);
-instance_deactivate_object(oPrisonDoor);
-
-instance_activate_region(view_xview, view_yview, view_xview + view_wview, view_yview + view_hview, 1);
-
+//if (get_timer() % 4 == 0)
+{
+    instance_activate_object(oPickupableObject);
+    with (oPickupableObject)
+    {
+        if (object_index != oCrate)
+        {
+        if (collision_rectangle(view_xview - 50, view_yview - 50, 
+        view_xview + view_wview + 50, view_yview + view_hview + 50,
+        id, 0, 0) != id)
+            instance_deactivate_object(id);
+        }
+    }
+}
 
 
 </string>

@@ -1,11 +1,9 @@
-//ds_list_clear(pickupAutoLs);
-//ds_list_clear(pickupManualLs);
 var pa = noone,
     pm = noone,
     obj = id;
 with (oPickupableObject)
 {
-    if (instance_place(x, y, obj) == obj)
+    if (instance_place(x, y, oPlayer) == obj)
     {
         if (autopickup)
         {
