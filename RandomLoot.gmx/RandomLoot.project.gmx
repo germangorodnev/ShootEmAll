@@ -482,6 +482,7 @@
       <script>scripts\objectsInRectangle.gml</script>
       <script>scripts\sleep.gml</script>
       <script>scripts\setSprIfNotSet.gml</script>
+      <script>scripts\instanceNearestNotMe.gml</script>
     </scripts>
     <scripts name="Pickupable">
       <script>scripts\pickupableInit.gml</script>

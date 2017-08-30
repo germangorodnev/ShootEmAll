@@ -28,6 +28,11 @@
             <string>event_inherited();
 
 spd = 1;
+
+stamina = 3 * room_speed;
+_stamina = stamina;
+staminaUse = 1;
+
 vecdir = 1;
 anMaxAngle = 3;
 anSinStep = 6;
@@ -172,6 +177,19 @@ if (hp &lt;= 0 &amp;&amp; state &gt;= 0)
 if (whiteTmr &amp;&amp; !--whiteTmr)
 {}
 
+switch (staminaUse)
+{
+case 1:
+    if (stamina &amp;&amp; !--stamina)
+        staminaUse = 0;
+    break;
+case 0:
+    stamina++;
+    if (stamina &gt; round(_stamina * .8))
+        staminaUse = 1;
+    break;
+}
+
 idleTmr++;
 
 if (current_time % 4 == 0)
@@ -242,7 +260,7 @@ case ENEMY_STATE.__FOLLOW:
     procedureAnimableProceed();   
     physicalBeginStep();
     
-    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    var done = physicalMoveToPoint(mX, mY, spd + 1 * (staminaUse == 1), speedmod);
     enemySetDirByMoving();
     if (done)
     {
@@ -297,7 +315,7 @@ case ENEMY_STATE.__RETREAT:
     physicalBeginStep();
     physicalApplyRecoil(recoilSpd, recoilDir);
     
-    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    var done = physicalMoveToPoint(mX, mY, spd + 1 * (staminaUse == 1), speedmod);
     if (done)
     {
         // wow we're actually done
@@ -325,7 +343,7 @@ case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
     physicalBeginStep();
     
-    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    var done = physicalMoveToPoint(mX, mY, spd + 1 * (staminaUse == 1), speedmod);
     enemySetDirByMoving();
     if (enemyMoveToPointDone(done))
     {

@@ -51,7 +51,7 @@ case WEAPON_TYPE.__RANGE:
         with (bb)
             projectileInited();      
         break;
-    /* ******************** O C T O P U S ******************* */
+    /* ******************** O C T O P U S  ATTACKER ******************* */
     case ENEMY_WEAPON.__OCTO_RIFLE:
         for (var i = 0, timer = 0.08 * room_speed; i < 5; i++)
         {
@@ -78,6 +78,27 @@ case WEAPON_TYPE.__RANGE:
             with (bb)
                 projectileInited();      
         }
+        break;
+    /* ******************** O C T O P U S  HEALER ******************* */
+    case ENEMY_WEAPON.__OCTO_HEAL:
+        var xx = weaponObj.x + lengthdir_x(ldirx, weaponObj.image_angle + ldirdir),
+            yy = weaponObj.y + lengthdir_y(ldirx, weaponObj.image_angle + ldirdir * sign(weaponObj.image_yscale));
+        var bb = instance_create(xx, yy, oZap);
+        bb.eX = target.x + irandom_range(-10, 10);
+        bb.eY = target.y - irandom_range(5, target.sprite_height / 1.5);
+        bb.liveTmr = 3;
+        bb.damage = 0;
+        bb.group = maskHit.group;
+        bb.parent = id;
+        bb.col = make_colour_rgb(49, 187, 60);
+        with (target)
+        {
+            hp += 2;
+        }
+        with (bb)
+        {
+            zapInit();
+        }             
         break;
         
     default:

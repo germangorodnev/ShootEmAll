@@ -44,8 +44,8 @@ if (ic != noone)
     }
 }
 
-if (!(lvlGridCache[1, 1] & collideWith))
-    exit;
+//if (!(lvlGridCache[1, 1] & collideWith))
+//    exit;
 if (!colPlaceFree(x, y, collideWith))
 {
     instance_destroy();

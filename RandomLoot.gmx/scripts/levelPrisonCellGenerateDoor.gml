@@ -8,7 +8,7 @@ switch (dir)
 {
 case 0: // right
     xpos = x + rw - 1;
-    ypos = irandom_range(y + 1, y + rh - 2);
+    ypos = y + 2; //irandom_range(y + 2, y + rh - 2);
     oLevel.level[# xpos, ypos] &= ~LEVEL.SOLID;
     mp_grid_clear_cell(oLevel.levelPf, xpos, ypos);
     dr = instance_create(xpos*tw, ypos*th, oPrisonDoor);
@@ -26,7 +26,7 @@ case 1: // top
     break;
 case 2: // left
     xpos = x;
-    ypos = irandom_range(y + 1, y + rh - 2);
+    ypos = y + 2; //irandom_range(y + 1, y + rh - 2);
     oLevel.level[# xpos, ypos] &= ~LEVEL.SOLID;
     mp_grid_clear_cell(oLevel.levelPf, xpos, ypos);
     dr = instance_create(xpos*tw, ypos*th, oPrisonDoor);

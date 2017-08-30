@@ -54,10 +54,15 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                                 continue;
                             var tx = x * tw,
                                 ty = i * th;
-                            if (i == ci - 1)
+                            if (i == y + 1 && doorPos == 2)
+                            {
+                                tile_add(tlsPrisonSlats, 3*tw, 1*th, tw, th, tx, ty, -ty-th);
+                                levelTileMark(x, i, TILES.__PS_LEFT);                            
+                            }
+                            else if (i == ci - 1)
                             {
                                 tile_add(tlsPrisonSlats, 3*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(x, i, TILES.__PS_BOTTOM_LEFT) // left;
+                                    levelTileMark(x, i, TILES.__PS_BOTTOM) // left;
                             }
                             else
                             {
@@ -75,7 +80,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             if (i == ci - 1)
                             {
                                 tile_add(tlsPrisonSlats, 4*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(cx, i, TILES.__PS_BOTTOM_RIGHT);
+                                levelTileMark(cx, i, TILES.__PS_BOTTOM_RIGHT); //__PS_BOTTOM_RIGHT
                             }
                             else
                             {
@@ -127,10 +132,23 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                                 ty = i * th;
                             if(lvl[# cx, i] & LEVEL.SOLID == 0)
                                 continue;
-                            if (i == ci - 1)
+                            if (i == y + 1 && doorPos == 0)
                             {
-                                tile_add(tlsPrisonSlats, 4*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(cx, i, TILES.__PS_BOTTOM_RIGHT);
+                                tile_add(tlsPrisonSlats, 4*tw, 1*th, tw, th, tx, ty, -ty-th);
+                                levelTileMark(cx, i, TILES.__PS_RIGHT);                            
+                            }
+                            else if (i == ci - 1)
+                            {
+                                if (doorPos == 0)
+                                {
+                                    tile_add(tlsPrisonSlats, 4*tw, 2*th, tw, th, tx, ty, -ty-th);
+                                    levelTileMark(cx, i, TILES.__PS_BOTTOM); //right                                
+                                }
+                                else
+                                {
+                                    tile_add(tlsPrisonSlats, 4*tw, 2*th, tw, th, tx, ty, -ty-th);
+                                    levelTileMark(cx, i, TILES.__PS_BOTTOM_RIGHT); //right
+                                }
                             }
                             else
                             {
@@ -158,10 +176,23 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                                 continue;
                             var tx = x * tw,
                                 ty = i * th;
-                            if (i == ci - 1)
+                            if (i == y + 1 && doorPos == 2)
                             {
-                                tile_add(tlsPrisonSlats, 0*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(x, i, TILES.__PS_BOTTOM_LEFT); // LEFT
+                                tile_add(tlsPrisonSlats, 3*tw, 1*th, tw, th, tx, ty, -ty-th);
+                                levelTileMark(x, i, TILES.__PS_LEFT);                            
+                            }
+                            else if (i == ci - 1)
+                            {
+                                if (doorPos == 2)
+                                {
+                                    tile_add(tlsPrisonSlats, 0*tw, 2*th, tw, th, tx, ty, -ty-th);
+                                    levelTileMark(x, i, TILES.__PS_BOTTOM); // LEFT
+                                }
+                                else
+                                {
+                                    tile_add(tlsPrisonSlats, 0*tw, 2*th, tw, th, tx, ty, -ty-th);
+                                    levelTileMark(x, i, TILES.__PS_BOTTOM_LEFT); // LEFT                                    
+                                }
                             }
                             else
                             {
@@ -207,10 +238,15 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                                 ty = i * th;
                             if(lvl[# cx, i] & LEVEL.SOLID == 0)
                                 continue;
-                            if (i == ci - 1)
+                            if (i == y + 1 && doorPos == 0)
+                            {
+                                tile_add(tlsPrisonSlats, 4*tw, 1*th, tw, th, tx, ty, -ty-th);
+                                levelTileMark(cx, i, TILES.__PS_RIGHT);                            
+                            }
+                            else if (i == ci - 1)
                             {
                                 tile_add(tlsPrisonSlats, 2*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(cx, i, TILES.__PS_BOTTOM_RIGHT);
+                                levelTileMark(cx, i, TILES.__PS_RIGHT);
                             }
                             else
                             {
@@ -230,45 +266,7 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                         }                    
                         break;
                     }
-                    /* ***************************************************************** DOOR MARKUP ***************************************************************** */   
-                    /*if (doorPosX == x) // left
-                    {
-                        if (doorPosY == y + 1)
-                        {
-                            var tile = tile_layer_find(-(doorPosY)*th, doorPosX*tw, doorPosY*th-th);
-                            if (tile != -1)
-                                tile_delete(tile);
-                            tile_add(tlsPrisonSlats, 1*tw, 0*th, tw, th, x*tw, doorPosY*th-th, -doorPosY*th);                        
-                        }
-                        else if (doorPosY == median(y + 2, doorPosY, y + rh - 2))
-                        {
-                            var tile = tile_layer_find(-(doorPosY)*th, doorPosX*tw, (doorPosY-1)*th);
-                            if (tile != -1)
-                                tile_delete(tile);
-                            tile_add(tlsPrisonSlats, 3*tw, 1*th, tw, th, x*tw, doorPosY*th-th, -doorPosY*th);
-                        }
-                    }      
-                    else if (doorPosX > x && doorPosY != y) // right
-                    {
-                        if (doorPosY == y + 1)
-                        {
-                            var tile = tile_layer_find(-(doorPosY)*th, doorPosX*tw, doorPosY*th-th);
-                            if (tile != -1)
-                                tile_delete(tile);
-                            tile_add(tlsPrisonSlats, 1*tw, 0*th, tw, th, doorPosX*tw, doorPosY*th-th, -doorPosY*th);                        
-                        }
-                        else if (doorPosY == median(y + 2, doorPosY, y + rh - 2))
-                        {
-                            var tile = tile_layer_find(-(doorPosY)*th, doorPosX*tw, (doorPosY-1)*th);
-                            if (tile != -1)
-                                tile_delete(tile);
-                            tile_add(tlsPrisonSlats, 4*tw, 1*th, tw, th, doorPosX*tw, doorPosY*th-th, -doorPosY*th);
-                        }
-                    }   
-                    else if (doorPosY == y) // top
-                    {}
-                    else // bottom
-                    {}*/          
+                    /* ***************************************************************** DOOR MARKUP ***************************************************************** */      
                 }
             }
             break;

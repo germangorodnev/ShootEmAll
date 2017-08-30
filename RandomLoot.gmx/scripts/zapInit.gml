@@ -43,30 +43,4 @@ for (var i = 1, ci = ds_list_size(positions); i < ci; i++)
 }
     
 ds_list_destroy(positions);
-/*var results = new List<Line>();
-    Vector2 tangent = dest - source;
-    Vector2 normal = Vector2.Normalize(new Vector2(tangent.Y, -tangent.X));
-    float length = tangent.Length();
- 
-    List<float> positions = new List<float>();
-    positions.Add(0);
- 
-    for (int i = 0; i < length / 4; i++)
-        positions.Add(Rand(0, 1));
- 
-    for (int i = 1; i < positions.Count; i++)
-    {
-        float pos = positions[i];
- 
-        // used to prevent sharp angles by ensuring very close positions also have small perpendicular variation.
-        float scale = (length * Jaggedness) * (pos - positions[i - 1]);
- 
-        Vector2 point = source + pos * tangent + displacement * normal;
-        results.Add(new Line(prevPoint, point, thickness));
-        prevPoint = point;
-        prevDisplacement = displacement;
-    }
- 
-    results.Add(new Line(prevPoint, dest, thickness));
- 
-    return results;
+

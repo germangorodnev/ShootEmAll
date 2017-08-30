@@ -181,10 +181,10 @@ masksMove();
 
 // rotation image
 vecdir = 1;
+xsc = 1;
 switch (dir)
 {
 case 0:
-    //xsc = (target.x &gt; x) * 2 - 1;
     image_index = 0;
     break;    
 case 1:
@@ -193,6 +193,7 @@ case 1:
     break;    
 case 2:
     image_index = 0;
+    xsc = -1;
     break;    
 case 3:
     image_index = 1;
@@ -207,34 +208,24 @@ case ENEMY_STATE.__IDLE:
     
     physicalApplyRecoil(recoilSpd, recoilDir); 
         
-    detect = enemyDetectPlayer();
-    if (detect)
+    target = instanceNearestNotMe(x, y, oBaseEnemy);
+    if (target != noone &amp;&amp; target != id &amp;&amp; target.updatable)
     {
         // well, maybe shoot
         angle = point_direction(x, y, target.x, target.y);
         dir = round(angle / 90); 
-        targetDist = distance_to_object(target);
-        
-        enemyRetreatStep();
         
         var ca = enemyCanAttack();
         if (ca == 1)
         {
-            enemyAttack();
+            enemyFullRotateAndAttack();
             exit;
         }
-        // now we follow the player
         else if (ca == -1)
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
-    }
-    else
-    {
-        if (patrolTmr &amp;&amp; !--patrolTmr)
-        {
-            enemyStartPattern(ENEMY_PATTERN.__PATROL);   
-        } 
+            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);
     }    
-    
+    else
+        enemyStartPattern(ENEMY_PATTERN.__PATROL);   
     physicalMove(collideWith);
     break;
     
@@ -255,71 +246,32 @@ case ENEMY_STATE.__FOLLOW:
     
     physicalApplyRecoil(recoilSpd, recoilDir); 
 
-    angle = point_direction(x, y, target.x, target.y);
-    dir = round(angle / 90); 
-    targetDist = distance_to_object(target);
-    
-    if (targetDist &lt;= weaponAttDist)
+    target = instanceNearestNotMe(x, y, oBaseEnemy);
+    if (target != noone &amp;&amp; target != id &amp;&amp; target.updatable)
     {
+        angle = point_direction(x, y, target.x, target.y);
+        dir = round(angle / 90); 
+        
         // wow we're actually done
-        enemySetState(ENEMY_STATE.__IDLE);
-        exit;
-    }
-    
-    detect = enemyDetectPlayer();
-    if (detect != 1)
-    {
-        enemyStartPattern(ENEMY_PATTERN.__PATROL);
-        exit;
-    }
-    
-    enemyRetreatStep();
-    
-    // well, maybe shoot
-    if (enemyCanAttack() == 1)
-    {
-        enemyFullRotateAndAttack();
-        enemySetState(ENEMY_STATE.__IDLE);
-    }
-    if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
-    {
-        if (idleTmr &gt; 0.5 * room_speed)
+        if (enemyCanAttack() == 1)
         {
-            // recalc
-            enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
+            enemyFullRotateAndAttack();
+            enemySetState(ENEMY_STATE.__IDLE);
+            exit;
+        }
+            
+        if (point_distance(path_get_point_x(path, path_get_number(path)-1), path_get_point_y(path, path_get_number(path)-1), target.x, target.y) &gt; weaponAttDist)
+        {
+            if (idleTmr &gt; 0.5 * room_speed)
+            {
+                // recalc
+                enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target);        
+            }
         }
     }
     physicalMove(collideWith);
     break;   
-    
-case ENEMY_STATE.__RETREAT:
-    procedureAnimableProceed();    
-    physicalBeginStep();
-    physicalApplyRecoil(recoilSpd, recoilDir);
-    
-    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
-    if (done)
-    {
-        // wow we're actually done
-        if (path_get_number(path) == 0)
-            enemySetState(ENEMY_STATE.__IDLE);
-        else
-            enemyGetNextPathPoint();
-    }
-    detect = enemyDetectPlayer();
-    if (detect != 1)
-    {
-        enemySetState(ENEMY_STATE.__IDLE);
-        exit;
-    }
-    if (enemyCanAttack() == 1)
-    {
-        dir = round(angle / 90); 
-        enemyFullRotateAndAttack();
-    }
-    
-    physicalMove(collideWith);
-    break; 
+
     
 case ENEMY_STATE.__WALK:
     procedureAnimableProceed();    
@@ -336,17 +288,17 @@ case ENEMY_STATE.__WALK:
     
     physicalApplyRecoil(recoilSpd, recoilDir);
     
-    detect = enemyDetectPlayer();
-    if (detect == 1)
+    target = instanceNearestNotMe(x, y, oBaseEnemy);
+    if (target != noone &amp;&amp; target != id &amp;&amp; target.updatable)
     {
-        // well, maybe shoot
-        if (enemyCanAttack())
+        if (enemyCanAttack() == 1)
         {
-            enemyAttack();
-            exit;
+            enemyFullRotateAndAttack();
         }
-        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, oPlayer.id);
+        enemyStartPattern(ENEMY_PATTERN.__FOLLOW, target); 
+        exit;       
     }
+    
     var s = colPlaceFree(x + hspd, y + vspd, collideWith);
     if (s == 0)
     {
@@ -454,7 +406,6 @@ case ENEMY_STATE.__DIE:
             <string>if (!drawable)
     exit;
 enemyDebug();
-
 var usesh = whiteTmr != 0;
 if (usesh)
     shader_set(shdWhite);

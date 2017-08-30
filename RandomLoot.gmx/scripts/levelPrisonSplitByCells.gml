@@ -24,7 +24,6 @@ case 3:
     levelPrisonCreate4Cells(x + prcellw*2+off+1, y + 2);
     levelPrisonCreate4Cells(x + prcellw*2+off+1, y + prcellh*2+off+3);
     levelPrisonCreate4Cells(x + 1, y + prcellh*2+off+3);
-
     break;
 }
 

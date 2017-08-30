@@ -163,6 +163,9 @@ laserDoorChangeAll(0);
 
 instance_create(0, 0, oShadower);
 
+with (oPrisonDoor)
+    instance_destroy();
+
 
 </string>
           </argument>
