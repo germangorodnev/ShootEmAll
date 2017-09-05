@@ -4,12 +4,13 @@ var xx = argument[0],
     ss = argument[2],
     ssmod = argument[3],
     chX = 0;
+var ssmult = ss * 1.5;
   
-if (x != median(xx - ss * 2, x, xx + ss * 2))
+if (x != median(xx - ssmult, x, xx + ssmult))
     chX = 1;
 else
     x = xx;
-if (y == median(yy - ss * 2, y, yy + ss * 2))
+if (y == median(yy - ssmult, y, yy + ssmult))
     y = yy;
 if (x < xx)
 {   

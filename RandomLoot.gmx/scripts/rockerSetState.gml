@@ -42,7 +42,7 @@ case ENEMY_STATE.__ROCKER_MINIGUN_2:
     customAnimableSetSprite(anims[ENEMY_ANIM.__IDLE], animSpd[ENEMY_ANIM.__IDLE]);
     _angle = point_direction(x, y, target.x, target.y);
     angle = _angle;
-    STATE_CHANGE_TMR = 6 * room_speed;
+    STATE_CHANGE_TMR = irandom_range(2, 3) * room_speed;
     rockerChangeWeapon(ENEMY_WEAPON.__ROCKER_MINIGUN);
     break; 
            
@@ -66,6 +66,22 @@ case ENEMY_STATE.__ROCKER_MOLOTOV_1:
     customAnimableSetSprite(anims[ENEMY_ANIM.__IDLE], animSpd[ENEMY_ANIM.__IDLE]);
     rockerChangeWeapon(ENEMY_WEAPON.__ROCKER_MOLOTOV);
     STATE_CHANGE_TMR = irandom_range(1, 3) * room_speed;
+    break;
+
+case ENEMY_STATE.__ROCKER_WALL_MINIGUN_1:
+    customAnimableSetSprite(anims[ENEMY_ANIM.__WALK], animSpd[ENEMY_ANIM.__WALK]);
+    rockerChangeWeapon(ENEMY_WEAPON.__ROCKER_MINIGUN);
+    STATE_CHANGE_TMR = irandom_range(8, 12) * room_speed;
+    path_clear_points(path);
+    path_set_closed(path, 0);
+    var rl = oPlayer.roomCtrl,
+        xoff = 160,
+        yoff = 160;   
+    path_add_point(path, rl.x + xoff, rl.y + yoff, 100);
+    path_add_point(path, rl.bbox_right - xoff, rl.y + yoff, 100);
+    path_add_point(path, rl.bbox_right - xoff, rl.bbox_bottom - yoff, 100);
+    path_add_point(path, rl.x + xoff, rl.bbox_bottom - yoff, 100);
+    enemyGetNextPathPoint();
     break;
     
 case ENEMY_STATE.__DIE:

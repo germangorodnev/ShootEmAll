@@ -3,10 +3,10 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-2</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <parentName>oAndroidButtonBase</parentName>
+  <maskName>sAndroidButtons</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -25,42 +25,58 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// BSP Leaf
+            <string>event_inherited();
 image_speed = 0;
+active = 0;
+devNumb = -1;
+half = global.guiW / 2;
+type = 0;
 
-rw = 0;
-rh = 0;
-
-tw = oLevel.tw;
-th = oLevel.th;
-
-bossRoom = 0;
-
-type = ROOMS.__NONE;
-par = noone;
-
-doors[0, 0] = 0;
-doorsCount[0] = 0;
-for (var i = 0; i &lt; 4; i++)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!updatable)
+    exit;
+x = view_xview + xstart;
+y = view_yview + ystart;
+//dir = 0;
+for (var i = 0; i &lt; 5; i++)
 {
-    doors[i, 0] = noone;
-    doorsCount[i] = 0;
-}
-    
-ind = -1;
-
-var ccv = irandom(180);
-cc = make_colour_hsv(ccv, ccv, ccv);
-
-number = 0;
-
-children = ds_list_create();
+    if (device_mouse_check_button_pressed(i, mb_left))
+    {
+        if (instance_position(device_mouse_x(i), device_mouse_y(i), oAndroidButtonAttack) == id)
+        {
+            dir = !dir;
+            devNumb = i;
+            exit;
+        }
+    }
+}   
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -77,37 +93,10 @@ children = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*for (var i = 0, c = ds_list_size(children); i &lt; c; i++)
-    with (children[| i])
-        instance_destroy();*/
-ds_list_destroy(children);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_rectangle_colour(x * tw, y * th, x * tw + rw * tw, y * th + rh * th, cc, cc, cc, cc, 0);
-//draw_rectangle_colour(x * tw, y * th, x * tw + rw * tw, y * th + rh * th, c_black, c_black, c_black, c_black, 1);
-draw_text_transformed_colour(x*tw+rw/2*tw, y*th+rh/2*th, string(number), 6, 6, 0,
-    c_red, c_red, c_red, c_red, 1);
-
+            <string>if (!dir)
+    draw_sprite_ext(sAndroidButtons, image_index, xstart, ystart, 1, 1, 0, image_blend, 1);
+else
+    draw_sprite_ext(sAndroidButtons, image_index, xstart, ystart, 1, 1, 0, c_red, 1);
 </string>
           </argument>
         </arguments>

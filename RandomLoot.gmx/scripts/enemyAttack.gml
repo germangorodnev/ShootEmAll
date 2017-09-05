@@ -124,13 +124,17 @@ case WEAPON_TYPE.__RANGE:
             bb.parent = id; 
             bb.group = maskHit.group;
             bb.dmgcd = dmgcd;
-            //bb.prt = 1;
+            bb.prt = 1;
             with (bb)
                 projectileInited();      
         }
         break;
     }
     enemyWeaponSetState(WEAPON_STATES.__RANGE_SHOT);
+    if (weapon == ENEMY_WEAPON.__ROCKER_MINIGUN)
+    {   
+        weaponObj.canAttackTmr = shootcd;
+    }
     break;
 }   
 

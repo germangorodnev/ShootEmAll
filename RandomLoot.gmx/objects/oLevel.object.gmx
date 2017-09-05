@@ -277,7 +277,7 @@ for (var i = 0; i &lt; rectCnt; ++i)
 
 // de\activation
 //if (get_timer() % 4 == 0)
-{
+/*{
     instance_activate_object(oPickupableObject);
     with (oPickupableObject)
     {

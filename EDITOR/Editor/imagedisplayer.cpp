@@ -27,6 +27,7 @@ ImageDisplayer::ImageDisplayer(QWidget *parent) :
 
 }
 
+
 void ImageDisplayer::resetAll()
 {
     path = "";
@@ -115,12 +116,15 @@ void ImageDisplayer::mouseMoveEvent(QMouseEvent *event)
 {
     if (scr)
     {
+        mtg = mapTo(window(), QPoint(width() / 2, height() / 2));
         qDebug() << "mtgx: " << mtg.x();
         qDebug() << "evx: " << event->globalPos().x();
         //qDebug() << "Dy: " << mtg.y() - event->globalPos().y();
         dxoff = mtg.x() - event->globalPos().x();
         dyoff = mtg.y() - event->globalPos().y();
+        qDebug() << dxoff << "; " << dyoff;
         event->accept();
+        repaint();
         return;
     }
     event->ignore();
@@ -128,7 +132,7 @@ void ImageDisplayer::mouseMoveEvent(QMouseEvent *event)
 
 void ImageDisplayer::moveEvent(QMoveEvent *event)
 {
-    mtg = mapToGlobal(QPoint(width() / 2, height() / 2));
+    mtg = parentWidget()->mapTo(window(), QPoint(width() / 2, height() / 2));
     qDebug() << mtg.x() << " " << mtg.y();
     qDebug() << "------------------------------";
     event->accept();

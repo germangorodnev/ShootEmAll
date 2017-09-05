@@ -1,5 +1,6 @@
 for (var i = 0; i < KEY.CNT; i++)
     key[i] = 0;
+key[KEY.KICK] = -1;
 switch (os_type)
 {
 case os_win32:
@@ -41,8 +42,8 @@ case os_win32:
         key[KEY.MAP] = 1;
     break;
     
-/*case os_android:
-    var j = oAndroidJoystick;
+case os_android:
+    var j = global.andrMove;
     if (j.active)
     {
         //if (j.len > j.maxD / 3)
@@ -90,5 +91,11 @@ case os_win32:
             key[KEY.RIGHT] = 1;
         }
     }
-    break;*/
+    j = global.andrAttack;
+    if (j.dir == 1)
+        if (oPlayer.weapon != WEAPONS.__NONE)
+            key[KEY.KICK] = oPlayer.weaponInf[W_PR.__BUTTON_STATE];  
+        else
+            key[KEY.KICK] = 1;
+    break;
 }

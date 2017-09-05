@@ -19,8 +19,8 @@ with (weaponObj)
         break;
     case WEAPON_STATES.__RANGE_SHOT:        
         canAttack = 0;
-        canAttackTmr = parent.shootcd; 
-        
+        canAttackTmr = max(1, round(parent.shootcd * random_range(.8, 1.1))); 
+                
         sprite_index = parent.weaponSprite[1];
         anImageSpeed = parent.weaponAnimSpeed[1];
         break;

@@ -38,7 +38,8 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
                 break;
                 
             case 2: // shower
-                if (door[1] != noone)
+                var updoorscnt = 0;
+                if (doors[1, 0] != noone)
                     continue;
                 type = ROOMS.__PRISON_SHOWER_1W;
                 levelPrisonShowerInit();
@@ -88,10 +89,7 @@ for (var i = 0, cnt = instance_number(oCellRoom); i < cnt; i++)
             else
             {
                 type = ROOMS.__PRISON_BOSS_2X2;
-                // set the floor
-                levelPrisonSetFloor(); 
-                oLevel.bossObj = levelCreateEnemy((x + rw div 2) * tw, (y + rh div 2) * th, 
-                    choose(ENEMY.__BOSS_ROCKER));                                        
+                levelBossRoomInit();
             }
             break;
         }

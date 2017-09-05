@@ -194,31 +194,31 @@ void MainWindow::on_weapExport_triggered()
     int nextyoff = 0;
     if (png != "")
     {
-        QImage& imgmain = idPNG->getPNGImage().toImage();
+        QImage imgmain = idPNG->getPNGImage().toImage();
         painter.drawImage(5, 5, imgmain);
         nextyoff = imgmain.height() + 5;
     }
     if (pngShoot != "")
     {
-        QImage& imgshoot = idPNGShoot->getPNGImage().toImage();
+        QImage imgshoot = idPNGShoot->getPNGImage().toImage();
         painter.drawImage(5, 5 + nextyoff, imgshoot);
         nextyoff += imgshoot.height() + 5;
     }
     if (pngProj != "")
     {
-        QImage& imgproj = idPNGProj->getPNGImage().toImage();
+        QImage imgproj = idPNGProj->getPNGImage().toImage();
         painter.drawImage(5, 5 + nextyoff, imgproj);
         nextyoff += imgproj.height() + 5;
     }
     if (pngAdd != "")
     {
-        QImage& imgadd = idPNGAdd->getPNGImage().toImage();
+        QImage imgadd = idPNGAdd->getPNGImage().toImage();
         painter.drawImage(5, 5 + nextyoff, imgadd);
         nextyoff += imgadd.height() + 5;
     }
     if (pngAdd2 != "")
     {
-        QImage& imgadd2 = idPNGAdd2->getPNGImage().toImage();
+        QImage imgadd2 = idPNGAdd2->getPNGImage().toImage();
         painter.drawImage(5, 5 + nextyoff, imgadd2);
         nextyoff += imgadd2.height() + 5;
     }

@@ -15,7 +15,7 @@ case 0: // door is on the right
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx, yy+1] |= LEVEL.SOLID;
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx+1)*tw, yy*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx+1)*tw, yy*th, -yy*th-th+7);
         levelTileMark(xx+1, yy, TILES.__CURBSTONE);
         lvl[# xx + 1, yy] |= LEVEL.SOLID;
         // toilet
@@ -23,7 +23,7 @@ case 0: // door is on the right
         //tile_add(tlsPrison, 0, 0, tw, th, (xx+irandom_range(2, 3))*tw, (yy-0.8)*th, -(yy)*th-1-1*(pos == 3)); 
                           
         // enemy
-        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, 
+        var enemy = levelCreateEnemy((xx+2)*tw+tw/2, (yy+1)*th+th/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;
@@ -35,13 +35,13 @@ case 0: // door is on the right
         levelTileMark(xx, yy, TILES.__BED_HL);
         levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th-th+7);
         levelTileMark(xx-1, yy, TILES.__CURBSTONE);
         lvl[# xx - 1, yy] |= LEVEL.SOLID; 
         // toilet
         tile_add(tlsPrison, tw, 0, tw, th, (xx-1)*tw-oLevel.toiletLeftoff, (yy+1)*th, -yy*th-0.5);                   
         
-        var enemy = levelCreateEnemy((xx)*tw+tw/2, (yy+1)*th+tw/2, 
+        var enemy = levelCreateEnemy((xx + 1)*tw+tw/2, (yy+1)*th+tw/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;
@@ -62,14 +62,14 @@ case 2: // door is on the left
         levelTileMark(xx, yy, TILES.__BED_VT);
         levelTileMark(xx, yy+1, TILES.__BED_VB);
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th-th+7);
         levelTileMark(xx-1, yy, TILES.__CURBSTONE);
         lvl[# xx - 1, yy] |= LEVEL.SOLID;
         // toilet
         tile_add(tlsPrison, 0, 0, tw, th, (xx-2)*tw, (yy-0.8)*th, -(yy)*th-1-1*(pos == 2));    
                        
         // enemy
-        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, 
+        var enemy = levelCreateEnemy((xx-2)*tw+tw/2, (yy+1)*th+th/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;
@@ -81,14 +81,14 @@ case 2: // door is on the left
         levelTileMark(xx, yy, TILES.__BED_HL);
         levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, yy*th, -yy*th-th+7);
         levelTileMark(xx-1, yy, TILES.__CURBSTONE);
         lvl[# xx - 1, yy] |= LEVEL.SOLID; 
         // toilet
         tile_add(tlsPrison, 0, 0, tw, th, (xx-2)*tw, (yy-0.8)*th, -(yy)*th-1-1*(pos == 2));                   
                        
         // enemy
-        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, 
+        var enemy = levelCreateEnemy((xx-1)*tw+tw/2, (yy+1)*th+th/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break; 
@@ -103,21 +103,21 @@ case 1: // top
     case 0: // vertical one
         // bed
         yy++;
-        xx -= irandom(1) * (!(pos & 1));
+        //xx -= irandom(1) * (!(pos & 1));
         tile_add(tlsPrison, choose(2,4)*tw, 2*th, tw, th*2, (xx+.1)*tw, yy*th, (-yy-1)*th);
         lvl[# xx, yy] |= LEVEL.SOLID;
         lvl[# xx, yy+1] |= LEVEL.SOLID;
         levelTileMark(xx, yy, TILES.__BED_VT);
         levelTileMark(xx, yy+1, TILES.__BED_VB);
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx+.1)*tw, (yy-1)*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx+.1)*tw, (yy-1)*th, -yy*th-th+7);
         levelTileMark(xx, yy-1, TILES.__CURBSTONE);
         lvl[# xx, yy - 1] |= LEVEL.SOLID;
         // toilet
         tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-1.8)*th, -(y+1)*th-0.5);                   
                        
         // enemy
-        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, 
+        var enemy = levelCreateEnemy((xx+2)*tw+tw/2, (yy)*th+th/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;
@@ -137,7 +137,7 @@ case 1: // top
         tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-1.8)*th, -(y+1)*th-0.5);                   
                        
         // enemy
-        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, 
+        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy-1)*th+th/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;
@@ -159,14 +159,14 @@ case 3: // bottom
         levelTileMark(xx, yy, TILES.__BED_VT);
         levelTileMark(xx, yy+1, TILES.__BED_VB);
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, (yy)*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, (yy)*th, -yy*th-th+7);
         levelTileMark(xx-1, yy, TILES.__CURBSTONE);
         lvl[# xx-1, yy] |= LEVEL.SOLID;
         // toilet
         tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-0.8)*th, -(yy)*th-1*(pos >= 2));                   
                        
         // enemy
-        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, 
+        var enemy = levelCreateEnemy((xx + 1)*tw+tw/2, (yy+2)*th+th/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;
@@ -178,14 +178,14 @@ case 3: // bottom
         levelTileMark(xx, yy, TILES.__BED_HL);
         levelTileMark(xx+1, yy, TILES.__BED_HR);
         // curbstone
-        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, (yy)*th, -yy*th-th+8);
+        tile_add(tlsPrison, choose(0, 1)*tw, 3*th, tw, th, (xx-1)*tw, (yy)*th, -yy*th-th+7);
         levelTileMark(xx-1, yy, TILES.__CURBSTONE);
         lvl[# xx-1, yy] |= LEVEL.SOLID; 
         // toilet
         tile_add(tlsPrison, 0, 0, tw, th, (x+rw-1)*tw, (yy-0.8)*th, -(yy)*th-1*(pos >= 2));                   
                        
         // enemy
-        var enemy = levelCreateEnemy((xx+1)*tw+tw/2, (yy+1)*th+th/2, 
+        var enemy = levelCreateEnemy((xx)*tw+tw/2, (yy+2)*th+th/2, 
             choose(ENEMY.__PILLOW, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_ATTACK, ENEMY.__OCTO_GUARD_MACE));
         enemy.ENEMY_FLAG |= ENEMY_F.__IN_PRISON;
         break;

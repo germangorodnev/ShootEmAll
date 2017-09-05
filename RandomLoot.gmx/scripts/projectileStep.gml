@@ -1,5 +1,10 @@
 image_angle = direction;
 projectileTimer();
+if (outsideRoom())
+{
+    instance_destroy();
+    exit;
+}
 if (!active)
     exit;
     
@@ -8,13 +13,13 @@ cacheUpdate();
 depth = -y-10;
 x += lengthdir_x(spd, direction);
 y += lengthdir_y(spd, direction);
-    
-if (outsideRoom())
+
+if (!colPlaceFree(x, y, collideWith))
 {
     instance_destroy();
     exit;
 }
-
+    
 var ic = instance_place(x, y, oMaskHit);
 if (ic != noone)
 {
@@ -46,8 +51,4 @@ if (ic != noone)
 
 //if (!(lvlGridCache[1, 1] & collideWith))
 //    exit;
-if (!colPlaceFree(x, y, collideWith))
-{
-    instance_destroy();
-}
 

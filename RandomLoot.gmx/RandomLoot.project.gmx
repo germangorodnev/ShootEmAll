@@ -326,6 +326,9 @@
     <sprites name="Items">
       <sprite>sprites\sItems</sprite>
     </sprites>
+    <sprites name="GUI">
+      <sprite>sprites\sAndroidButtons</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="Parts">
@@ -534,6 +537,9 @@
       <scripts name="Spikes">
         <script>scripts\playerSpikesCreate.gml</script>
       </scripts>
+      <scripts name="Android Buttons">
+        <script>scripts\androidButtonsInit.gml</script>
+      </scripts>
       <script>scripts\gameGetWeaponParams.gml</script>
       <script>scripts\gameGetWeaponType.gml</script>
       <script>scripts\gameGetProjectileNameByIndex.gml</script>
@@ -657,15 +663,9 @@
             <script>scripts\levelCellCreateRoom.gml</script>
             <script>scripts\levelCellsConnected.gml</script>
             <script>scripts\levelCellRoomsConnect.gml</script>
+            <script>scripts\levelCellAddDoor.gml</script>
           </scripts>
           <scripts name="Prison">
-            <scripts name="Cells">
-              <script>scripts\levelPrisonCellInit.gml</script>
-              <script>scripts\levelPrisonCellGenerateDoor.gml</script>
-              <script>scripts\levelPrisonCellDoorInit.gml</script>
-              <script>scripts\levelPrisonSetIndoor.gml</script>
-              <script>scripts\levelPrisonSetFloor.gml</script>
-            </scripts>
             <scripts name="Canteen">
               <scripts name="Tables">
                 <script>scripts\levelPrisonCanteenCreateTableHor.gml</script>
@@ -673,27 +673,37 @@
               </scripts>
               <script>scripts\levelPrisonCanteenInit.gml</script>
             </scripts>
-            <scripts name="Shower">
-              <script>scripts\levelPrisonShowerInit.gml</script>
+            <scripts name="Carpet Set">
+              <script>scripts\levelPrisonSmallCarpetSet.gml</script>
+              <script>scripts\levelPrisonCarpetSet.gml</script>
+            </scripts>
+            <scripts name="Cells">
+              <script>scripts\levelPrisonCellInit.gml</script>
+              <script>scripts\levelPrisonCellGenerateDoor.gml</script>
+              <script>scripts\levelPrisonCellDoorInit.gml</script>
+              <script>scripts\levelPrisonSetIndoor.gml</script>
+              <script>scripts\levelPrisonSetFloor.gml</script>
+            </scripts>
+            <scripts name="Crate">
+              <script>scripts\levelPrisonChestRoomInit.gml</script>
             </scripts>
             <scripts name="Default">
               <script>scripts\levelPrisonDefaultRoomInit.gml</script>
               <script>scripts\levelPrisonCreateBench.gml</script>
               <script>scripts\levelPrisonCreateBush.gml</script>
             </scripts>
-            <scripts name="Crate">
-              <script>scripts\levelPrisonChestRoomInit.gml</script>
+            <scripts name="Shower">
+              <script>scripts\levelPrisonShowerInit.gml</script>
             </scripts>
             <scripts name="Start Room">
               <script>scripts\levelPrisonStartRoomInit.gml</script>
             </scripts>
-            <scripts name="Carpet Set">
-              <script>scripts\levelPrisonSmallCarpetSet.gml</script>
-              <script>scripts\levelPrisonCarpetSet.gml</script>
+            <scripts name="Boss Room">
+              <script>scripts\levelBossRoomInit.gml</script>
             </scripts>
-            <script>scripts\levelPrisonSplitByCells.gml</script>
-            <script>scripts\levelPrisonSetCloset.gml</script>
             <script>scripts\levelPrisonCreate4Cells.gml</script>
+            <script>scripts\levelPrisonSetCloset.gml</script>
+            <script>scripts\levelPrisonSplitByCells.gml</script>
           </scripts>
           <scripts name="Bfs">
             <script>scripts\bfsReset.gml</script>
@@ -793,6 +803,13 @@
       </objects>
       <objects name="Menu">
         <object>objects\oCharacterChoose</object>
+      </objects>
+      <objects name="Android">
+        <object>objects\oAndroidButtonBase</object>
+        <object>objects\oAndroidJoystickMove</object>
+        <object>objects\oAndroidJoystickRotate</object>
+        <object>objects\oAndroidButtonAttack</object>
+        <object>objects\oAndroidButtonPickup</object>
       </objects>
       <object>objects\oLevel</object>
       <object>objects\oCamera</object>

@@ -245,8 +245,16 @@ for (var ch = 0, cnt = instance_number(oCellRoom); ch < cnt; ch++)
                             }
                             else if (i == ci - 1)
                             {
-                                tile_add(tlsPrisonSlats, 2*tw, 2*th, tw, th, tx, ty, -ty-th);
-                                levelTileMark(cx, i, TILES.__PS_RIGHT);
+                                if (doorPos == 0)
+                                {
+                                    tile_add(tlsPrisonSlats, 2*tw, 2*th, tw, th, tx, ty, -ty-th);
+                                    levelTileMark(cx, i, TILES.__PS_BOTTOM);
+                                }
+                                else
+                                {
+                                    tile_add(tlsPrisonSlats, 0*tw, 2*th, tw, th, tx, ty, -ty-th);
+                                    levelTileMark(cx, i, TILES.__PS_BOTTOM_RIGHT); // LEFT                                    
+                                }
                             }
                             else
                             {

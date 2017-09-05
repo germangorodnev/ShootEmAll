@@ -258,10 +258,13 @@ with (oCellRoom)
     // halls now
     for (var i = 0; i < 4; i++)
     {
-        if (door[i] == noone)
-            continue;
-        var fl = door[i].floorId;
-        roomComeinBlackZoneAdd(cmi, fl.blIndex);
+        for (var j = 0; j < doorsCount[i]; ++j)
+        {
+            if (doors[i, j] == noone)
+                continue;
+            var fl = doors[i, j].floorId;
+            roomComeinBlackZoneAdd(cmi, fl.blIndex);
+        }
     }
     // set room field
     cmi.roomX1 = realx// - tw;

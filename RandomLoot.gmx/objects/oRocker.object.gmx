@@ -28,7 +28,7 @@
             <string>event_inherited();
 image_speed = 0;
 
-spd = 1;
+spd = 2;
 vecdir = 1;
 anMaxAngle = 3;
 anSinStep = 6;
@@ -250,6 +250,41 @@ case ENEMY_STATE.__ROCKER_MOLOTOV_1:
         enemyAttack();
         rockerStartNewPattern();
     }        
+    break;
+    
+case ENEMY_STATE.__ROCKER_WALL_MINIGUN_1:
+    procedureAnimableProceed(); 
+    physicalBeginStep();
+       
+    if (STATE_CHANGE_TMR &amp;&amp; !--STATE_CHANGE_TMR)
+    {
+        // set new state
+        rockerStartNewPattern();
+        exit;
+    }
+        
+    var done = physicalMoveToPoint(mX, mY, spd, speedmod);
+    if (done)
+    {
+        // wow we're actually done
+        if (path_get_number(path) == 0)
+            rockerStartNewPattern();
+        else
+            enemyGetNextPathPoint();
+        //exit;
+    } 
+
+        physicalApplyRecoil(recoilSpd, recoilDir); 
+    
+    if (enemyCanAttack())
+    {
+        angle = point_direction(x, y, target.x, target.y);        
+        dir = round(angle / 90);
+        enemyFullRotateAndAttack();
+        exit;
+    }
+    
+    physicalMove(collideWith);
     break;
     
 case ENEMY_STATE.__IDLE:
